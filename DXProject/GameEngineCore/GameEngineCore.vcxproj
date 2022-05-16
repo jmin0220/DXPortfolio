@@ -18,35 +18,47 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="GameEngineState.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="GameEngineState.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{4d450118-7d70-492a-8021-bf0d912c4a6d}</ProjectGuid>
-    <RootNamespace>GameEngineBase</RootNamespace>
+    <ProjectGuid>{4d1b1c5d-9371-4ca8-8069-838b7bbb0c2e}</ProjectGuid>
+    <RootNamespace>GameEngineCore</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
@@ -154,40 +166,6 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClCompile Include="GameEngineDebug.cpp" />
-    <ClCompile Include="GameEngineDirectory.cpp" />
-    <ClCompile Include="GameEngineFile.cpp" />
-    <ClCompile Include="GameEngineInput.cpp" />
-    <ClCompile Include="GameEngineMath.cpp" />
-    <ClCompile Include="GameEngineNameObject.cpp" />
-    <ClCompile Include="GameEnginePath.cpp" />
-    <ClCompile Include="GameEngineRandom.cpp" />
-    <ClCompile Include="GameEngineReadFile.cpp" />
-    <ClCompile Include="GameEngineSound.cpp" />
-    <ClCompile Include="GameEngineString.cpp" />
-    <ClCompile Include="GameEngineTime.cpp" />
-    <ClCompile Include="GameEngineUpdateObject.cpp" />
-    <ClCompile Include="GameEngineWindow.cpp" />
-    <ClCompile Include="GameEngineWriteFile.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="GameEngineDebug.h" />
-    <ClInclude Include="GameEngineDirectory.h" />
-    <ClInclude Include="GameEngineFile.h" />
-    <ClInclude Include="GameEngineInput.h" />
-    <ClInclude Include="GameEngineMath.h" />
-    <ClInclude Include="GameEngineNameObject.h" />
-    <ClInclude Include="GameEnginePath.h" />
-    <ClInclude Include="GameEngineRandom.h" />
-    <ClInclude Include="GameEngineReadFile.h" />
-    <ClInclude Include="GameEngineSound.h" />
-    <ClInclude Include="GameEngineString.h" />
-    <ClInclude Include="GameEngineTime.h" />
-    <ClInclude Include="GameEngineUpdateObject.h" />
-    <ClInclude Include="GameEngineWindow.h" />
-    <ClInclude Include="GameEngineWriteFile.h" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
