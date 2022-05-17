@@ -6,4 +6,18 @@
   <ItemGroup>
     <ClCompile Include="GameEngineState.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Contents">
+      <UniqueIdentifier>{cc608213-b0b6-4f0a-b0bd-81adf4af0c31}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core">
+      <UniqueIdentifier>{e99e28cf-5242-415a-9d5c-9c23e5db09b4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object">
+      <UniqueIdentifier>{23fb717e-7646-429e-9af6-d8ce52bc1b4b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resouces">
+      <UniqueIdentifier>{55156218-21a3-49b2-b098-dbcddb791f18}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
 </Project>

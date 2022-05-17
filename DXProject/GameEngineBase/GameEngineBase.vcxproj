@@ -188,6 +188,14 @@
     <ClInclude Include="GameEngineWindow.h" />
     <ClInclude Include="GameEngineWriteFile.h" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="ThirdParty\bin\fmod.dll" />
+    <None Include="ThirdParty\bin\fmodL.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="ThirdParty\bin\fmodL_vc.lib" />
+    <Library Include="ThirdParty\bin\fmod_vc.lib" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
