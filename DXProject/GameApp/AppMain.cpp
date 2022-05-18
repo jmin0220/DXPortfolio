@@ -1,28 +1,17 @@
 #include <Windows.h>
 
 #pragma comment(lib, "GameEngineBase.lib")
+#pragma comment(lib, "GameEngineCore.lib")
+#pragma comment(lib, "GameEngineContents.lib")
+#include <GameEngineContents/ContentsCore.h>
 
-#include <GameEngineBase/GameEngineDebug.h>
-#include <GameEngineBase/GameEngineDirectory.h>
-#include <GameEngineBase/GameEngineSound.h>
-
-
-
-int main() 
+int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
+	_In_opt_ HINSTANCE hPrevInstance,
+	_In_ LPWSTR    lpCmdLine,
+	_In_ int       nCmdShow)
 {
-	GameEngineDirectory Dir;
 
-	if (false == Dir.MoveParentToExitsChildDirectory("Resources"))
-	{
-		MsgBoxAssert("경로를 찾지 못했습니다.");
-		return 0;
-	}
-
-
-	while (true)
-	{
-
-	}
+	GameEngineCore::Start<ContentsCore>();
 
 	return 0;
 }

@@ -1,10 +1,46 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClInclude Include="GameEngineState.h" />
+    <ClInclude Include="GameEngineStateManager.h">
+      <Filter>Contents</Filter>
+    </ClInclude>
+    <ClInclude Include="GameEngineCore.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="GameEngineRenderer.h">
+      <Filter>Object\Component\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="GameEngineComponent.h">
+      <Filter>Object\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="GameEngineLevel.h">
+      <Filter>Object</Filter>
+    </ClInclude>
+    <ClInclude Include="GameEngineActor.h">
+      <Filter>Object</Filter>
+    </ClInclude>
+    <ClInclude Include="GEngine.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="GameEngineState.cpp" />
+    <ClCompile Include="GameEngineStateManager.cpp">
+      <Filter>Contents</Filter>
+    </ClCompile>
+    <ClCompile Include="GameEngineCore.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="GameEngineRenderer.cpp">
+      <Filter>Object\Component\Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="GameEngineComponent.cpp">
+      <Filter>Object\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="GameEngineActor.cpp">
+      <Filter>Object</Filter>
+    </ClCompile>
+    <ClCompile Include="GameEngineLevel.cpp">
+      <Filter>Object</Filter>
+    </ClCompile>
+    <ClCompile Include="GEngine.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Contents">
@@ -16,8 +52,17 @@
     <Filter Include="Object">
       <UniqueIdentifier>{23fb717e-7646-429e-9af6-d8ce52bc1b4b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Resouces">
-      <UniqueIdentifier>{55156218-21a3-49b2-b098-dbcddb791f18}</UniqueIdentifier>
+    <Filter Include="Object\Component">
+      <UniqueIdentifier>{63e2568a-dac0-4d8a-9362-c2598ea34517}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\Component\Coliision">
+      <UniqueIdentifier>{d060ecec-0d0c-4915-854d-5f3eeb5b69b0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\Component\Rendering">
+      <UniqueIdentifier>{8fba3525-40f2-44f9-8952-c32457c326d7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resources">
+      <UniqueIdentifier>{5eb463f6-3c75-4bbb-a2dc-992193a9cf8b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
