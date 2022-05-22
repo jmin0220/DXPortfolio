@@ -22,18 +22,54 @@
     <ClInclude Include="GameEngineActor.h" />
     <ClInclude Include="GameEngineComponent.h" />
     <ClInclude Include="GameEngineCore.h" />
+    <ClInclude Include="GameEngineIndexBuffer.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="GameEngineLevel.h" />
+    <ClInclude Include="GameEngineMesh.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="GameEngineRenderer.h" />
+    <ClInclude Include="GameEngineRes.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="GameEngineStateManager.h" />
+    <ClInclude Include="GameEngineVertexBuffer.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="GEngine.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameEngineActor.cpp" />
     <ClCompile Include="GameEngineComponent.cpp" />
     <ClCompile Include="GameEngineCore.cpp" />
+    <ClCompile Include="GameEngineCore_Resources.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="GameEngineIndexBuffer.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="GameEngineLevel.cpp" />
+    <ClCompile Include="GameEngineMesh.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="GameEngineRenderer.cpp" />
+    <ClCompile Include="GameEngineRes.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="GameEngineStateManager.cpp" />
+    <ClCompile Include="GameEngineVertexBuffer.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="GEngine.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

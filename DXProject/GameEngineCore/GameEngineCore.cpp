@@ -12,11 +12,11 @@ GameEngineLevel* GameEngineCore::NextLevel = nullptr;
 std::map<std::string, class GameEngineLevel*> GameEngineCore::AllLevels;
 
 
-GameEngineCore::GameEngineCore() 
+GameEngineCore::GameEngineCore()
 {
 }
 
-GameEngineCore::~GameEngineCore() 
+GameEngineCore::~GameEngineCore()
 {
 }
 
@@ -47,6 +47,9 @@ bool GameEngineCore::ChangeLevel(const std::string& _Name)
 
 void GameEngineCore::CoreStart(GameEngineCore* _UserCore)
 {
+	// 엔진 리소스는 완성되어야 합니다.
+	EngineResourcesInitialize();
+
 	// 엔진이 뭔가를 할겁니다.
 	// 준비를 먼저하고.
 	_UserCore->Start();
@@ -94,7 +97,7 @@ void GameEngineCore::CoreUpdate(GameEngineCore* _UserCore)
 
 }
 
-void GameEngineCore::CoreEnd(GameEngineCore* _UserCore) 
+void GameEngineCore::CoreEnd(GameEngineCore* _UserCore)
 {
 	_UserCore->End();
 
@@ -108,17 +111,19 @@ void GameEngineCore::CoreEnd(GameEngineCore* _UserCore)
 		Level.second = nullptr;
 	}
 
+	EngineResourcesDestroy();
+
 	GameEngineWindow::Destroy();
 	GameEngineInput::Destroy();
 	GameEngineTime::Destroy();
-	
+
 }
 
 
 void GameEngineCore::WindowCreate(const std::string& _Name, GameEngineCore* _UserCore)
 {
 	GameEngineWindow::GetInst()->CreateGameWindow(nullptr, _Name.c_str());
-	GameEngineWindow::GetInst()->SetWindowScaleAndPosition({ 0,0 }, {1280, 720});
+	GameEngineWindow::GetInst()->SetWindowScaleAndPosition({ 0,0 }, { 1280, 720 });
 	GameEngineWindow::GetInst()->ShowGameWindow();
 	GameEngineWindow::GetInst()->MessageLoop(
 		std::bind(&GameEngineCore::CoreStart, _UserCore),
@@ -131,7 +136,7 @@ void GameEngineCore::InitializeLevel(GameEngineLevel* _Level, const std::string 
 {
 	_Level->Start();
 	_Level->SetName(_Name);
-	
+
 	// AllLevels.insert(std::map<std::string, GameEngineLevel*>::value_type(_Name, NewLevel));
 	AllLevels.insert(std::make_pair(_Name, _Level));
 }

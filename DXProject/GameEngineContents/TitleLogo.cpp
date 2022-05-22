@@ -2,16 +2,18 @@
 #include <GameEngineCore/GEngine.h>
 #include <GameEngineCore/GameEngineRenderer.h>
 
-TitleLogo::TitleLogo() 
+TitleLogo::TitleLogo()
 {
 }
 
-TitleLogo::~TitleLogo() 
+TitleLogo::~TitleLogo()
 {
 }
 
-void TitleLogo::Start() 
+void TitleLogo::Start()
 {
+	GetTransform().SetScale({ 100, 100 });
+	GetTransform().SetPosition({ 300, 300, 100 });
 	{
 		GameEngineRenderer* Renderer = CreateComponent<GameEngineRenderer>();
 		// Renderer->ChangeOrder();
@@ -22,10 +24,10 @@ void TitleLogo::Start()
 	// 특화하지 않으면
 	// 컴포넌트의 뜻 => 기능
 
-	
+
 }
 
-void TitleLogo::Update(float _DeltaTime) 
+void TitleLogo::Update(float _DeltaTime)
 {
 	//if (3.0f < GetAccTime())
 	//{
@@ -34,7 +36,7 @@ void TitleLogo::Update(float _DeltaTime)
 	//}
 }
 
-void TitleLogo::End() 
+void TitleLogo::End()
 {
 	int a = 0;
 }

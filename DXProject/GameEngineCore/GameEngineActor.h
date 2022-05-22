@@ -2,6 +2,7 @@
 #include <GameEngineBase/GameEngineNameObject.h>
 #include <GameEngineBase/GameEngineUpdateObject.h>
 #include <list>
+#include <GameEngineBase/GameEngineTransform.h>
 
 // 설명 : 화면에 등장하는 모든것을 표현하기 위한 클래스
 class GameEngineComponent;
@@ -22,10 +23,10 @@ public:
 	GameEngineActor& operator=(const GameEngineActor& _Other) = delete;
 	GameEngineActor& operator=(GameEngineActor&& _Other) noexcept = delete;
 
-	inline GameEngineLevel* GetLevel() 	{		return ParentLevel;	}
+	inline GameEngineLevel* GetLevel() { return ParentLevel; }
 
 	template<typename Componenttype>
-	Componenttype* CreateComponent() 
+	Componenttype* CreateComponent()
 	{
 		GameEngineComponent* NewComponent = new Componenttype();
 		NewComponent->ParentActor = this;
@@ -46,9 +47,19 @@ private:
 
 	class GameEngineLevel* ParentLevel;
 
-	void SetLevel(GameEngineLevel* _ParentLevel) 
+	void SetLevel(GameEngineLevel* _ParentLevel)
 	{
 		ParentLevel = _ParentLevel;
+	}
+
+	/////////////////////////////////////////////////// 기하관련
+private:
+	GameEngineTransform Transform;
+
+public:
+	GameEngineTransform& GetTransform()
+	{
+		return Transform;
 	}
 };
 
