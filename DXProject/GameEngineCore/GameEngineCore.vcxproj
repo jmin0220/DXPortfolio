@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameEngineActor.h" />
+    <ClInclude Include="GameEngineCamera.h" />
     <ClInclude Include="GameEngineComponent.h" />
     <ClInclude Include="GameEngineCore.h" />
     <ClInclude Include="GameEngineIndexBuffer.h">
@@ -37,6 +38,7 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="GameEngineStateManager.h" />
+    <ClInclude Include="GameEngineTransformComponent.h" />
     <ClInclude Include="GameEngineVertexBuffer.h">
       <SubType>
       </SubType>
@@ -45,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameEngineActor.cpp" />
+    <ClCompile Include="GameEngineCamera.cpp" />
     <ClCompile Include="GameEngineComponent.cpp" />
     <ClCompile Include="GameEngineCore.cpp" />
     <ClCompile Include="GameEngineCore_Resources.cpp">
@@ -66,6 +69,7 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="GameEngineStateManager.cpp" />
+    <ClCompile Include="GameEngineTransformComponent.cpp" />
     <ClCompile Include="GameEngineVertexBuffer.cpp">
       <SubType>
       </SubType>

@@ -1,11 +1,11 @@
 #include "GameEngineMesh.h"
 #include "GameEngineBase/GameEngineString.h"
 
-GameEngineMesh::GameEngineMesh()
+GameEngineMesh::GameEngineMesh() 
 {
 }
 
-GameEngineMesh::~GameEngineMesh()
+GameEngineMesh::~GameEngineMesh() 
 {
 }
 
