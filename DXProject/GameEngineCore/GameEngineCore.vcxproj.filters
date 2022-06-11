@@ -38,6 +38,10 @@
     <ClInclude Include="GameEngineTransformComponent.h">
       <Filter>Object\Component</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\..\..\AR수업내용\AR40\DIRECTX\GameEngineCore\GameEngineCameraActor.h">
+      <Filter>Object\Component\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\AR수업내용\AR40\DIRECTX\GameEngineCore\CoreMinimal.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameEngineStateManager.cpp">
@@ -79,6 +83,9 @@
     </ClCompile>
     <ClCompile Include="GameEngineTransformComponent.cpp">
       <Filter>Object\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\AR수업내용\AR40\DIRECTX\GameEngineCore\GameEngineCameraActor.cpp">
+      <Filter>Object\Component\Rendering</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

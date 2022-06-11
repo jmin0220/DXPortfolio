@@ -1,9 +1,9 @@
 #include "TitleLogo.h"
 #include <GameEngineCore/GEngine.h>
 #include <GameEngineCore/GameEngineRenderer.h>
-#include <GameEngineCore/GameEngineCamera.h>
 
 TitleLogo::TitleLogo() 
+	: TimeAngle(0.0f)
 {
 }
 
@@ -15,18 +15,12 @@ GameEngineRenderer* RendererTest = nullptr;
 
 void TitleLogo::Start() 
 {
-	// GetTransform().SetLocalScale({ 100, 100, 100 });
-	GetTransform().SetLocalPosition({ 300, 300, 100 });
-
-
-	{
-		RendererTest = CreateComponent<GameEngineRenderer>();
-		RendererTest->GetTransform().SetLocalScale({ 100, 100, 100 });
-		RendererTest->GetTransform().SetLocalPosition({ 100, 0, 0 });
-	}
+	// 1280 720
+	GetTransform().SetLocalPosition({ 0, 200, 0 });
 
 	{
-		GameEngineCamera* Camera = CreateComponent<GameEngineCamera>();
+		GameEngineRenderer* RendererTest = CreateComponent<GameEngineRenderer>();
+		RendererTest->GetTransform().SetLocalScale({ 800, 400, 0 });
 	}
 
 	TimeAngle = 0.0f;
@@ -34,10 +28,10 @@ void TitleLogo::Start()
 
 void TitleLogo::Update(float _DeltaTime) 
 {
-	TimeAngle += _DeltaTime * 20.0f;
+	//TimeAngle += _DeltaTime * 20.0f;
 
-	GetTransform().SetLocalRotation({ 0.0f , 0.0f, TimeAngle });
-	RendererTest->GetTransform().SetLocalRotation({ TimeAngle , TimeAngle, TimeAngle });
+	//GetTransform().SetLocalRotation({ 0.0f , 0.0f, TimeAngle });
+	//RendererTest->GetTransform().SetLocalRotation({ TimeAngle , TimeAngle, TimeAngle });
 }
 
 void TitleLogo::End() 

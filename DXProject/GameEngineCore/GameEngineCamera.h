@@ -2,9 +2,19 @@
 #include "GameEngineTransformComponent.h"
 #include <GameEngineBase/GameEngineMath.h>
 
+enum class CAMERAPROJECTIONMODE
+{
+	PersPective,
+	Orthographic,
+};
+
 // 설명 :
+class GameEngineLevel;
+class GameEngineCamera;
 class GameEngineCamera : public GameEngineTransformComponent
 {
+	friend GameEngineLevel;
+
 public:
 	// constrcuter destructer
 	GameEngineCamera();
@@ -17,10 +27,26 @@ public:
 	GameEngineCamera& operator=(GameEngineCamera&& _Other) noexcept = delete;
 
 protected:
+	void Start();
 
 private:
 	float4x4 View; // 바라보는것
+	float4x4 ViewPort;
 	float4x4 Projection;
+	CAMERAPROJECTIONMODE Mode;
 
+	// Projection Data
+	float4 Size;
+	float Near;
+	float Far;
+
+	// Perspective
+	float Fov;
+
+	std::map<int, std::list<class GameEngineRenderer*>> AllRenderer_;
+
+	void Render(float _DeltaTime);
+
+	void PushRenderer(GameEngineRenderer* _Renderer);
 };
 
