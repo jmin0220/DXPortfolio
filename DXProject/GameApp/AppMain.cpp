@@ -12,10 +12,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 	_In_ LPWSTR    lpCmdLine,
 	_In_ int       nCmdShow)
 {
-	GameEngineTransform Parent;
-
-	GameEngineTransform Child;
-	Parent.PushChild(&Child);
+	new int();
 
 	GameEngineCore::Start<ContentsCore>();
 

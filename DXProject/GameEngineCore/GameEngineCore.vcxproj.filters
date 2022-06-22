@@ -38,10 +38,23 @@
     <ClInclude Include="GameEngineTransformComponent.h">
       <Filter>Object\Component</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\..\AR수업내용\AR40\DIRECTX\GameEngineCore\GameEngineCameraActor.h">
+    <ClInclude Include="..\..\..\..\..\AR수업내용\AR40\DIRECTX\GameEngineCore\CoreMinimal.h" />
+    <ClInclude Include="PreCompile.h">
+      <Filter>PreCompile</Filter>
+    </ClInclude>
+    <ClInclude Include="GameEngineDevice.h">
+      <Filter>Device</Filter>
+    </ClInclude>
+    <ClInclude Include="GameEngineCollision.h">
+      <Filter>Object\Component\Coliision</Filter>
+    </ClInclude>
+    <ClInclude Include="GameEngineCameraActor.h">
       <Filter>Object\Component\Rendering</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\..\AR수업내용\AR40\DIRECTX\GameEngineCore\CoreMinimal.h" />
+    <ClInclude Include="GameEngineTransformBase.h">
+      <Filter>Object\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="CoreMinimal.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameEngineStateManager.cpp">
@@ -84,8 +97,20 @@
     <ClCompile Include="GameEngineTransformComponent.cpp">
       <Filter>Object\Component</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\AR수업내용\AR40\DIRECTX\GameEngineCore\GameEngineCameraActor.cpp">
+    <ClCompile Include="PreCompile.cpp">
+      <Filter>PreCompile</Filter>
+    </ClCompile>
+    <ClCompile Include="GameEngineDevice.cpp">
+      <Filter>Device</Filter>
+    </ClCompile>
+    <ClCompile Include="GameEngineCollision.cpp">
+      <Filter>Object\Component\Coliision</Filter>
+    </ClCompile>
+    <ClCompile Include="GameEngineCameraActor.cpp">
       <Filter>Object\Component\Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="GameEngineTransformBase.cpp">
+      <Filter>Object\Component</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -109,6 +134,12 @@
     </Filter>
     <Filter Include="Resources">
       <UniqueIdentifier>{5eb463f6-3c75-4bbb-a2dc-992193a9cf8b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PreCompile">
+      <UniqueIdentifier>{9d8a49a5-a325-4c59-ace7-a21ffbc09695}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Device">
+      <UniqueIdentifier>{1a3fbfa6-1ae0-4cec-a5a4-dae1f0255d7e}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

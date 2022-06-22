@@ -9,7 +9,7 @@ public:
 	// constrcuter destructer
 	ContentsCore(); 
 	~ContentsCore(); 
-
+	
 	// delete Function
 	ContentsCore(const ContentsCore& _Other) = delete;
 	ContentsCore(ContentsCore&& _Other) noexcept = delete;

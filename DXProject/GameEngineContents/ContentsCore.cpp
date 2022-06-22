@@ -1,3 +1,4 @@
+#include "PreCompile.h"
 #include "ContentsCore.h"
 #include "GameEngineContents/TitleLevel.h"
 #include "GameEngineContents/PlayLevel.h"
@@ -15,7 +16,7 @@ ContentsCore::~ContentsCore()
 
 void ContentsCore::Start()
 {
-	GameEngineDebug::ConsoleOpen();
+	// GameEngineDebug::ConsoleOpen();
 
 	// 리소스를 로드하는데.
 

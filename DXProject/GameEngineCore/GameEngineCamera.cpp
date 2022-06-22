@@ -1,3 +1,4 @@
+#include "PreCompile.h"
 #include "GameEngineCamera.h"
 #include "GameEngineRenderer.h"
 #include "GameEngineActor.h"
@@ -65,4 +66,31 @@ void GameEngineCamera::Start()
 void GameEngineCamera::PushRenderer(GameEngineRenderer* _Renderer)
 {
 	AllRenderer_[_Renderer->GetOrder()].push_back(_Renderer);
+}
+
+void GameEngineCamera::Release(float _DelataTime)
+{
+	std::map<int, std::list<GameEngineRenderer*>>::iterator StartGroupIter = AllRenderer_.begin();
+	std::map<int, std::list<GameEngineRenderer*>>::iterator EndGroupIter = AllRenderer_.end();
+
+	for (; StartGroupIter != EndGroupIter; ++StartGroupIter)
+	{
+		std::list<GameEngineRenderer*>& Group = StartGroupIter->second;
+		std::list<GameEngineRenderer*>::iterator GroupStart = Group.begin();
+		std::list<GameEngineRenderer*>::iterator GroupEnd = Group.end();
+
+		for (; GroupStart != GroupEnd; )
+		{
+			(*GroupStart)->ReleaseUpdate(_DelataTime);
+			if (true == (*GroupStart)->IsDeath())
+			{
+				GroupStart = Group.erase(GroupStart);
+			}
+			else
+			{
+				++GroupStart;
+			}
+
+		}
+	}
 }

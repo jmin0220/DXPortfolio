@@ -26,6 +26,11 @@ public:
 	GameEngineCamera& operator=(const GameEngineCamera& _Other) = delete;
 	GameEngineCamera& operator=(GameEngineCamera&& _Other) noexcept = delete;
 
+	void SetProjectionMode(CAMERAPROJECTIONMODE _Mode)
+	{
+		Mode = _Mode;
+	}
+
 protected:
 	void Start();
 
@@ -48,5 +53,7 @@ private:
 	void Render(float _DeltaTime);
 
 	void PushRenderer(GameEngineRenderer* _Renderer);
+
+	void Release(float _DelataTime);
 };
 

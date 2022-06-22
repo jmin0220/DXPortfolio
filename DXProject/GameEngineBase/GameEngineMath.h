@@ -5,6 +5,8 @@
 #include <d3dcompiler.h>
 #include <DirectXPackedVector.h>
 
+#include <DirectXCollision.h>
+
 #pragma comment(lib, "d3d11")
 #pragma comment(lib, "d3dcompiler")
 #pragma comment(lib, "dxguid")
@@ -109,9 +111,6 @@ public:
 		//Return.Arr1DInt[2] = (_Left.Arr1DInt[2] & ~_Control.Arr1DInt[2]) | (_Right.Arr1DInt[2] & _Control.Arr1DInt[2]);
 		//Return.Arr1DInt[3] = (_Left.Arr1DInt[3] & ~_Control.Arr1DInt[3]) | (_Right.Arr1DInt[3] & _Control.Arr1DInt[3]);
 		return Return;
-
-
-		// DirectX::XMVectorSelect
 	}
 
 
@@ -143,7 +142,6 @@ public:
 
 		return Angle;
 	}
-
 
 	static float4 DegreeToDirection2D(float _Degree)
 	{
@@ -258,6 +256,8 @@ public:
 
 		int Arr1DInt[4];
 
+		DirectX::XMFLOAT3 DirectFloat3;
+		DirectX::XMFLOAT4 DirectFloat4;
 		DirectX::XMVECTOR DirectVector;
 	};
 
@@ -268,6 +268,17 @@ public:
 	}
 
 public:
+	int uix() const
+	{
+		return static_cast<unsigned int>(x);
+	}
+
+	int uiy() const
+	{
+		return static_cast<unsigned int>(y);
+	}
+
+
 	int ix() const
 	{
 		return static_cast<int>(x);
@@ -351,6 +362,15 @@ public:
 		return;
 	}
 
+	operator DirectX::XMFLOAT4() const
+	{
+		return DirectFloat4;
+	}
+
+	operator DirectX::XMFLOAT3() const
+	{
+		return DirectFloat3;
+	}
 
 	float& operator[](int _Index)
 	{
@@ -375,12 +395,22 @@ public:
 
 	float4 operator*(const float _Value) const
 	{
-		return { x * _Value, y * _Value, z * _Value, 1.0f };
+		return DirectX::XMVectorMultiply(DirectVector, float4(_Value).DirectVector);
+	}
+
+	float4 operator*(const float4& _Value) const
+	{
+		return DirectX::XMVectorMultiply(DirectVector, _Value.DirectVector);
 	}
 
 	float4 operator/(const float _Value) const
 	{
-		return { x / _Value, y / _Value, z / _Value, 1.0f };
+		return DirectX::XMVectorDivide(DirectVector, float4(_Value).DirectVector);
+	}
+
+	float4 operator/(const float4& _Value) const
+	{
+		return DirectX::XMVectorDivide(DirectVector, _Value.DirectVector);
 	}
 
 	float4& operator+=(const float4& _Other)
@@ -420,6 +450,13 @@ public:
 		return *this;
 	}
 
+	float4 DegreeRotationToQuaternionReturn() const
+	{
+		float4 Rot = *this;
+		Rot *= GameEngineMath::DegreeToRadian;
+		Rot.DirectVector =  DirectX::XMQuaternionRotationRollPitchYawFromVector(Rot.DirectVector);
+		return Rot;
+	}
 
 	bool CompareInt2D(const float4& _Value) const
 	{
@@ -458,6 +495,13 @@ public:
 	{
 
 	}
+	float4(float _Value)
+		: x(_Value), y(_Value), z(_Value), w(_Value)
+	{
+
+	}
+
+
 	float4(float _x, float _y)
 		: x(_x), y(_y), z(1.0f), w(1.0f)
 	{
@@ -473,6 +517,13 @@ public:
 	{
 
 	}
+
+	float4(const DirectX::XMVECTOR& _Vector)
+		: DirectVector(_Vector)
+	{
+
+	}
+
 
 
 };
@@ -905,10 +956,7 @@ public:
 public: // ¿¬»êÀÚ
 	float4x4 operator*(const float4x4& _Value) 
 	{
-		DirectMatrix = DirectX::XMMatrixMultiply(DirectMatrix, _Value.DirectMatrix);
-
-		// ZeroCheck();
-		return DirectMatrix;
+		return DirectX::XMMatrixMultiply(DirectMatrix, _Value.DirectMatrix);
 	}
 };
 

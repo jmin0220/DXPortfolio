@@ -20,11 +20,14 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\..\..\AR수업내용\AR40\DIRECTX\GameEngineCore\CoreMinimal.h" />
-    <ClInclude Include="..\..\..\..\..\AR수업내용\AR40\DIRECTX\GameEngineCore\GameEngineCameraActor.h" />
+    <ClInclude Include="CoreMinimal.h" />
     <ClInclude Include="GameEngineActor.h" />
     <ClInclude Include="GameEngineCamera.h" />
+    <ClInclude Include="GameEngineCameraActor.h" />
+    <ClInclude Include="GameEngineCollision.h" />
     <ClInclude Include="GameEngineComponent.h" />
     <ClInclude Include="GameEngineCore.h" />
+    <ClInclude Include="GameEngineDevice.h" />
     <ClInclude Include="GameEngineIndexBuffer.h">
       <SubType>
       </SubType>
@@ -40,23 +43,27 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="GameEngineStateManager.h" />
+    <ClInclude Include="GameEngineTransformBase.h" />
     <ClInclude Include="GameEngineTransformComponent.h" />
     <ClInclude Include="GameEngineVertexBuffer.h">
       <SubType>
       </SubType>
     </ClInclude>
     <ClInclude Include="GEngine.h" />
+    <ClInclude Include="PreCompile.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\..\..\AR수업내용\AR40\DIRECTX\GameEngineCore\GameEngineCameraActor.cpp" />
     <ClCompile Include="GameEngineActor.cpp" />
     <ClCompile Include="GameEngineCamera.cpp" />
+    <ClCompile Include="GameEngineCameraActor.cpp" />
+    <ClCompile Include="GameEngineCollision.cpp" />
     <ClCompile Include="GameEngineComponent.cpp" />
     <ClCompile Include="GameEngineCore.cpp" />
     <ClCompile Include="GameEngineCore_Resources.cpp">
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="GameEngineDevice.cpp" />
     <ClCompile Include="GameEngineIndexBuffer.cpp">
       <SubType>
       </SubType>
@@ -72,12 +79,17 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="GameEngineStateManager.cpp" />
+    <ClCompile Include="GameEngineTransformBase.cpp" />
     <ClCompile Include="GameEngineTransformComponent.cpp" />
     <ClCompile Include="GameEngineVertexBuffer.cpp">
       <SubType>
       </SubType>
     </ClCompile>
     <ClCompile Include="GEngine.cpp" />
+    <ClCompile Include="PreCompile.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
+    </ClCompile>
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
@@ -194,6 +206,8 @@
       <LanguageStandard>stdcpp20</LanguageStandard>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <AdditionalIncludeDirectories>..\;</AdditionalIncludeDirectories>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>PreCompile.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -211,6 +225,8 @@
       <LanguageStandard>stdcpp20</LanguageStandard>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <AdditionalIncludeDirectories>..\;</AdditionalIncludeDirectories>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>PreCompile.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

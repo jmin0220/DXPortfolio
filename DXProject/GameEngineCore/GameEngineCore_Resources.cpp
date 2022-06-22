@@ -1,3 +1,4 @@
+#include "PreCompile.h"
 #include "GameEngineCore.h"
 #include <GameEngineBase/GameEngineWindow.h>
 #include <GameEngineBase/GameEngineInput.h>
@@ -8,6 +9,7 @@
 // Resources Header
 #include "GameEngineVertexBuffer.h"
 #include "GameEngineIndexBuffer.h"
+
 
 void GameEngineCore::EngineResourcesInitialize()
 {
@@ -129,4 +131,6 @@ void GameEngineCore::EngineResourcesDestroy()
 {
 	GameEngineVertexBuffer::ResourcesDestroy();
 	GameEngineIndexBuffer::ResourcesDestroy();
+
+	GameEngineDevice::Destroy();
 }

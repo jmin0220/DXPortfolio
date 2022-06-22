@@ -19,6 +19,12 @@
     <Filter Include="Actor\Title">
       <UniqueIdentifier>{6dbd6a4b-f82f-43ee-b9ac-e14cc6e57670}</UniqueIdentifier>
     </Filter>
+    <Filter Include="PreCompile">
+      <UniqueIdentifier>{3195e5fe-9f79-4ae7-bf89-92e9939674a9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Actor\Play\Com">
+      <UniqueIdentifier>{0ef09a70-bf22-442e-b422-f7c511685151}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Enums.h">
@@ -42,6 +48,13 @@
     <ClInclude Include="Monster.h">
       <Filter>Actor\Play</Filter>
     </ClInclude>
+    <ClInclude Include="PreCompile.h">
+      <Filter>PreCompile</Filter>
+    </ClInclude>
+    <ClInclude Include="ScoreTestComponent.h">
+      <Filter>Actor\Play\Com</Filter>
+    </ClInclude>
+    <ClInclude Include="GlobalContentsValue.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PlayLevel.cpp">
@@ -62,5 +75,12 @@
     <ClCompile Include="Monster.cpp">
       <Filter>Actor\Play</Filter>
     </ClCompile>
+    <ClCompile Include="PreCompile.cpp">
+      <Filter>PreCompile</Filter>
+    </ClCompile>
+    <ClCompile Include="ScoreTestComponent.cpp">
+      <Filter>Actor\Play\Com</Filter>
+    </ClCompile>
+    <ClCompile Include="GlobalContentsValue.cpp" />
   </ItemGroup>
 </Project>
