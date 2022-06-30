@@ -7,24 +7,6 @@
 // 설명 :
 class GameEngineDevice
 {
-private:
-	static GameEngineDevice* Inst;
-
-public:
-	static GameEngineDevice& GetInst() 
-	{
-		return *Inst;
-	}
-
-	static void Destroy()
-	{
-		if (nullptr != Inst)
-		{
-			delete Inst;
-			Inst = nullptr;
-		}
-	}
-
 public:
 	~GameEngineDevice();
 
@@ -38,6 +20,20 @@ public:
 	static void DeviceCreate();
 	static void CreateSwapChain();
 
+	static void RenderStart();
+	static void RenderEnd();
+
+	static ID3D11Device* GetDevice() 
+	{
+		return Device_;
+	}
+	static ID3D11DeviceContext* GetContext() 
+	{
+		return Context_;
+	}
+
+	static void Destroy();
+
 protected:
 
 private:
@@ -45,7 +41,7 @@ private:
 	
 	// 다이렉트 9때는 디바이스밖에 없었는데.
 	// 리소스와 메모리 분야를 맡습니다.
-	// 그래픽카드에 저장될 텍스처
+	// 그래픽카드에 뭔가를 만든다면.
 	static ID3D11Device* Device_;
 
 	// 그래픽카드에 연산을 명령할 수 있게 되는데.
@@ -54,6 +50,8 @@ private:
 
 	// api의 백버퍼
 	static IDXGISwapChain* SwapChain_;
+
+	static class GameEngineRenderTarget* BackBufferTarget;
 
 	GameEngineDevice();
 };

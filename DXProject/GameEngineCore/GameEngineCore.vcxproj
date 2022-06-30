@@ -22,38 +22,47 @@
     <ClInclude Include="..\..\..\..\..\AR수업내용\AR40\DIRECTX\GameEngineCore\CoreMinimal.h" />
     <ClInclude Include="CoreMinimal.h" />
     <ClInclude Include="GameEngineActor.h" />
+    <ClInclude Include="GameEngineBlend.h" />
     <ClInclude Include="GameEngineCamera.h" />
     <ClInclude Include="GameEngineCameraActor.h" />
     <ClInclude Include="GameEngineCollision.h" />
     <ClInclude Include="GameEngineComponent.h" />
     <ClInclude Include="GameEngineCore.h" />
+    <ClInclude Include="GameEngineDefaultRenderer.h" />
+    <ClInclude Include="GameEngineDepthStencil.h" />
     <ClInclude Include="GameEngineDevice.h" />
     <ClInclude Include="GameEngineIndexBuffer.h">
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="GameEngineInputLayOut.h" />
     <ClInclude Include="GameEngineLevel.h" />
-    <ClInclude Include="GameEngineMesh.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
+    <ClInclude Include="GameEnginePixelShader.h" />
+    <ClInclude Include="GameEngineRasterizer.h" />
     <ClInclude Include="GameEngineRenderer.h" />
+    <ClInclude Include="GameEngineRenderingPipeLine.h" />
+    <ClInclude Include="GameEngineRenderTarget.h" />
     <ClInclude Include="GameEngineRes.h">
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="GameEngineShader.h" />
     <ClInclude Include="GameEngineStateManager.h" />
+    <ClInclude Include="GameEngineTexture.h" />
     <ClInclude Include="GameEngineTransformBase.h" />
     <ClInclude Include="GameEngineTransformComponent.h" />
     <ClInclude Include="GameEngineVertexBuffer.h">
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="GameEngineVertexs.h" />
+    <ClInclude Include="GameEngineVertexShader.h" />
     <ClInclude Include="GEngine.h" />
     <ClInclude Include="PreCompile.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameEngineActor.cpp" />
+    <ClCompile Include="GameEngineBlend.cpp" />
     <ClCompile Include="GameEngineCamera.cpp" />
     <ClCompile Include="GameEngineCameraActor.cpp" />
     <ClCompile Include="GameEngineCollision.cpp" />
@@ -63,28 +72,35 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="GameEngineDefaultRenderer.cpp" />
+    <ClCompile Include="GameEngineDepthStencil.cpp" />
     <ClCompile Include="GameEngineDevice.cpp" />
     <ClCompile Include="GameEngineIndexBuffer.cpp">
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="GameEngineInputLayOut.cpp" />
     <ClCompile Include="GameEngineLevel.cpp" />
-    <ClCompile Include="GameEngineMesh.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
+    <ClCompile Include="GameEnginePixelShader.cpp" />
+    <ClCompile Include="GameEngineRasterizer.cpp" />
     <ClCompile Include="GameEngineRenderer.cpp" />
+    <ClCompile Include="GameEngineRenderingPipeLine.cpp" />
+    <ClCompile Include="GameEngineRenderTarget.cpp" />
     <ClCompile Include="GameEngineRes.cpp">
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="GameEngineShader.cpp" />
     <ClCompile Include="GameEngineStateManager.cpp" />
+    <ClCompile Include="GameEngineTexture.cpp" />
     <ClCompile Include="GameEngineTransformBase.cpp" />
     <ClCompile Include="GameEngineTransformComponent.cpp" />
     <ClCompile Include="GameEngineVertexBuffer.cpp">
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="GameEngineVertexs.cpp" />
+    <ClCompile Include="GameEngineVertexShader.cpp" />
     <ClCompile Include="GEngine.cpp" />
     <ClCompile Include="PreCompile.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>

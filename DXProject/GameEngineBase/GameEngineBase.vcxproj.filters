@@ -45,12 +45,6 @@
     <ClCompile Include="GameEnginePath.cpp">
       <Filter>IO</Filter>
     </ClCompile>
-    <ClCompile Include="GameEngineReadFile.cpp">
-      <Filter>IO</Filter>
-    </ClCompile>
-    <ClCompile Include="GameEngineWriteFile.cpp">
-      <Filter>IO</Filter>
-    </ClCompile>
     <ClCompile Include="GameEngineTime.cpp">
       <Filter>Math</Filter>
     </ClCompile>
@@ -95,9 +89,6 @@
     <ClInclude Include="GameEngineDebug.h">
       <Filter>Debug</Filter>
     </ClInclude>
-    <ClInclude Include="GameEngineWriteFile.h">
-      <Filter>IO</Filter>
-    </ClInclude>
     <ClInclude Include="GameEngineDirectory.h">
       <Filter>IO</Filter>
     </ClInclude>
@@ -105,9 +96,6 @@
       <Filter>IO</Filter>
     </ClInclude>
     <ClInclude Include="GameEnginePath.h">
-      <Filter>IO</Filter>
-    </ClInclude>
-    <ClInclude Include="GameEngineReadFile.h">
       <Filter>IO</Filter>
     </ClInclude>
     <ClInclude Include="GameEngineTime.h">
