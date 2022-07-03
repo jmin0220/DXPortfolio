@@ -1,8 +1,8 @@
 #pragma once
-#include "GameEngineRes.h"
+#include <string>
 
 // Ό³Έν :
-class GameEngineShader 
+class GameEngineShader
 {
 public:
 	static void AutoCompile(const std::string& _Path);
@@ -26,8 +26,11 @@ protected:
 		EntryPoint = _EntryPoint;
 	}
 
-private:
+	ID3DBlob* BinaryPtr;
+
 	std::string Version;
+
+private:
 	std::string EntryPoint;
 
 };

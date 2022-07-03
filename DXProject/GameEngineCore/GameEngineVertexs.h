@@ -1,9 +1,12 @@
 #pragma once
 #include <GameEngineBase/GameEngineMath.h>
 
-class GameEngineLayOutDesc 
+class GameEngineLayOutDesc
 {
 	// 일반적인 맴버변수를 가지면 안됩니다.
+
+	friend class GameEngineInputLayOut;
+
 public:
 	unsigned int LayOutOffset;
 	std::map<const char*, int> SemanticIndexData;
@@ -18,8 +21,6 @@ public:
 		unsigned int _InstanceDataStepRate = 0
 	);
 
-	class GameEngineInputLayout* CreateInputLayOut(class GameEngineVertexShader* _Shader);
-
 public:
 	GameEngineLayOutDesc()
 		: LayOutOffset(0)
@@ -28,7 +29,7 @@ public:
 	}
 };
 
-struct GameEngineVertex 
+struct GameEngineVertex
 {
 	static GameEngineLayOutDesc LayOut;
 

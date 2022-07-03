@@ -11,9 +11,8 @@ class GameEngineVertexBuffer : public GameEngineRes<GameEngineVertexBuffer>
 {
 public:
 	friend GameEngineRes<GameEngineVertexBuffer>;
-	
-public:
 
+public:
 	template<typename VertexType>
 	static GameEngineVertexBuffer* Create(const std::string& _Name, const std::vector<VertexType>& _Vertex)
 	{
@@ -36,6 +35,7 @@ private:
 	GameEngineVertexBuffer& operator=(GameEngineVertexBuffer&& _Other) noexcept = delete;
 
 protected:
+	void BufferCreate(const void* _Data, size_t _Size);
 
 
 private:

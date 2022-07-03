@@ -32,17 +32,22 @@ void GameEngineRenderingPipeLine::Draw()
 
 }
 
-void GameEngineRenderingPipeLine::SetInputAssembler1InputLayOutSetting(const std::string& _Name)
+//
+//void GameEngineRenderingPipeLine::SetInputAssembler1InputLayOutSetting(const std::string& _Name)
+//{
+//	InputLayOut = GameEngineInputLayOut::Find(_Name);
+//
+//	if (nullptr == InputLayOut)
+//	{
+//		MsgBoxAssert("존재하지 않는 인풋레이아웃을 세팅하려고 했습니다.");
+//		return;
+//	}
+//}
+
+GameEngineRenderingPipeLine* GameEngineRenderingPipeLine::Create(const std::string& _Name)
 {
-	InputLayOut = GameEngineInputLayOut::Find(_Name);
-
-	if (nullptr == InputLayOut)
-	{
-		MsgBoxAssert("존재하지 않는 인풋레이아웃을 세팅하려고 했습니다.");
-		return;
-	}
+	return CreateResName(_Name);
 }
-
 
 void GameEngineRenderingPipeLine::SetInputAssembler1VertexBufferSetting(const std::string& _Name) 
 {
@@ -53,9 +58,14 @@ void GameEngineRenderingPipeLine::SetInputAssembler1VertexBufferSetting(const st
 		MsgBoxAssert("존재하지 않는 버텍스 버퍼를 세팅하려고 했습니다.");
 		return;
 	}
+
+	//if (nullptr != VertexShader)
+	//{
+	//	InputLayOut = new GameEngineInputLayOut();
+	//}
 }
 
-void GameEngineRenderingPipeLine::SetVertexShader(const std::string& _Name)
+void GameEngineRenderingPipeLine::SetVertexShaderSetting(const std::string& _Name)
 {
 	VertexShader = GameEngineVertexShader::Find(_Name);
 
@@ -65,6 +75,10 @@ void GameEngineRenderingPipeLine::SetVertexShader(const std::string& _Name)
 		return;
 	}
 
+	//if (nullptr != VertexBuffer)
+	//{
+	//	InputLayOut = new GameEngineInputLayOut();
+	//}
 }
 
 void GameEngineRenderingPipeLine::SetInputAssembler2IndexBufferSetting(const std::string& _Name) 
@@ -78,7 +92,7 @@ void GameEngineRenderingPipeLine::SetInputAssembler2IndexBufferSetting(const std
 	}
 }
 
-void GameEngineRenderingPipeLine::SetRasterizer(const std::string& _Name)
+void GameEngineRenderingPipeLine::SetRasterizerSetting(const std::string& _Name)
 {
 	Rasterizer = GameEngineRasterizer::Find(_Name);
 
@@ -91,7 +105,7 @@ void GameEngineRenderingPipeLine::SetRasterizer(const std::string& _Name)
 }
 
 
-void GameEngineRenderingPipeLine::SetPixelShader(const std::string& _Name)
+void GameEngineRenderingPipeLine::SetPixelShaderSetting(const std::string& _Name)
 {
 	PixelShader = GameEnginePixelShader::Find(_Name);
 
@@ -118,7 +132,7 @@ void GameEngineRenderingPipeLine::SetOutputMergerDepthStencilSetting(const std::
 }
 
 
-void GameEngineRenderingPipeLine::SetOutputMergerBlend(const std::string& _Name)
+void GameEngineRenderingPipeLine::SetOutputMergerBlendSetting(const std::string& _Name)
 {
 	Blend = GameEngineBlend::Find(_Name);
 
