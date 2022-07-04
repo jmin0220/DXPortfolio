@@ -5,7 +5,7 @@
 #include "GameEngineLevel.h"
 #include <GameEngineBase/GameEngineWindow.h>
 
-GameEngineCamera::GameEngineCamera() 
+GameEngineCamera::GameEngineCamera()
 {
 	// 윈도우가 여러분들 생각하기 가장 쉬운 비율이라서 여기서 하는거고.
 	Size = GameEngineWindow::GetInst()->GetScale();
@@ -13,18 +13,30 @@ GameEngineCamera::GameEngineCamera()
 	Near = 0.1f;
 	Far = 1000.0f;
 	Fov = 60.0f;
+
+	ViewPortDesc.TopLeftX = 0;
+	ViewPortDesc.TopLeftY = 0;
+	ViewPortDesc.Width = Size.uix();
+	ViewPortDesc.Height = Size.uiy();
+	ViewPortDesc.MinDepth = 0.0f;
+	ViewPortDesc.MaxDepth = 0.0f;
+
+
 }
 
-GameEngineCamera::~GameEngineCamera() 
+GameEngineCamera::~GameEngineCamera()
 {
 }
 
 void GameEngineCamera::Render(float _DeltaTime)
 {
+	// 순서적으로보면 레스터라이저 단계이지만 변경이 거의 없을거기 때문에.
+	GameEngineDevice::GetContext()->RSSetViewports(0, &ViewPortDesc);
+
 	// 랜더하기 전에 
 	View.LookAtLH(
-		GetActor()->GetTransform().GetLocalPosition(), 
-		GetActor()->GetTransform().GetForwardVector(), 
+		GetActor()->GetTransform().GetLocalPosition(),
+		GetActor()->GetTransform().GetForwardVector(),
 		GetActor()->GetTransform().GetUpVector());
 
 	switch (Mode)
