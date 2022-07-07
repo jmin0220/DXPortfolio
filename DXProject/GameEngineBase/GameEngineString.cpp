@@ -18,7 +18,6 @@ std::wstring GameEngineString::AnsiToUnicodeReturn(const std::string& Text)
 	return Unicode;
 }
 
-
 void GameEngineString::AnsiToUnicode(const std::string& _Text, std::wstring& _Out)
 {
 	int Size = MultiByteToWideChar(CP_ACP, 0, _Text.c_str(), static_cast<int>(_Text.size()), nullptr, 0);

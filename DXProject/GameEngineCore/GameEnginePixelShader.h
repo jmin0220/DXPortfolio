@@ -3,7 +3,7 @@
 #include "GameEngineRes.h"
 
 // Ό³Έν :
-class GameEnginePixelShader
+class GameEnginePixelShader 
 	: public GameEngineRes<GameEnginePixelShader>
 	, public GameEngineShader
 {

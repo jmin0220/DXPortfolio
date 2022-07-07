@@ -11,12 +11,12 @@
 #include <GameEngineCore/GameEngineConstantBuffer.h>
 #include <GameEngineCore/GameEngineDevice.h>
 
-Player::Player()
+Player::Player() 
 	: Speed(50.0f)
 {
 }
 
-Player::~Player()
+Player::~Player() 
 {
 }
 
@@ -43,7 +43,7 @@ void Player::Start()
 
 	// GetTransform().SetLocalPosition({ 200, 200, 1 });
 
-	GetTransform().SetLocalScale({ 1, 1, 1 });
+	GetTransform().SetLocalScale({1, 1, 1});
 
 	ScoreTestComponent* ScoreCom = CreateComponent<ScoreTestComponent>();
 	{

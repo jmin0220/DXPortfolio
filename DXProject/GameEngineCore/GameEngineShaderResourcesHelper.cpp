@@ -1,11 +1,11 @@
 #include "PreCompile.h"
 #include "GameEngineShaderResourcesHelper.h"
 
-GameEngineShaderResourcesHelper::GameEngineShaderResourcesHelper()
+GameEngineShaderResourcesHelper::GameEngineShaderResourcesHelper() 
 {
 }
 
-GameEngineShaderResourcesHelper::~GameEngineShaderResourcesHelper()
+GameEngineShaderResourcesHelper::~GameEngineShaderResourcesHelper() 
 {
 }
 

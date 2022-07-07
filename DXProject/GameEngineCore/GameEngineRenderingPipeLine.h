@@ -45,14 +45,14 @@ public:
 
 	void Rendering();
 
-	inline GameEngineVertexShader* GetVertexShader()
+	inline GameEngineVertexShader* GetVertexShader() 
 	{
 		return VertexShader;
 	}
 
 protected:
 
-
+	
 private:
 	GameEngineInputLayOut* InputLayOut; // ÀÎÇ²¾î¼Àºí·¯1 ¼¼ÆÃ
 	GameEngineVertexBuffer* VertexBuffer; // ÀÎÇ²¾î¼Àºí·¯1 ¼¼ÆÃ

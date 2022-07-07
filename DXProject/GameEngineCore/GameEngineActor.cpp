@@ -4,13 +4,13 @@
 #include "GameEngineComponent.h"
 #include "GameEngineTransformComponent.h"
 
-GameEngineActor::GameEngineActor()
+GameEngineActor::GameEngineActor() 
 	:ParentLevel(nullptr)
 {
 
 }
 
-GameEngineActor::~GameEngineActor()
+GameEngineActor::~GameEngineActor() 
 {
 }
 
@@ -36,14 +36,14 @@ void GameEngineActor::AllUpdate(float _ScaleDeltaTime, float _DeltaTime)
 		Com->Update(_ScaleDeltaTime);
 	}
 }
-void GameEngineActor::DetachObject()
+void GameEngineActor::DetachObject() 
 {
 	GameEngineUpdateObject::DetachObject();
 
 	GetTransform().DetachTransform();
 }
 
-void GameEngineActor::SetParent(GameEngineUpdateObject* _Object)
+void GameEngineActor::SetParent(GameEngineUpdateObject* _Object) 
 {
 	if (nullptr == GetParent())
 	{

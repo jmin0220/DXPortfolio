@@ -13,7 +13,6 @@ void GameEngineTransform::CollisionPositionSetting() {
 	CollisionDataObject.OBB.Center = Data.WorldPosition;
 }
 
-
 void GameEngineTransform::CollisionDataSetting()
 {
 	CollisionScaleSetting();

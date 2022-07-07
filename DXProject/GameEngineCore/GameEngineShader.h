@@ -7,7 +7,7 @@ class ConstantBuffer
 
 };
 
-class ShaderResSetter
+class ShaderResSetter 
 {
 public:
 	int BindPoint;
@@ -28,7 +28,7 @@ class GameEngineTextureSetter : public ShaderResSetter
 
 // Ό³Έν :
 class GameEngineShaderResourcesHelper;
-class GameEngineShader
+class GameEngineShader 
 {
 	friend GameEngineShaderResourcesHelper;
 
@@ -69,7 +69,7 @@ private:
 
 	// std::map<unsigned int, ConstantBuffer> 
 
-
+	
 
 };
 

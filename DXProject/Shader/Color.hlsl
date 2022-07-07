@@ -38,13 +38,13 @@ Output Color_VS(Input _Input)
 {
     // 쉐이더의 경우에는 대부분의 상황에서 형변환이 가능하다.
     // 0
-    Output NewOutPut = (Output)0;
+    Output NewOutPut = (Output) 0;
     NewOutPut.Pos = _Input.Pos;
     NewOutPut.Pos.w = 1.0f;
-    NewOutPut.Pos = mul(NewOutPut.Pos, WorldViewProjection);
-
-    NewOutPut.Pos2 = _Input.Pos;
-    // NewOutPut.Pos.w = 1.0f;
+    NewOutPut.Pos2 = mul(NewOutPut.Pos, WorldViewProjection);
+    //NewOutPut.Pos2 = _Input.Pos;
+    
+    // NewOutPut.Pos2.w = 1.0f;
     NewOutPut.Color = _Input.Color;
 
     return NewOutPut;
@@ -64,29 +64,20 @@ cbuffer ResultColor : register(b0)
 
 float4 Color_PS(Output _Input) : SV_Target0
 {
-    // 어떤 벡터를 넣으면 길이를 리턴해줍니다.
+    float4 CirclePoint = { 640.0f, 360.0f, 0.0f, 0.0f };
+    float4 CirclePoint2 = { 0.0f, 0.0f, 0.0f, 0.0f };
 
-    // float4 ScreenSize = { 1280, 720 };
-
-    // float Len = length(_Input.Pos);
-
-    // 출력하지 마라.
-
-    //      1
-    //if (_Input.Pos.x >= 2.0f)
+    
+    //if (length(_Input.Pos - CirclePoint) > 150.0f)
     //{
     //    clip(-1);
     //}
 
-    //if (_Input.Pos2.x >= -0.2f)
-    //{
-    //    clip(-1);
-    //}
+    if (length(_Input.Pos2 - CirclePoint2) > 1.5f)
+    {
+        clip(-1);
+    }
 
-    //for (int i = 0; i < 10; ++i)
-    //{
-
-    //}
 
     return _Input.Color/* * MultyplyColor + PlusColor*/;
 }

@@ -2,7 +2,7 @@
 #include <GameEngineBase/GameEngineTransform.h>
 
 // Ό³Έν :
-class GameEngineTransformBase
+class GameEngineTransformBase 
 {
 public:
 	// constrcuter destructer

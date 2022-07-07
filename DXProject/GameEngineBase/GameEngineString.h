@@ -16,6 +16,7 @@ public:
 		// std::transform(_Text.begin(), _Text.end(), _Text.begin(), std::toupper);
 	}
 
+
 	static std::string ToUpperReturn(const std::string& _Text)
 	{
 		std::string NewText = _Text;
@@ -28,7 +29,9 @@ public:
 
 
 	static void AnsiToUnicode(const std::string& Text, std::wstring& _Out);
+
 	static std::wstring AnsiToUnicodeReturn(const std::string& Text);
+
 	static void UniCodeToUTF8(const std::wstring& _Text, std::string& _Out);
 	static void AnsiToUTF8(const std::string& Text, std::string& _Out);
 	static std::string AnsiToUTF8Return(const std::string& Text);
