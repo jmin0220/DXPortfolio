@@ -88,6 +88,12 @@
     <ClInclude Include="GameEngineRenderingPipeLine.h">
       <Filter>Resources</Filter>
     </ClInclude>
+    <ClInclude Include="GameEngineConstantBuffer.h">
+      <Filter>Resources\ShaderResources</Filter>
+    </ClInclude>
+    <ClInclude Include="GameEngineShaderResourcesHelper.h">
+      <Filter>Object\Component\Rendering</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameEngineStateManager.cpp">
@@ -178,6 +184,12 @@
     <ClCompile Include="GameEngineRenderingPipeLine.cpp">
       <Filter>Resources</Filter>
     </ClCompile>
+    <ClCompile Include="GameEngineConstantBuffer.cpp">
+      <Filter>Resources\ShaderResources</Filter>
+    </ClCompile>
+    <ClCompile Include="GameEngineShaderResourcesHelper.cpp">
+      <Filter>Object\Component\Rendering</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Contents">
@@ -221,6 +233,9 @@
     </Filter>
     <Filter Include="Resources\Texture">
       <UniqueIdentifier>{b0669e2f-5d86-4edf-abc0-497176e1f29e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resources\ShaderResources">
+      <UniqueIdentifier>{323b3638-40cf-4593-baad-aa8b27325b56}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

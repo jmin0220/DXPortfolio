@@ -27,6 +27,10 @@
     <ClInclude Include="GameEngineCameraActor.h" />
     <ClInclude Include="GameEngineCollision.h" />
     <ClInclude Include="GameEngineComponent.h" />
+    <ClInclude Include="GameEngineConstantBuffer.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="GameEngineCore.h" />
     <ClInclude Include="GameEngineDefaultRenderer.h" />
     <ClInclude Include="GameEngineDepthStencil.h" />
@@ -47,6 +51,10 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="GameEngineShader.h" />
+    <ClInclude Include="GameEngineShaderResourcesHelper.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="GameEngineStateManager.h" />
     <ClInclude Include="GameEngineTexture.h" />
     <ClInclude Include="GameEngineTransformBase.h" />
@@ -67,6 +75,10 @@
     <ClCompile Include="GameEngineCameraActor.cpp" />
     <ClCompile Include="GameEngineCollision.cpp" />
     <ClCompile Include="GameEngineComponent.cpp" />
+    <ClCompile Include="GameEngineConstantBuffer.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="GameEngineCore.cpp" />
     <ClCompile Include="GameEngineCore_Resources.cpp">
       <SubType>
@@ -91,6 +103,10 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="GameEngineShader.cpp" />
+    <ClCompile Include="GameEngineShaderResourcesHelper.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="GameEngineStateManager.cpp" />
     <ClCompile Include="GameEngineTexture.cpp" />
     <ClCompile Include="GameEngineTransformBase.cpp" />

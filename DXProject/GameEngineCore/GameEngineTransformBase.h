@@ -2,7 +2,7 @@
 #include <GameEngineBase/GameEngineTransform.h>
 
 // Ό³Έν :
-class GameEngineTransformBase 
+class GameEngineTransformBase
 {
 public:
 	// constrcuter destructer
@@ -23,6 +23,11 @@ public:
 	GameEngineTransform& GetTransform()
 	{
 		return Transform;
+	}
+
+	const TransformData& GetTransformData()
+	{
+		return Transform.GetTransformData();
 	}
 };
 
