@@ -17,10 +17,10 @@ struct Input
 struct Output
 {
     // 레스터라이저한테 뷰포트를 곱해서 이녀석으로 픽셀을 건져내줘.
-    float4 Pos : SV_POSITION;
+    float4 Pos : POSITION;
 
     // 레스터라이저한테 뷰포트를 곱해서 이녀석으로 픽셀을 건져내줘.
-    float4 Pos2 : POSITION;
+    float4 Pos2 : SV_POSITION;
     float4 Color : COLOR;
 };
 
@@ -41,9 +41,10 @@ Output Color_VS(Input _Input)
     Output NewOutPut = (Output) 0;
     NewOutPut.Pos = _Input.Pos;
     NewOutPut.Pos.w = 1.0f;
-    NewOutPut.Pos2 = mul(NewOutPut.Pos, WorldViewProjection);
-    //NewOutPut.Pos2 = _Input.Pos;
+    NewOutPut.Pos = mul(NewOutPut.Pos, WorldViewProjection);
     
+    NewOutPut.Pos2 = _Input.Pos;
+    // NewOutPut.Pos2 = mul(NewOutPut.Pos, WorldViewProjection);
     // NewOutPut.Pos2.w = 1.0f;
     NewOutPut.Color = _Input.Color;
 
@@ -68,15 +69,15 @@ float4 Color_PS(Output _Input) : SV_Target0
     float4 CirclePoint2 = { 0.0f, 0.0f, 0.0f, 0.0f };
 
     
-    //if (length(_Input.Pos - CirclePoint) > 150.0f)
-    //{
-    //    clip(-1);
-    //}
-
-    if (length(_Input.Pos2 - CirclePoint2) > 1.5f)
+    if (length(_Input.Pos - CirclePoint2) > 1.5f)
     {
         clip(-1);
     }
+
+    //if (length(_Input.Pos2 - CirclePoint) > 100.0f)
+    //{
+    //    clip(-1);
+    //}
 
 
     return _Input.Color/* * MultyplyColor + PlusColor*/;
