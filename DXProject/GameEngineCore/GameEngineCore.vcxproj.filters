@@ -246,22 +246,22 @@
     <Filter Include="ThirdParty\Inc">
       <UniqueIdentifier>{fef3f977-dbe5-427d-b87c-21a5d1976b91}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ThirdParty\Lib">
-      <UniqueIdentifier>{06585960-2232-49f5-98e6-27b00d596fdf}</UniqueIdentifier>
+    <Filter Include="ThirdParty\bin">
+      <UniqueIdentifier>{90a82403-8c9a-4811-8035-bed514ebb4ab}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ThirdParty\Lib\Debug">
-      <UniqueIdentifier>{942c93a2-2057-4606-9a30-32dd990627d7}</UniqueIdentifier>
+    <Filter Include="ThirdParty\bin\Debug">
+      <UniqueIdentifier>{0fccf1b6-213e-4455-b4d2-57c55770ea36}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ThirdParty\Lib\Release">
-      <UniqueIdentifier>{0450c7f2-5ebe-4292-a2eb-a4a8975b778a}</UniqueIdentifier>
+    <Filter Include="ThirdParty\bin\Release">
+      <UniqueIdentifier>{3919e90e-2518-45cf-84c8-588edce0e76c}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <CopyFileToFolders Include="..\..\..\..\AR40API\AR40\DIRECTX\GameEngineCore\ThirdParty\bin\Debug\DirectXTex.lib">
-      <Filter>ThirdParty\Lib\Debug</Filter>
+    <CopyFileToFolders Include="ThirdParty\bin\Debug\DirectXTex.lib">
+      <Filter>ThirdParty\bin\Debug</Filter>
     </CopyFileToFolders>
-    <CopyFileToFolders Include="..\..\..\..\AR40API\AR40\DIRECTX\GameEngineCore\ThirdParty\bin\Release\DirectXTex.lib">
-      <Filter>ThirdParty\Lib\Release</Filter>
+    <CopyFileToFolders Include="ThirdParty\bin\Release\DirectXTex.lib">
+      <Filter>ThirdParty\bin\Release</Filter>
     </CopyFileToFolders>
   </ItemGroup>
 </Project>

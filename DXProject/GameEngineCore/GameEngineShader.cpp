@@ -4,6 +4,23 @@
 #include "GameEnginePixelShader.h"
 #include "GameEngineConstantBuffer.h"
 
+void GameEngineConstantBufferSetter::Setting() const
+{
+	Res->ChangeData(SetData, Size);
+
+	switch (ShaderType)
+	{
+	case ShaderType::Vertex:
+		Res->VSSetting();
+		break;
+	case ShaderType::Pixel:
+		Res->PSSetting();
+		break;
+	default:
+		break;
+	}
+}
+
 void GameEngineShader::AutoCompile(const std::string& _Path)
 {
 	GameEngineFile File = GameEngineFile(_Path);
@@ -46,13 +63,13 @@ void GameEngineShader::AutoCompile(const std::string& _Path)
 
 }
 
-GameEngineShader::GameEngineShader() 
+GameEngineShader::GameEngineShader()
 	: Version("")
 	, BinaryPtr(nullptr)
 {
 }
 
-GameEngineShader::~GameEngineShader() 
+GameEngineShader::~GameEngineShader()
 {
 	if (nullptr != BinaryPtr)
 	{
@@ -88,17 +105,17 @@ void GameEngineShader::ShaderResCheck()
 	ID3D11ShaderReflection* CompileInfo = nullptr;
 
 	if (S_OK != D3DReflect(
-		BinaryPtr->GetBufferPointer(), 
+		BinaryPtr->GetBufferPointer(),
 		BinaryPtr->GetBufferSize(),
 		IID_ID3D11ShaderReflection,
-		reinterpret_cast<void**>( & CompileInfo)
+		reinterpret_cast<void**>(&CompileInfo)
 	))
 	{
 		MsgBoxAssert("쉐이더 쉐이더 리플렉션이 잘못 돼었습니다.");
 		return;
 	}
 
-	
+
 
 	D3D11_SHADER_DESC Info;
 	CompileInfo->GetDesc(&Info);
@@ -120,6 +137,7 @@ void GameEngineShader::ShaderResCheck()
 		{
 		case D3D_SIT_CBUFFER:
 		{
+
 			// 리소스가 상수버퍼라면
 			ID3D11ShaderReflectionConstantBuffer* CBufferPtr = CompileInfo->GetConstantBufferByName(ResInfo.Name);
 
@@ -134,9 +152,8 @@ void GameEngineShader::ShaderResCheck()
 			// 중복으로 만드는일이 생기면 안되니까.
 			// 만든걸 또 만들라고 하는게 
 			NewSetter.ShaderType = ShaderSettingType;
-			NewSetter.Buffer = GameEngineConstantBuffer::CreateAndFind(Name, BufferDesc, CBufferPtr);
+			NewSetter.Res = GameEngineConstantBuffer::CreateAndFind(Name, BufferDesc, CBufferPtr);
 			NewSetter.BindPoint = ResInfo.BindPoint;
-
 			ConstantBufferMap.insert(std::make_pair(Name, NewSetter));
 
 			break;

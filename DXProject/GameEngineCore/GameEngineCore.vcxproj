@@ -125,10 +125,10 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <CopyFileToFolders Include="..\..\..\..\AR40API\AR40\DIRECTX\GameEngineCore\ThirdParty\bin\Debug\DirectXTex.lib">
+    <CopyFileToFolders Include="ThirdParty\bin\Debug\DirectXTex.lib">
       <FileType>Document</FileType>
     </CopyFileToFolders>
-    <CopyFileToFolders Include="..\..\..\..\AR40API\AR40\DIRECTX\GameEngineCore\ThirdParty\bin\Release\DirectXTex.lib">
+    <CopyFileToFolders Include="ThirdParty\bin\Release\DirectXTex.lib">
       <FileType>Document</FileType>
     </CopyFileToFolders>
   </ItemGroup>

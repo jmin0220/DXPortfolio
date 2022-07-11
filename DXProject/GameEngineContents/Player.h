@@ -19,9 +19,11 @@ public:
 protected:
 	void Start() override;
 	void Update(float _DeltaTime);
-	void End()  {}
+	void End() {}
 
 	GameEngineDefaultRenderer* Renderer;
+
+	float4 Color;
 
 private:
 	float Speed;

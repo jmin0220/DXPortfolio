@@ -2,18 +2,14 @@
 #include <string>
 #include <map>
 
+
 enum class ShaderType
 {
 	Vertex,
 	Pixel,
 };
 
-class ConstantBuffer
-{
-
-};
-
-class ShaderResSetter 
+class ShaderResSetter
 {
 public:
 	ShaderType ShaderType;
@@ -25,7 +21,24 @@ class GameEngineConstantBuffer;
 class GameEngineConstantBufferSetter : public ShaderResSetter
 {
 public:
-	GameEngineConstantBuffer* Buffer;
+	GameEngineConstantBuffer* Res;
+	// 각자가 가진 정보에 대한 주소
+	const void* SetData;
+	UINT Size;
+
+	// 자기메모리로 할당할 것이다.
+	std::vector<char> OriginalData;
+
+	void Setting() const;
+
+public:
+	GameEngineConstantBufferSetter()
+		: Res(nullptr)
+		, SetData(nullptr)
+		, Size(-1)
+	{
+
+	}
 };
 
 class GameEngineConstantBuffer;
@@ -33,9 +46,10 @@ class GameEngineTextureSetter : public ShaderResSetter
 {
 };
 
+
 // 설명 :
 class GameEngineShaderResourcesHelper;
-class GameEngineShader 
+class GameEngineShader
 {
 	friend GameEngineShaderResourcesHelper;
 
@@ -78,7 +92,7 @@ private:
 
 	// std::map<unsigned int, ConstantBuffer> 
 
-	
+	// void SetConstantBuffer() override;
 
 };
 
