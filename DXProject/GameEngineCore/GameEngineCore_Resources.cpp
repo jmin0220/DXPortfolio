@@ -13,6 +13,7 @@
 #include "GameEngineVertexBuffer.h"
 #include "GameEngineIndexBuffer.h"
 #include "GameEngineTexture.h"
+#include "GameEngineSampler.h"
 #include "GameEngineRenderTarget.h"
 
 #include "GameEngineVertexShader.h"
@@ -23,6 +24,7 @@
 void EngineInputLayOut()
 {
 	GameEngineVertex::LayOut.AddInputLayOut("POSITION", DXGI_FORMAT::DXGI_FORMAT_R32G32B32A32_FLOAT);
+	GameEngineVertex::LayOut.AddInputLayOut("TEXCOORD", DXGI_FORMAT::DXGI_FORMAT_R32G32B32A32_FLOAT);
 	GameEngineVertex::LayOut.AddInputLayOut("COLOR", DXGI_FORMAT::DXGI_FORMAT_R32G32B32A32_FLOAT);
 }
 
@@ -37,17 +39,105 @@ void EngineRasterizer()
 
 }
 
+void EngineTextureLoad()
+{
+	{
+		//D3D11_FILTER Filter;
+		//D3D11_TEXTURE_ADDRESS_MODE AddressU;
+		//D3D11_TEXTURE_ADDRESS_MODE AddressV;
+		//D3D11_TEXTURE_ADDRESS_MODE AddressW;
+		//FLOAT MipLODBias;
+		//UINT MaxAnisotropy;
+		//D3D11_COMPARISON_FUNC ComparisonFunc;
+		//FLOAT BorderColor[4];
+		//FLOAT MinLOD;
+		//FLOAT MaxLOD;
+
+		D3D11_SAMPLER_DESC Desc = { D3D11_FILTER::D3D11_FILTER_MIN_MAG_MIP_LINEAR, };
+		// D3D11_FILTER::D3D11_FILTER_MIN_MAG_MIP_LINEAR 민맵이 있으면 사용하면서 색깔을 섞겠다.
+		// D3D11_FILTER::D3D11_FILTER_MIN_LINEAR_MAG_MIP_POINT 도트 게임 만들면 이걸로 해야하겠죠.
+
+		// D3D11_TEXTURE_ADDRESS_MIRROR
+		Desc.AddressU = D3D11_TEXTURE_ADDRESS_CLAMP;
+		Desc.AddressV = D3D11_TEXTURE_ADDRESS_CLAMP;
+		Desc.AddressW = D3D11_TEXTURE_ADDRESS_CLAMP;
+
+		Desc.MipLODBias = 0.0f;
+		Desc.MaxAnisotropy = 1.0f;
+		Desc.ComparisonFunc = D3D11_COMPARISON_ALWAYS;
+		Desc.MinLOD = -FLT_MAX;
+		Desc.MaxLOD = FLT_MAX;
+
+		GameEngineSampler::Create("EngineSampler", Desc);
+	}
+
+	GameEngineDirectory Dir;
+
+	Dir.MoveParentToExitsChildDirectory("GameEngineResources");
+	Dir.Move("GameEngineResources");
+	Dir.Move("Texture");
+
+	std::vector<GameEngineFile> Shaders = Dir.GetAllFile();
+
+	for (size_t i = 0; i < Shaders.size(); i++)
+	{
+		GameEngineTexture::Load(Shaders[i].GetFullPath());
+	}
+}
+
+void ShaderCompile()
+{
+	GameEngineDirectory Dir;
+
+	Dir.MoveParentToExitsChildDirectory("GameEngineResources");
+	Dir.Move("GameEngineResources");
+	Dir.Move("GameEngineShader");
+
+	std::vector<GameEngineFile> Shaders = Dir.GetAllFile("hlsl");
+
+	for (size_t i = 0; i < Shaders.size(); i++)
+	{
+		GameEngineShader::AutoCompile(Shaders[i].GetFullPath());
+	}
+
+	//GameEngineVertexShader::create("struct Input
+	//{
+	//	float4 Pos : POSITION;
+	//	float4 Color : COLOR;
+	//};
+
+	//struct Output
+	//{
+	//	float4 Pos : SV_POSITION;
+	//	float4 Color : COLOR;
+	//};
+
+	//Output Color_VS(Input _Input)
+	//{
+	//	// 쉐이더의 경우에는 대부분의 상황에서 형변환이 가능하다.
+	//	// 0
+	//	Output NewOutPut = (Output)0;
+	//	NewOutPut.Pos = _Input.Pos;
+	//	NewOutPut.Color = _Input.Color;
+
+	//	return NewOutPut;
+	//}");
+}
+
 
 
 void EngineRenderingPipeLine()
 {
 	{
 		GameEngineRenderingPipeLine* NewPipe = GameEngineRenderingPipeLine::Create("Color");
-		NewPipe->SetInputAssembler1VertexBuffer("Rect");
-		NewPipe->SetInputAssembler2IndexBuffer("Rect");
 		NewPipe->SetVertexShader("Color.hlsl");
 		NewPipe->SetPixelShader("Color.hlsl");
-		NewPipe->SetRasterizer("EngineRasterizer");
+	}
+
+	{
+		GameEngineRenderingPipeLine* NewPipe = GameEngineRenderingPipeLine::Create("Texture");
+		NewPipe->SetVertexShader("Texture.hlsl");
+		NewPipe->SetPixelShader("Texture.hlsl");
 	}
 }
 
@@ -56,10 +146,10 @@ void EngineMesh()
 
 	{
 		std::vector<GameEngineVertex> Vertex;
-		Vertex.push_back({ float4(-0.5f, 0.5f), float4() });
-		Vertex.push_back({ float4(0.5f, 0.5f), float4(1.0f, 0.0f, 0.0f, 1.0f) });
-		Vertex.push_back({ float4(0.5f, -0.5f), float4() });
-		Vertex.push_back({ float4(-0.5f, -0.5f), float4() });
+		Vertex.push_back({ float4(-0.5f, 0.5f), float4(0.0f, 0.0f) }); // 왼쪽 위
+		Vertex.push_back({ float4(0.5f, 0.5f), float4(1.0f, 0.0f) });  // 오른쪽 위점
+		Vertex.push_back({ float4(0.5f, -0.5f), float4(1.0f, 1.0f) }); // 오른쪽 아래점
+		Vertex.push_back({ float4(-0.5f, -0.5f), float4(0.0f, 1.0f) }); // 왼쪽 아래점
 		GameEngineVertexBuffer::Create("Rect", Vertex);
 	}
 
@@ -152,50 +242,12 @@ void EngineMesh()
 	}
 }
 
-void ShaderCompile()
-{
-	GameEngineDirectory Dir;
-
-	Dir.MoveParentToExitsChildDirectory("GameEngineResources");
-	Dir.Move("GameEngineResources");
-	Dir.Move("GameEngineShader");
-
-	std::vector<GameEngineFile> Shaders = Dir.GetAllFile("hlsl");
-
-	for (size_t i = 0; i < Shaders.size(); i++)
-	{
-		GameEngineShader::AutoCompile(Shaders[i].GetFullPath());
-	}
-
-	//GameEngineVertexShader::create("struct Input
-	//{
-	//	float4 Pos : POSITION;
-	//	float4 Color : COLOR;
-	//};
-
-	//struct Output
-	//{
-	//	float4 Pos : SV_POSITION;
-	//	float4 Color : COLOR;
-	//};
-
-	//Output Color_VS(Input _Input)
-	//{
-	//	// 쉐이더의 경우에는 대부분의 상황에서 형변환이 가능하다.
-	//	// 0
-	//	Output NewOutPut = (Output)0;
-	//	NewOutPut.Pos = _Input.Pos;
-	//	NewOutPut.Color = _Input.Color;
-
-	//	return NewOutPut;
-	//}");
-}
-
 void GameEngineCore::EngineResourcesInitialize()
 {
 	// 사각형 박스 에러용 텍스처 등등
 	// 엔진수준에서 기본적으로 지원줘야 한다고 생각하는
 	// 리소스들을 이니셜라이즈하는 단계
+	EngineTextureLoad();
 	EngineInputLayOut();
 	EngineMesh();
 	EngineRasterizer();
@@ -219,6 +271,7 @@ void GameEngineCore::EngineResourcesDestroy()
 	GameEngineIndexBuffer::ResourcesDestroy();
 	GameEngineRenderTarget::ResourcesDestroy();
 	GameEngineTexture::ResourcesDestroy();
+	GameEngineSampler::ResourcesDestroy();
 	GameEngineRasterizer::ResourcesDestroy();
 	GameEngineConstantBuffer::ResourcesDestroy();
 
