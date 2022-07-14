@@ -29,7 +29,6 @@
     <ClInclude Include="GameEngineTransformComponent.h">
       <Filter>Object\Component</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\..\AR수업내용\AR40\DIRECTX\GameEngineCore\CoreMinimal.h" />
     <ClInclude Include="PreCompile.h">
       <Filter>PreCompile</Filter>
     </ClInclude>
@@ -99,6 +98,9 @@
     </ClInclude>
     <ClInclude Include="GameEngineSampler.h">
       <Filter>Resources\Texture</Filter>
+    </ClInclude>
+    <ClInclude Include="GameEngineTextureRenderer.h">
+      <Filter>Object\Component\Rendering\Content</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -199,6 +201,9 @@
     <ClCompile Include="GameEngineSampler.cpp">
       <Filter>Resources\Texture</Filter>
     </ClCompile>
+    <ClCompile Include="GameEngineTextureRenderer.cpp">
+      <Filter>Object\Component\Rendering\Content</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Contents">
@@ -260,6 +265,9 @@
     </Filter>
     <Filter Include="ThirdParty\bin\Release">
       <UniqueIdentifier>{3919e90e-2518-45cf-84c8-588edce0e76c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\Component\Rendering\Content">
+      <UniqueIdentifier>{65c2bf2d-16c3-449e-97b8-f66a6077e495}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

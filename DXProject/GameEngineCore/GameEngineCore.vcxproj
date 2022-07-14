@@ -19,7 +19,6 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\..\..\AR수업내용\AR40\DIRECTX\GameEngineCore\CoreMinimal.h" />
     <ClInclude Include="CoreMinimal.h" />
     <ClInclude Include="GameEngineActor.h" />
     <ClInclude Include="GameEngineBlend.h" />
@@ -61,6 +60,10 @@
     </ClInclude>
     <ClInclude Include="GameEngineStateManager.h" />
     <ClInclude Include="GameEngineTexture.h" />
+    <ClInclude Include="GameEngineTextureRenderer.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="GameEngineTransformBase.h" />
     <ClInclude Include="GameEngineTransformComponent.h" />
     <ClInclude Include="GameEngineVertexBuffer.h">
@@ -118,6 +121,10 @@
     </ClCompile>
     <ClCompile Include="GameEngineStateManager.cpp" />
     <ClCompile Include="GameEngineTexture.cpp" />
+    <ClCompile Include="GameEngineTextureRenderer.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="GameEngineTransformBase.cpp" />
     <ClCompile Include="GameEngineTransformComponent.cpp" />
     <ClCompile Include="GameEngineVertexBuffer.cpp">
