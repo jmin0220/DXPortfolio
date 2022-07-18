@@ -28,9 +28,6 @@ void GameEngineShader::AutoCompile(const std::string& _Path)
 	File.Open(OpenMode::Read, FileMode::Text);
 
 	std::string AllHlslCode = File.GetString();
-	AllHlslCode.resize(File.GetFileSize());
-
-	File.Read(&AllHlslCode[0], AllHlslCode.size(), AllHlslCode.size());
 
 	size_t VSEntryIndex = AllHlslCode.find("_VS(");
 	// 0123456789
@@ -177,7 +174,7 @@ void GameEngineShader::ShaderResCheck()
 			NewSetter.ParentShader = this;
 			NewSetter.SetName(Name);
 			NewSetter.ShaderType = ShaderSettingType;
-			NewSetter.Res = GameEngineSampler::Find("EngineSampler");
+			NewSetter.Res = GameEngineSampler::Find("EngineSamplerLinear");
 			NewSetter.BindPoint = ResInfo.BindPoint;
 			SamplerMap.insert(std::make_pair(Name, NewSetter));
 			break;

@@ -41,32 +41,11 @@ void Player::Start()
 	{
 		Renderer = CreateComponent<GameEngineTextureRenderer>();
 		Renderer->GetTransform().SetLocalScale({ 100, 100, 100 });
-		Renderer->SetTexture("Boss_Left.bmp", 5);
 	}
 }
 
 void Player::Update(float _DeltaTime)
 {
-	static int Frame = 0;
-	static float Time = 0.0f;
-
-	Time += _DeltaTime;
-
-	if (0.1f <= Time)
-	{
-		++Frame;
-		Renderer->SetFrame(Frame);
-
-		if (Frame == 5)
-		{
-			Frame = 0;
-		}
-
-		Time -= 0.1f;
-	}
-
-
-
 	if (true == GameEngineInput::GetInst()->IsPress("PlayerLeft"))
 	{
 		Color.r += 1.0f * _DeltaTime;
