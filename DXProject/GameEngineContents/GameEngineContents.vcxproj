@@ -165,30 +165,54 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="ContentsCore.h" />
-    <ClInclude Include="Enums.h" />
-    <ClInclude Include="GlobalContentsValue.h" />
-    <ClInclude Include="Monster.h" />
-    <ClInclude Include="Player.h" />
-    <ClInclude Include="PlayLevel.h" />
+    <ClInclude Include="EndLevel.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="ObjectGroup.h" />
+    <ClInclude Include="Player.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="PreCompile.h" />
-    <ClInclude Include="ScoreTestComponent.h" />
-    <ClInclude Include="TitleLevel.h" />
-    <ClInclude Include="TitleLogo.h" />
+    <ClInclude Include="RiskOfRain.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Stage1Level.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="StartLevel.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="ContentsCore.cpp" />
-    <ClCompile Include="GlobalContentsValue.cpp" />
-    <ClCompile Include="Monster.cpp" />
-    <ClCompile Include="Player.cpp" />
-    <ClCompile Include="PlayLevel.cpp" />
+    <ClCompile Include="EndLevel.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="PreCompile.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="ScoreTestComponent.cpp" />
-    <ClCompile Include="TitleLevel.cpp" />
-    <ClCompile Include="TitleLogo.cpp" />
+    <ClCompile Include="RiskOfRain.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Stage1Level.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="StartLevel.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

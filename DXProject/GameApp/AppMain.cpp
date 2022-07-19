@@ -4,7 +4,7 @@
 #pragma comment(lib, "GameEngineCore.lib")
 #pragma comment(lib, "GameEngineContents.lib")
 
-#include <GameEngineContents/ContentsCore.h>
+#include <GameEngineContents/RiskOfRain.h>
 #include <GameEngineBase/GameEngineMath.h>
 
 int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
@@ -14,7 +14,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 {
 	new int();
 
-	GameEngineCore::Start<ContentsCore>();
+	GameEngineCore::Start<RiskOfRain>();
 
 	return 0;
 }

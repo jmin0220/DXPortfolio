@@ -1,8 +1,7 @@
 #pragma once
-#include <GameEngineCore/CoreMinimal.h>
+#include <GameEngineCore/GameEngineActor.h>
 
 // Ό³Έν :
-class GameEngineTextureRenderer;
 class Player : public GameEngineActor
 {
 public:
@@ -18,14 +17,10 @@ public:
 
 protected:
 	void Start() override;
-	void Update(float _DeltaTime);
-	void End() {}
-
-	GameEngineTextureRenderer* Renderer;
-
-	float4 Color;
+	void Update(float _DeltaTime) override;
+	void End() override;
 
 private:
-	float Speed;
+
 };
 

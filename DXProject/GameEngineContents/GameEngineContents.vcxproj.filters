@@ -1,86 +1,75 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Actor">
-      <UniqueIdentifier>{118a626f-8250-4e76-9424-63e1da2f080f}</UniqueIdentifier>
+    <Filter Include="00_Level">
+      <UniqueIdentifier>{eb4b92ca-c4a0-4bff-953e-e4c243d330d6}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Contents">
-      <UniqueIdentifier>{fe4491f0-761f-48e0-b799-d805ec9270d5}</UniqueIdentifier>
+    <Filter Include="01_Actor">
+      <UniqueIdentifier>{4fe9d27f-fbe8-4f49-82a7-9b9160140121}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Global">
-      <UniqueIdentifier>{0743c5b2-e24a-4dd3-892f-815b3910ddcf}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Level">
-      <UniqueIdentifier>{2e0eec27-c00b-4949-9200-73d4c6dd5f72}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Actor\Play">
-      <UniqueIdentifier>{b4a22658-d29d-4e90-8216-6936559a1909}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Actor\Title">
-      <UniqueIdentifier>{6dbd6a4b-f82f-43ee-b9ac-e14cc6e57670}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="PreCompile">
+    <Filter Include="99_PreCompile">
       <UniqueIdentifier>{3195e5fe-9f79-4ae7-bf89-92e9939674a9}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Actor\Play\Com">
-      <UniqueIdentifier>{0ef09a70-bf22-442e-b422-f7c511685151}</UniqueIdentifier>
+    <Filter Include="98_Global">
+      <UniqueIdentifier>{4b793f03-089b-4a21-ad0d-f5733a4a77c4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="00_Level\00_StartEnd">
+      <UniqueIdentifier>{62803757-4959-4af5-a5d6-b46594b5b67d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="00_Level\01_Play">
+      <UniqueIdentifier>{9c831b7e-b6c9-4c55-bd42-d0abb203fdbb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01_Actor\00_StartEnd">
+      <UniqueIdentifier>{b9418c56-658c-4ce1-b0b9-a672bd9be12a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01_Actor\01_Play">
+      <UniqueIdentifier>{5b04f7f7-786d-4ecd-87f8-64e4f4130905}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="97_Contents">
+      <UniqueIdentifier>{a6f17d0e-e037-45c3-bc1c-3de771776598}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Enums.h">
-      <Filter>Global</Filter>
+    <ClInclude Include="PreCompile.h">
+      <Filter>99_PreCompile</Filter>
     </ClInclude>
-    <ClInclude Include="TitleLevel.h">
-      <Filter>Level</Filter>
+    <ClInclude Include="StartLevel.h">
+      <Filter>00_Level\00_StartEnd</Filter>
     </ClInclude>
-    <ClInclude Include="PlayLevel.h">
-      <Filter>Level</Filter>
+    <ClInclude Include="EndLevel.h">
+      <Filter>00_Level\00_StartEnd</Filter>
+    </ClInclude>
+    <ClInclude Include="Stage1Level.h">
+      <Filter>00_Level\01_Play</Filter>
     </ClInclude>
     <ClInclude Include="Player.h">
-      <Filter>Actor\Play</Filter>
+      <Filter>01_Actor\01_Play</Filter>
     </ClInclude>
-    <ClInclude Include="TitleLogo.h">
-      <Filter>Actor\Title</Filter>
+    <ClInclude Include="RiskOfRain.h">
+      <Filter>97_Contents</Filter>
     </ClInclude>
-    <ClInclude Include="ContentsCore.h">
-      <Filter>Contents</Filter>
+    <ClInclude Include="ObjectGroup.h">
+      <Filter>98_Global</Filter>
     </ClInclude>
-    <ClInclude Include="Monster.h">
-      <Filter>Actor\Play</Filter>
-    </ClInclude>
-    <ClInclude Include="PreCompile.h">
-      <Filter>PreCompile</Filter>
-    </ClInclude>
-    <ClInclude Include="ScoreTestComponent.h">
-      <Filter>Actor\Play\Com</Filter>
-    </ClInclude>
-    <ClInclude Include="GlobalContentsValue.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="PlayLevel.cpp">
-      <Filter>Level</Filter>
+    <ClCompile Include="PreCompile.cpp">
+      <Filter>99_PreCompile</Filter>
     </ClCompile>
-    <ClCompile Include="TitleLevel.cpp">
-      <Filter>Level</Filter>
+    <ClCompile Include="StartLevel.cpp">
+      <Filter>00_Level\00_StartEnd</Filter>
+    </ClCompile>
+    <ClCompile Include="EndLevel.cpp">
+      <Filter>00_Level\00_StartEnd</Filter>
+    </ClCompile>
+    <ClCompile Include="Stage1Level.cpp">
+      <Filter>00_Level\01_Play</Filter>
     </ClCompile>
     <ClCompile Include="Player.cpp">
-      <Filter>Actor\Play</Filter>
+      <Filter>01_Actor\01_Play</Filter>
     </ClCompile>
-    <ClCompile Include="TitleLogo.cpp">
-      <Filter>Actor\Title</Filter>
+    <ClCompile Include="RiskOfRain.cpp">
+      <Filter>97_Contents</Filter>
     </ClCompile>
-    <ClCompile Include="ContentsCore.cpp">
-      <Filter>Contents</Filter>
-    </ClCompile>
-    <ClCompile Include="Monster.cpp">
-      <Filter>Actor\Play</Filter>
-    </ClCompile>
-    <ClCompile Include="PreCompile.cpp">
-      <Filter>PreCompile</Filter>
-    </ClCompile>
-    <ClCompile Include="ScoreTestComponent.cpp">
-      <Filter>Actor\Play\Com</Filter>
-    </ClCompile>
-    <ClCompile Include="GlobalContentsValue.cpp" />
   </ItemGroup>
 </Project>
