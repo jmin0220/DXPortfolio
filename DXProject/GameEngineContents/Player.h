@@ -20,7 +20,11 @@ protected:
 	void Update(float _DeltaTime) override;
 	void End() override;
 
+
 private:
+	GameEngineTextureRenderer* Renderer_;
+
+	float Speed_;
 
 };
 

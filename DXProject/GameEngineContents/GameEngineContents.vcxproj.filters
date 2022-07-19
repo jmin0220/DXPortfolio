@@ -28,6 +28,12 @@
     <Filter Include="97_Contents">
       <UniqueIdentifier>{a6f17d0e-e037-45c3-bc1c-3de771776598}</UniqueIdentifier>
     </Filter>
+    <Filter Include="02_Component">
+      <UniqueIdentifier>{2524faf2-cffd-468c-9537-d822c6d54ddd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02_Component\00_Texture">
+      <UniqueIdentifier>{16c14e6d-9406-4030-b211-260ae553414a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PreCompile.h">

@@ -23,6 +23,9 @@ void RiskOfRain::Start()
 		Dir.MoveParentToExitsChildDirectory("Resources");
 		Dir.Move("Resources");
 		Dir.Move("Texture");
+		Dir.Move("Player");
+		Dir.Move("Bandit");
+		Dir.Move("BanditIdle");
 
 		std::vector<GameEngineFile> Shaders = Dir.GetAllFile();
 
@@ -30,6 +33,32 @@ void RiskOfRain::Start()
 		{
 			GameEngineTexture::Load(Shaders[i].GetFullPath());
 		}
+	}
+
+	{
+		GameEngineDirectory Dir;
+
+		Dir.MoveParentToExitsChildDirectory("Resources");
+		Dir.Move("Resources");
+		Dir.Move("Texture");
+		Dir.Move("Player");
+		Dir.Move("Bandit");
+		Dir.Move("BanditShoot1");
+
+		GameEngineFolderTexture::Load(Dir.GetFullPath());
+	}
+
+	{
+		GameEngineDirectory Dir;
+
+		Dir.MoveParentToExitsChildDirectory("Resources");
+		Dir.Move("Resources");
+		Dir.Move("Texture");
+		Dir.Move("Player");
+		Dir.Move("Bandit");
+		Dir.Move("BanditShoot2");
+
+		GameEngineFolderTexture::Load(Dir.GetFullPath());
 	}
 
 	// 레벨 생성
