@@ -1,12 +1,12 @@
 #include "PreCompile.h"
 #include "GameEngineRasterizer.h"
 
-GameEngineRasterizer::GameEngineRasterizer() 
+GameEngineRasterizer::GameEngineRasterizer()
 	: Desc{}
 {
 }
 
-GameEngineRasterizer::~GameEngineRasterizer() 
+GameEngineRasterizer::~GameEngineRasterizer()
 {
 	if (nullptr != State)
 	{
@@ -15,7 +15,7 @@ GameEngineRasterizer::~GameEngineRasterizer()
 }
 
 
-void GameEngineRasterizer::Setting() 
+void GameEngineRasterizer::Setting()
 {
 
 	if (nullptr == State)
@@ -43,6 +43,6 @@ void GameEngineRasterizer::Create(const D3D11_RASTERIZER_DESC& _Desc)
 
 	if (S_OK != GameEngineDevice::GetDevice()->CreateRasterizerState(&Desc, &State))
 	{
-		MsgBoxAssert("버텍스 버퍼 생성에 실패했습니다.");
+		MsgBoxAssert("레스터라이저 생성에 실패했습니다.");
 	}
 }

@@ -8,7 +8,6 @@
 #include "GameEngineConstantBuffer.h"
 #include <math.h>
 
-
 // Resources Header
 #include "GameEngineVertexBuffer.h"
 #include "GameEngineIndexBuffer.h"
@@ -16,6 +15,8 @@
 #include "GameEngineFolderTexture.h"
 #include "GameEngineSampler.h"
 #include "GameEngineRenderTarget.h"
+#include "GameEngineDepthStencilTexture.h"
+#include "GameEngineDepthStencil.h"
 
 #include "GameEngineVertexShader.h"
 #include "GameEnginePixelShader.h"
@@ -79,7 +80,16 @@ void EngineSubSetting()
 		Desc.CullMode = D3D11_CULL_MODE::D3D11_CULL_NONE;
 
 		GameEngineRasterizer::Create("EngineRasterizer", Desc);
-	}\
+	}
+	{
+		D3D11_DEPTH_STENCIL_DESC Desc = {};
+
+		Desc.DepthEnable = true;
+		Desc.DepthFunc = D3D11_COMPARISON_FUNC::D3D11_COMPARISON_LESS_EQUAL;
+		Desc.DepthWriteMask = D3D11_DEPTH_WRITE_MASK::D3D11_DEPTH_WRITE_MASK_ALL;
+		Desc.StencilEnable = false;
+		GameEngineDepthStencil::Create("EngineBaseDepth", Desc);
+	}
 
 }
 
@@ -288,6 +298,8 @@ void GameEngineCore::EngineResourcesDestroy()
 	GameEngineIndexBuffer::ResourcesDestroy();
 	GameEngineRenderTarget::ResourcesDestroy();
 	GameEngineTexture::ResourcesDestroy();
+	GameEngineDepthStencil::ResourcesDestroy();
+	GameEngineDepthStencilTexture::ResourcesDestroy();
 	GameEngineFolderTexture::ResourcesDestroy();
 	GameEngineSampler::ResourcesDestroy();
 	GameEngineRasterizer::ResourcesDestroy();

@@ -28,9 +28,8 @@ void Player::Start()
 		Renderer_->GetTransform().SetLocalScale({ 32, 15, 100 });
 		Renderer_->SetTexture("sCowboyIdle_0.png");
 
-		Renderer_->CreateFrameAnimationFolder("BanditShoot1", FrameAnimation_DESC("BanditShoot1", 0.1f));
+		Renderer_->CreateFrameAnimationFolder("BanditShoot1", FrameAnimation_DESC("BanditShoot1", 0.1f, false));
 		//Renderer_->CreateFrameAnimationFolder("BanditShoot2", FrameAnimation_DESC("BanditShoot2", 0.1f));
-		FrameAnimation_DESC* Shoot2 = new FrameAnimation_DESC("BanditShoot2", 0.1f);
 
 		Renderer_->ChangeFrameAnimation("BanditShoot1");
 		//Renderer_->AnimationBindEnd("BanditShoot1", std::bind(FrameAnimation_DESC&, Shoot2));

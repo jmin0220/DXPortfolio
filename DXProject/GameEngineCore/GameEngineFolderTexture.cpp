@@ -44,6 +44,21 @@ void GameEngineFolderTexture::LoadFolder(const std::string& _Path)
 		Textures.push_back(NewTexture);
 	}
 
+	/*GameEngineDirectory Dir;
+	Dir.MoveParentToExitsChildDirectory("ConstantResources");
+	Dir.Move("ConstantResources");
+
+	std::vector<GameEngineDirectory> RecursiveDir = Dir.GetRecursiveAllDirectory();
+
+	for (auto& TmpDir : RecursiveDir)
+	{
+		std::vector<GameEngineFile> Shaders = TmpDir.GetAllFile();
+
+		for (size_t i = 0; i < Shaders.size(); i++)
+		{
+			GameEngineTexture::Load(Shaders[i].GetFullPath());
+		}
+	}*/
 
 
 	int a = 0;
