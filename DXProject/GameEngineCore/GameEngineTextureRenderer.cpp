@@ -31,7 +31,6 @@ void FrameAnimation::Update(float _Delta)
 
 	if (Info.Inter <= Info.FrameTime)
 	{
-		++Info.CurFrame;
 		if (nullptr != Frame)
 		{
 			Frame(Info);
@@ -51,7 +50,9 @@ void FrameAnimation::Update(float _Delta)
 			MsgBoxAssert("텍스처가 세팅되지 않은 애니메이션 입니다.");
 		}
 
-		if (Info.CurFrame > Info.End)
+		++Info.CurFrame;
+
+		if (Info.CurFrame >= Info.End)
 		{
 			if (false == bOnceEnd && nullptr != End)
 			{

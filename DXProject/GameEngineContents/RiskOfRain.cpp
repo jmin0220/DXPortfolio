@@ -35,7 +35,7 @@ void RiskOfRain::Start()
 		}
 	}
 
-	{
+	/*{
 		GameEngineDirectory Dir;
 
 		Dir.MoveParentToExitsChildDirectory("Resources");
@@ -59,6 +59,19 @@ void RiskOfRain::Start()
 		Dir.Move("BanditShoot2");
 
 		GameEngineFolderTexture::Load(Dir.GetFullPath());
+	}*/
+
+
+
+	GameEngineDirectory Dir;
+	Dir.MoveParentToExitsChildDirectory("Resources");
+	Dir.Move("Resources");
+
+	std::vector<GameEngineDirectory> RecursiveDir = Dir.GetRecursiveAllDirectory();
+
+	for (auto& TmpDir : RecursiveDir)
+	{
+		GameEngineFolderTexture::Load(TmpDir.GetFullPath());
 	}
 
 	// 레벨 생성
