@@ -104,7 +104,6 @@ void GameEngineCamera::Release(float _DelataTime)
 	}
 }
 
-// 스크린에서 마우스 포지션
 float4 GameEngineCamera::GetScreenPosition()
 {
 	POINT P;
@@ -116,7 +115,15 @@ float4 GameEngineCamera::GetScreenPosition()
 	return { static_cast<float>(P.x), static_cast<float>(P.y) };
 }
 
-// 월드좌표에서의 포지션
+void GameEngineCamera::Update(float _DeltaTime)
+{
+	float4 MousePos = GetMouseWorldPosition();
+	MousePos.w = 0.0f;
+	MouseDir = MousePos - PrevMouse;
+	PrevMouse = MousePos;
+}
+
+// 뷰포트에 있는거죠?
 float4 GameEngineCamera::GetMouseWorldPosition()
 {
 	float4 Pos = GetScreenPosition();
@@ -134,8 +141,8 @@ float4 GameEngineCamera::GetMouseWorldPosition()
 	return Pos;
 }
 
-//
-//float4 GameEngineCamera::GetMouseViewPortPosition()
-//{
-//
-//}
+
+float4 GameEngineCamera::GetMouseWorldPositionToActor()
+{
+	return GetTransform().GetWorldPosition() + GetMouseWorldPosition();
+}

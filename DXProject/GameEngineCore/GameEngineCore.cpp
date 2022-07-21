@@ -15,11 +15,11 @@ GameEngineLevel* GameEngineCore::NextLevel = nullptr;
 std::map<std::string, class GameEngineLevel*> GameEngineCore::AllLevels;
 
 
-GameEngineCore::GameEngineCore() 
+GameEngineCore::GameEngineCore()
 {
 }
 
-GameEngineCore::~GameEngineCore() 
+GameEngineCore::~GameEngineCore()
 {
 }
 
@@ -62,7 +62,7 @@ void GameEngineCore::CoreUpdate(GameEngineCore* _UserCore)
 {
 	if (nullptr != NextLevel)
 	{
-		
+
 
 		Rectangle(GameEngineWindow::GetInst()->GetHDC()
 			, 0
@@ -103,7 +103,7 @@ void GameEngineCore::CoreUpdate(GameEngineCore* _UserCore)
 
 }
 
-void GameEngineCore::CoreEnd(GameEngineCore* _UserCore) 
+void GameEngineCore::CoreEnd(GameEngineCore* _UserCore)
 {
 	_UserCore->End();
 
@@ -129,7 +129,7 @@ void GameEngineCore::CoreEnd(GameEngineCore* _UserCore)
 void GameEngineCore::WindowCreate(const std::string& _Name, GameEngineCore* _UserCore)
 {
 	GameEngineWindow::GetInst()->CreateGameWindow(nullptr, _Name.c_str());
-	GameEngineWindow::GetInst()->SetWindowScaleAndPosition({ 0,0 }, {1280, 720});
+	GameEngineWindow::GetInst()->SetWindowScaleAndPosition({ 0,0 }, { 1280, 720 });
 	GameEngineWindow::GetInst()->ShowGameWindow();
 	GameEngineDevice::Initialize();
 
@@ -149,7 +149,7 @@ void GameEngineCore::InitializeLevel(GameEngineLevel* _Level, const std::string 
 {
 	_Level->Start();
 	_Level->SetName(_Name);
-	
+
 	// AllLevels.insert(std::map<std::string, GameEngineLevel*>::value_type(_Name, NewLevel));
 	AllLevels.insert(std::make_pair(_Name, _Level));
 }

@@ -5,7 +5,7 @@
 #include "GameEngineTransformBase.h"
 
 // 설명 : 기능인데 기하정보까지 가지야하는 컴포넌트들은 이걸 상속 받는다.
-class GameEngineTransformComponent 
+class GameEngineTransformComponent
 	: public GameEngineComponent
 	, public GameEngineTransformBase
 {
@@ -23,6 +23,12 @@ public:
 	GameEngineActor* GetActor()
 	{
 		return GetParent<GameEngineActor>();
+	}
+
+	template<typename ParentType>
+	ParentType* GetActor()
+	{
+		return GetParent<ParentType>();
 	}
 
 	void DetachObject() override;
