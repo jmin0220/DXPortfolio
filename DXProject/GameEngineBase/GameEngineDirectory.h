@@ -22,6 +22,8 @@ public:
 
 	void Move(const std::string& _Name);
 
+	std::string PlusFilePath(const std::string& _Name);
+
 	// 한폴더의
 
 	std::vector<GameEngineFile> GetAllFile(const std::string& _Ext = "");
@@ -31,6 +33,7 @@ public:
 
 	// std::vector<GameEngineFile> GetRecursiveAllFile(const std::string& _Ext = "");
 
+	// "C:adskjfklasdjfklas"
 	std::vector<GameEngineDirectory> GetRecursiveAllDirectory();
 
 

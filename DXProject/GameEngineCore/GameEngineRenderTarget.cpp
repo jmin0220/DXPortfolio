@@ -2,12 +2,12 @@
 #include "GameEngineRenderTarget.h"
 #include "GameEngineDepthStencilTexture.h"
 
-GameEngineRenderTarget::GameEngineRenderTarget()
+GameEngineRenderTarget::GameEngineRenderTarget() 
 	: DepthStencilView(nullptr)
 {
 }
 
-GameEngineRenderTarget::~GameEngineRenderTarget()
+GameEngineRenderTarget::~GameEngineRenderTarget() 
 {
 }
 
@@ -43,7 +43,7 @@ void GameEngineRenderTarget::Clear()
 	}
 }
 
-void GameEngineRenderTarget::CreateDepthTexture(int _Index)
+void GameEngineRenderTarget::CreateDepthTexture(int _Index) 
 {
 	DepthTexture = GameEngineDepthStencilTexture::Create(RenderTargets[_Index]->GetScale());
 

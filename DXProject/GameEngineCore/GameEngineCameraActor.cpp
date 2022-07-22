@@ -9,11 +9,11 @@ GameEngineCameraActor::GameEngineCameraActor()
 {
 }
 
-GameEngineCameraActor::~GameEngineCameraActor()
+GameEngineCameraActor::~GameEngineCameraActor() 
 {
 }
 
-void GameEngineCameraActor::Start()
+void GameEngineCameraActor::Start() 
 {
 	CameraComponent = CreateComponent<GameEngineCamera>();
 
@@ -87,7 +87,7 @@ void GameEngineCameraActor::Update(float _DeltaTime)
 	}
 }
 
-void GameEngineCameraActor::End()
+void GameEngineCameraActor::End() 
 {
 
 }
@@ -96,4 +96,16 @@ void GameEngineCameraActor::End()
 void GameEngineCameraActor::FreeCameraModeOnOff()
 {
 	FreeCameraMode = !FreeCameraMode;
+
+	if (true == FreeCameraMode)
+	{
+		PrevMode = CameraComponent->GetProjectionMode();
+		CameraComponent->SetProjectionMode(CAMERAPROJECTIONMODE::PersPective);
+		OriginTrans.Copy(GetTransform());
+	}
+	else 
+	{
+		CameraComponent->SetProjectionMode(PrevMode);
+		GetTransform().Copy(OriginTrans);
+	}
 }

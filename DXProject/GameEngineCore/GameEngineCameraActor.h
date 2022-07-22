@@ -25,7 +25,7 @@ public:
 
 	void FreeCameraModeOnOff();
 
-	inline bool IsFreeCameraMode()
+	inline bool IsFreeCameraMode() 
 	{
 		return FreeCameraMode;
 	}
@@ -42,6 +42,8 @@ private:
 	float RotSpeed;
 
 	GameEngineCamera* CameraComponent;
+	GameEngineTransform OriginTrans;
+	CAMERAPROJECTIONMODE PrevMode;
 
 };
 

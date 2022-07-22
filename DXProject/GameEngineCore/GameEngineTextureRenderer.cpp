@@ -10,7 +10,7 @@ void FrameAnimation::Reset()
 }
 
 
-void FrameAnimation::Update(float _Delta)
+void FrameAnimation::Update(float _Delta) 
 {
 
 	Info.FrameTime += _Delta;
@@ -20,7 +20,7 @@ void FrameAnimation::Update(float _Delta)
 		Time(Info, _Delta);
 	}
 
-	if (false == bOnceStart
+	if (false == bOnceStart 
 		&& Info.CurFrame == Info.Start
 		&& nullptr != Start)
 	{
@@ -50,7 +50,7 @@ void FrameAnimation::Update(float _Delta)
 			{
 				Info.CurFrame = Info.Start;
 			}
-			else
+			else 
 			{
 				Info.CurFrame = Info.End;
 			}
@@ -75,17 +75,17 @@ void FrameAnimation::Update(float _Delta)
 	}
 }
 
-GameEngineTextureRenderer::GameEngineTextureRenderer()
+GameEngineTextureRenderer::GameEngineTextureRenderer() 
 	: CurAni(nullptr)
 	, CurTex(nullptr)
 {
 }
 
-GameEngineTextureRenderer::~GameEngineTextureRenderer()
+GameEngineTextureRenderer::~GameEngineTextureRenderer() 
 {
 }
 
-void GameEngineTextureRenderer::Start()
+void GameEngineTextureRenderer::Start() 
 {
 	GameEngineDefaultRenderer::Start();
 	SetPipeLine("TextureAtlas");
@@ -184,7 +184,7 @@ void GameEngineTextureRenderer::AnimationBindFrame(const std::string& _Animation
 }
 
 // Update
-void GameEngineTextureRenderer::AnimationBindTime(const std::string& _AnimationName, std::function<void(const FrameAnimation_DESC&, float)> Function)
+void GameEngineTextureRenderer::AnimationBindTime(const std::string& _AnimationName, std::function<void(const FrameAnimation_DESC& , float)> Function)
 {
 	std::string Name = GameEngineString::ToUpperReturn(_AnimationName);
 
@@ -259,7 +259,7 @@ void GameEngineTextureRenderer::ChangeFrameAnimation(const std::string& _Animati
 		{
 			SetTexture(CurAni->Texture, CurAni->Info.CurFrame);
 		}
-		else if (nullptr != CurAni->FolderTexture)
+		else if(nullptr != CurAni->FolderTexture)
 		{
 			SetTexture(CurAni->FolderTexture->GetTexture(CurAni->Info.CurFrame));
 		}
@@ -268,7 +268,7 @@ void GameEngineTextureRenderer::ChangeFrameAnimation(const std::string& _Animati
 
 void GameEngineTextureRenderer::FrameDataReset()
 {
-	FrameData = { 0.0f , 0.0f, 1.0f, 1.0f };
+	FrameData = { 0.0f , 0.0f, 1.0f, 1.0f};
 }
 
 

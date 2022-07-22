@@ -9,7 +9,7 @@ GameEngineTexture::GameEngineTexture()
 {
 }
 
-GameEngineTexture::~GameEngineTexture()
+GameEngineTexture::~GameEngineTexture() 
 {
 	if (nullptr != DepthStencilView)
 	{
@@ -72,7 +72,7 @@ GameEngineTexture* GameEngineTexture::Create(ID3D11Texture2D* _Texture)
 
 GameEngineTexture* GameEngineTexture::Create(const D3D11_TEXTURE2D_DESC& _Desc)
 {
-	GameEngineTexture* NewRes = CreateResUnName();
+	GameEngineTexture* NewRes = CreateResUnName();	
 	NewRes->TextureCreate(_Desc);
 	return NewRes;
 }
@@ -107,7 +107,7 @@ void GameEngineTexture::TextureLoad(const std::string& _Path)
 	{
 		MsgBoxAssertString(_Path + "아직 처리하지 않은 이미지 포멧입니다.");
 	}
-	else if (S_OK != DirectX::LoadFromWICFile(LoadPath.c_str(), DirectX::WIC_FLAGS_NONE, &Metadata, Image))
+	else if(S_OK != DirectX::LoadFromWICFile(LoadPath.c_str(), DirectX::WIC_FLAGS_NONE, &Metadata, Image))
 	{
 		MsgBoxAssertString(_Path + "로드에 실패했습니다.");
 	}

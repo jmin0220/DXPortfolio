@@ -1,7 +1,7 @@
 #pragma once
 #include "GameEngineDefaultRenderer.h"
 
-class FrameAnimation_DESC
+class FrameAnimation_DESC 
 {
 public:
 	std::string TextureName;

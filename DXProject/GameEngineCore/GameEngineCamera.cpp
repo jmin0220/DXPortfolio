@@ -5,7 +5,7 @@
 #include "GameEngineLevel.h"
 #include <GameEngineBase/GameEngineWindow.h>
 
-GameEngineCamera::GameEngineCamera()
+GameEngineCamera::GameEngineCamera() 
 {
 	// 윈도우가 여러분들 생각하기 가장 쉬운 비율이라서 여기서 하는거고.
 	Size = GameEngineWindow::GetInst()->GetScale();
@@ -19,12 +19,12 @@ GameEngineCamera::GameEngineCamera()
 	ViewPortDesc.Width = Size.x;
 	ViewPortDesc.Height = Size.y;
 	ViewPortDesc.MinDepth = 0.0f;
-	ViewPortDesc.MaxDepth = 0.0f;
+	ViewPortDesc.MaxDepth = 1.0f;
 
-
+	
 }
 
-GameEngineCamera::~GameEngineCamera()
+GameEngineCamera::~GameEngineCamera() 
 {
 }
 
@@ -35,8 +35,8 @@ void GameEngineCamera::Render(float _DeltaTime)
 
 	// 랜더하기 전에 
 	View.LookAtLH(
-		GetActor()->GetTransform().GetLocalPosition(),
-		GetActor()->GetTransform().GetForwardVector(),
+		GetActor()->GetTransform().GetLocalPosition(), 
+		GetActor()->GetTransform().GetForwardVector(), 
 		GetActor()->GetTransform().GetUpVector());
 
 	switch (Mode)
@@ -59,6 +59,11 @@ void GameEngineCamera::Render(float _DeltaTime)
 		float ScaleTime = GameEngineTime::GetInst()->GetDeltaTime(Group.first);
 		for (GameEngineRenderer* const Renderer : Group.second)
 		{
+			if (false == Renderer->IsUpdate())
+			{
+				continue;
+			}
+
 			Renderer->GetTransform().SetView(View);
 			Renderer->GetTransform().SetProjection(Projection);
 			Renderer->GetTransform().CalculateWorldViewProjection();
@@ -104,7 +109,7 @@ void GameEngineCamera::Release(float _DelataTime)
 	}
 }
 
-float4 GameEngineCamera::GetScreenPosition()
+float4 GameEngineCamera::GetScreenPosition() 
 {
 	POINT P;
 
@@ -115,7 +120,7 @@ float4 GameEngineCamera::GetScreenPosition()
 	return { static_cast<float>(P.x), static_cast<float>(P.y) };
 }
 
-void GameEngineCamera::Update(float _DeltaTime)
+void GameEngineCamera::Update(float _DeltaTime) 
 {
 	float4 MousePos = GetMouseWorldPosition();
 	MousePos.w = 0.0f;

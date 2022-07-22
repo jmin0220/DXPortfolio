@@ -27,6 +27,11 @@ public:
 	GameEngineCamera& operator=(const GameEngineCamera& _Other) = delete;
 	GameEngineCamera& operator=(GameEngineCamera&& _Other) noexcept = delete;
 
+	CAMERAPROJECTIONMODE GetProjectionMode()
+	{
+		return Mode;
+	}
+
 	void SetProjectionMode(CAMERAPROJECTIONMODE _Mode)
 	{
 		Mode = _Mode;
@@ -39,7 +44,7 @@ public:
 
 	float4 GetMouseWorldPositionToActor();
 
-	inline float4 GetMouseWorldDir()
+	inline float4 GetMouseWorldDir() 
 	{
 		return MouseDir;
 	}

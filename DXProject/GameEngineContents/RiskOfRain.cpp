@@ -66,6 +66,7 @@ void RiskOfRain::Start()
 	GameEngineDirectory Dir;
 	Dir.MoveParentToExitsChildDirectory("Resources");
 	Dir.Move("Resources");
+	Dir.Move("Texture");
 
 	std::vector<GameEngineDirectory> RecursiveDir = Dir.GetRecursiveAllDirectory();
 

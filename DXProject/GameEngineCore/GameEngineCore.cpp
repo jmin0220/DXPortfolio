@@ -6,6 +6,7 @@
 #include <GameEngineCore/GameEngineDevice.h>
 #include "GameEngineLevel.h"
 #include "GameEngineDevice.h"
+#include "GameEngineGUI.h"
 
 #pragma comment(lib, "GameEngineBase.lib")
 
@@ -15,11 +16,11 @@ GameEngineLevel* GameEngineCore::NextLevel = nullptr;
 std::map<std::string, class GameEngineLevel*> GameEngineCore::AllLevels;
 
 
-GameEngineCore::GameEngineCore()
+GameEngineCore::GameEngineCore() 
 {
 }
 
-GameEngineCore::~GameEngineCore()
+GameEngineCore::~GameEngineCore() 
 {
 }
 
@@ -50,6 +51,8 @@ bool GameEngineCore::ChangeLevel(const std::string& _Name)
 
 void GameEngineCore::CoreStart(GameEngineCore* _UserCore)
 {
+	GameEngineGUI::Initialize();
+
 	// 엔진 리소스는 완성되어야 합니다.
 	EngineResourcesInitialize();
 
@@ -62,7 +65,7 @@ void GameEngineCore::CoreUpdate(GameEngineCore* _UserCore)
 {
 	if (nullptr != NextLevel)
 	{
-
+		
 
 		Rectangle(GameEngineWindow::GetInst()->GetHDC()
 			, 0
@@ -103,7 +106,7 @@ void GameEngineCore::CoreUpdate(GameEngineCore* _UserCore)
 
 }
 
-void GameEngineCore::CoreEnd(GameEngineCore* _UserCore)
+void GameEngineCore::CoreEnd(GameEngineCore* _UserCore) 
 {
 	_UserCore->End();
 
@@ -117,6 +120,10 @@ void GameEngineCore::CoreEnd(GameEngineCore* _UserCore)
 		Level.second = nullptr;
 	}
 
+	// 이유는 리소스를 사용할거 같아서
+	// gui에서 텍스처라던가 이런거 쓰다가
+	GameEngineGUI::GUIDestroy();
+
 	EngineResourcesDestroy();
 
 	GameEngineWindow::Destroy();
@@ -129,7 +136,7 @@ void GameEngineCore::CoreEnd(GameEngineCore* _UserCore)
 void GameEngineCore::WindowCreate(const std::string& _Name, GameEngineCore* _UserCore)
 {
 	GameEngineWindow::GetInst()->CreateGameWindow(nullptr, _Name.c_str());
-	GameEngineWindow::GetInst()->SetWindowScaleAndPosition({ 0,0 }, { 1280, 720 });
+	GameEngineWindow::GetInst()->SetWindowScaleAndPosition({ 0,0 }, {1280, 720});
 	GameEngineWindow::GetInst()->ShowGameWindow();
 	GameEngineDevice::Initialize();
 
@@ -143,13 +150,14 @@ void GameEngineCore::WindowCreate(const std::string& _Name, GameEngineCore* _Use
 		std::bind(&GameEngineCore::CoreEnd, _UserCore)
 	);
 
+
 }
 
 void GameEngineCore::InitializeLevel(GameEngineLevel* _Level, const std::string _Name)
 {
 	_Level->Start();
 	_Level->SetName(_Name);
-
+	
 	// AllLevels.insert(std::map<std::string, GameEngineLevel*>::value_type(_Name, NewLevel));
 	AllLevels.insert(std::make_pair(_Name, _Level));
 }

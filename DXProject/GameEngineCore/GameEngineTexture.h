@@ -19,7 +19,7 @@ public:
 	GameEngineTexture& operator=(const GameEngineTexture& _Other) = delete;
 	GameEngineTexture& operator=(GameEngineTexture&& _Other) noexcept = delete;
 
-	static GameEngineTexture* Load(const std::string& _Path)
+	static GameEngineTexture* Load(const std::string& _Path) 
 	{
 		return Load(_Path, GameEnginePath::GetFileName(_Path));
 	}
@@ -42,7 +42,7 @@ public:
 	void VSSetting(int _BindPoint);
 	void PSSetting(int _BindPoint);
 
-	float4 GetFrameData(UINT _Index)
+	float4 GetFrameData(UINT _Index) 
 	{
 		if (true == CutData.empty())
 		{
@@ -59,7 +59,7 @@ public:
 
 	void TextureLoad(const std::string& _Path);
 
-	float4 GetScale()
+	float4 GetScale() 
 	{
 		return { static_cast<float>(Desc.Width), static_cast<float>(Desc.Height) };
 	}

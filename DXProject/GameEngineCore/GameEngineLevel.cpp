@@ -4,8 +4,9 @@
 #include "GameEngineRenderer.h"
 #include "GameEngineCamera.h"
 #include "GameEngineCameraActor.h"
+#include "GameEngineGUI.h"
 
-GameEngineLevel::GameEngineLevel()
+GameEngineLevel::GameEngineLevel() 
 	: MainCamera(nullptr)
 	, UIMainCamera(nullptr)
 {
@@ -18,7 +19,7 @@ GameEngineLevel::GameEngineLevel()
 	}
 }
 
-GameEngineLevel::~GameEngineLevel()
+GameEngineLevel::~GameEngineLevel() 
 {
 	for (const std::pair<int, std::list<GameEngineActor*>>& Group : AllActors)
 	{
@@ -81,6 +82,8 @@ void GameEngineLevel::Render(float _DelataTime)
 	// 이 사이에서 무언가를 해야 합니다.
 	MainCamera->Render(_DelataTime);
 
+	GameEngineGUI::GUIRender();
+
 	GameEngineDevice::RenderEnd();
 }
 
@@ -122,11 +125,11 @@ void GameEngineLevel::Release(float _DelataTime)
 				// DeleteObject.push_back((*GroupStart));
 				GroupStart = Group.erase(GroupStart);
 			}
-			else
+			else 
 			{
 				++GroupStart;
 			}
-
+			
 		}
 	}
 
