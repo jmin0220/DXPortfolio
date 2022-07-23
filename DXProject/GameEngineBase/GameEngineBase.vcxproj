@@ -187,6 +187,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CustomStringSet.h" />
     <ClInclude Include="GameEngineDebug.h" />
     <ClInclude Include="GameEngineDebugObject.h">
       <SubType>

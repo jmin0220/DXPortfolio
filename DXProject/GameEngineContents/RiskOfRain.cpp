@@ -64,9 +64,9 @@ void RiskOfRain::Start()
 
 
 	GameEngineDirectory Dir;
-	Dir.MoveParentToExitsChildDirectory("Resources");
-	Dir.Move("Resources");
-	Dir.Move("Texture");
+	Dir.MoveParentToExitsChildDirectory(DIR_RESOURCE);
+	Dir.Move(DIR_RESOURCE);
+	Dir.Move(DIR_TEXTURE);
 
 	std::vector<GameEngineDirectory> RecursiveDir = Dir.GetRecursiveAllDirectory();
 
@@ -76,11 +76,12 @@ void RiskOfRain::Start()
 	}
 
 	// 레벨 생성
-	CreateLevel<StartLevel>("Title");
-	CreateLevel<EndLevel>("End");
-	CreateLevel<Stage1Level>("Stage1");
+	CreateLevel<StartLevel>(LEVEL_TITLE);
+	CreateLevel<EndLevel>(LEVEL_END);
+	CreateLevel<Stage1Level>(LEVEL_STAGE1);
+
 	// 초기 레벨 이동
-	ChangeLevel("Stage1");
+	ChangeLevel(LEVEL_STAGE1);
 }
 
 void RiskOfRain::Update(float _DeltaTime)

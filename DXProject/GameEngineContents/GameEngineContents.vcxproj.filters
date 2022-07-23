@@ -57,6 +57,9 @@
     <ClInclude Include="ObjectGroup.h">
       <Filter>98_Global</Filter>
     </ClInclude>
+    <ClInclude Include="UnitFsm.h">
+      <Filter>98_Global</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PreCompile.cpp">
@@ -76,6 +79,9 @@
     </ClCompile>
     <ClCompile Include="RiskOfRain.cpp">
       <Filter>97_Contents</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerState.cpp">
+      <Filter>01_Actor\01_Play</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

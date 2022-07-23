@@ -187,6 +187,7 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="UnitFsm.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="EndLevel.cpp">
@@ -197,6 +198,7 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="PlayerState.cpp" />
     <ClCompile Include="PreCompile.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
