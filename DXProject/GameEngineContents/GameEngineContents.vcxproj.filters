@@ -34,6 +34,9 @@
     <Filter Include="02_Component\00_Texture">
       <UniqueIdentifier>{16c14e6d-9406-4030-b211-260ae553414a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="01_Actor\01_Play\Map">
+      <UniqueIdentifier>{f49ff4a2-4cc7-4486-8ae6-97d100fbd123}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PreCompile.h">
@@ -60,6 +63,9 @@
     <ClInclude Include="UnitFsm.h">
       <Filter>98_Global</Filter>
     </ClInclude>
+    <ClInclude Include="TitleBG.h">
+      <Filter>01_Actor\00_StartEnd</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PreCompile.cpp">
@@ -82,6 +88,9 @@
     </ClCompile>
     <ClCompile Include="PlayerState.cpp">
       <Filter>01_Actor\01_Play</Filter>
+    </ClCompile>
+    <ClCompile Include="TitleBG.cpp">
+      <Filter>01_Actor\00_StartEnd</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

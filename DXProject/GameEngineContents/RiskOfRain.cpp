@@ -16,6 +16,7 @@ RiskOfRain::~RiskOfRain()
 
 void RiskOfRain::Start()
 {
+
 	// 리소스 로드
 	{
 		GameEngineDirectory Dir;
@@ -81,7 +82,7 @@ void RiskOfRain::Start()
 	CreateLevel<Stage1Level>(LEVEL_STAGE1);
 
 	// 초기 레벨 이동
-	ChangeLevel(LEVEL_STAGE1);
+	ChangeLevel(LEVEL_TITLE);
 }
 
 void RiskOfRain::Update(float _DeltaTime)

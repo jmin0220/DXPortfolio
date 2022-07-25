@@ -3,6 +3,8 @@
 #define PLAYER_KEY_LEFT "PlayerLeft"
 #define PLAYER_KEY_RIGHT "PlayerRight"
 
+
+
 // 플레이어 애니메이션
 #define PLAYER_ANIM_BANDIT_IDLE "BanditIdle"
 #define PLAYER_ANIM_BANDIT_WALK "BanditWalk"
@@ -19,3 +21,6 @@
 #define LEVEL_TITLE "Title"
 #define LEVEL_END "End"
 #define LEVEL_STAGE1 "Stage1"
+
+// 텍스쳐
+#define TEX_TITLE_BG "TitleBG"
