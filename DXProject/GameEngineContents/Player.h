@@ -32,6 +32,13 @@ private:
 	bool IsMoveKeyPress();
 	bool IsMoveKeyUp();
 
+	bool IsShootKeyDown();
+	bool IsShootKeyPress();
+	bool IsShootKeyUp();
+
+	// 업데이트 함수
+	void CheckNegativeX();
+
 	// FSM 관련 함수
 	void StateChange(STATE _State);
 	void StateUpdate();
@@ -69,9 +76,13 @@ private:
 	void ClimbEnd();
 	void DeathEnd();
 
+	// 애니메이션 종료시
+	void EndAnimation(const FrameAnimation_DESC& _Info);
+
 	GameEngineTextureRenderer* Renderer_;
 	float Speed_;
 	STATE CurrentState_;
 	float DeltaTime_;
+	float4 MoveDir_;
 };
 

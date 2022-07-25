@@ -4,6 +4,13 @@
 // 업데이트
 void Player::IdleUpdate()
 {
+	if (true == IsShootKeyDown())
+	{
+		StateChange(STATE::SHOOT);
+		return;
+	}
+
+
 	// 이동키가 눌리면 이동
 	if (true == IsMoveKeyDown())
 	{
@@ -26,13 +33,15 @@ void Player::MoveUpdate()
 	{
 		GetTransform().SetWorldMove(GetTransform().GetLeftVector() * Speed_ * DeltaTime_);
 
-		// 좌우반전
-		Renderer_->GetTransform().PixLocalNegativeX();
+		// TODO::픽셀체크함수 생성시 수정요
+		MoveDir_ = float4::LEFT;
 	}
 	if (true == GameEngineInput::GetInst()->IsPress(PLAYER_KEY_RIGHT))
 	{
 		GetTransform().SetWorldMove(GetTransform().GetRightVector() * Speed_ * DeltaTime_);
-		Renderer_->GetTransform().PixLocalPositiveX();
+
+		// TODO::픽셀체크함수 생성시 수정요
+		MoveDir_ = float4::RIGHT;
 	}
 }
 
@@ -74,40 +83,53 @@ void Player::DeathUpdate()
 // 스타트
 void Player::IdleStart()
 {
-
+	// 애니메이션 전환
+	Renderer_->ChangeFrameAnimation(PLAYER_ANIM_BANDIT_IDLE);
 }
+
 void Player::MoveStart()
 {
-
+	// 애니메이션 전환
+	Renderer_->ChangeFrameAnimation(PLAYER_ANIM_BANDIT_WALK);
 }
+
 void Player::JumpStart()
 {
 
 }
+
 void Player::ShootStart()
 {
-
+	// 애니메이션 전환
+	Renderer_->ChangeFrameAnimation(PLAYER_ANIM_BANDIT_SHOOT);
+	Renderer_->AnimationBindEnd(PLAYER_ANIM_BANDIT_SHOOT, &Player::EndAnimation, this);
 }
+
 void Player::Skill1Start()
 {
 
 }
+
 void Player::Skill2Start()
 {
 
 }
+
 void Player::Skill3Start()
 {
 
 }
+
 void Player::Skill4Start()
 {
 
 }
+
 void Player::ClimbStart()
 {
 
 }
+
 void Player::DeathStart()
 {
 

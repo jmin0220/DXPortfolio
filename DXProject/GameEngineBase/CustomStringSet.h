@@ -2,6 +2,7 @@
 // 플레이어 조작키
 #define PLAYER_KEY_LEFT "PlayerLeft"
 #define PLAYER_KEY_RIGHT "PlayerRight"
+#define PLAYER_KEY_SHOOT "PlayerShoot"
 
 
 

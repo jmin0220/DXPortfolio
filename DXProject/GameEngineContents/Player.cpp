@@ -22,6 +22,7 @@ void Player::Update(float _DeltaTime)
 {
 	DeltaTime_ = _DeltaTime;
 	StateUpdate();
+	CheckNegativeX();
 }
 
 void Player::End()
@@ -34,8 +35,9 @@ void Player::KeyInit()
 {
 	if (false == GameEngineInput::GetInst()->IsKey(PLAYER_KEY_LEFT))
 	{
-		GameEngineInput::GetInst()->CreateKey(PLAYER_KEY_LEFT, 'A');
-		GameEngineInput::GetInst()->CreateKey(PLAYER_KEY_RIGHT, 'D');
+		GameEngineInput::GetInst()->CreateKey(PLAYER_KEY_LEFT, VK_LEFT);
+		GameEngineInput::GetInst()->CreateKey(PLAYER_KEY_RIGHT, VK_RIGHT);
+		GameEngineInput::GetInst()->CreateKey(PLAYER_KEY_SHOOT, 'Z');
 	}
 }
 
@@ -46,7 +48,7 @@ void Player::AnimationInit()
 
 	Renderer_->CreateFrameAnimationFolder(PLAYER_ANIM_BANDIT_IDLE, FrameAnimation_DESC(PLAYER_ANIM_BANDIT_IDLE, 0.1f, false));
 	Renderer_->CreateFrameAnimationFolder(PLAYER_ANIM_BANDIT_SHOOT, FrameAnimation_DESC(PLAYER_ANIM_BANDIT_SHOOT, 0.1f, false));
-	Renderer_->CreateFrameAnimationFolder(PLAYER_ANIM_BANDIT_WALK, FrameAnimation_DESC(PLAYER_ANIM_BANDIT_WALK, 0.1f, false));
+	Renderer_->CreateFrameAnimationFolder(PLAYER_ANIM_BANDIT_WALK, FrameAnimation_DESC(PLAYER_ANIM_BANDIT_WALK, 0.1f, true));
 	Renderer_->CreateFrameAnimationFolder(PLAYER_ANIM_BANDIT_JUMP, FrameAnimation_DESC(PLAYER_ANIM_BANDIT_JUMP, 0.1f, false));
 	Renderer_->CreateFrameAnimationFolder(PLAYER_ANIM_BANDIT_CLIMB, FrameAnimation_DESC(PLAYER_ANIM_BANDIT_CLIMB, 0.1f, false));
 	Renderer_->CreateFrameAnimationFolder(PLAYER_ANIM_BANDIT_DEATH, FrameAnimation_DESC(PLAYER_ANIM_BANDIT_DEATH, 0.1f, false));
@@ -146,6 +148,7 @@ void Player::StateUpdate()
 	}
 }
 
+// 이동키 판정
 bool Player::IsMoveKeyDown()
 {
 	if (false == GameEngineInput::GetInst()->IsDown(PLAYER_KEY_LEFT) &&
@@ -180,4 +183,54 @@ bool Player::IsMoveKeyUp()
 	}
 
 	return true;
+}
+
+// 발사키 판정
+bool Player::IsShootKeyDown()
+{
+	if (false == GameEngineInput::GetInst()->IsDown(PLAYER_KEY_SHOOT))
+	{
+		return false;
+	}
+
+	return true;
+}
+
+bool Player::IsShootKeyPress()
+{
+	if (false == GameEngineInput::GetInst()->IsPress(PLAYER_KEY_SHOOT))
+	{
+		return false;
+	}
+
+	return true;
+}
+
+bool Player::IsShootKeyUp()
+{
+	if (false == GameEngineInput::GetInst()->IsUp(PLAYER_KEY_SHOOT))
+	{
+		return false;
+	}
+
+	return true;
+}
+
+void Player::CheckNegativeX()
+{
+	if (MoveDir_.CompareInt2D(float4::LEFT))
+	{
+		// 좌우반전
+		Renderer_->GetTransform().PixLocalNegativeX();
+	}
+	else
+	{
+		Renderer_->GetTransform().PixLocalPositiveX();
+	}
+}
+
+void Player::EndAnimation(const FrameAnimation_DESC& _Info)
+{
+	// 스테이트 전환
+	StateChange(STATE::Idle);
 }
