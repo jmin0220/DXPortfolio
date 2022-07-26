@@ -110,9 +110,9 @@ public:
 
 	void SetFrame(UINT _Index);
 
-	void SetTexture(const std::string& _Name, UINT _Index);
+	GameEngineTexture* GetCurTexture();
 
-	void SetTexture(GameEngineTexture* _Texture, UINT _Index);
+	void SetTexture(const std::string& _Name, UINT _Index);
 
 	void SetPivot();
 
@@ -120,12 +120,12 @@ public:
 
 	void SetPivotToVector(const float4& _Value);
 
+	void SetTexture(GameEngineTexture* _Texture, UINT _Index);
+
 	void CreateFrameAnimationFolder(const std::string& _AnimationName, const FrameAnimation_DESC& _Desc);
 
 	void CreateFrameAnimation(const std::string& _AnimationName, const FrameAnimation_DESC& _Desc);
 	void ChangeFrameAnimation(const std::string& _AnimationName);
-
-
 
 	void ScaleToTexture();
 
