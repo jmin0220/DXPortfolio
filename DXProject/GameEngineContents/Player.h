@@ -42,7 +42,9 @@ private:
 	// 업데이트 함수
 	void CheckNegativeX();
 	void CameraUpdate();
-	void GroundCheck();
+	void GroundFallCheck();
+	bool GroundRightCheck();
+	bool GroundLeftCheck();
 
 	// FSM 관련 함수
 	void StateChange(STATE _State);

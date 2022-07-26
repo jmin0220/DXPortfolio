@@ -31,6 +31,11 @@ void Player::MoveUpdate()
 
 	if (true == GameEngineInput::GetInst()->IsPress(PLAYER_KEY_LEFT))
 	{
+		if (true == GroundLeftCheck())
+		{
+			return;
+		}
+
 		GetTransform().SetWorldMove(GetTransform().GetLeftVector() * Speed_ * DeltaTime_);
 
 		// TODO::픽셀체크함수 생성시 수정요
@@ -38,6 +43,11 @@ void Player::MoveUpdate()
 	}
 	if (true == GameEngineInput::GetInst()->IsPress(PLAYER_KEY_RIGHT))
 	{
+		if (true == GroundRightCheck())
+		{
+			return;
+		}
+
 		GetTransform().SetWorldMove(GetTransform().GetRightVector() * Speed_ * DeltaTime_);
 
 		// TODO::픽셀체크함수 생성시 수정요

@@ -27,6 +27,9 @@ void Player::Update(float _DeltaTime)
 	// 델타타임 초기화
 	DeltaTime_ = _DeltaTime;
 
+	// 낙하 체크
+	GroundFallCheck();
+
 	// 스테이트 업데이트
 	StateUpdate();
 
@@ -37,7 +40,7 @@ void Player::Update(float _DeltaTime)
 	CameraUpdate();
 
 	// 픽셀맵과의 충돌처리
-	GroundCheck();
+	GroundFallCheck();
 }
 
 void Player::KeyInit()
@@ -251,14 +254,15 @@ void Player::CameraUpdate()
 	GetLevel()->GetMainCameraActorTransform().SetLocalPosition(this->GetTransform().GetLocalPosition());
 }
 
-void Player::GroundCheck()
+void Player::GroundFallCheck()
 {
 	if (nullptr == ColMap_)
 	{
 		MsgBoxAssert("충돌맵이 존재하지 않습니다.");
 	}
 
-	float4 Color = ColMap_->GetPixel(this->GetTransform().GetWorldPosition().ix(), -this->GetTransform().GetWorldPosition().iy());
+	float4 Color = ColMap_->GetPixel(this->GetTransform().GetWorldPosition().ix()
+		                          , -this->GetTransform().GetWorldPosition().iy() + Renderer_->GetCurTexture()->GetScale().hiy() + 1.0f);
 
 	if (false == Color.CompareInt4D({ 1.0f, 0.0f, 1.0f }))
 	{
@@ -268,6 +272,44 @@ void Player::GroundCheck()
 	{
 		int a = 0;
 	}
+}
+
+bool Player::GroundRightCheck()
+{
+	if (nullptr == ColMap_)
+	{
+		MsgBoxAssert("충돌맵이 존재하지 않습니다.");
+	}
+
+	float4 Color = ColMap_->GetPixel(this->GetTransform().GetWorldPosition().ix() + Renderer_->GetCurTexture()->GetScale().hix()
+		, -this->GetTransform().GetWorldPosition().iy());
+
+
+	if (false == Color.CompareInt4D({ 1.0f, 0.0f, 1.0f }))
+	{
+		return false;
+	}
+
+	return true;
+}
+
+bool Player::GroundLeftCheck()
+{
+	if (nullptr == ColMap_)
+	{
+		MsgBoxAssert("충돌맵이 존재하지 않습니다.");
+	}
+
+	float4 Color = ColMap_->GetPixel(this->GetTransform().GetWorldPosition().ix() - Renderer_->GetCurTexture()->GetScale().hix()
+		, -this->GetTransform().GetWorldPosition().iy());
+
+
+	if (false == Color.CompareInt4D({ 1.0f, 0.0f, 1.0f }))
+	{
+		return false;
+	}
+
+	return true;
 }
 
 void Player::EndAnimation(const FrameAnimation_DESC& _Info)
