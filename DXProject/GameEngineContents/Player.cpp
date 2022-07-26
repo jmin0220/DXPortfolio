@@ -20,6 +20,7 @@ void Player::Start()
 
 	KeyInit();
 	AnimationInit();
+	this->GetTransform().SetWorldPosition({ 100, 100 });
 }
 
 void Player::Update(float _DeltaTime)
