@@ -15,11 +15,22 @@ public:
 	StageGround& operator=(const StageGround& _Other) = delete;
 	StageGround& operator=(StageGround&& _Other) noexcept = delete;
 
+	inline GameEngineTextureRenderer* GetStage()
+	{
+		return Renderer_;
+	}
+
+	inline GameEngineTextureRenderer* GetColStage()
+	{
+		return ColRenderer_;
+	}
+
 protected:
 	void Start() override;
 	void Update(float _DeltaTime) override;
 
 private:
 	GameEngineTextureRenderer* Renderer_;
+	GameEngineTextureRenderer* ColRenderer_;
 };
 

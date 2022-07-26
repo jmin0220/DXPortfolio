@@ -16,11 +16,14 @@ public:
 	Player& operator=(const Player& _Other) = delete;
 	Player& operator=(Player&& _Other) noexcept = delete;
 
+	void SetColMapInfo(GameEngineTexture* _ColMap)
+	{
+		ColMap_ = _ColMap;
+	}
+
 protected:
 	void Start() override;
 	void Update(float _DeltaTime) override;
-	void End() override;
-
 
 private:
 	// 초기화 관련 함수
@@ -38,6 +41,8 @@ private:
 
 	// 업데이트 함수
 	void CheckNegativeX();
+	void CameraUpdate();
+	void GroundCheck();
 
 	// FSM 관련 함수
 	void StateChange(STATE _State);
@@ -81,5 +86,7 @@ private:
 	STATE CurrentState_;
 	float DeltaTime_;
 	float4 MoveDir_;
+
+	GameEngineTexture* ColMap_;
 };
 

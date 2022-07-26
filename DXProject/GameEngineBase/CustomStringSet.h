@@ -4,6 +4,8 @@
 #define PLAYER_KEY_RIGHT "PlayerRight"
 #define PLAYER_KEY_SHOOT "PlayerShoot"
 
+#define PLAYER_KEY_UP "PlayerUp"
+#define PLAYER_KEY_DOWN "PlayerDown"
 
 
 // 플레이어 애니메이션

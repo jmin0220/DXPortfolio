@@ -43,6 +43,16 @@ void Player::MoveUpdate()
 		// TODO::픽셀체크함수 생성시 수정요
 		MoveDir_ = float4::RIGHT;
 	}
+	if (true == GameEngineInput::GetInst()->IsPress(PLAYER_KEY_UP))
+	{
+		GetTransform().SetWorldMove(GetTransform().GetUpVector() * Speed_ * DeltaTime_);
+
+	}
+	if (true == GameEngineInput::GetInst()->IsPress(PLAYER_KEY_DOWN))
+	{
+		GetTransform().SetWorldMove(GetTransform().GetDownVector() * Speed_ * DeltaTime_);
+
+	}
 }
 
 

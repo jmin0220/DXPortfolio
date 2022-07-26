@@ -23,8 +23,11 @@ void Stage1Level::Start()
 	CameraActor->GetCameraComponent()->SetProjectionMode(CAMERAPROJECTIONMODE::Orthographic);
 
 	// 액터 생성
-	CreateActor<StageGround>(ObjectGroup::Stage);
-	CreateActor<Player>(ObjectGroup::Player);
+	Player_ = CreateActor<Player>(ObjectGroup::Player);
+	StageActor_ = CreateActor<StageGround>(ObjectGroup::Stage);
+
+	// 플레이어에게 충돌맵 설정
+	Player_->SetColMapInfo(StageActor_->GetColStage()->GetCurTexture());
 }
 
 void Stage1Level::Update(float _DeltaTime)

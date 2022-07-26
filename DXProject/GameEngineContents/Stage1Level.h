@@ -1,8 +1,8 @@
 #pragma once
-#include <GameEngineCore/GameEngineLevel.h>
+#include "StageLevelParent.h"
 
 // Ό³Έν :
-class Stage1Level : public GameEngineLevel
+class Stage1Level : public StageLevelParent
 {
 public:
 	// constrcuter destructer

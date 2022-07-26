@@ -1,10 +1,12 @@
 #include "PreCompile.h"
 #include "Player.h"
+#include "Stage1Level.h"
 
 Player::Player() 
 	:Renderer_(nullptr)
-	, Speed_(50.0f)
+	, Speed_(200.0f)
 	, DeltaTime_(0.0f)
+	, ColMap_(nullptr)
 {
 }
 
@@ -14,22 +16,29 @@ Player::~Player()
 
 void Player::Start()
 {
+	//this->GetTransform().SetWorldPosition(float4::ZERO);
+
 	KeyInit();
 	AnimationInit();
 }
 
 void Player::Update(float _DeltaTime)
 {
+	// 델타타임 초기화
 	DeltaTime_ = _DeltaTime;
+
+	// 스테이트 업데이트
 	StateUpdate();
+
+	// 좌우반전 체크
 	CheckNegativeX();
+
+	// 카메라 업데이트
+	CameraUpdate();
+
+	// 픽셀맵과의 충돌처리
+	GroundCheck();
 }
-
-void Player::End()
-{
-
-}
-
 
 void Player::KeyInit()
 {
@@ -38,6 +47,11 @@ void Player::KeyInit()
 		GameEngineInput::GetInst()->CreateKey(PLAYER_KEY_LEFT, VK_LEFT);
 		GameEngineInput::GetInst()->CreateKey(PLAYER_KEY_RIGHT, VK_RIGHT);
 		GameEngineInput::GetInst()->CreateKey(PLAYER_KEY_SHOOT, 'Z');
+
+
+		// TODO::디버그용 상하이동
+		GameEngineInput::GetInst()->CreateKey(PLAYER_KEY_UP, VK_UP);
+		GameEngineInput::GetInst()->CreateKey(PLAYER_KEY_DOWN, VK_DOWN);
 	}
 }
 
@@ -146,7 +160,9 @@ void Player::StateUpdate()
 bool Player::IsMoveKeyDown()
 {
 	if (false == GameEngineInput::GetInst()->IsDown(PLAYER_KEY_LEFT) &&
-		false == GameEngineInput::GetInst()->IsDown(PLAYER_KEY_RIGHT)
+		false == GameEngineInput::GetInst()->IsDown(PLAYER_KEY_RIGHT) &&
+		false == GameEngineInput::GetInst()->IsDown(PLAYER_KEY_UP) &&
+		false == GameEngineInput::GetInst()->IsDown(PLAYER_KEY_DOWN)
 		)
 	{
 		return false;
@@ -158,7 +174,9 @@ bool Player::IsMoveKeyDown()
 bool Player::IsMoveKeyPress()
 {
 	if (false == GameEngineInput::GetInst()->IsPress(PLAYER_KEY_LEFT) &&
-		false == GameEngineInput::GetInst()->IsPress(PLAYER_KEY_RIGHT)
+		false == GameEngineInput::GetInst()->IsPress(PLAYER_KEY_RIGHT) &&
+		false == GameEngineInput::GetInst()->IsPress(PLAYER_KEY_UP) &&
+		false == GameEngineInput::GetInst()->IsPress(PLAYER_KEY_DOWN)
 		)
 	{
 		return false;
@@ -170,7 +188,9 @@ bool Player::IsMoveKeyPress()
 bool Player::IsMoveKeyUp()
 {
 	if (false == GameEngineInput::GetInst()->IsUp(PLAYER_KEY_LEFT) &&
-		false == GameEngineInput::GetInst()->IsUp(PLAYER_KEY_RIGHT)
+		false == GameEngineInput::GetInst()->IsUp(PLAYER_KEY_RIGHT) &&
+		false == GameEngineInput::GetInst()->IsUp(PLAYER_KEY_UP) &&
+		false == GameEngineInput::GetInst()->IsUp(PLAYER_KEY_DOWN)
 		)
 	{
 		return false;
@@ -222,6 +242,31 @@ void Player::CheckNegativeX()
 	{
 		Renderer_->GetTransform().PixLocalPositiveX();
 		Renderer_->SetPivot(PIVOTMODE::LEFT);
+	}
+}
+
+void Player::CameraUpdate()
+{
+	// 카메라 추적
+	GetLevel()->GetMainCameraActorTransform().SetLocalPosition(this->GetTransform().GetLocalPosition());
+}
+
+void Player::GroundCheck()
+{
+	if (nullptr == ColMap_)
+	{
+		MsgBoxAssert("충돌맵이 존재하지 않습니다.");
+	}
+
+	float4 Color = ColMap_->GetPixel(this->GetTransform().GetWorldPosition().ix(), -this->GetTransform().GetWorldPosition().iy());
+
+	if (false == Color.CompareInt4D({ 1.0f, 0.0f, 1.0f }))
+	{
+		GetTransform().SetWorldMove(GetTransform().GetDownVector() * Speed_ * DeltaTime_);
+	}
+	else if (false == Color.CompareInt4D(float4::ZERO))
+	{
+		int a = 0;
 	}
 }
 
