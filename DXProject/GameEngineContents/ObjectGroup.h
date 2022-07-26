@@ -2,6 +2,8 @@
 
 enum class ObjectGroup
 {
+	BackGround,
+	Stage,
 	Player,
 	Monster,
 	UI,

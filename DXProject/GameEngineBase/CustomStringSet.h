@@ -24,4 +24,6 @@
 #define LEVEL_STAGE1 "Stage1"
 
 // ÅØ½ºÃÄ
-#define TEX_TITLE_BG "TitleBG"
+#define TEX_TITLE_BG "Title.png"
+#define TEX_STAGE_ONE "stage1.png"
+#define TEX_STAGE_ONE_COLLISION "stage1Collision.png"

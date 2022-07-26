@@ -45,7 +45,6 @@ private:
 
 	void IdleStart();
 	void MoveStart();
-	void JumpStart();
 	void ShootStart();
 	void Skill1Start();
 	void Skill2Start();
@@ -56,7 +55,6 @@ private:
 
 	void IdleUpdate();
 	void MoveUpdate();
-	void JumpUpdate();
 	void ShootUpdate();
 	void Skill1Update();
 	void Skill2Update();
@@ -67,7 +65,6 @@ private:
 
 	void IdleEnd();
 	void MoveEnd();
-	void JumpEnd();
 	void ShootEnd();
 	void Skill1End();
 	void Skill2End();

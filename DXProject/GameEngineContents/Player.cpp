@@ -57,11 +57,11 @@ void Player::AnimationInit()
 	//Renderer_->CreateFrameAnimationFolder("BanditShoot2", FrameAnimation_DESC("BanditShoot2", 0.1f));
 	Renderer_->ChangeFrameAnimation(PLAYER_ANIM_BANDIT_IDLE);
 	Renderer_->ScaleToTexture();
+	Renderer_->SetPivot(PIVOTMODE::LEFT);
 }
 
 void Player::StateChange(STATE _State)
 {
-
 	if (CurrentState_ != _State)
 	{
 		switch (_State)
@@ -71,9 +71,6 @@ void Player::StateChange(STATE _State)
 			break;
 		case STATE::Move:
 			MoveStart();
-			break;
-		case STATE::Jump:
-			JumpStart();
 			break;
 		case STATE::SHOOT:
 			ShootStart();
@@ -116,9 +113,6 @@ void Player::StateUpdate()
 		break;
 	case STATE::Move:
 		MoveUpdate();
-		break;
-	case STATE::Jump:
-		JumpUpdate();
 		break;
 	case STATE::SHOOT:
 		ShootUpdate();
@@ -222,10 +216,12 @@ void Player::CheckNegativeX()
 	{
 		// ÁÂ¿ì¹ÝÀü
 		Renderer_->GetTransform().PixLocalNegativeX();
+		Renderer_->SetPivot(PIVOTMODE::RIGHT);
 	}
 	else
 	{
 		Renderer_->GetTransform().PixLocalPositiveX();
+		Renderer_->SetPivot(PIVOTMODE::LEFT);
 	}
 }
 

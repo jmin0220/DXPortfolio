@@ -3,7 +3,6 @@ enum class STATE
 {
 	Idle,
 	Move,
-	Jump,
 	SHOOT,
 	SKILL1,
 	SKILL2,

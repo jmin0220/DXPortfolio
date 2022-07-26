@@ -17,16 +17,33 @@ RiskOfRain::~RiskOfRain()
 void RiskOfRain::Start()
 {
 
-	// 리소스 로드
+	// 스테이지 맵 로딩
 	{
 		GameEngineDirectory Dir;
 
 		Dir.MoveParentToExitsChildDirectory("Resources");
 		Dir.Move("Resources");
 		Dir.Move("Texture");
-		Dir.Move("Player");
-		Dir.Move("Bandit");
-		Dir.Move("BanditIdle");
+		Dir.Move("Stage");
+		Dir.Move("PlayMap");
+
+		std::vector<GameEngineFile> Shaders = Dir.GetAllFile();
+
+		for (size_t i = 0; i < Shaders.size(); i++)
+		{
+			GameEngineTexture::Load(Shaders[i].GetFullPath());
+		}
+	}
+
+	// 타이틀 백그라운드 이미지 로딩
+	{
+		GameEngineDirectory Dir;
+
+		Dir.MoveParentToExitsChildDirectory("Resources");
+		Dir.Move("Resources");
+		Dir.Move("Texture");
+		Dir.Move("Stage");
+		Dir.Move("TitleBG");
 
 		std::vector<GameEngineFile> Shaders = Dir.GetAllFile();
 

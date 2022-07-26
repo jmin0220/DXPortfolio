@@ -46,34 +46,36 @@ void Player::MoveUpdate()
 }
 
 
-void Player::JumpUpdate()
-{
-
-}
 void Player::ShootUpdate()
 {
 
 }
+
 void Player::Skill1Update()
 {
 
 }
+
 void Player::Skill2Update()
 {
 
 }
+
 void Player::Skill3Update()
 {
 
 }
+
 void Player::Skill4Update()
 {
 
 }
+
 void Player::ClimbUpdate()
 {
 
 }
+
 void Player::DeathUpdate()
 {
 
@@ -91,11 +93,6 @@ void Player::MoveStart()
 {
 	// 애니메이션 전환
 	Renderer_->ChangeFrameAnimation(PLAYER_ANIM_BANDIT_WALK);
-}
-
-void Player::JumpStart()
-{
-
 }
 
 void Player::ShootStart()
@@ -141,38 +138,42 @@ void Player::IdleEnd()
 {
 
 }
+
 void Player::MoveEnd()
 {
 
 }
-void Player::JumpEnd()
-{
 
-}
 void Player::ShootEnd()
 {
 
 }
+
 void Player::Skill1End()
 {
 
 }
+
 void Player::Skill2End()
 {
 
 }
+
 void Player::Skill3End()
 {
 
 }
+
 void Player::Skill4End()
 {
 
 }
+
 void Player::ClimbEnd()
 {
 
 }
+
 void Player::DeathEnd()
 {
 
