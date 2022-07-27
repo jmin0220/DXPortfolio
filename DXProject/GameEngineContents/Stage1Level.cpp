@@ -28,6 +28,7 @@ void Stage1Level::Start()
 
 	// 플레이어에게 충돌맵 설정
 	Player_->SetColMapInfo(StageActor_->GetColStage()->GetCurTexture());
+
 }
 
 void Stage1Level::Update(float _DeltaTime)

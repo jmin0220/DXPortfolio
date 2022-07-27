@@ -21,6 +21,7 @@ void Player::Start()
 	KeyInit();
 	AnimationInit();
 	this->GetTransform().SetWorldPosition({ 100, 100 });
+	this->GetTransform().SetWorldPosition({ 200, 200 });
 }
 
 void Player::Update(float _DeltaTime)
@@ -28,8 +29,8 @@ void Player::Update(float _DeltaTime)
 	// 델타타임 초기화
 	DeltaTime_ = _DeltaTime;
 
-	// 낙하 체크
-	GroundFallCheck();
+	// 픽셀맵과의 충돌처리
+	//GroundFallCheck();
 
 	// 스테이트 업데이트
 	StateUpdate();
@@ -40,8 +41,6 @@ void Player::Update(float _DeltaTime)
 	// 카메라 업데이트
 	CameraUpdate();
 
-	// 픽셀맵과의 충돌처리
-	GroundFallCheck();
 }
 
 void Player::KeyInit()
