@@ -47,38 +47,39 @@ private:
 	bool GroundLeftCheck();
 
 	// FSM 관련 함수
-	void StateChange(STATE _State);
-	void StateUpdate();
+	GameEngineStateManager StateManager_;
+	//void StateChange(STATE _State);
+	//void StateUpdate();
 
-	void IdleStart();
-	void MoveStart();
-	void ShootStart();
-	void Skill1Start();
-	void Skill2Start();
-	void Skill3Start();
-	void Skill4Start();
-	void ClimbStart();
-	void DeathStart();
+	void IdleStart(const StateInfo& _Info);
+	void MoveStart(const StateInfo& _Info);
+	void ShootStart(const StateInfo& _Info);
+	void Skill1Start(const StateInfo& _Info);
+	void Skill2Start(const StateInfo& _Info);
+	void Skill3Start(const StateInfo& _Info);
+	void Skill4Start(const StateInfo& _Info);
+	void ClimbStart(const StateInfo& _Info);
+	void DeathStart(const StateInfo& _Info);
 
-	void IdleUpdate();
-	void MoveUpdate();
-	void ShootUpdate();
-	void Skill1Update();
-	void Skill2Update();
-	void Skill3Update();
-	void Skill4Update();
-	void ClimbUpdate();
-	void DeathUpdate();
+	void IdleUpdate(float _DeltaTime, const StateInfo& _Info);
+	void MoveUpdate(float _DeltaTime, const StateInfo& _Info);
+	void ShootUpdate(float _DeltaTime, const StateInfo& _Info);
+	void Skill1Update(float _DeltaTime, const StateInfo& _Info);
+	void Skill2Update(float _DeltaTime, const StateInfo& _Info);
+	void Skill3Update(float _DeltaTime, const StateInfo& _Info);
+	void Skill4Update(float _DeltaTime, const StateInfo& _Info);
+	void ClimbUpdate(float _DeltaTime, const StateInfo& _Info);
+	void DeathUpdate(float _DeltaTime, const StateInfo& _Info);
 
-	void IdleEnd();
-	void MoveEnd();
-	void ShootEnd();
-	void Skill1End();
-	void Skill2End();
-	void Skill3End();
-	void Skill4End();
-	void ClimbEnd();
-	void DeathEnd();
+	void IdleEnd(const StateInfo& _Info);
+	void MoveEnd(const StateInfo& _Info);
+	void ShootEnd(const StateInfo& _Info);
+	void Skill1End(const StateInfo& _Info);
+	void Skill2End(const StateInfo& _Info);
+	void Skill3End(const StateInfo& _Info);
+	void Skill4End(const StateInfo& _Info);
+	void ClimbEnd(const StateInfo& _Info);
+	void DeathEnd(const StateInfo& _Info);
 
 	// 애니메이션 종료시
 	void EndAnimation(const FrameAnimation_DESC& _Info);

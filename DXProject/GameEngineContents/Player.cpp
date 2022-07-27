@@ -16,12 +16,19 @@ Player::~Player()
 
 void Player::Start()
 {
-	//this->GetTransform().SetWorldPosition(float4::ZERO);
-
 	KeyInit();
 	AnimationInit();
-	this->GetTransform().SetWorldPosition({ 100, 100 });
-	this->GetTransform().SetWorldPosition({ 200, 200 });
+
+	StateManager_.CreateStateMember(PLAYER_STATE_IDLE, this, &Player::IdleUpdate, &Player::IdleStart, &Player::IdleEnd);
+	StateManager_.CreateStateMember(PLAYER_STATE_MOVE, this, &Player::MoveUpdate, &Player::MoveStart, &Player::MoveEnd);
+	StateManager_.CreateStateMember(PLAYER_STATE_SHOOT, this, &Player::ShootUpdate, &Player::ShootStart, &Player::ShootEnd);
+	StateManager_.CreateStateMember(PLAYER_STATE_SKILL1, this, &Player::Skill1Update, &Player::Skill1Start, &Player::Skill1End);
+	StateManager_.CreateStateMember(PLAYER_STATE_SKILL2, this, &Player::Skill2Update, &Player::Skill2Start, &Player::Skill2End);
+	StateManager_.CreateStateMember(PLAYER_STATE_SKILL3, this, &Player::Skill3Update, &Player::Skill3Start, &Player::Skill3End);
+	StateManager_.CreateStateMember(PLAYER_STATE_SKILL4, this, &Player::Skill4Update, &Player::Skill4Start, &Player::Skill4End);
+	StateManager_.CreateStateMember(PLAYER_STATE_CLIMB, this, &Player::ClimbUpdate, &Player::ClimbStart, &Player::ClimbEnd);
+	StateManager_.CreateStateMember(PLAYER_STATE_DEATH, this, &Player::DeathUpdate, &Player::DeathStart, &Player::DeathEnd);
+	StateManager_.ChangeState(PLAYER_STATE_IDLE);
 }
 
 void Player::Update(float _DeltaTime)
@@ -33,7 +40,7 @@ void Player::Update(float _DeltaTime)
 	//GroundFallCheck();
 
 	// 스테이트 업데이트
-	StateUpdate();
+	StateManager_.Update(DeltaTime_);
 
 	// 좌우반전 체크
 	CheckNegativeX();
@@ -75,88 +82,6 @@ void Player::AnimationInit()
 	Renderer_->ChangeFrameAnimation(PLAYER_ANIM_BANDIT_IDLE);
 	Renderer_->ScaleToTexture();
 	Renderer_->SetPivot(PIVOTMODE::LEFT);
-}
-
-void Player::StateChange(STATE _State)
-{
-	if (CurrentState_ != _State)
-	{
-		switch (_State)
-		{
-		case STATE::Idle:
-			IdleStart();
-			break;
-		case STATE::Move:
-			MoveStart();
-			break;
-		case STATE::SHOOT:
-			ShootStart();
-			break;
-		case STATE::SKILL1:
-			Skill1Start();
-			break;
-		case STATE::SKILL2:
-			Skill2Start();
-			break;
-		case STATE::SKILL3:
-			Skill3Start();
-			break;
-		case STATE::SKILL4:
-			Skill4Start();
-			break;
-		case STATE::CLIMB:
-			ClimbStart();
-			break;
-		case STATE::Death:
-			DeathStart();
-			break;
-		case STATE::None:
-			CurrentState_ = _State;
-			return;
-		default:
-			break;
-		}
-	}
-
-	CurrentState_ = _State;
-}
-
-void Player::StateUpdate()
-{
-	switch (CurrentState_)
-	{
-	case STATE::Idle:
-		IdleUpdate();
-		break;
-	case STATE::Move:
-		MoveUpdate();
-		break;
-	case STATE::SHOOT:
-		ShootUpdate();
-		break;
-	case STATE::SKILL1:
-		Skill1Update();
-		break;
-	case STATE::SKILL2:
-		Skill2Update();
-		break;
-	case STATE::SKILL3:
-		Skill3Update();
-		break;
-	case STATE::SKILL4:
-		Skill4Update();
-		break;
-	case STATE::CLIMB:
-		ClimbUpdate();
-		break;
-	case STATE::Death:
-		DeathUpdate();
-		break;
-	case STATE::None:
-		return;
-	default:
-		break;
-	}
 }
 
 // 이동키 판정
@@ -315,5 +240,5 @@ bool Player::GroundLeftCheck()
 void Player::EndAnimation(const FrameAnimation_DESC& _Info)
 {
 	// 스테이트 전환
-	StateChange(STATE::Idle);
+	StateManager_.ChangeState(PLAYER_STATE_IDLE);
 }

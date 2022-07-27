@@ -7,6 +7,16 @@
 #define PLAYER_KEY_UP "PlayerUp"
 #define PLAYER_KEY_DOWN "PlayerDown"
 
+// 플레이어 FSM
+#define PLAYER_STATE_IDLE "Idle"
+#define PLAYER_STATE_MOVE "Move"
+#define PLAYER_STATE_SHOOT "Shoot"
+#define PLAYER_STATE_SKILL1 "Skill1"
+#define PLAYER_STATE_SKILL2 "Skill2"
+#define PLAYER_STATE_SKILL3 "Skill3"
+#define PLAYER_STATE_SKILL4 "Skill4"
+#define PLAYER_STATE_CLIMB "Climb"
+#define PLAYER_STATE_DEATH "Death"
 
 // 플레이어 애니메이션
 #define PLAYER_ANIM_BANDIT_IDLE "BanditIdle"
