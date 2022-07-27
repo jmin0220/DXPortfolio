@@ -21,10 +21,12 @@ void FrameAnimation::Update(float _Delta)
 	}
 
 	if (false == bOnceStart
-		&& Info.CurFrame == Info.Start
-		&& nullptr != Start)
+		&& Info.CurFrame == Info.Start)
 	{
-		Start(Info);
+		if (nullptr != Start)
+		{
+			Start(Info);
+		}
 		bOnceStart = true;
 		bOnceEnd = false;
 	}
