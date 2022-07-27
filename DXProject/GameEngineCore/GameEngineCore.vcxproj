@@ -68,6 +68,10 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="GameEngineStateManager.h" />
+    <ClInclude Include="GameEngineStatusWindow.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="GameEngineTexture.h" />
     <ClInclude Include="GameEngineTextureRenderer.h">
       <SubType>
@@ -75,6 +79,10 @@
     </ClInclude>
     <ClInclude Include="GameEngineTransformBase.h" />
     <ClInclude Include="GameEngineTransformComponent.h" />
+    <ClInclude Include="GameEngineUIRenderer.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="GameEngineVertexBuffer.h">
       <SubType>
       </SubType>
@@ -146,6 +154,10 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="GameEngineStateManager.cpp" />
+    <ClCompile Include="GameEngineStatusWindow.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="GameEngineTexture.cpp" />
     <ClCompile Include="GameEngineTextureRenderer.cpp">
       <SubType>
@@ -153,6 +165,10 @@
     </ClCompile>
     <ClCompile Include="GameEngineTransformBase.cpp" />
     <ClCompile Include="GameEngineTransformComponent.cpp" />
+    <ClCompile Include="GameEngineUIRenderer.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="GameEngineVertexBuffer.cpp">
       <SubType>
       </SubType>

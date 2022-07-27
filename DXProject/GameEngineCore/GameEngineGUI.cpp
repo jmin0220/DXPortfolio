@@ -2,13 +2,15 @@
 #include "GameEngineGUI.h"
 #include <GameEngineBase/GameEngineWindow.h>
 #include "GameEngineDevice.h"
-#include <GameEngineBase/GameEngineString.h>
 
-GameEngineGUI::GameEngineGUI() 
+
+std::list<GameEngineGUIWindow*> GameEngineGUI::Windows;
+
+GameEngineGUI::GameEngineGUI()
 {
 }
 
-GameEngineGUI::~GameEngineGUI() 
+GameEngineGUI::~GameEngineGUI()
 {
 }
 
@@ -16,7 +18,7 @@ extern IMGUI_IMPL_API LRESULT ImGui_ImplWin32_WndProcHandler(HWND hWnd, UINT msg
 
 void GameEngineGUI::Initialize()
 {
-	IMGUI_CHECKVERSION();
+    IMGUI_CHECKVERSION();
     ImGui::CreateContext();
     ImGuiIO& io = ImGui::GetIO();
     (void)io;
@@ -46,24 +48,46 @@ void GameEngineGUI::Initialize()
 
     GameEngineWindow::GetInst()->SetMessageCallBack(ImGui_ImplWin32_WndProcHandler);
 }
-void GameEngineGUI::GUIRender()
+
+
+
+void GameEngineGUI::GUIRender(GameEngineLevel* _Level, float _DeltaTime)
 {
     ImGui_ImplDX11_NewFrame();
     ImGui_ImplWin32_NewFrame();
     ImGui::NewFrame();
 
 
-    // 비긴과
-    // 앤드로 이루어집니다.
+    for (GameEngineGUIWindow* GUIWIndow : Windows)
+    {
+        if (false == GUIWIndow->IsOpen)
+        {
+            continue;
+        }
+        GUIWIndow->Begin();
+        GUIWIndow->OnGUI(_Level, _DeltaTime);
+        GUIWIndow->End();
+    }
 
-    std::string Text = GameEngineString::AnsiToUTF8Return("윈도우창 하나");
-    std::string Button = GameEngineString::AnsiToUTF8Return("버튼");
 
-    ImGui::Begin(Text.c_str());
 
-    ImGui::Button(Button.c_str());
+    //// 비긴과
+    //// 앤드로 이루어집니다.
 
-    ImGui::End();
+    //std::string Text = GameEngineString::AnsiToUTF8Return("윈도우창 하나");
+    //std::string Button = GameEngineString::AnsiToUTF8Return("버튼");
+
+    //// 윈도우 시작
+    //ImGui::Begin(Text.c_str());
+
+    //// 내용
+    //if (true == ImGui::Button(Button.c_str()))
+    //{
+
+    //}
+
+    //// 윈도우 끝
+    //ImGui::End();
 
     // 여기사이에
 
@@ -81,6 +105,12 @@ void GameEngineGUI::GUIRender()
 }
 void GameEngineGUI::GUIDestroy()
 {
+    for (GameEngineGUIWindow* GUIWIndow : Windows)
+    {
+        delete GUIWIndow;
+    }
+
+
     ImGui_ImplDX11_Shutdown();
     ImGui_ImplWin32_Shutdown();
     ImGui::DestroyContext();

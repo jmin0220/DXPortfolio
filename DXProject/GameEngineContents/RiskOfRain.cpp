@@ -100,6 +100,9 @@ void RiskOfRain::Start()
 
 	// 초기 레벨 이동
 	ChangeLevel(LEVEL_TITLE);
+
+	// IMGUI생성
+	GameEngineGUI::CreateGUIWindow<GameEngineStatusWindow>("EngineStatus", nullptr);
 }
 
 void RiskOfRain::Update(float _DeltaTime)
