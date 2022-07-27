@@ -84,7 +84,7 @@ void FrameAnimation::Update(float _Delta)
 GameEngineTextureRenderer::GameEngineTextureRenderer()
 	: CurAni(nullptr)
 	, CurTex(nullptr)
-	, PivotMode(PIVOTMODE::CENTER)
+	, PivotMode(PIVOTMODE::CUSTOM)
 {
 }
 
