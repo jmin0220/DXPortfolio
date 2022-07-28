@@ -49,6 +49,9 @@
 #define TEX_STAGE_ONE "stage1.png"
 #define TEX_STAGE_ONE_COLLISION "stage1Collision.png"
 
+#define TEX_SELECTED_COMMANDO "CommandoSelected.png"
+#define TEX_SELECTED_BANDIT "BanditSelected.png"
+
 #define TEX_PLAYER_ANIM_COMMANDO_IDLE "CommandoIdle"
 #define TEX_PLAYER_ANIM_COMMANDO_SHOOT "CommandoShoot1"
 #define TEX_PLAYER_ANIM_COMMANDO_WALK "CommandoWalk"

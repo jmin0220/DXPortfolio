@@ -1,6 +1,7 @@
 #pragma once
 #include "PreCompile.h"
 #include <GameEngineCore/GameEngineActor.h>
+#include "Option.h"
 
 // Ό³Έν :
 class CharacterSelecter : public GameEngineActor
@@ -21,6 +22,7 @@ protected:
 	void Update(float _DeltaTime) override;
 
 private:
-	GameEngineRenderer* Renderer_;
+	GameEngineTextureRenderer* Renderer_;
+	Option Option_;
 };
 

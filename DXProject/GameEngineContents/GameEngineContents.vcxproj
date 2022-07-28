@@ -170,6 +170,7 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="CharacterSelectEnum.h" />
     <ClInclude Include="CharacterSelecter.h">
       <SubType>
       </SubType>
@@ -213,6 +214,7 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="UnitFsm.h" />
+    <ClInclude Include="Option.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Bandit.cpp" />
@@ -267,6 +269,7 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="Option.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

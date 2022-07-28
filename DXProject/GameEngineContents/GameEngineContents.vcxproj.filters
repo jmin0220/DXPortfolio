@@ -87,6 +87,12 @@
     <ClInclude Include="CharacterSelecter.h">
       <Filter>01_Actor\00_StartEnd</Filter>
     </ClInclude>
+    <ClInclude Include="Option.h">
+      <Filter>98_Global</Filter>
+    </ClInclude>
+    <ClInclude Include="CharacterSelectEnum.h">
+      <Filter>98_Global</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PreCompile.cpp">
@@ -136,6 +142,9 @@
     </ClCompile>
     <ClCompile Include="CharacterSelecter.cpp">
       <Filter>01_Actor\00_StartEnd</Filter>
+    </ClCompile>
+    <ClCompile Include="Option.cpp">
+      <Filter>98_Global</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

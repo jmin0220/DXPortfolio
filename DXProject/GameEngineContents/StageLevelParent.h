@@ -1,5 +1,6 @@
 #pragma once
 #include <GameEngineCore/GameEngineLevel.h>
+#include "Option.h"
 
 // Ό³Έν :
 class GameEngineActor;
@@ -27,7 +28,8 @@ protected:
 
 	Player* Player_;
 	StageGround* StageActor_;
-
+	Option Option_;
+	
 private:
 
 };
