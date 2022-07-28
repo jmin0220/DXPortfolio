@@ -3,7 +3,8 @@
 #include <GameEngineCore/GEngine.h>
 #include <GameEngineCore/GameEngineCameraActor.h>
 #include <GameEngineBase/GameEngineInput.h>
-#include "Player.h"
+#include "Bandit.h"
+#include "Commando.h"
 #include "StageGround.h"
 #include "ObjectGroup.h"
 
@@ -23,7 +24,7 @@ void Stage1Level::Start()
 	CameraActor->GetCameraComponent()->SetProjectionMode(CAMERAPROJECTIONMODE::Orthographic);
 
 	// 액터 생성
-	Player_ = CreateActor<Player>(ObjectGroup::Player);
+	Player_ = CreateActor<Commando>(ObjectGroup::Player);
 	StageActor_ = CreateActor<StageGround>(ObjectGroup::Stage);
 
 	// 플레이어에게 충돌맵 설정

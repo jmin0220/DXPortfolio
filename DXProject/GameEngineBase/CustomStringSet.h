@@ -24,12 +24,12 @@
 #define PLAYER_STATE_DEATH "Death"
 
 // 플레이어 애니메이션
-#define PLAYER_ANIM_BANDIT_IDLE "BanditIdle"
-#define PLAYER_ANIM_BANDIT_WALK "BanditWalk"
-#define PLAYER_ANIM_BANDIT_JUMP "BanditJump"
-#define PLAYER_ANIM_BANDIT_SHOOT "BanditShoot1"
-#define PLAYER_ANIM_BANDIT_CLIMB "BanditClimb"
-#define PLAYER_ANIM_BANDIT_DEATH "BanditDeath"
+#define PLAYER_ANIM_IDLE "PlayerIdle"
+#define PLAYER_ANIM_SHOOT "PlayerShoot1"
+#define PLAYER_ANIM_WALK "PlayerWalk"
+#define PLAYER_ANIM_JUMP "PlayerJump"
+#define PLAYER_ANIM_CLIMB "PlayerClimb"
+#define PLAYER_ANIM_DEATH "PlayerDeath"
 
 // 디렉토리
 #define DIR_RESOURCE "Resources"
@@ -44,3 +44,17 @@
 #define TEX_TITLE_BG "Title.png"
 #define TEX_STAGE_ONE "stage1.png"
 #define TEX_STAGE_ONE_COLLISION "stage1Collision.png"
+
+#define TEX_PLAYER_ANIM_COMMANDO_IDLE "CommandoIdle"
+#define TEX_PLAYER_ANIM_COMMANDO_SHOOT "CommandoShoot1"
+#define TEX_PLAYER_ANIM_COMMANDO_WALK "CommandoWalk"
+#define TEX_PLAYER_ANIM_COMMANDO_JUMP "CommandoJump"
+#define TEX_PLAYER_ANIM_COMMANDO_CLIMB "CommandoClimb"
+#define TEX_PLAYER_ANIM_COMMANDO_DEATH "CommandoDeath"
+
+#define TEX_PLAYER_ANIM_BANDIT_IDLE "BanditIdle"
+#define TEX_PLAYER_ANIM_BANDIT_SHOOT "BanditShoot1"
+#define TEX_PLAYER_ANIM_BANDIT_WALK "BanditWalk"
+#define TEX_PLAYER_ANIM_BANDIT_JUMP "BanditJump"
+#define TEX_PLAYER_ANIM_BANDIT_CLIMB "BanditClimb"
+#define TEX_PLAYER_ANIM_BANDIT_DEATH "BanditDeath"

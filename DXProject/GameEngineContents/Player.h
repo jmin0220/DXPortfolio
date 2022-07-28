@@ -25,11 +25,10 @@ protected:
 	void Start() override;
 	void Update(float _DeltaTime) override;
 
-private:
 	// 초기화 관련 함수
 	void KeyInit();
-	void AnimationInit();
-	void StateInit();
+	virtual void AnimationInit() {};
+	virtual void StateInit() {};
 
 	// 키입력 관련 함수
 	bool IsMoveKeyDown();
@@ -53,38 +52,36 @@ private:
 	//void StateChange(STATE _State);
 	//void StateUpdate();
 
-	void IdleStart(const StateInfo& _Info);
-	void MoveStart(const StateInfo& _Info);
-	void ShootStart(const StateInfo& _Info);
-	void Skill1Start(const StateInfo& _Info);
-	void Skill2Start(const StateInfo& _Info);
-	void Skill3Start(const StateInfo& _Info);
-	void Skill4Start(const StateInfo& _Info);
-	void ClimbStart(const StateInfo& _Info);
-	void DeathStart(const StateInfo& _Info);
+	virtual void IdleStart(const StateInfo& _Info) {};
+	virtual void MoveStart(const StateInfo& _Info) {};
+	virtual void ShootStart(const StateInfo& _Info) {};
+	virtual void Skill1Start(const StateInfo& _Info) {};
+	virtual void Skill2Start(const StateInfo& _Info) {};
+	virtual void Skill3Start(const StateInfo& _Info) {};
+	virtual void Skill4Start(const StateInfo& _Info) {};
+	virtual void ClimbStart(const StateInfo& _Info) {};
+	virtual void DeathStart(const StateInfo& _Info) {};
 
-	void IdleUpdate(float _DeltaTime, const StateInfo& _Info);
-	void MoveUpdate(float _DeltaTime, const StateInfo& _Info);
-	void ShootUpdate(float _DeltaTime, const StateInfo& _Info);
-	void Skill1Update(float _DeltaTime, const StateInfo& _Info);
-	void Skill2Update(float _DeltaTime, const StateInfo& _Info);
-	void Skill3Update(float _DeltaTime, const StateInfo& _Info);
-	void Skill4Update(float _DeltaTime, const StateInfo& _Info);
-	void ClimbUpdate(float _DeltaTime, const StateInfo& _Info);
-	void DeathUpdate(float _DeltaTime, const StateInfo& _Info);
+	virtual void IdleUpdate(float _DeltaTime, const StateInfo& _Info) {};
+	virtual void MoveUpdate(float _DeltaTime, const StateInfo& _Info) {};
+	virtual void ShootUpdate(float _DeltaTime, const StateInfo& _Info) {};
+	virtual void Skill1Update(float _DeltaTime, const StateInfo& _Info) {};
+	virtual void Skill2Update(float _DeltaTime, const StateInfo& _Info) {};
+	virtual void Skill3Update(float _DeltaTime, const StateInfo& _Info) {};
+	virtual void Skill4Update(float _DeltaTime, const StateInfo& _Info) {};
+	virtual void ClimbUpdate(float _DeltaTime, const StateInfo& _Info) {};
+	virtual void DeathUpdate(float _DeltaTime, const StateInfo& _Info) {};
 
-	void IdleEnd(const StateInfo& _Info);
-	void MoveEnd(const StateInfo& _Info);
-	void ShootEnd(const StateInfo& _Info);
-	void Skill1End(const StateInfo& _Info);
-	void Skill2End(const StateInfo& _Info);
-	void Skill3End(const StateInfo& _Info);
-	void Skill4End(const StateInfo& _Info);
-	void ClimbEnd(const StateInfo& _Info);
-	void DeathEnd(const StateInfo& _Info);
+	virtual void IdleEnd(const StateInfo& _Info) {};
+	virtual void MoveEnd(const StateInfo& _Info) {};
+	virtual void ShootEnd(const StateInfo& _Info) {};
+	virtual void Skill1End(const StateInfo& _Info) {};
+	virtual void Skill2End(const StateInfo& _Info) {};
+	virtual void Skill3End(const StateInfo& _Info) {};
+	virtual void Skill4End(const StateInfo& _Info) {};
+	virtual void ClimbEnd(const StateInfo& _Info) {};
+	virtual void DeathEnd(const StateInfo& _Info) {};
 
-	// 애니메이션 종료시
-	void EndAnimation(const FrameAnimation_DESC& _Info);
 
 	GameEngineTextureRenderer* Renderer_;
 	float Speed_;
@@ -93,5 +90,7 @@ private:
 	float4 MoveDir_;
 
 	GameEngineTexture* ColMap_;
+
+private:
 };
 

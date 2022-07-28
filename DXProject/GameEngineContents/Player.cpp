@@ -66,39 +66,6 @@ void Player::KeyInit()
 	}
 }
 
-
-void Player::AnimationInit()
-{
-	Renderer_ = CreateComponent<GameEngineTextureRenderer>();
-
-	Renderer_->CreateFrameAnimationFolder(PLAYER_ANIM_BANDIT_IDLE, FrameAnimation_DESC(PLAYER_ANIM_BANDIT_IDLE, 0.1f, false));
-	Renderer_->CreateFrameAnimationFolder(PLAYER_ANIM_BANDIT_SHOOT, FrameAnimation_DESC(PLAYER_ANIM_BANDIT_SHOOT, 0.1f, false));
-	Renderer_->CreateFrameAnimationFolder(PLAYER_ANIM_BANDIT_WALK, FrameAnimation_DESC(PLAYER_ANIM_BANDIT_WALK, 0.1f, true));
-	Renderer_->CreateFrameAnimationFolder(PLAYER_ANIM_BANDIT_JUMP, FrameAnimation_DESC(PLAYER_ANIM_BANDIT_JUMP, 0.1f, false));
-	Renderer_->CreateFrameAnimationFolder(PLAYER_ANIM_BANDIT_CLIMB, FrameAnimation_DESC(PLAYER_ANIM_BANDIT_CLIMB, 0.1f, false));
-	Renderer_->CreateFrameAnimationFolder(PLAYER_ANIM_BANDIT_DEATH, FrameAnimation_DESC(PLAYER_ANIM_BANDIT_DEATH, 0.1f, false));
-
-	//Renderer_->GetTransform().SetLocalScale({ 66, 30 });
-	//Renderer_->CreateFrameAnimationFolder("BanditShoot2", FrameAnimation_DESC("BanditShoot2", 0.1f));
-	Renderer_->ChangeFrameAnimation(PLAYER_ANIM_BANDIT_IDLE);
-	Renderer_->ScaleToTexture();
-	Renderer_->SetPivot(PIVOTMODE::LEFT);
-}
-
-void Player::StateInit()
-{
-	StateManager_.CreateStateMember(PLAYER_STATE_IDLE, this, &Player::IdleUpdate, &Player::IdleStart, &Player::IdleEnd);
-	StateManager_.CreateStateMember(PLAYER_STATE_MOVE, this, &Player::MoveUpdate, &Player::MoveStart, &Player::MoveEnd);
-	StateManager_.CreateStateMember(PLAYER_STATE_SHOOT, this, &Player::ShootUpdate, &Player::ShootStart, &Player::ShootEnd);
-	StateManager_.CreateStateMember(PLAYER_STATE_SKILL1, this, &Player::Skill1Update, &Player::Skill1Start, &Player::Skill1End);
-	StateManager_.CreateStateMember(PLAYER_STATE_SKILL2, this, &Player::Skill2Update, &Player::Skill2Start, &Player::Skill2End);
-	StateManager_.CreateStateMember(PLAYER_STATE_SKILL3, this, &Player::Skill3Update, &Player::Skill3Start, &Player::Skill3End);
-	StateManager_.CreateStateMember(PLAYER_STATE_SKILL4, this, &Player::Skill4Update, &Player::Skill4Start, &Player::Skill4End);
-	StateManager_.CreateStateMember(PLAYER_STATE_CLIMB, this, &Player::ClimbUpdate, &Player::ClimbStart, &Player::ClimbEnd);
-	StateManager_.CreateStateMember(PLAYER_STATE_DEATH, this, &Player::DeathUpdate, &Player::DeathStart, &Player::DeathEnd);
-	StateManager_.ChangeState(PLAYER_STATE_IDLE);
-}
-
 // 이동키 판정
 bool Player::IsMoveKeyDown()
 {
@@ -256,10 +223,4 @@ bool Player::GroundLeftCheck()
 	}
 
 	return true;
-}
-
-void Player::EndAnimation(const FrameAnimation_DESC& _Info)
-{
-	// 스테이트 전환
-	StateManager_.ChangeState(PLAYER_STATE_IDLE);
 }

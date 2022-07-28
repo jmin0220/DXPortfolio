@@ -37,6 +37,9 @@
     <Filter Include="01_Actor\01_Play\Map">
       <UniqueIdentifier>{f49ff4a2-4cc7-4486-8ae6-97d100fbd123}</UniqueIdentifier>
     </Filter>
+    <Filter Include="01_Actor\01_Play\Characters">
+      <UniqueIdentifier>{74b3c7ef-0cd4-4db6-9558-b18cde42b65f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PreCompile.h">
@@ -72,6 +75,12 @@
     <ClInclude Include="StageLevelParent.h">
       <Filter>00_Level\01_Play</Filter>
     </ClInclude>
+    <ClInclude Include="Bandit.h">
+      <Filter>01_Actor\01_Play\Characters</Filter>
+    </ClInclude>
+    <ClInclude Include="Commando.h">
+      <Filter>01_Actor\01_Play\Characters</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PreCompile.cpp">
@@ -103,6 +112,18 @@
     </ClCompile>
     <ClCompile Include="StageLevelParent.cpp">
       <Filter>00_Level\01_Play</Filter>
+    </ClCompile>
+    <ClCompile Include="BanditState.cpp">
+      <Filter>01_Actor\01_Play\Characters</Filter>
+    </ClCompile>
+    <ClCompile Include="Bandit.cpp">
+      <Filter>01_Actor\01_Play\Characters</Filter>
+    </ClCompile>
+    <ClCompile Include="Commando.cpp">
+      <Filter>01_Actor\01_Play\Characters</Filter>
+    </ClCompile>
+    <ClCompile Include="CommandoState.cpp">
+      <Filter>01_Actor\01_Play\Characters</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

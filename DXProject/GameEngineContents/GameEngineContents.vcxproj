@@ -165,6 +165,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Bandit.h" />
+    <ClInclude Include="Commando.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="EndLevel.h">
       <SubType>
       </SubType>
@@ -202,6 +207,13 @@
     <ClInclude Include="UnitFsm.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Bandit.cpp" />
+    <ClCompile Include="BanditState.cpp" />
+    <ClCompile Include="Commando.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="CommandoState.cpp" />
     <ClCompile Include="EndLevel.cpp">
       <SubType>
       </SubType>
