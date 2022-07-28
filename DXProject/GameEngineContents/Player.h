@@ -29,6 +29,7 @@ private:
 	// 초기화 관련 함수
 	void KeyInit();
 	void AnimationInit();
+	void StateInit();
 
 	// 키입력 관련 함수
 	bool IsMoveKeyDown();
@@ -42,6 +43,7 @@ private:
 	// 업데이트 함수
 	void CheckNegativeX();
 	void CameraUpdate();
+	void JumpUpdate();
 	void GroundFallCheck();
 	bool GroundRightCheck();
 	bool GroundLeftCheck();

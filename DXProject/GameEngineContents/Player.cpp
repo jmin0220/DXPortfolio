@@ -16,19 +16,12 @@ Player::~Player()
 
 void Player::Start()
 {
+	// 키조작 초기화
 	KeyInit();
+	// 애니메이션 초기화
 	AnimationInit();
-
-	StateManager_.CreateStateMember(PLAYER_STATE_IDLE, this, &Player::IdleUpdate, &Player::IdleStart, &Player::IdleEnd);
-	StateManager_.CreateStateMember(PLAYER_STATE_MOVE, this, &Player::MoveUpdate, &Player::MoveStart, &Player::MoveEnd);
-	StateManager_.CreateStateMember(PLAYER_STATE_SHOOT, this, &Player::ShootUpdate, &Player::ShootStart, &Player::ShootEnd);
-	StateManager_.CreateStateMember(PLAYER_STATE_SKILL1, this, &Player::Skill1Update, &Player::Skill1Start, &Player::Skill1End);
-	StateManager_.CreateStateMember(PLAYER_STATE_SKILL2, this, &Player::Skill2Update, &Player::Skill2Start, &Player::Skill2End);
-	StateManager_.CreateStateMember(PLAYER_STATE_SKILL3, this, &Player::Skill3Update, &Player::Skill3Start, &Player::Skill3End);
-	StateManager_.CreateStateMember(PLAYER_STATE_SKILL4, this, &Player::Skill4Update, &Player::Skill4Start, &Player::Skill4End);
-	StateManager_.CreateStateMember(PLAYER_STATE_CLIMB, this, &Player::ClimbUpdate, &Player::ClimbStart, &Player::ClimbEnd);
-	StateManager_.CreateStateMember(PLAYER_STATE_DEATH, this, &Player::DeathUpdate, &Player::DeathStart, &Player::DeathEnd);
-	StateManager_.ChangeState(PLAYER_STATE_IDLE);
+	// 스테이트 초기화
+	StateInit();
 }
 
 void Player::Update(float _DeltaTime)
@@ -36,8 +29,11 @@ void Player::Update(float _DeltaTime)
 	// 델타타임 초기화
 	DeltaTime_ = _DeltaTime;
 
+	// 점프입력
+	JumpUpdate();
+
 	// 픽셀맵과의 충돌처리
-	//GroundFallCheck();
+	GroundFallCheck();
 
 	// 스테이트 업데이트
 	StateManager_.Update(DeltaTime_);
@@ -56,7 +52,12 @@ void Player::KeyInit()
 	{
 		GameEngineInput::GetInst()->CreateKey(PLAYER_KEY_LEFT, VK_LEFT);
 		GameEngineInput::GetInst()->CreateKey(PLAYER_KEY_RIGHT, VK_RIGHT);
+		GameEngineInput::GetInst()->CreateKey(PLAYER_KEY_JUMP, VK_SPACE);
+
 		GameEngineInput::GetInst()->CreateKey(PLAYER_KEY_SHOOT, 'Z');
+		GameEngineInput::GetInst()->CreateKey(Player_KEY_SKILL1, 'X');
+		GameEngineInput::GetInst()->CreateKey(Player_KEY_SKILL2, 'C');
+		GameEngineInput::GetInst()->CreateKey(Player_KEY_SKILL3, 'V');
 
 
 		// TODO::디버그용 상하이동
@@ -82,6 +83,20 @@ void Player::AnimationInit()
 	Renderer_->ChangeFrameAnimation(PLAYER_ANIM_BANDIT_IDLE);
 	Renderer_->ScaleToTexture();
 	Renderer_->SetPivot(PIVOTMODE::LEFT);
+}
+
+void Player::StateInit()
+{
+	StateManager_.CreateStateMember(PLAYER_STATE_IDLE, this, &Player::IdleUpdate, &Player::IdleStart, &Player::IdleEnd);
+	StateManager_.CreateStateMember(PLAYER_STATE_MOVE, this, &Player::MoveUpdate, &Player::MoveStart, &Player::MoveEnd);
+	StateManager_.CreateStateMember(PLAYER_STATE_SHOOT, this, &Player::ShootUpdate, &Player::ShootStart, &Player::ShootEnd);
+	StateManager_.CreateStateMember(PLAYER_STATE_SKILL1, this, &Player::Skill1Update, &Player::Skill1Start, &Player::Skill1End);
+	StateManager_.CreateStateMember(PLAYER_STATE_SKILL2, this, &Player::Skill2Update, &Player::Skill2Start, &Player::Skill2End);
+	StateManager_.CreateStateMember(PLAYER_STATE_SKILL3, this, &Player::Skill3Update, &Player::Skill3Start, &Player::Skill3End);
+	StateManager_.CreateStateMember(PLAYER_STATE_SKILL4, this, &Player::Skill4Update, &Player::Skill4Start, &Player::Skill4End);
+	StateManager_.CreateStateMember(PLAYER_STATE_CLIMB, this, &Player::ClimbUpdate, &Player::ClimbStart, &Player::ClimbEnd);
+	StateManager_.CreateStateMember(PLAYER_STATE_DEATH, this, &Player::DeathUpdate, &Player::DeathStart, &Player::DeathEnd);
+	StateManager_.ChangeState(PLAYER_STATE_IDLE);
 }
 
 // 이동키 판정
@@ -177,6 +192,12 @@ void Player::CameraUpdate()
 {
 	// 카메라 추적
 	GetLevel()->GetMainCameraActorTransform().SetLocalPosition(this->GetTransform().GetLocalPosition());
+}
+
+
+void Player::JumpUpdate()
+{
+	// TODO::점프 기능
 }
 
 void Player::GroundFallCheck()

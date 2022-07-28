@@ -3,9 +3,14 @@
 #define PLAYER_KEY_LEFT "PlayerLeft"
 #define PLAYER_KEY_RIGHT "PlayerRight"
 #define PLAYER_KEY_SHOOT "PlayerShoot"
+#define PLAYER_KEY_JUMP "PlayerJjump"
 
 #define PLAYER_KEY_UP "PlayerUp"
 #define PLAYER_KEY_DOWN "PlayerDown"
+
+#define Player_KEY_SKILL1 "PlayerSkill1"
+#define Player_KEY_SKILL2 "PlayerSkill2"
+#define Player_KEY_SKILL3 "PlayerSkill3"
 
 // 플레이어 FSM
 #define PLAYER_STATE_IDLE "Idle"
