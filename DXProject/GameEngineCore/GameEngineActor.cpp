@@ -6,6 +6,7 @@
 
 GameEngineActor::GameEngineActor()
 	:ParentLevel(nullptr)
+	, IsLevelOver(false)
 {
 
 }

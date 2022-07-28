@@ -26,7 +26,7 @@ class GameEngineRenderer;
 class GameEngineTransform;
 class GameEngineCameraActor;
 class GameEngineLevel :
-	public GameEngineNameObject ,
+	public GameEngineNameObject,
 	public GameEngineUpdateObject
 {
 	friend GameEngineCore;
@@ -132,7 +132,7 @@ public:
 	}
 
 protected:
-	
+
 
 
 
@@ -148,6 +148,8 @@ private:
 	void LevelUpdate(float DeltaTime);
 
 	void RemoveActor(GameEngineActor* _Actor);
+
+	void OverChildMove(GameEngineLevel* _NextLevel);
 
 private:
 	// 0번 백그라운드
