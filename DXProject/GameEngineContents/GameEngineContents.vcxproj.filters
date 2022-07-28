@@ -81,6 +81,12 @@
     <ClInclude Include="Commando.h">
       <Filter>01_Actor\01_Play\Characters</Filter>
     </ClInclude>
+    <ClInclude Include="CharacterSelect.h">
+      <Filter>00_Level\00_StartEnd</Filter>
+    </ClInclude>
+    <ClInclude Include="CharacterSelecter.h">
+      <Filter>01_Actor\00_StartEnd</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PreCompile.cpp">
@@ -124,6 +130,12 @@
     </ClCompile>
     <ClCompile Include="CommandoState.cpp">
       <Filter>01_Actor\01_Play\Characters</Filter>
+    </ClCompile>
+    <ClCompile Include="CharacterSelect.cpp">
+      <Filter>00_Level\00_StartEnd</Filter>
+    </ClCompile>
+    <ClCompile Include="CharacterSelecter.cpp">
+      <Filter>01_Actor\00_StartEnd</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

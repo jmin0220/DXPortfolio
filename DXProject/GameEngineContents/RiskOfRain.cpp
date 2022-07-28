@@ -2,6 +2,7 @@
 #include "RiskOfRain.h"
 #include "GameEngineContents/StartLevel.h"
 #include "GameEngineContents/EndLevel.h"
+#include "GameEngineContents/CharacterSelect.h"
 #include "GameEngineContents/Stage1Level.h"
 
 #pragma comment(lib, "GameEngineBase.lib")
@@ -16,75 +17,12 @@ RiskOfRain::~RiskOfRain()
 
 void RiskOfRain::Start()
 {
-
-	// 스테이지 맵 로딩
-	{
-		GameEngineDirectory Dir;
-
-		Dir.MoveParentToExitsChildDirectory("Resources");
-		Dir.Move("Resources");
-		Dir.Move("Texture");
-		Dir.Move("Stage");
-		Dir.Move("PlayMap");
-
-		std::vector<GameEngineFile> Shaders = Dir.GetAllFile();
-
-		for (size_t i = 0; i < Shaders.size(); i++)
-		{
-			GameEngineTexture::Load(Shaders[i].GetFullPath());
-		}
-	}
-
-	// 타이틀 백그라운드 이미지 로딩
-	{
-		GameEngineDirectory Dir;
-
-		Dir.MoveParentToExitsChildDirectory("Resources");
-		Dir.Move("Resources");
-		Dir.Move("Texture");
-		Dir.Move("Stage");
-		Dir.Move("TitleBG");
-
-		std::vector<GameEngineFile> Shaders = Dir.GetAllFile();
-
-		for (size_t i = 0; i < Shaders.size(); i++)
-		{
-			GameEngineTexture::Load(Shaders[i].GetFullPath());
-		}
-	}
-
-	/*{
-		GameEngineDirectory Dir;
-
-		Dir.MoveParentToExitsChildDirectory("Resources");
-		Dir.Move("Resources");
-		Dir.Move("Texture");
-		Dir.Move("Player");
-		Dir.Move("Bandit");
-		Dir.Move("BanditShoot1");
-
-		GameEngineFolderTexture::Load(Dir.GetFullPath());
-	}
-
-	{
-		GameEngineDirectory Dir;
-
-		Dir.MoveParentToExitsChildDirectory("Resources");
-		Dir.Move("Resources");
-		Dir.Move("Texture");
-		Dir.Move("Player");
-		Dir.Move("Bandit");
-		Dir.Move("BanditShoot2");
-
-		GameEngineFolderTexture::Load(Dir.GetFullPath());
-	}*/
-
-
-
+	// 캐릭터 애니메이션 로딩
 	GameEngineDirectory Dir;
 	Dir.MoveParentToExitsChildDirectory(DIR_RESOURCE);
 	Dir.Move(DIR_RESOURCE);
 	Dir.Move(DIR_TEXTURE);
+	Dir.Move(DIR_CHARACTERS);
 
 	std::vector<GameEngineDirectory> RecursiveDir = Dir.GetRecursiveAllDirectory();
 
@@ -93,9 +31,54 @@ void RiskOfRain::Start()
 		GameEngineFolderTexture::Load(TmpDir.GetFullPath());
 	}
 
+	// 스테이지 로딩
+	{
+		GameEngineDirectory Dir;
+
+		Dir.MoveParentToExitsChildDirectory(DIR_RESOURCE);
+		Dir.Move(DIR_RESOURCE);
+		Dir.Move(DIR_TEXTURE);
+		Dir.Move(DIR_STAGE);
+
+		std::vector<GameEngineDirectory> RecursiveDir = Dir.GetRecursiveAllDirectory();
+
+		for (auto& TmpDir : RecursiveDir)
+		{
+			std::vector<GameEngineFile> Shaders = TmpDir.GetAllFile();
+
+			for (size_t i = 0; i < Shaders.size(); i++)
+			{
+				GameEngineTexture::Load(Shaders[i].GetFullPath());
+			}
+		}
+	}
+
+	// 인터페이스 로딩
+	{
+		GameEngineDirectory Dir;
+
+		Dir.MoveParentToExitsChildDirectory(DIR_RESOURCE);
+		Dir.Move(DIR_RESOURCE);
+		Dir.Move(DIR_TEXTURE);
+		Dir.Move(DIR_INTERFACE);
+
+		std::vector<GameEngineDirectory> RecursiveDir = Dir.GetRecursiveAllDirectory();
+
+		for (auto& TmpDir : RecursiveDir)
+		{
+			std::vector<GameEngineFile> Shaders = TmpDir.GetAllFile();
+
+			for (size_t i = 0; i < Shaders.size(); i++)
+			{
+				GameEngineTexture::Load(Shaders[i].GetFullPath());
+			}
+		}
+	}
+
 	// 레벨 생성
 	CreateLevel<StartLevel>(LEVEL_TITLE);
 	CreateLevel<EndLevel>(LEVEL_END);
+	CreateLevel<CharacterSelect>(LEVEL_SELECT);
 	CreateLevel<Stage1Level>(LEVEL_STAGE1);
 
 	// 초기 레벨 이동

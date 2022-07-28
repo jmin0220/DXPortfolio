@@ -34,10 +34,14 @@
 // 디렉토리
 #define DIR_RESOURCE "Resources"
 #define DIR_TEXTURE "Texture"
+#define DIR_CHARACTERS "Characters"
+#define DIR_STAGE "Stage"
+#define DIR_INTERFACE "Interface"
 
 // 레벨
 #define LEVEL_TITLE "Title"
 #define LEVEL_END "End"
+#define LEVEL_SELECT "CharacterSelect"
 #define LEVEL_STAGE1 "Stage1"
 
 // 텍스쳐
@@ -58,3 +62,7 @@
 #define TEX_PLAYER_ANIM_BANDIT_JUMP "BanditJump"
 #define TEX_PLAYER_ANIM_BANDIT_CLIMB "BanditClimb"
 #define TEX_PLAYER_ANIM_BANDIT_DEATH "BanditDeath"
+
+// 레벨 조작키
+#define CHANGE_LEVEL_CHRACTER_SELECT "ChangeLevelToCharacterSelect"
+#define CHANGE_LECEL_STAGE1 "ChangeLevelToStage1"

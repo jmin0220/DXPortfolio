@@ -166,6 +166,14 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Bandit.h" />
+    <ClInclude Include="CharacterSelect.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="CharacterSelecter.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="Commando.h">
       <SubType>
       </SubType>
@@ -209,6 +217,14 @@
   <ItemGroup>
     <ClCompile Include="Bandit.cpp" />
     <ClCompile Include="BanditState.cpp" />
+    <ClCompile Include="CharacterSelect.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="CharacterSelecter.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="Commando.cpp">
       <SubType>
       </SubType>
