@@ -22,7 +22,11 @@ protected:
 	void Update(float _DeltaTime) override;
 
 private:
-	GameEngineTextureRenderer* Renderer_;
+	void FrameAnimation(const FrameAnimation_DESC& _Info);
+
+	GameEngineTextureRenderer* BGRenderer_;
+	GameEngineTextureRenderer* CharacterRenderer_;
+
 	Option Option_;
 };
 

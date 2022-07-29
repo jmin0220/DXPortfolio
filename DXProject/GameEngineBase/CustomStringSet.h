@@ -31,6 +31,9 @@
 #define PLAYER_ANIM_CLIMB "PlayerClimb"
 #define PLAYER_ANIM_DEATH "PlayerDeath"
 
+#define COMMANDO_ANIM_SELECT "CommandoSelect"
+#define BANDIT_ANIM_SELECT "BanditSelect"
+
 // 디렉토리
 #define DIR_RESOURCE "Resources"
 #define DIR_TEXTURE "Texture"
@@ -58,6 +61,7 @@
 #define TEX_PLAYER_ANIM_COMMANDO_JUMP "CommandoJump"
 #define TEX_PLAYER_ANIM_COMMANDO_CLIMB "CommandoClimb"
 #define TEX_PLAYER_ANIM_COMMANDO_DEATH "CommandoDeath"
+#define TEX_PLAYER_ANIM_COMMANDO_SELECT "CommandoSelect"
 
 #define TEX_PLAYER_ANIM_BANDIT_IDLE "BanditIdle"
 #define TEX_PLAYER_ANIM_BANDIT_SHOOT "BanditShoot1"
@@ -65,6 +69,8 @@
 #define TEX_PLAYER_ANIM_BANDIT_JUMP "BanditJump"
 #define TEX_PLAYER_ANIM_BANDIT_CLIMB "BanditClimb"
 #define TEX_PLAYER_ANIM_BANDIT_DEATH "BanditDeath"
+#define TEX_PLAYER_ANIM_BANDIT_SELECT "BanditSelect"
+
 
 // 레벨 조작키
 #define CHANGE_LEVEL_CHRACTER_SELECT "ChangeLevelToCharacterSelect"
