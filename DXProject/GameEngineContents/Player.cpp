@@ -1,6 +1,7 @@
 #include "PreCompile.h"
 #include "Player.h"
 #include "Stage1Level.h"
+#include "HUD.h"
 
 Player::Player() 
 	:Renderer_(nullptr)
@@ -22,6 +23,8 @@ void Player::Start()
 	AnimationInit();
 	// 스테이트 초기화
 	StateInit();
+
+	HUD_ = GetLevel()->CreateActor<HUD>(ObjectGroup::UI);
 }
 
 void Player::Update(float _DeltaTime)

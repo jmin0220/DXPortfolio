@@ -71,6 +71,7 @@
 #define TEX_PLAYER_ANIM_BANDIT_DEATH "BanditDeath"
 #define TEX_PLAYER_ANIM_BANDIT_SELECT "BanditSelect"
 
+#define TEX_INTERFACE_HUD "HUD.png"
 
 // 레벨 조작키
 #define CHANGE_LEVEL_CHRACTER_SELECT "ChangeLevelToCharacterSelect"

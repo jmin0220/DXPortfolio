@@ -25,8 +25,10 @@
 #include <GameEngineBase/GameEngineDebug.h>
 
 // core
+#include <GameEngineCore/GEngine.h>
 #include <GameEngineCore/CoreMinimal.h>
 
 
 // custom
+#include "ObjectGroup.h"
 #include "GameEngineBase/CustomStringSet.h"

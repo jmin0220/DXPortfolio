@@ -3,6 +3,7 @@
 #include "UnitFsm.h"
 
 // Ό³Έν :
+class HUD;
 class Player : public GameEngineActor
 {
 public:
@@ -91,6 +92,8 @@ protected:
 
 	GameEngineTexture* ColMap_;
 
+	HUD* HUD_;
 private:
+	
 };
 

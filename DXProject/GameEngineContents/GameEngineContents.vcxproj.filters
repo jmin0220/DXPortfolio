@@ -40,6 +40,9 @@
     <Filter Include="01_Actor\01_Play\Characters">
       <UniqueIdentifier>{74b3c7ef-0cd4-4db6-9558-b18cde42b65f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="01_Actor\01_Play\Interface">
+      <UniqueIdentifier>{9b8cc97b-5298-44a2-ae60-1b59d06f95b4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PreCompile.h">
@@ -93,6 +96,9 @@
     <ClInclude Include="CharacterSelectEnum.h">
       <Filter>98_Global</Filter>
     </ClInclude>
+    <ClInclude Include="HUD.h">
+      <Filter>01_Actor\01_Play\Interface</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PreCompile.cpp">
@@ -145,6 +151,9 @@
     </ClCompile>
     <ClCompile Include="Option.cpp">
       <Filter>98_Global</Filter>
+    </ClCompile>
+    <ClCompile Include="HUD.cpp">
+      <Filter>01_Actor\01_Play\Interface</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

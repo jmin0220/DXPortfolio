@@ -6,6 +6,7 @@
 class GameEngineActor;
 class Player;
 class StageGround;
+class HUD;
 class StageLevelParent : public GameEngineLevel
 {
 public:

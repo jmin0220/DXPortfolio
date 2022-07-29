@@ -7,7 +7,6 @@
 #include "CharacterSelectEnum.h"
 #include "Bandit.h"
 #include "Commando.h"
-#include "ObjectGroup.h"
 
 Stage1Level::Stage1Level() 
 {
