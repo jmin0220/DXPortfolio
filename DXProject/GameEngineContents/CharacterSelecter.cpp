@@ -17,20 +17,20 @@ void CharacterSelecter::Start()
 {
 	this->GetTransform().SetWorldPosition({ 0, 0, 0 });
 
+	// 설명 백그라운드 생성
 	BGRenderer_ = CreateComponent<GameEngineTextureRenderer>();
 	BGRenderer_->SetTexture(TEX_SELECTED_COMMANDO);
 	BGRenderer_->SetPivot(PIVOTMODE::CENTER);
 	BGRenderer_->ScaleToTexture();
 
+	// 캐릭터 랜더러 생성
 	CharacterRenderer_ = CreateComponent<GameEngineTextureRenderer>();
 	CharacterRenderer_->CreateFrameAnimationFolder(TEX_PLAYER_ANIM_COMMANDO_SELECT, FrameAnimation_DESC(COMMANDO_ANIM_SELECT, 0.1f, false));
-	CharacterRenderer_->AnimationBindFrame(TEX_PLAYER_ANIM_COMMANDO_SELECT, &CharacterSelecter::FrameAnimation, this);
-
 	CharacterRenderer_->CreateFrameAnimationFolder(TEX_PLAYER_ANIM_BANDIT_SELECT, FrameAnimation_DESC(BANDIT_ANIM_SELECT, 0.1f, false));
-	CharacterRenderer_->AnimationBindFrame(TEX_PLAYER_ANIM_BANDIT_SELECT, &CharacterSelecter::FrameAnimation, this);
 	
+	// 디폴트값 Commando의 설정
 	CharacterRenderer_->ChangeFrameAnimation(TEX_PLAYER_ANIM_COMMANDO_SELECT);
-	CharacterRenderer_->GetTransform().SetWorldScale({ 56, 148, 0 });
+	CharacterRenderer_->GetTransform().SetWorldPosition({ 392, 160, 0 });
 
 	// 플레이어 액터 생성 초기값
 	Option_.CharacterSelect_ = CharacterSelectEnum::Commando;
@@ -45,12 +45,14 @@ void CharacterSelecter::Start()
 
 void CharacterSelecter::Update(float _DeltaTime)
 {
+	// 캐릭터 선택
 	if (true == GameEngineInput::GetInst()->IsDown("SetCommando"))
 	{
 		Option_.CharacterSelect_ = CharacterSelectEnum::Commando;
 		BGRenderer_->SetTexture(TEX_SELECTED_COMMANDO);
-		CharacterRenderer_->ChangeFrameAnimation(TEX_PLAYER_ANIM_COMMANDO_SELECT);
 
+		CharacterRenderer_->ChangeFrameAnimation(TEX_PLAYER_ANIM_COMMANDO_SELECT);
+		CharacterRenderer_->GetTransform().SetWorldPosition({ 392, 160, 0 });
 	}
 
 	if (true == GameEngineInput::GetInst()->IsDown("SetBandit"))
@@ -58,10 +60,6 @@ void CharacterSelecter::Update(float _DeltaTime)
 		Option_.CharacterSelect_ = CharacterSelectEnum::Bandit;
 		BGRenderer_->SetTexture(TEX_SELECTED_BANDIT);
 		CharacterRenderer_->ChangeFrameAnimation(TEX_PLAYER_ANIM_BANDIT_SELECT);
+		CharacterRenderer_->GetTransform().SetWorldPosition({ 496, 160, 0 });
 	}
-}
-
-void CharacterSelecter::FrameAnimation(const FrameAnimation_DESC& _Info)
-{
-	//CharacterRenderer_->ScaleToTexture();
 }

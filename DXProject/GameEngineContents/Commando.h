@@ -51,6 +51,8 @@ protected:
 
 	// 애니메이션 종료시
 	void EndAnimation(const FrameAnimation_DESC& _Info);
+	// 프레임마다
+	void FrameAnimation(const FrameAnimation_DESC& _Info);
 
 private:
 

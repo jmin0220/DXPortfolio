@@ -20,6 +20,13 @@ void Bandit::AnimationInit()
 	Renderer_->CreateFrameAnimationFolder(PLAYER_ANIM_CLIMB, FrameAnimation_DESC(TEX_PLAYER_ANIM_BANDIT_CLIMB, 0.1f, false));
 	Renderer_->CreateFrameAnimationFolder(PLAYER_ANIM_DEATH, FrameAnimation_DESC(TEX_PLAYER_ANIM_BANDIT_DEATH, 0.1f, false));
 
+	Renderer_->AnimationBindFrame(PLAYER_ANIM_IDLE, &Bandit::FrameAnimation, this);
+	Renderer_->AnimationBindFrame(PLAYER_ANIM_SHOOT, &Bandit::FrameAnimation, this);
+	Renderer_->AnimationBindFrame(PLAYER_ANIM_WALK, &Bandit::FrameAnimation, this);
+	Renderer_->AnimationBindFrame(PLAYER_ANIM_JUMP, &Bandit::FrameAnimation, this);
+	Renderer_->AnimationBindFrame(PLAYER_ANIM_CLIMB, &Bandit::FrameAnimation, this);
+	Renderer_->AnimationBindFrame(PLAYER_ANIM_DEATH, &Bandit::FrameAnimation, this);
+
 	Renderer_->ChangeFrameAnimation(PLAYER_ANIM_IDLE);
 	Renderer_->ScaleToTexture();
 	Renderer_->SetPivot(PIVOTMODE::LEFT);
@@ -43,4 +50,10 @@ void Bandit::EndAnimation(const FrameAnimation_DESC& _Info)
 {
 	// 스테이트 전환
 	StateManager_.ChangeState(PLAYER_STATE_IDLE);
+}
+
+void Bandit::FrameAnimation(const FrameAnimation_DESC& _Info)
+{
+	//Renderer_->ScaleToTexture();
+	Renderer_->SetPivot(PIVOTMODE::LEFT);
 }
