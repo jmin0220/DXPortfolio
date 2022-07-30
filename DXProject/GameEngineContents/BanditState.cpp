@@ -4,7 +4,7 @@
 // 업데이트
 void Bandit::IdleUpdate(float _DeltaTime, const StateInfo& _Info)
 {
-	if (true == IsShootKeyDown())
+	if (true == IsShootKeyPress())
 	{
 		StateManager_.ChangeState(PLAYER_STATE_SHOOT);
 		return;
@@ -12,7 +12,7 @@ void Bandit::IdleUpdate(float _DeltaTime, const StateInfo& _Info)
 
 
 	// 이동키가 눌리면 이동
-	if (true == IsMoveKeyDown())
+	if (true == IsMoveKeyPress())
 	{
 		StateManager_.ChangeState(PLAYER_STATE_MOVE);
 		return;
@@ -22,6 +22,13 @@ void Bandit::IdleUpdate(float _DeltaTime, const StateInfo& _Info)
 
 void Bandit::MoveUpdate(float _DeltaTime, const StateInfo& _Info)
 {
+	// 공격키가 눌리면 스테이트 전환
+	if (true == IsShootKeyPress())
+	{
+		StateManager_.ChangeState(PLAYER_STATE_SHOOT);
+		return;
+	}
+
 	// 키가 떨어졌을경우 Idle상태로 전환
 	if (false == IsMoveKeyPress())
 	{

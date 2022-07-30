@@ -40,6 +40,10 @@ protected:
 	bool IsShootKeyPress();
 	bool IsShootKeyUp();
 
+	bool IsJumpKeyDown();
+	bool IsJumpKeyPress();
+	bool IsJumpKeyUp();
+
 	// 업데이트 함수
 	void CheckNegativeX();
 	void CameraUpdate();
@@ -48,10 +52,10 @@ protected:
 	bool GroundRightCheck();
 	bool GroundLeftCheck();
 
+	void PlayerJump();
+
 	// FSM 관련 함수
 	GameEngineStateManager StateManager_;
-	//void StateChange(STATE _State);
-	//void StateUpdate();
 
 	virtual void IdleStart(const StateInfo& _Info) {};
 	virtual void MoveStart(const StateInfo& _Info) {};
@@ -85,9 +89,19 @@ protected:
 
 
 	GameEngineTextureRenderer* Renderer_;
-	float Speed_;
-	STATE CurrentState_;
 	float DeltaTime_;
+	
+	// 속도 관련
+	float Speed_;
+	float JumpSpeed_;
+	float FallSpeed_;
+
+	// 땅에 닿아있음 판정
+	bool IsGround_;
+
+	STATE CurrentState_;
+
+	// 방향 관련
 	float4 MoveDir_;
 
 	GameEngineTexture* ColMap_;

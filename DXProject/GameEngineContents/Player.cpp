@@ -5,9 +5,12 @@
 
 Player::Player() 
 	:Renderer_(nullptr)
-	, Speed_(200.0f)
+	, Speed_(100.0f)
+	, JumpSpeed_(0.f)
+	, FallSpeed_(150.f)
 	, DeltaTime_(0.0f)
 	, ColMap_(nullptr)
+	, IsGround_(false)
 {
 }
 
@@ -143,6 +146,36 @@ bool Player::IsShootKeyUp()
 	return true;
 }
 
+bool Player::IsJumpKeyDown()
+{
+	if (false == GameEngineInput::GetInst()->IsDown(PLAYER_KEY_JUMP))
+	{
+		return false;
+	}
+
+	return true;
+}
+
+bool Player::IsJumpKeyPress()
+{
+	if (false == GameEngineInput::GetInst()->IsPress(PLAYER_KEY_JUMP))
+	{
+		return false;
+	}
+
+	return true;
+}
+
+bool Player::IsJumpKeyUp()
+{
+	if (false == GameEngineInput::GetInst()->IsUp(PLAYER_KEY_JUMP))
+	{
+		return false;
+	}
+
+	return true;
+}
+
 void Player::CheckNegativeX()
 {
 	if (MoveDir_.CompareInt2D(float4::LEFT))
@@ -167,8 +200,35 @@ void Player::CameraUpdate()
 
 void Player::JumpUpdate()
 {
-	// TODO::점프 기능
+	if (true == IsJumpKeyDown())
+	{
+		PlayerJump();
+	}
+
+	if (JumpSpeed_ != 0.0f)
+	{
+		JumpSpeed_ += GameEngineTime::GetDeltaTime() * FallSpeed_;
+
+		//if (JumpSpeed_ <= FallSpeed_)
+		//{
+		//	JumpSpeed_ = FallSpeed_;
+		//}
+	}
+	else
+	{
+		JumpSpeed_ = FallSpeed_;
+	}
 }
+
+
+void Player::PlayerJump()
+{
+	if (true == IsGround_)
+	{
+		JumpSpeed_ = -150.0f;
+	}
+}
+
 
 void Player::GroundFallCheck()
 {
@@ -178,15 +238,19 @@ void Player::GroundFallCheck()
 	}
 
 	float4 Color = ColMap_->GetPixel(this->GetTransform().GetWorldPosition().ix()
-		                          , -this->GetTransform().GetWorldPosition().iy() + Renderer_->GetCurTexture()->GetScale().hiy() + 1.0f);
+		                          , -this->GetTransform().GetWorldPosition().iy() + Renderer_->GetCurTexture()->GetScale().hiy() + JumpSpeed_ * DeltaTime_);
 
 	if (false == Color.CompareInt4D({ 1.0f, 0.0f, 1.0f }))
 	{
-		GetTransform().SetWorldMove(GetTransform().GetDownVector() * Speed_ * DeltaTime_);
+
+		GetTransform().SetWorldMove(GetTransform().GetDownVector() * JumpSpeed_ * DeltaTime_);
+		IsGround_ = false;
 	}
 	else if (false == Color.CompareInt4D(float4::ZERO))
 	{
-		int a = 0;
+		// 땅에 닿았을경우 점프 값 초기화
+		JumpSpeed_ = 0.0f;
+		IsGround_ = true;
 	}
 }
 
@@ -199,7 +263,6 @@ bool Player::GroundRightCheck()
 
 	float4 Color = ColMap_->GetPixel(this->GetTransform().GetWorldPosition().ix() + Renderer_->GetCurTexture()->GetScale().hix()
 		, -this->GetTransform().GetWorldPosition().iy());
-
 
 	if (false == Color.CompareInt4D({ 1.0f, 0.0f, 1.0f }))
 	{
