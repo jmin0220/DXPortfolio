@@ -13,12 +13,12 @@ void Bandit::AnimationInit()
 {
 	Renderer_ = CreateComponent<GameEngineTextureRenderer>();
 
-	Renderer_->CreateFrameAnimationFolder(PLAYER_ANIM_IDLE, FrameAnimation_DESC(TEX_PLAYER_ANIM_BANDIT_IDLE, 0.1f, false));
-	Renderer_->CreateFrameAnimationFolder(PLAYER_ANIM_SHOOT, FrameAnimation_DESC(TEX_PLAYER_ANIM_BANDIT_SHOOT, 0.1f, false));
-	Renderer_->CreateFrameAnimationFolder(PLAYER_ANIM_WALK, FrameAnimation_DESC(TEX_PLAYER_ANIM_BANDIT_WALK, 0.1f, true));
-	Renderer_->CreateFrameAnimationFolder(PLAYER_ANIM_JUMP, FrameAnimation_DESC(TEX_PLAYER_ANIM_BANDIT_JUMP, 0.1f, false));
-	Renderer_->CreateFrameAnimationFolder(PLAYER_ANIM_CLIMB, FrameAnimation_DESC(TEX_PLAYER_ANIM_BANDIT_CLIMB, 0.1f, false));
-	Renderer_->CreateFrameAnimationFolder(PLAYER_ANIM_DEATH, FrameAnimation_DESC(TEX_PLAYER_ANIM_BANDIT_DEATH, 0.1f, false));
+	Renderer_->CreateFrameAnimationFolder(PLAYER_ANIM_IDLE, FrameAnimation_DESC(TEX_PLAYER_ANIM_BANDIT_IDLE, FrameAnimDelay_, false));
+	Renderer_->CreateFrameAnimationFolder(PLAYER_ANIM_SHOOT, FrameAnimation_DESC(TEX_PLAYER_ANIM_BANDIT_SHOOT, FrameAnimDelay_, false));
+	Renderer_->CreateFrameAnimationFolder(PLAYER_ANIM_WALK, FrameAnimation_DESC(TEX_PLAYER_ANIM_BANDIT_WALK, FrameAnimDelay_, true));
+	Renderer_->CreateFrameAnimationFolder(PLAYER_ANIM_JUMP, FrameAnimation_DESC(TEX_PLAYER_ANIM_BANDIT_JUMP, FrameAnimDelay_, false));
+	Renderer_->CreateFrameAnimationFolder(PLAYER_ANIM_CLIMB, FrameAnimation_DESC(TEX_PLAYER_ANIM_BANDIT_CLIMB, FrameAnimDelay_, false));
+	Renderer_->CreateFrameAnimationFolder(PLAYER_ANIM_DEATH, FrameAnimation_DESC(TEX_PLAYER_ANIM_BANDIT_DEATH, FrameAnimDelay_, false));
 
 	Renderer_->AnimationBindFrame(PLAYER_ANIM_IDLE, &Bandit::FrameAnimation, this);
 	Renderer_->AnimationBindFrame(PLAYER_ANIM_SHOOT, &Bandit::FrameAnimation, this);

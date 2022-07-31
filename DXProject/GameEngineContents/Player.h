@@ -44,6 +44,14 @@ protected:
 	bool IsJumpKeyPress();
 	bool IsJumpKeyUp();
 
+	bool IsUpKeyDown();
+	bool IsUpKeyPress();
+	bool IsUpKeyUp();
+
+	bool IsDownKeyDown();
+	bool IsDownKeyPress();
+	bool IsDownKeyUp();
+
 	// 업데이트 함수
 	void CheckNegativeX();
 	void CameraUpdate();
@@ -96,17 +104,23 @@ protected:
 	float JumpSpeed_;
 	float FallSpeed_;
 
+	// 애니메이션 프레임간의 시간
+	float FrameAnimDelay_;
+
 	// 땅에 닿아있음 판정
 	bool IsGround_;
-
-	STATE CurrentState_;
+	// 줄에 타고 있는지 판정
+	bool IsClimb_;
 
 	// 방향 관련
 	float4 MoveDir_;
 
+	// 충돌용 맵 정보
 	GameEngineTexture* ColMap_;
 
+	// 스킬창등의 UI
 	HUD* HUD_;
+
 private:
 	
 };

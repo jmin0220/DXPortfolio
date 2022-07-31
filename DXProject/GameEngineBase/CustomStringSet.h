@@ -3,10 +3,12 @@
 #define PLAYER_KEY_LEFT "PlayerLeft"
 #define PLAYER_KEY_RIGHT "PlayerRight"
 #define PLAYER_KEY_SHOOT "PlayerShoot"
-#define PLAYER_KEY_JUMP "PlayerJjump"
-
+#define PLAYER_KEY_JUMP "PlayerJump"
 #define PLAYER_KEY_UP "PlayerUp"
 #define PLAYER_KEY_DOWN "PlayerDown"
+
+#define PLAYER_KEY_DEBUG_UP "PlayerDebugUp"
+#define PLAYER_KEY_DEBUG_DOWN "PlayerDebugDown"
 
 #define Player_KEY_SKILL1 "PlayerSkill1"
 #define Player_KEY_SKILL2 "PlayerSkill2"

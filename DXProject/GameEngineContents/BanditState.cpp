@@ -151,7 +151,8 @@ void Bandit::Skill4Start(const StateInfo& _Info)
 
 void Bandit::ClimbStart(const StateInfo& _Info)
 {
-
+	Renderer_->ChangeFrameAnimation(PLAYER_ANIM_CLIMB);
+	Renderer_->AnimationBindEnd(PLAYER_ANIM_CLIMB, &Bandit::EndAnimation, this);
 }
 
 void Bandit::DeathStart(const StateInfo& _Info)
