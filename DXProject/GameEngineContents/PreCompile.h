@@ -27,6 +27,14 @@
 // core
 #include <GameEngineCore/GEngine.h>
 #include <GameEngineCore/CoreMinimal.h>
+#include <GameEngineCore/GameEngineDefaultRenderer.h>
+#include <GameEngineCore/GameEngineRenderingPipeLine.h>
+#include <GameEngineCore/GameEngineVertexShader.h>
+#include <GameEngineCore/GameEngineConstantBuffer.h>
+#include <GameEngineCore/GameEngineDevice.h>
+#include <GameEngineCore/GameEngineTextureRenderer.h>
+#include <GameEngineCore/GameEngineLevel.h>
+#include <GameEngineCore/GameEngineCollision.h>
 
 
 // custom
