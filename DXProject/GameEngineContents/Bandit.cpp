@@ -12,6 +12,7 @@ Bandit::~Bandit()
 void Bandit::AnimationInit()
 {
 	Renderer_ = CreateComponent<GameEngineTextureRenderer>();
+	Renderer_->SetSamplingModePoint();
 
 	Renderer_->CreateFrameAnimationFolder(PLAYER_ANIM_IDLE, FrameAnimation_DESC(TEX_PLAYER_ANIM_BANDIT_IDLE, FrameAnimDelay_, false));
 	Renderer_->CreateFrameAnimationFolder(PLAYER_ANIM_SHOOT, FrameAnimation_DESC(TEX_PLAYER_ANIM_BANDIT_SHOOT, FrameAnimDelay_, false));

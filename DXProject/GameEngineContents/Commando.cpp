@@ -12,6 +12,7 @@ Commando::~Commando()
 void Commando::AnimationInit()
 {
 	Renderer_ = CreateComponent<GameEngineTextureRenderer>();
+	Renderer_->SetSamplingModePoint();
 
 	Renderer_->CreateFrameAnimationFolder(PLAYER_ANIM_IDLE, FrameAnimation_DESC(TEX_PLAYER_ANIM_COMMANDO_IDLE, FrameAnimDelay_, false));
 	Renderer_->CreateFrameAnimationFolder(PLAYER_ANIM_SHOOT, FrameAnimation_DESC(TEX_PLAYER_ANIM_COMMANDO_SHOOT, FrameAnimDelay_, false));
@@ -54,8 +55,15 @@ void Commando::EndAnimation(const FrameAnimation_DESC& _Info)
 {
 	// 스테이트 전환
 	StateManager_.ChangeState(PLAYER_STATE_IDLE);
+
+
+	GameEngineDebug::OutPutString(StateManager_.GetCurStateStateName() + " State End ");
 }
 
 void Commando::FrameAnimation(const FrameAnimation_DESC& _Info)
 {
+	std::string x = std::to_string( Renderer_->GetTransform().GetLocalScale().x);
+	std::string y = std::to_string(Renderer_->GetTransform().GetLocalScale().y);
+
+	GameEngineDebug::OutPutString(Renderer_->GetCurTexture()->GetNameCopy() + "  " + StateManager_.GetCurStateStateName() + " >> x : " + x + " , y : " + y);
 }

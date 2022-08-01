@@ -7,6 +7,7 @@ void Player::CommonIdleStart()
 {
 	// 애니메이션 전환
 	Renderer_->ChangeFrameAnimation(PLAYER_ANIM_IDLE);
+	Renderer_->ScaleToTexture();
 }
 
 
@@ -14,6 +15,7 @@ void Player::CommonMoveStart()
 {
 	// 애니메이션 전환
 	Renderer_->ChangeFrameAnimation(PLAYER_ANIM_WALK);
+	Renderer_->ScaleToTexture();
 }
 
 
@@ -21,6 +23,7 @@ void Player::CommonShootStart()
 {
 	// 애니메이션 전환
 	Renderer_->ChangeFrameAnimation(PLAYER_ANIM_SHOOT);
+	Renderer_->ScaleToTexture();
 }
 
 
@@ -47,6 +50,7 @@ void Player::CommonSkill4Start()
 void Player::CommonClimbStart()
 {
 	Renderer_->ChangeFrameAnimation(PLAYER_ANIM_CLIMB);
+	Renderer_->ScaleToTexture();
 	IsClimb_ = true;
 }
 

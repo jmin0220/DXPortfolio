@@ -12,7 +12,7 @@ Player::Player()
 	, ColMap_(nullptr)
 	, IsGround_(false)
 	, IsClimb_(false)
-	, FrameAnimDelay_(0.07f)
+	, FrameAnimDelay_(0.1f)
 {
 }
 
@@ -51,7 +51,6 @@ void Player::Update(float _DeltaTime)
 
 	// 카메라 업데이트
 	CameraUpdate();
-
 }
 
 void Player::KeyInit()
@@ -259,8 +258,10 @@ void Player::CheckNegativeX()
 // 카메라 이동 업데이트
 void Player::CameraUpdate()
 {
+	float4 PlayerPos = this->GetTransform().GetLocalPosition();
+
 	// 카메라 추적
-	GetLevel()->GetMainCameraActorTransform().SetLocalPosition(this->GetTransform().GetLocalPosition());
+	GetLevel()->GetMainCameraActorTransform().SetLocalPosition({ PlayerPos.x, PlayerPos.y });
 }
 
 // 시간에 따른 점프 스피드 값 조정
