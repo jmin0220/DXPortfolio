@@ -16,5 +16,5 @@ void HUD::Start()
 	UIRenderer_->SetTexture(TEX_INTERFACE_HUD);
 
 	UIRenderer_->ScaleToTexture();
-	UIRenderer_->GetTransform().SetWorldPosition({0, 400, 0});
+	UIRenderer_->GetTransform().SetWorldPosition({0, 400, 1});
 }

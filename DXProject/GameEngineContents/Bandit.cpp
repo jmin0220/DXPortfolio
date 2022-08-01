@@ -28,8 +28,7 @@ void Bandit::AnimationInit()
 	Renderer_->AnimationBindFrame(PLAYER_ANIM_DEATH, &Bandit::FrameAnimation, this);
 
 	Renderer_->ChangeFrameAnimation(PLAYER_ANIM_IDLE);
-	Renderer_->ScaleToTexture();
-	Renderer_->SetPivot(PIVOTMODE::LEFT);
+	Renderer_->SetScaleModeImage();
 }
 
 void Bandit::StateInit()
@@ -54,6 +53,4 @@ void Bandit::EndAnimation(const FrameAnimation_DESC& _Info)
 
 void Bandit::FrameAnimation(const FrameAnimation_DESC& _Info)
 {
-	//Renderer_->ScaleToTexture();
-	Renderer_->SetPivot(PIVOTMODE::LEFT);
 }

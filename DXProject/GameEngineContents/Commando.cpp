@@ -32,7 +32,7 @@ void Commando::AnimationInit()
 	Renderer_->AnimationBindEnd(PLAYER_ANIM_WALK, &Commando::EndAnimation, this);
 
 	Renderer_->ChangeFrameAnimation(PLAYER_ANIM_IDLE);
-	Renderer_->ScaleToTexture();
+	Renderer_->SetScaleModeImage();
 }
 
 void Commando::StateInit()
@@ -58,6 +58,4 @@ void Commando::EndAnimation(const FrameAnimation_DESC& _Info)
 
 void Commando::FrameAnimation(const FrameAnimation_DESC& _Info)
 {
-	//Renderer_->ScaleToTexture();
-	//Renderer_->SetPivot(PIVOTMODE::LEFT);
 }

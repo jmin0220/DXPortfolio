@@ -65,6 +65,11 @@ protected:
 	// FSM 관련 함수
 	GameEngineStateManager StateManager_;
 
+	// 상속해줄 FSM함수
+	// 캐릭터마다 다른기능일수도
+	// 함수포인터를 사용하기 위해서
+#pragma region Virtual FSM
+
 	virtual void IdleStart(const StateInfo& _Info) {};
 	virtual void MoveStart(const StateInfo& _Info) {};
 	virtual void ShootStart(const StateInfo& _Info) {};
@@ -94,6 +99,42 @@ protected:
 	virtual void Skill4End(const StateInfo& _Info) {};
 	virtual void ClimbEnd(const StateInfo& _Info) {};
 	virtual void DeathEnd(const StateInfo& _Info) {};
+#pragma endregion
+
+	// 공통화된 기능
+	// 상속받은 클래스에서 공통된 기능으로 호출하도록
+#pragma region Common FSM
+
+	void CommonIdleStart();
+	void CommonMoveStart();
+	void CommonShootStart();
+	void CommonSkill1Start();
+	void CommonSkill2Start();
+	void CommonSkill3Start();
+	void CommonSkill4Start();
+	void CommonClimbStart();
+	void CommonDeathStart();
+
+	void CommonIdleUpdate();
+	void CommonMoveUpdate();
+	void CommonShootUpdate();
+	void CommonSkill1Update();
+	void CommonSkill2Update();
+	void CommonSkill3Update();
+	void CommonSkill4Update();
+	void CommonClimbUpdate();
+	void CommonDeathUpdate();
+
+	void CommonIdleEnd();
+	void CommonMoveEnd();
+	void CommonShootEnd();
+	void CommonSkill1End();
+	void CommonSkill2End();
+	void CommonSkill3End();
+	void CommonSkill4End();
+	void CommonClimbEnd();
+	void CommonDeathEnd();
+#pragma endregion
 
 
 	GameEngineTextureRenderer* Renderer_;

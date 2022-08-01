@@ -86,6 +86,13 @@ void RiskOfRain::Start()
 
 	// IMGUI생성
 	GameEngineGUI::CreateGUIWindow<GameEngineStatusWindow>("EngineStatus", nullptr);
+
+	// 디버그용 키
+
+	if (false == GameEngineInput::GetInst()->IsKey("FreeCameaOnOff"))
+	{
+		GameEngineInput::GetInst()->CreateKey("FreeCameaOnOff", 'O');
+	}
 }
 
 void RiskOfRain::Update(float _DeltaTime)
