@@ -32,6 +32,12 @@ public:
 
 	static inline float GetDeltaTime()
 	{
+		// 델타 타임을 고정
+		if (0.05f <= Inst_->DeltaTimef)
+		{
+			Inst_->DeltaTimef = 0.05f;
+		}
+
 		return Inst_->DeltaTimef;
 	}
 
