@@ -72,6 +72,9 @@ public:
 	static const float4 CYAN;
 	static const float4 BLUE;
 	static const float4 RED;
+	static const float4 GREEN;
+	static const float4 WHITE;
+	static const float4 BLACK;
 
 public:
 	// 외적을 쓸수 있는곳
@@ -308,6 +311,19 @@ public:
 	bool IsZero2D() const
 	{
 		return x == 0.0f && y == 0.0f;
+	}
+
+
+	UINT GetUIntColor() const
+	{
+		UINT Int;
+		char* ColorPtr = reinterpret_cast<char*>(&Int);
+		ColorPtr[0] = static_cast<int>(x * 255.0f); // 1.0f * 255.0f
+		ColorPtr[1] = static_cast<int>(y * 255.0f);
+		ColorPtr[2] = static_cast<int>(z * 255.0f);
+		ColorPtr[3] = static_cast<int>(w * 255.0f);
+
+		return Int;
 	}
 
 public:

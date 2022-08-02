@@ -141,6 +141,12 @@
     <ClInclude Include="GameEngineStatusWindow.h">
       <Filter>GUI\EngineGUIWindow</Filter>
     </ClInclude>
+    <ClInclude Include="GameEngineFont.h">
+      <Filter>Resources\Font</Filter>
+    </ClInclude>
+    <ClInclude Include="GameEngineFontRenderer.h">
+      <Filter>Object\Component\Rendering\Content</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameEngineStateManager.cpp">
@@ -276,6 +282,12 @@
     <ClCompile Include="GameEngineStatusWindow.cpp">
       <Filter>GUI\EngineGUIWindow</Filter>
     </ClCompile>
+    <ClCompile Include="GameEngineFont.cpp">
+      <Filter>Resources\Font</Filter>
+    </ClCompile>
+    <ClCompile Include="GameEngineFontRenderer.cpp">
+      <Filter>Object\Component\Rendering\Content</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Contents">
@@ -350,6 +362,9 @@
     <Filter Include="GUI\EngineGUIWindow">
       <UniqueIdentifier>{ebaa8bc6-c893-4e2b-8a40-c6b472a98d92}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resources\Font">
+      <UniqueIdentifier>{41396690-82ad-4138-b28e-65e649b615ad}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <CopyFileToFolders Include="ThirdParty\bin\Debug\DirectXTex.lib">
@@ -358,5 +373,19 @@
     <CopyFileToFolders Include="ThirdParty\bin\Release\DirectXTex.lib">
       <Filter>ThirdParty\bin\Release</Filter>
     </CopyFileToFolders>
+    <CopyFileToFolders Include="ThirdParty\bin\Release\FW1FontWrapper.dll">
+      <Filter>ThirdParty\bin\Release</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="ThirdParty\bin\Debug\FW1FontWrapper.dll">
+      <Filter>ThirdParty\bin\Debug</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="ThirdParty\bin\Debug\FW1FontWrapper.lib">
+      <Filter>ThirdParty\bin\Debug</Filter>
+    </CopyFileToFolders>
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="ThirdParty\bin\Release\FW1FontWrapper.lib">
+      <Filter>ThirdParty\bin\Release</Filter>
+    </Library>
   </ItemGroup>
 </Project>

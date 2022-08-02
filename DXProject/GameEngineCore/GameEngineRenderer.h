@@ -1,9 +1,11 @@
 #pragma once
 #include "GameEngineTransformComponent.h"
+#include "GameEngineLevel.h"
 
 // Ό³Έν :
 class GameEngineRenderer : public GameEngineTransformComponent
 {
+	friend class GameEngineLevel;
 	friend class GameEngineCamera;
 
 public:
@@ -18,11 +20,14 @@ public:
 	GameEngineRenderer& operator=(GameEngineRenderer&& _Other) noexcept = delete;
 
 	// float4x4 ViewPort;
+	void ChangeCamera(CAMERAORDER _Order);
 
 protected:
 	virtual void Start();
 	virtual void Update(float _DeltaTime) {}
 	virtual void End() {}
+
+	CAMERAORDER CameraOrder;
 
 	void PushRendererToMainCamera();
 	void PushRendererToUICamera();
