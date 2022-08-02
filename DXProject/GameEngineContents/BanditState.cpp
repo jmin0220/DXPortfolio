@@ -4,72 +4,13 @@
 // 업데이트
 void Bandit::IdleUpdate(float _DeltaTime, const StateInfo& _Info)
 {
-	if (true == IsShootKeyPress())
-	{
-		StateManager_.ChangeState(PLAYER_STATE_SHOOT);
-		return;
-	}
-
-
-	// 이동키가 눌리면 이동
-	if (true == IsMoveKeyPress())
-	{
-		StateManager_.ChangeState(PLAYER_STATE_MOVE);
-		return;
-	}
+	CommonIdleUpdate();
 }
 
 
 void Bandit::MoveUpdate(float _DeltaTime, const StateInfo& _Info)
 {
-	// 공격키가 눌리면 스테이트 전환
-	if (true == IsShootKeyPress())
-	{
-		StateManager_.ChangeState(PLAYER_STATE_SHOOT);
-		return;
-	}
-
-	// 키가 떨어졌을경우 Idle상태로 전환
-	if (false == IsMoveKeyPress())
-	{
-		StateManager_.ChangeState(PLAYER_STATE_IDLE);
-		return;
-	}
-
-	if (true == GameEngineInput::GetInst()->IsPress(PLAYER_KEY_LEFT))
-	{
-		if (true == GroundLeftCheck())
-		{
-			return;
-		}
-
-		GetTransform().SetWorldMove(GetTransform().GetLeftVector() * Speed_ * DeltaTime_);
-
-		// TODO::픽셀체크함수 생성시 수정요
-		MoveDir_ = float4::LEFT;
-	}
-	if (true == GameEngineInput::GetInst()->IsPress(PLAYER_KEY_RIGHT))
-	{
-		if (true == GroundRightCheck())
-		{
-			return;
-		}
-
-		GetTransform().SetWorldMove(GetTransform().GetRightVector() * Speed_ * DeltaTime_);
-
-		// TODO::픽셀체크함수 생성시 수정요
-		MoveDir_ = float4::RIGHT;
-	}
-	if (true == GameEngineInput::GetInst()->IsPress(PLAYER_KEY_UP))
-	{
-		GetTransform().SetWorldMove(GetTransform().GetUpVector() * Speed_ * DeltaTime_);
-
-	}
-	if (true == GameEngineInput::GetInst()->IsPress(PLAYER_KEY_DOWN))
-	{
-		GetTransform().SetWorldMove(GetTransform().GetDownVector() * Speed_ * DeltaTime_);
-
-	}
+	CommonMoveUpdate();
 }
 
 
@@ -100,7 +41,7 @@ void Bandit::Skill4Update(float _DeltaTime, const StateInfo& _Info)
 
 void Bandit::ClimbUpdate(float _DeltaTime, const StateInfo& _Info)
 {
-
+	CommonClimbUpdate();
 }
 
 void Bandit::DeathUpdate(float _DeltaTime, const StateInfo& _Info)
@@ -112,21 +53,17 @@ void Bandit::DeathUpdate(float _DeltaTime, const StateInfo& _Info)
 // 스타트
 void Bandit::IdleStart(const StateInfo& _Info)
 {
-	// 애니메이션 전환
-	Renderer_->ChangeFrameAnimation(PLAYER_ANIM_IDLE);
+	CommonIdleStart();
 }
 
 void Bandit::MoveStart(const StateInfo& _Info)
 {
-	// 애니메이션 전환
-	Renderer_->ChangeFrameAnimation(PLAYER_ANIM_WALK);
+	CommonMoveStart();
 }
 
 void Bandit::ShootStart(const StateInfo& _Info)
 {
-	// 애니메이션 전환
-	Renderer_->ChangeFrameAnimation(PLAYER_ANIM_SHOOT);
-	Renderer_->AnimationBindEnd(PLAYER_ANIM_SHOOT, &Bandit::EndAnimation, this);
+	CommonShootStart();
 }
 
 void Bandit::Skill1Start(const StateInfo& _Info)
@@ -151,8 +88,7 @@ void Bandit::Skill4Start(const StateInfo& _Info)
 
 void Bandit::ClimbStart(const StateInfo& _Info)
 {
-	Renderer_->ChangeFrameAnimation(PLAYER_ANIM_CLIMB);
-	Renderer_->AnimationBindEnd(PLAYER_ANIM_CLIMB, &Bandit::EndAnimation, this);
+	CommonClimbStart();
 }
 
 void Bandit::DeathStart(const StateInfo& _Info)
@@ -199,7 +135,7 @@ void Bandit::Skill4End(const StateInfo& _Info)
 
 void Bandit::ClimbEnd(const StateInfo& _Info)
 {
-
+	IsClimb_ = false;
 }
 
 void Bandit::DeathEnd(const StateInfo& _Info)

@@ -75,6 +75,17 @@
 
 #define TEX_INTERFACE_HUD "HUD.png"
 
+// 스킬 아이콘
+#define TEX_SKILLICON_COMMANDO_0 "sGManSkills_0.png"
+#define TEX_SKILLICON_COMMANDO_1 "sGManSkills_1.png"
+#define TEX_SKILLICON_COMMANDO_2 "sGManSkills_2.png"
+#define TEX_SKILLICON_COMMANDO_3 "sGManSkills_3.png"
+
+#define TEX_SKILLICON_BANDIT_0 "sCowboySkills_0.png"
+#define TEX_SKILLICON_BANDIT_1 "sCowboySkills_1.png"
+#define TEX_SKILLICON_BANDIT_2 "sCowboySkills_2.png"
+#define TEX_SKILLICON_BANDIT_3 "sCowboySkills_3.png"
+
 // 레벨 조작키
 #define CHANGE_LEVEL_CHRACTER_SELECT "ChangeLevelToCharacterSelect"
 #define CHANGE_LECEL_STAGE1 "ChangeLevelToStage1"

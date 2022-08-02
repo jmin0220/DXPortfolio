@@ -1,5 +1,6 @@
 #pragma once
 #include <GameEngineCore/GameEngineActor.h>
+#include "Option.h"
 
 // 설명 :
 class HUD : public GameEngineActor
@@ -21,6 +22,13 @@ protected:
 	void End() {}
 
 private:
-	GameEngineUIRenderer* UIRenderer_;
+	// 하단 HUD
+	GameEngineUIRenderer* HUDRenderer_;
+	// 스킬아이콘
+	GameEngineUIRenderer* SkillRenderer_[4];
+
+	float4 SkillPos_[4];
+
+	Option Option_;
 };
 
