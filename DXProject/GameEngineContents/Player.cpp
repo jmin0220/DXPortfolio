@@ -246,13 +246,14 @@ void Player::CheckNegativeX()
 	{
 		// 좌우반전
 		Renderer_->GetTransform().PixLocalNegativeX();
-		Renderer_->SetPivot(PIVOTMODE::RIGHT);
 	}
 	else
 	{
 		Renderer_->GetTransform().PixLocalPositiveX();
-		Renderer_->SetPivot(PIVOTMODE::LEFT);
 	}
+
+	// TODO::애니메이션의 프레임에 따라서 피봇값을 조절할 필요 있음.
+	Renderer_->SetPivot(PIVOTMODE::LEFT);
 }
 
 // 카메라 이동 업데이트
@@ -337,7 +338,7 @@ void Player::GroundFallCheck()
 		IsGround_ = true;
 	}
 
-
+	// 디버그용 RGB값 추출
 	//std::string r = std::to_string(ColorDown.r);
 	//std::string g = std::to_string(ColorDown.g);
 	//std::string b = std::to_string(ColorDown.b);
