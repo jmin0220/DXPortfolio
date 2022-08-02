@@ -13,6 +13,7 @@ Player::Player()
 	, IsGround_(false)
 	, IsClimb_(false)
 	, FrameAnimDelay_(0.1f)
+	, ColorCheckPos_(float4::ZERO)
 {
 }
 
@@ -34,6 +35,9 @@ void Player::Start()
 
 void Player::Update(float _DeltaTime)
 {
+	ColorCheckPos_ = { this->GetTransform().GetWorldPosition().x
+			        , -this->GetTransform().GetWorldPosition().y };
+
 	// 델타타임 초기화
 	DeltaTime_ = _DeltaTime;
 
@@ -246,15 +250,15 @@ void Player::CheckNegativeX()
 	{
 		// 좌우반전
 		Renderer_->GetTransform().PixLocalNegativeX();
-		//Renderer_->SetPivot(PIVOTMODE::RIGHT);
+		Renderer_->SetPivot(PIVOTMODE::RIGHT);
 	}
 	else
 	{
 		Renderer_->GetTransform().PixLocalPositiveX();
+		Renderer_->SetPivot(PIVOTMODE::LEFT);
 	}
 
 	// TODO::애니메이션의 프레임에 따라서 피봇값을 조절할 필요 있음.
-	Renderer_->SetPivot(PIVOTMODE::LEFT);
 }
 
 // 카메라 이동 업데이트

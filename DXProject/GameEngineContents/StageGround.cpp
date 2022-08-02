@@ -33,5 +33,9 @@ void StageGround::Start()
 
 void StageGround::Update(float _DeltaTime)
 {
+	if (GameEngineInput::GetInst()->IsDown("FreeCameaOnOff"))
+	{
+		ColRenderer_->OnOffSwitch();
+	}
 }
 

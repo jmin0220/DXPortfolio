@@ -155,6 +155,8 @@ protected:
 
 	// 방향 관련
 	float4 MoveDir_;
+	// 색깔 체크용 공통 포지션
+	float4 ColorCheckPos_;
 
 	// 충돌용 맵 정보
 	GameEngineTexture* ColMap_;

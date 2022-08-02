@@ -30,7 +30,7 @@ void Stage1Level::Update(float _DeltaTime)
 {
 	if (GameEngineInput::GetInst()->IsDown("FreeCameaOnOff"))
 	{
-		GetMainCameraActor()->FreeCameraModeOnOff();
+		//GetMainCameraActor()->FreeCameraModeOnOff();
 	}
 }
 
