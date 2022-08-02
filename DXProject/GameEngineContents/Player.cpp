@@ -246,6 +246,7 @@ void Player::CheckNegativeX()
 	{
 		// ÁÂ¿ì¹ÝÀü
 		Renderer_->GetTransform().PixLocalNegativeX();
+		//Renderer_->SetPivot(PIVOTMODE::RIGHT);
 	}
 	else
 	{

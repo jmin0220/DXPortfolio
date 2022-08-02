@@ -304,12 +304,12 @@ void GameEngineTextureRenderer::ScaleToCutTexture(int _Index)
 	// 이거는 봐야합니다.
 	if (0 > GetTransform().GetLocalScale().x)
 	{
-		Scale = -Scale.x;
+		Scale.x = -Scale.x;
 	}
 
 	if (0 > GetTransform().GetLocalScale().y)
 	{
-		Scale = -Scale.y;
+		Scale.y = -Scale.y;
 	}
 
 	GetTransform().SetLocalScale(Scale * ScaleRatio);
@@ -322,12 +322,12 @@ void GameEngineTextureRenderer::ScaleToTexture()
 	// 이거는 봐야합니다.
 	if (0 > GetTransform().GetLocalScale().x)
 	{
-		Scale = -Scale.x;
+		Scale.x = -Scale.x;
 	}
 
 	if (0 > GetTransform().GetLocalScale().y)
 	{
-		Scale = -Scale.y;
+		Scale.y = -Scale.y;
 	}
 
 	GetTransform().SetLocalScale(Scale * ScaleRatio);
