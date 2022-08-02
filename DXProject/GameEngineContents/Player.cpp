@@ -296,10 +296,19 @@ void Player::JumpUpdate()
 // 점프 스피드 입력
 void Player::PlayerJump()
 {
+	if (true == IsGround_)
+	{
+		GameEngineDebug::OutPutString("IsGround_ True");
+	}
+	else
+	{
+		GameEngineDebug::OutPutString("IsGround_ False");
+	}
+
 	// 땅에 닿아있는 경우에만 점프 가능
 	if (true == IsGround_)
 	{
-		IsGround_ = false;
+ 		IsGround_ = false;
 		JumpSpeed_ = -150.0f;
 	}
 }
@@ -341,14 +350,36 @@ void Player::GroundFallCheck()
 	else
 	{
 		IsGround_ = true;
+
+		for (;;)
+		{
+			// 위로 한칸 올림
+			this->GetTransform().SetWorldUpMove(1.0f, DeltaTime_);
+
+			// 올린뒤의 픽셀 취득
+			// 하단 중앙
+			ColorDown = ColMap_->GetPixel(this->GetTransform().GetWorldPosition().ix() + Renderer_->GetCurTexture()->GetScale().hix()
+				, -this->GetTransform().GetWorldPosition().iy() + Renderer_->GetCurTexture()->GetScale().hiy() + JumpSpeed_ * DeltaTime_);
+			// 하단 좌측
+			ColorDownLeft = ColMap_->GetPixel(this->GetTransform().GetWorldPosition().ix() + 2
+				, -this->GetTransform().GetWorldPosition().iy() + Renderer_->GetCurTexture()->GetScale().hiy() + JumpSpeed_ * DeltaTime_);
+			// 하단 우측
+			ColorDownRight = ColMap_->GetPixel(this->GetTransform().GetWorldPosition().ix() + Renderer_->GetCurTexture()->GetScale().hix() - 2
+				, -this->GetTransform().GetWorldPosition().iy() + Renderer_->GetCurTexture()->GetScale().hiy() + JumpSpeed_ * DeltaTime_);
+
+			// 가장 위로 올라왔으면 탈출
+			if (false == ColorDown.CompareInt4D({ 1.0f, 0.0f, 1.0f }) &&
+				false == ColorDownLeft.CompareInt4D({ 1.0f, 0.0f, 1.0f }) &&
+				false == ColorDownRight.CompareInt4D({ 1.0f, 0.0f, 1.0f })
+				)
+			{
+				// 다시 한칸 내림
+				this->GetTransform().SetWorldDownMove(1.0f, DeltaTime_);
+				break;
+			}
+		}
 	}
 
-	// 디버그용 RGB값 추출
-	//std::string r = std::to_string(ColorDown.r);
-	//std::string g = std::to_string(ColorDown.g);
-	//std::string b = std::to_string(ColorDown.b);
-
-	//GameEngineDebug::OutPutString("RGB > " + r + ", " + g + ", " + b);
 
 }
 

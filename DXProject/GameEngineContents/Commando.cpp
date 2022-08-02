@@ -57,13 +57,15 @@ void Commando::EndAnimation(const FrameAnimation_DESC& _Info)
 	StateManager_.ChangeState(PLAYER_STATE_IDLE);
 
 
-	GameEngineDebug::OutPutString(StateManager_.GetCurStateStateName() + " State End ");
+	//GameEngineDebug::OutPutString(StateManager_.GetCurStateStateName() + " State End ");
 }
 
 void Commando::FrameAnimation(const FrameAnimation_DESC& _Info)
 {
-	std::string x = std::to_string( Renderer_->GetTransform().GetLocalScale().x);
-	std::string y = std::to_string(Renderer_->GetTransform().GetLocalScale().y);
+	// 디버그용
+	// 애니메이션의 각 프레임마다 크기를 출력
+	//std::string x = std::to_string( Renderer_->GetTransform().GetLocalScale().x);
+	//std::string y = std::to_string(Renderer_->GetTransform().GetLocalScale().y);
 
-	GameEngineDebug::OutPutString(Renderer_->GetCurTexture()->GetNameCopy() + "  " + StateManager_.GetCurStateStateName() + " >> x : " + x + " , y : " + y);
+	//GameEngineDebug::OutPutString(Renderer_->GetCurTexture()->GetNameCopy() + "  " + StateManager_.GetCurStateStateName() + " >> x : " + x + " , y : " + y);
 }
