@@ -139,12 +139,9 @@ void GameEngineCore::CoreEnd(GameEngineCore* _UserCore)
 void GameEngineCore::WindowCreate(const std::string& _Name, GameEngineCore* _UserCore)
 {
 	GameEngineWindow::GetInst()->CreateGameWindow(nullptr, _Name.c_str());
-	GameEngineWindow::GetInst()->SetWindowScaleAndPosition({ 0,0 }, {1600, 900});
+	GameEngineWindow::GetInst()->SetWindowScaleAndPosition({ 0,0 }, { 1600, 900 });
 	GameEngineWindow::GetInst()->ShowGameWindow();
 	GameEngineDevice::Initialize();
-
-
-
 
 	// 엔진의 실행인데.
 	GameEngineWindow::GetInst()->MessageLoop(
