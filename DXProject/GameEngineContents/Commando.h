@@ -21,7 +21,6 @@ protected:
 
 	void IdleStart(const StateInfo& _Info) override;
 	void MoveStart(const StateInfo& _Info) override;
-	void ShootStart(const StateInfo& _Info) override;
 	void Skill1Start(const StateInfo& _Info) override;
 	void Skill2Start(const StateInfo& _Info) override;
 	void Skill3Start(const StateInfo& _Info) override;
@@ -31,7 +30,6 @@ protected:
 
 	void IdleUpdate(float _DeltaTime, const StateInfo& _Info) override;
 	void MoveUpdate(float _DeltaTime, const StateInfo& _Info) override;
-	void ShootUpdate(float _DeltaTime, const StateInfo& _Info) override;
 	void Skill1Update(float _DeltaTime, const StateInfo& _Info) override;
 	void Skill2Update(float _DeltaTime, const StateInfo& _Info) override;
 	void Skill3Update(float _DeltaTime, const StateInfo& _Info) override;
@@ -41,13 +39,16 @@ protected:
 
 	void IdleEnd(const StateInfo& _Info) override;
 	void MoveEnd(const StateInfo& _Info) override;
-	void ShootEnd(const StateInfo& _Info) override;
 	void Skill1End(const StateInfo& _Info) override;
 	void Skill2End(const StateInfo& _Info) override;
 	void Skill3End(const StateInfo& _Info) override;
 	void Skill4End(const StateInfo& _Info) override;
 	void ClimbEnd(const StateInfo& _Info) override;
 	void DeathEnd(const StateInfo& _Info) override;
+
+	// 4번스킬 2가지
+	void Skill4_1();
+	void Skill4_2();
 
 	// 애니메이션 종료시
 	void EndAnimation(const FrameAnimation_DESC& _Info);

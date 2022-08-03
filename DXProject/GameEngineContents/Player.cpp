@@ -12,7 +12,7 @@ Player::Player()
 	, ColMap_(nullptr)
 	, IsGround_(false)
 	, IsClimb_(false)
-	, FrameAnimDelay_(0.1f)
+	, FrameAnimDelay_(0.06f)
 	, ColorCheckPos_(float4::ZERO)
 {
 }
@@ -67,10 +67,10 @@ void Player::KeyInit()
 		GameEngineInput::GetInst()->CreateKey(PLAYER_KEY_UP, VK_UP);
 		GameEngineInput::GetInst()->CreateKey(PLAYER_KEY_DOWN, VK_DOWN);
 
-		GameEngineInput::GetInst()->CreateKey(PLAYER_KEY_SHOOT, 'Z');
-		GameEngineInput::GetInst()->CreateKey(Player_KEY_SKILL1, 'X');
-		GameEngineInput::GetInst()->CreateKey(Player_KEY_SKILL2, 'C');
-		GameEngineInput::GetInst()->CreateKey(Player_KEY_SKILL3, 'V');
+		GameEngineInput::GetInst()->CreateKey(Player_KEY_SKILL1, 'Z');
+		GameEngineInput::GetInst()->CreateKey(Player_KEY_SKILL2, 'X');
+		GameEngineInput::GetInst()->CreateKey(Player_KEY_SKILL3, 'C');
+		GameEngineInput::GetInst()->CreateKey(Player_KEY_SKILL4, 'V');
 
 
 		// TODO::디버그용 상하이동
@@ -119,37 +119,7 @@ bool Player::IsMoveKeyUp()
 	return true;
 }
 
-// 발사키 판정
-bool Player::IsShootKeyDown()
-{
-	if (false == GameEngineInput::GetInst()->IsDown(PLAYER_KEY_SHOOT))
-	{
-		return false;
-	}
-
-	return true;
-}
-
-bool Player::IsShootKeyPress()
-{
-	if (false == GameEngineInput::GetInst()->IsPress(PLAYER_KEY_SHOOT))
-	{
-		return false;
-	}
-
-	return true;
-}
-
-bool Player::IsShootKeyUp()
-{
-	if (false == GameEngineInput::GetInst()->IsUp(PLAYER_KEY_SHOOT))
-	{
-		return false;
-	}
-
-	return true;
-}
-
+// 점프키 판정
 bool Player::IsJumpKeyDown()
 {
 	if (false == GameEngineInput::GetInst()->IsDown(PLAYER_KEY_JUMP))
@@ -180,6 +150,7 @@ bool Player::IsJumpKeyUp()
 	return true;
 }
 
+// 위쪽 방향키(Climb)
 bool Player::IsUpKeyDown()
 {
 	if (false == GameEngineInput::GetInst()->IsDown(PLAYER_KEY_UP))
@@ -211,6 +182,7 @@ bool Player::IsUpKeyUp()
 	return true;
 }
 
+// 아래쪽 방향키(Climb)
 bool Player::IsDownKeyDown()
 {
 	if (false == GameEngineInput::GetInst()->IsDown(PLAYER_KEY_DOWN))
@@ -241,6 +213,131 @@ bool Player::IsDownKeyUp()
 
 	return true;
 }
+
+
+// Skill1키 판정
+bool Player::IsSkill1KeyDown()
+{
+	if (false == GameEngineInput::GetInst()->IsDown(Player_KEY_SKILL1))
+	{
+		return false;
+	}
+
+	return true;
+}
+
+bool Player::IsSkill1KeyPress()
+{
+	if (false == GameEngineInput::GetInst()->IsPress(Player_KEY_SKILL1))
+	{
+		return false;
+	}
+
+	return true;
+}
+
+bool Player::IsSkill1KeyUp()
+{
+	if (false == GameEngineInput::GetInst()->IsUp(Player_KEY_SKILL1))
+	{
+		return false;
+	}
+
+	return true;
+}
+
+// Skill2키 판정
+bool Player::IsSkill2KeyDown()
+{
+	if (false == GameEngineInput::GetInst()->IsDown(Player_KEY_SKILL2))
+	{
+		return false;
+	}
+
+	return true;
+}
+
+bool Player::IsSkill2KeyPress()
+{
+	if (false == GameEngineInput::GetInst()->IsPress(Player_KEY_SKILL2))
+	{
+		return false;
+	}
+
+	return true;
+}
+
+bool Player::IsSkill2KeyUp()
+{
+	if (false == GameEngineInput::GetInst()->IsUp(Player_KEY_SKILL2))
+	{
+		return false;
+	}
+
+	return true;
+}
+
+// Skill3키 판정
+bool Player::IsSkill3KeyDown()
+{
+	if (false == GameEngineInput::GetInst()->IsDown(Player_KEY_SKILL3))
+	{
+		return false;
+	}
+
+	return true;
+}
+
+bool Player::IsSkill3KeyPress()
+{
+	if (false == GameEngineInput::GetInst()->IsPress(Player_KEY_SKILL3))
+	{
+		return false;
+	}
+
+	return true;
+}
+
+bool Player::IsSkill3KeyUp()
+{
+	if (false == GameEngineInput::GetInst()->IsUp(Player_KEY_SKILL3))
+	{
+		return false;
+	}
+
+	return true;
+}
+
+// Skill2키 판정
+bool Player::IsSkill4KeyDown()
+{
+	if (false == GameEngineInput::GetInst()->IsDown(Player_KEY_SKILL4))
+	{
+		return false;
+	}
+
+	return true;
+}
+
+bool Player::IsSkill4KeyPress()
+{
+	if (false == GameEngineInput::GetInst()->IsPress(Player_KEY_SKILL4))
+	{
+		return false;
+	}
+
+	return true;
+}
+
+bool Player::IsSkill4KeyUp()
+{
+	if (false == GameEngineInput::GetInst()->IsUp(Player_KEY_SKILL4))
+	{
+		return false;
+	}
+
+	return true;
+}
 #pragma endregion
 
 
@@ -250,15 +347,14 @@ void Player::CheckNegativeX()
 	{
 		// 좌우반전
 		Renderer_->GetTransform().PixLocalNegativeX();
-		Renderer_->SetPivot(PIVOTMODE::RIGHT);
 	}
 	else
 	{
 		Renderer_->GetTransform().PixLocalPositiveX();
-		Renderer_->SetPivot(PIVOTMODE::LEFT);
 	}
 
 	// TODO::애니메이션의 프레임에 따라서 피봇값을 조절할 필요 있음.
+	Renderer_->SetPivot(PIVOTMODE::LEFT);
 }
 
 // 카메라 이동 업데이트

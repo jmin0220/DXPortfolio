@@ -2,7 +2,6 @@
 // 플레이어 조작키
 #define PLAYER_KEY_LEFT "PlayerLeft"
 #define PLAYER_KEY_RIGHT "PlayerRight"
-#define PLAYER_KEY_SHOOT "PlayerShoot"
 #define PLAYER_KEY_JUMP "PlayerJump"
 #define PLAYER_KEY_UP "PlayerUp"
 #define PLAYER_KEY_DOWN "PlayerDown"
@@ -13,11 +12,11 @@
 #define Player_KEY_SKILL1 "PlayerSkill1"
 #define Player_KEY_SKILL2 "PlayerSkill2"
 #define Player_KEY_SKILL3 "PlayerSkill3"
+#define Player_KEY_SKILL4 "PlayerSkill4"
 
 // 플레이어 FSM
 #define PLAYER_STATE_IDLE "Idle"
 #define PLAYER_STATE_MOVE "Move"
-#define PLAYER_STATE_SHOOT "Shoot"
 #define PLAYER_STATE_SKILL1 "Skill1"
 #define PLAYER_STATE_SKILL2 "Skill2"
 #define PLAYER_STATE_SKILL3 "Skill3"
@@ -27,7 +26,10 @@
 
 // 플레이어 애니메이션
 #define PLAYER_ANIM_IDLE "PlayerIdle"
-#define PLAYER_ANIM_SHOOT "PlayerShoot1"
+#define PLAYER_ANIM_SKILL1 "PlayerSkill1"
+#define PLAYER_ANIM_SKILL2 "PlayerSkill2"
+#define PLAYER_ANIM_SKILL3 "PlayerSkill3"
+#define PLAYER_ANIM_SKILL4 "PlayerSkill4"
 #define PLAYER_ANIM_WALK "PlayerWalk"
 #define PLAYER_ANIM_JUMP "PlayerJump"
 #define PLAYER_ANIM_CLIMB "PlayerClimb"
@@ -35,6 +37,12 @@
 
 #define COMMANDO_ANIM_SELECT "CommandoSelect"
 #define BANDIT_ANIM_SELECT "BanditSelect"
+
+// 캐릭터별 특수 애니메이션
+#define PLAYER_ANIM_COMMANDO_SKILL4_1 "CommandoSkill4_1"
+#define PLAYER_ANIM_COMMANDO_SKILL4_2 "CommandoSkill4_2"
+
+#define PLAYER_ANIM_BANDIT_SKILL2_EXPLOSION "BanditSkill2Explosion"
 
 // 디렉토리
 #define DIR_RESOURCE "Resources"
@@ -58,7 +66,11 @@
 #define TEX_SELECTED_BANDIT "BanditSelected.png"
 
 #define TEX_PLAYER_ANIM_COMMANDO_IDLE "CommandoIdle"
-#define TEX_PLAYER_ANIM_COMMANDO_SHOOT "CommandoShoot1"
+#define TEX_PLAYER_ANIM_COMMANDO_SKILL1 "CommandoSkill1"
+#define TEX_PLAYER_ANIM_COMMANDO_SKILL2 "CommandoSkill2"
+#define TEX_PLAYER_ANIM_COMMANDO_SKILL3 "CommandoSkill3"
+#define TEX_PLAYER_ANIM_COMMANDO_SKILL4_1 "CommandoSkill4_1"
+#define TEX_PLAYER_ANIM_COMMANDO_SKILL4_2 "CommandoSkill4_2"
 #define TEX_PLAYER_ANIM_COMMANDO_WALK "CommandoWalk"
 #define TEX_PLAYER_ANIM_COMMANDO_JUMP "CommandoJump"
 #define TEX_PLAYER_ANIM_COMMANDO_CLIMB "CommandoClimb"
@@ -66,7 +78,11 @@
 #define TEX_PLAYER_ANIM_COMMANDO_SELECT "CommandoSelect"
 
 #define TEX_PLAYER_ANIM_BANDIT_IDLE "BanditIdle"
-#define TEX_PLAYER_ANIM_BANDIT_SHOOT "BanditShoot1"
+#define TEX_PLAYER_ANIM_BANDIT_SKILL1 "BanditSkill1"
+#define TEX_PLAYER_ANIM_BANDIT_SKILL2 "BanditSkill2"
+#define TEX_PLAYER_ANIM_BANDIT_SKILL2_EXPLOSION "BanditSkill2Explosion"
+#define TEX_PLAYER_ANIM_BANDIT_SKILL3 "BanditSkill3"
+#define TEX_PLAYER_ANIM_BANDIT_SKILL4 "BanditSkill4"
 #define TEX_PLAYER_ANIM_BANDIT_WALK "BanditWalk"
 #define TEX_PLAYER_ANIM_BANDIT_JUMP "BanditJump"
 #define TEX_PLAYER_ANIM_BANDIT_CLIMB "BanditClimb"

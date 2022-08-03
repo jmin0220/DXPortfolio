@@ -13,12 +13,6 @@ void Bandit::MoveUpdate(float _DeltaTime, const StateInfo& _Info)
 	CommonMoveUpdate();
 }
 
-
-void Bandit::ShootUpdate(float _DeltaTime, const StateInfo& _Info)
-{
-
-}
-
 void Bandit::Skill1Update(float _DeltaTime, const StateInfo& _Info)
 {
 
@@ -61,14 +55,9 @@ void Bandit::MoveStart(const StateInfo& _Info)
 	CommonMoveStart();
 }
 
-void Bandit::ShootStart(const StateInfo& _Info)
-{
-	CommonShootStart();
-}
-
 void Bandit::Skill1Start(const StateInfo& _Info)
 {
-
+	CommonSkill1Start();
 }
 
 void Bandit::Skill2Start(const StateInfo& _Info)
@@ -104,11 +93,6 @@ void Bandit::IdleEnd(const StateInfo& _Info)
 }
 
 void Bandit::MoveEnd(const StateInfo& _Info)
-{
-
-}
-
-void Bandit::ShootEnd(const StateInfo& _Info)
 {
 
 }

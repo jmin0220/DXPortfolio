@@ -36,10 +36,6 @@ protected:
 	bool IsMoveKeyPress();
 	bool IsMoveKeyUp();
 
-	bool IsShootKeyDown();
-	bool IsShootKeyPress();
-	bool IsShootKeyUp();
-
 	bool IsJumpKeyDown();
 	bool IsJumpKeyPress();
 	bool IsJumpKeyUp();
@@ -51,6 +47,22 @@ protected:
 	bool IsDownKeyDown();
 	bool IsDownKeyPress();
 	bool IsDownKeyUp();
+
+	bool IsSkill1KeyDown();
+	bool IsSkill1KeyPress();
+	bool IsSkill1KeyUp();
+
+	bool IsSkill2KeyDown();
+	bool IsSkill2KeyPress();
+	bool IsSkill2KeyUp();
+
+	bool IsSkill3KeyDown();
+	bool IsSkill3KeyPress();
+	bool IsSkill3KeyUp();
+
+	bool IsSkill4KeyDown();
+	bool IsSkill4KeyPress();
+	bool IsSkill4KeyUp();
 
 	// 업데이트 함수
 	void CheckNegativeX();
@@ -72,7 +84,6 @@ protected:
 
 	virtual void IdleStart(const StateInfo& _Info) {};
 	virtual void MoveStart(const StateInfo& _Info) {};
-	virtual void ShootStart(const StateInfo& _Info) {};
 	virtual void Skill1Start(const StateInfo& _Info) {};
 	virtual void Skill2Start(const StateInfo& _Info) {};
 	virtual void Skill3Start(const StateInfo& _Info) {};
@@ -82,7 +93,6 @@ protected:
 
 	virtual void IdleUpdate(float _DeltaTime, const StateInfo& _Info) {};
 	virtual void MoveUpdate(float _DeltaTime, const StateInfo& _Info) {};
-	virtual void ShootUpdate(float _DeltaTime, const StateInfo& _Info) {};
 	virtual void Skill1Update(float _DeltaTime, const StateInfo& _Info) {};
 	virtual void Skill2Update(float _DeltaTime, const StateInfo& _Info) {};
 	virtual void Skill3Update(float _DeltaTime, const StateInfo& _Info) {};
@@ -92,7 +102,6 @@ protected:
 
 	virtual void IdleEnd(const StateInfo& _Info) {};
 	virtual void MoveEnd(const StateInfo& _Info) {};
-	virtual void ShootEnd(const StateInfo& _Info) {};
 	virtual void Skill1End(const StateInfo& _Info) {};
 	virtual void Skill2End(const StateInfo& _Info) {};
 	virtual void Skill3End(const StateInfo& _Info) {};
@@ -107,7 +116,6 @@ protected:
 
 	void CommonIdleStart();
 	void CommonMoveStart();
-	void CommonShootStart();
 	void CommonSkill1Start();
 	void CommonSkill2Start();
 	void CommonSkill3Start();
@@ -117,7 +125,6 @@ protected:
 
 	void CommonIdleUpdate();
 	void CommonMoveUpdate();
-	void CommonShootUpdate();
 	void CommonSkill1Update();
 	void CommonSkill2Update();
 	void CommonSkill3Update();
@@ -127,7 +134,6 @@ protected:
 
 	void CommonIdleEnd();
 	void CommonMoveEnd();
-	void CommonShootEnd();
 	void CommonSkill1End();
 	void CommonSkill2End();
 	void CommonSkill3End();

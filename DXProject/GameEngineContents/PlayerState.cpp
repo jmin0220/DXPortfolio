@@ -19,31 +19,35 @@ void Player::CommonMoveStart()
 }
 
 
-void Player::CommonShootStart()
-{
-	// 애니메이션 전환
-	Renderer_->ChangeFrameAnimation(PLAYER_ANIM_SHOOT);
-	Renderer_->ScaleToTexture();
-}
-
-
 void Player::CommonSkill1Start()
 {
+	// 애니메이션 전환
+	Renderer_->ChangeFrameAnimation(PLAYER_ANIM_SKILL1);
+	Renderer_->ScaleToTexture();
 }
 
 
 void Player::CommonSkill2Start()
 {
+	// 애니메이션 전환
+	Renderer_->ChangeFrameAnimation(PLAYER_ANIM_SKILL2);
+	Renderer_->ScaleToTexture();
 }
 
 
 void Player::CommonSkill3Start()
 {
+	// 애니메이션 전환
+	Renderer_->ChangeFrameAnimation(PLAYER_ANIM_SKILL3);
+	Renderer_->ScaleToTexture();
 }
 
 
 void Player::CommonSkill4Start()
 {
+	// 애니메이션 전환
+	Renderer_->ChangeFrameAnimation(PLAYER_ANIM_SKILL4);
+	Renderer_->ScaleToTexture();
 }
 
 
@@ -65,12 +69,27 @@ void Player::CommonDeathStart()
 
 void Player::CommonIdleUpdate()
 {
-	if (true == IsShootKeyPress())
+	if (true == IsSkill1KeyPress())
 	{
-		StateManager_.ChangeState(PLAYER_STATE_SHOOT);
+		StateManager_.ChangeState(PLAYER_STATE_SKILL1);
 		return;
 	}
 
+	if (true == IsSkill2KeyPress())
+	{
+		StateManager_.ChangeState(PLAYER_STATE_SKILL2);
+		return;
+	}
+	if (true == IsSkill3KeyPress())
+	{
+		StateManager_.ChangeState(PLAYER_STATE_SKILL3);
+		return;
+	}
+	if (true == IsSkill4KeyPress())
+	{
+		StateManager_.ChangeState(PLAYER_STATE_SKILL4);
+		return;
+	}
 	// 이동키가 눌리면 이동
 	if (true == IsMoveKeyPress())
 	{
@@ -106,9 +125,9 @@ void Player::CommonIdleUpdate()
 void Player::CommonMoveUpdate()
 {
 	// 공격키가 눌리면 스테이트 전환
-	if (true == IsShootKeyPress())
+	if (true == IsSkill1KeyPress())
 	{
-		StateManager_.ChangeState(PLAYER_STATE_SHOOT);
+		StateManager_.ChangeState(PLAYER_STATE_SKILL1);
 		return;
 	}
 
@@ -178,12 +197,6 @@ void Player::CommonMoveUpdate()
 		GetTransform().SetWorldMove(GetTransform().GetDownVector() * Speed_ * DeltaTime_ * 10);
 	}
 }
-
-
-void Player::CommonShootUpdate()
-{
-}
-
 
 void Player::CommonSkill1Update()
 {
@@ -264,11 +277,6 @@ void Player::CommonIdleEnd()
 
 
 void Player::CommonMoveEnd()
-{
-}
-
-
-void Player::CommonShootEnd()
 {
 }
 
