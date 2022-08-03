@@ -90,6 +90,7 @@ void Player::CommonIdleUpdate()
 		StateManager_.ChangeState(PLAYER_STATE_SKILL4);
 		return;
 	}
+
 	// 이동키가 눌리면 이동
 	if (true == IsMoveKeyPress())
 	{
@@ -128,6 +129,22 @@ void Player::CommonMoveUpdate()
 	if (true == IsSkill1KeyPress())
 	{
 		StateManager_.ChangeState(PLAYER_STATE_SKILL1);
+		return;
+	}
+
+	if (true == IsSkill2KeyPress())
+	{
+		StateManager_.ChangeState(PLAYER_STATE_SKILL2);
+		return;
+	}
+	if (true == IsSkill3KeyPress())
+	{
+		StateManager_.ChangeState(PLAYER_STATE_SKILL3);
+		return;
+	}
+	if (true == IsSkill4KeyPress())
+	{
+		StateManager_.ChangeState(PLAYER_STATE_SKILL4);
 		return;
 	}
 

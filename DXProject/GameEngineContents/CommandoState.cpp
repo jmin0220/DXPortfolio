@@ -25,7 +25,29 @@ void Commando::Skill2Update(float _DeltaTime, const StateInfo& _Info)
 
 void Commando::Skill3Update(float _DeltaTime, const StateInfo& _Info)
 {
+	if (MoveDir_.CompareInt3D(float4::LEFT))
+	{
+		if (true == GroundLeftCheck())
+		{
+			return;
+		}
 
+		GetTransform().SetWorldMove(GetTransform().GetLeftVector() * Speed_ * 3 * DeltaTime_);
+
+		return;
+	}
+
+	if (MoveDir_.CompareInt3D(float4::RIGHT))
+	{
+		if (true == GroundRightCheck())
+		{
+			return;
+		}
+
+		GetTransform().SetWorldMove(GetTransform().GetRightVector() * Speed_ * 3 * DeltaTime_);
+
+		return;
+	}
 }
 
 void Commando::Skill4Update(float _DeltaTime, const StateInfo& _Info)
