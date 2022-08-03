@@ -32,6 +32,8 @@ protected:
 	virtual void StateInit() {};
 
 	// 키입력 관련 함수
+#pragma region KeyInput
+
 	bool IsMoveKeyDown();
 	bool IsMoveKeyPress();
 	bool IsMoveKeyUp();
@@ -63,6 +65,8 @@ protected:
 	bool IsSkill4KeyDown();
 	bool IsSkill4KeyPress();
 	bool IsSkill4KeyUp();
+#pragma endregion
+
 
 	// 업데이트 함수
 	void CheckNegativeX();
@@ -142,6 +146,8 @@ protected:
 	void CommonDeathEnd();
 #pragma endregion
 
+	// 기능
+	bool CanClimb();
 
 	GameEngineTextureRenderer* Renderer_;
 	float DeltaTime_;
@@ -170,7 +176,5 @@ protected:
 	// 스킬창등의 UI
 	HUD* HUD_;
 
-private:
-	
 };
 

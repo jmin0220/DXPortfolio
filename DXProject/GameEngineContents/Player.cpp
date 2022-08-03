@@ -343,7 +343,12 @@ bool Player::IsSkill4KeyUp()
 
 void Player::CheckNegativeX()
 {
-	if (MoveDir_.CompareInt2D(float4::LEFT))
+	if (true == IsClimb_)
+	{
+		return;
+	}
+
+	if (MoveDir_.CompareInt3D(float4::LEFT))
 	{
 		// 좌우반전
 		Renderer_->GetTransform().PixLocalNegativeX();
@@ -354,7 +359,7 @@ void Player::CheckNegativeX()
 	}
 
 	// TODO::애니메이션의 프레임에 따라서 피봇값을 조절할 필요 있음.
-	Renderer_->SetPivot(PIVOTMODE::LEFT);
+	Renderer_->SetPivot(PIVOTMODE::CENTER);
 }
 
 // 카메라 이동 업데이트
@@ -543,4 +548,26 @@ bool Player::GroundLeftCheck()
 	}
 
 	return true;
+}
+
+
+bool Player::CanClimb()
+{
+	float4 ColorCenter[4] = {};
+
+	// 밧줄의 4픽셀이 모두 겹쳐져야 줄타기
+	ColorCenter[0] = ColMap_->GetPixel(ColorCheckPos_.ix(), ColorCheckPos_.iy());
+	ColorCenter[1] = ColMap_->GetPixel(ColorCheckPos_.ix() - 1, ColorCheckPos_.iy());
+	ColorCenter[2] = ColMap_->GetPixel(ColorCheckPos_.ix() + 1, ColorCheckPos_.iy());
+	ColorCenter[3] = ColMap_->GetPixel(ColorCheckPos_.ix() + 2, ColorCheckPos_.iy());
+
+	if (true == ColorCenter[0].CompareInt4D({ 0.0f, 1.0f, 0.0f }) &&
+		true == ColorCenter[1].CompareInt4D({ 0.0f, 1.0f, 0.0f }) &&
+		true == ColorCenter[2].CompareInt4D({ 0.0f, 1.0f, 0.0f }) &&
+		true == ColorCenter[3].CompareInt4D({ 0.0f, 1.0f, 0.0f }))
+	{
+		return true;
+	}
+
+	return false;
 }

@@ -95,26 +95,13 @@ void Player::CommonIdleUpdate()
 	if (true == IsMoveKeyPress())
 	{
 		StateManager_.ChangeState(PLAYER_STATE_MOVE);
-		return;
 	}
 
+	// Climb
 	if (true == IsUpKeyPress())
 	{
-		float4 ColorCenter = ColMap_->GetPixel(ColorCheckPos_.ix(), ColorCheckPos_.iy());
-
-		if (true == ColorCenter.CompareInt4D({ 0.0f, 1.0f, 0.0f }))
+		if (true == CanClimb())
 		{
-
-			std::string r = std::to_string(ColorCenter.r);
-			std::string g = std::to_string(ColorCenter.g);
-			std::string b = std::to_string(ColorCenter.b);
-			std::string x = std::to_string(this->GetTransform().GetWorldPosition().ix());
-			std::string y = std::to_string(-this->GetTransform().GetWorldPosition().iy());
-
-			GameEngineDebug::OutPutString("ChangeClimb----------------------------------------------");
-			GameEngineDebug::OutPutString("RGB > " + r + ", " + g + ", " + b);
-			GameEngineDebug::OutPutString("POS > " + x + ", " + y);
-
 			StateManager_.ChangeState(PLAYER_STATE_CLIMB);
 		}
 
@@ -182,26 +169,13 @@ void Player::CommonMoveUpdate()
 	// Climb
 	if (true == IsUpKeyPress())
 	{
-		float4 ColorCenter = ColMap_->GetPixel(ColorCheckPos_.ix(), ColorCheckPos_.iy());
-
-		if (true == ColorCenter.CompareInt4D({ 0.0f, 1.0f, 0.0f }))
+		if (true == CanClimb())
 		{
-			//std::string r = std::to_string(ColorCenter.r);
-			//std::string g = std::to_string(ColorCenter.g);
-			//std::string b = std::to_string(ColorCenter.b);
-			//std::string x = std::to_string(this->GetTransform().GetWorldPosition().x);
-			//std::string y = std::to_string(-this->GetTransform().GetWorldPosition().y);
-
-			//GameEngineDebug::OutPutString("ChangeClimb###############################################");
-			//GameEngineDebug::OutPutString("RGB > " + r + ", " + g + ", " + b);
-			//GameEngineDebug::OutPutString("POS > " + x + ", " + y);
-
 			StateManager_.ChangeState(PLAYER_STATE_CLIMB);
 		}
 
 		return;
 	}
-
 
 	// 디버그용 키
 	if (true == GameEngineInput::GetInst()->IsPress(PLAYER_KEY_DEBUG_UP))
@@ -238,36 +212,12 @@ void Player::CommonSkill4Update()
 void Player::CommonClimbUpdate()
 {
 	// TODO::밧줄 범위를 벗어나면 Climb상태 -> Idle로 전환
-
-	float4 ColorCenter = ColMap_->GetPixel(ColorCheckPos_.ix(), ColorCheckPos_.iy());
-
-	if (false == ColorCenter.CompareInt4D({ 0.0f, 1.0f, 0.0f }))
+	if (false == CanClimb())
 	{
-
-		//std::string r = std::to_string(ColorCenter.r);
-		//std::string g = std::to_string(ColorCenter.g);
-		//std::string b = std::to_string(ColorCenter.b);
-		//std::string x = std::to_string(this->GetTransform().GetWorldPosition().x);
-		//std::string y = std::to_string(-this->GetTransform().GetWorldPosition().y);
-
-		//GameEngineDebug::OutPutString("ChangeIdle----------------------------------------------");
-		//GameEngineDebug::OutPutString("RGB > " + r + ", " + g + ", " + b);
-		//GameEngineDebug::OutPutString("POS > " + x + ", " + y);
-
 		StateManager_.ChangeState(PLAYER_STATE_IDLE);
 
 		return;
 	}
-
-	//std::string r = std::to_string(ColorCenter.r);
-	//std::string g = std::to_string(ColorCenter.g);
-	//std::string b = std::to_string(ColorCenter.b);
-	//std::string x = std::to_string(this->GetTransform().GetWorldPosition().x);
-	//std::string y = std::to_string(-this->GetTransform().GetWorldPosition().y);
-
-	//GameEngineDebug::OutPutString("StateCLimb====================================================");
-	//GameEngineDebug::OutPutString("RGB > " + r + ", " + g + ", " + b);
-	//GameEngineDebug::OutPutString("POS > " + x + ", " + y);
 
 	// climb상태에서 위아래 조작
 	if (true == IsUpKeyPress())

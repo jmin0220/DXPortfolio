@@ -23,7 +23,7 @@ void Commando::AnimationInit()
 	Renderer_->CreateFrameAnimationFolder(PLAYER_ANIM_COMMANDO_SKILL4_2, FrameAnimation_DESC(TEX_PLAYER_ANIM_COMMANDO_SKILL4_2, FrameAnimDelay_, false));
 	Renderer_->CreateFrameAnimationFolder(PLAYER_ANIM_WALK, FrameAnimation_DESC(TEX_PLAYER_ANIM_COMMANDO_WALK, FrameAnimDelay_, true));
 	Renderer_->CreateFrameAnimationFolder(PLAYER_ANIM_JUMP, FrameAnimation_DESC(TEX_PLAYER_ANIM_COMMANDO_JUMP, FrameAnimDelay_, false));
-	Renderer_->CreateFrameAnimationFolder(PLAYER_ANIM_CLIMB, FrameAnimation_DESC(TEX_PLAYER_ANIM_COMMANDO_CLIMB, FrameAnimDelay_, true));
+	Renderer_->CreateFrameAnimationFolder(PLAYER_ANIM_CLIMB, FrameAnimation_DESC(TEX_PLAYER_ANIM_COMMANDO_CLIMB, FrameAnimDelay_ * 3, true));
 	Renderer_->CreateFrameAnimationFolder(PLAYER_ANIM_DEATH, FrameAnimation_DESC(TEX_PLAYER_ANIM_COMMANDO_DEATH, FrameAnimDelay_, false));
 
 	// 프레임마다 실행할 함수
@@ -47,7 +47,6 @@ void Commando::AnimationInit()
 	Renderer_->AnimationBindEnd(PLAYER_ANIM_COMMANDO_SKILL4_2, &Commando::EndAnimation, this);
 	Renderer_->AnimationBindEnd(PLAYER_ANIM_WALK, &Commando::EndAnimation, this);
 	Renderer_->AnimationBindEnd(PLAYER_ANIM_JUMP, &Commando::EndAnimation, this);
-	Renderer_->AnimationBindEnd(PLAYER_ANIM_CLIMB, &Commando::EndAnimation, this);
 	Renderer_->AnimationBindEnd(PLAYER_ANIM_DEATH, &Commando::EndAnimation, this);
 
 	// 초기 애니메이션 전환
@@ -63,7 +62,7 @@ void Commando::StateInit()
 	StateManager_.CreateStateMember(PLAYER_STATE_SKILL2, this, &Commando::Skill2Update, &Commando::Skill2Start, &Commando::Skill2End);
 	StateManager_.CreateStateMember(PLAYER_STATE_SKILL3, this, &Commando::Skill3Update, &Commando::Skill3Start, &Commando::Skill3End);
 	StateManager_.CreateStateMember(PLAYER_STATE_SKILL4, this, &Commando::Skill4Update, &Commando::Skill4Start, &Commando::Skill4End);
-	StateManager_.CreateStateMember(PLAYER_STATE_CLIMB, this, &Commando::ClimbUpdate, &Commando::ClimbStart, &Commando::ClimbEnd);
+	StateManager_.CreateStateMember(PLAYER_STATE_CLIMB, this, &Commando::ClimbUpdate, &Commando::ClimbStart);
 	StateManager_.CreateStateMember(PLAYER_STATE_DEATH, this, &Commando::DeathUpdate, &Commando::DeathStart, &Commando::DeathEnd);
 
 	// 초기 스테이트전환
