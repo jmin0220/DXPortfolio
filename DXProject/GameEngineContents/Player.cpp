@@ -412,6 +412,16 @@ void Player::PlayerJump()
  		IsGround_ = false;
 		JumpSpeed_ = -150.0f;
 	}
+
+	// Climb상태이면서 방향키를 입력중일 경우에도 점프 가능
+	if (true == IsClimb_ &&
+		true == IsMoveKeyPress())
+	{
+		StateManager_.ChangeState(PLAYER_STATE_IDLE);
+
+		IsGround_ = false;
+		JumpSpeed_ = -150.0f;
+	}
 }
 
 // 하단 충돌 체크 후 중력처리
