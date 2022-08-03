@@ -1,5 +1,6 @@
 #include "PreCompile.h"
 #include "HUD.h"
+#include <GameEngineCore/GameEngineFontRenderer.h>
 
 HUD::HUD() 
 	: HUDRenderer_(nullptr)
@@ -62,4 +63,8 @@ void HUD::Start()
 	SkillRenderer_[2]->GetTransform().SetWorldPosition(SkillPos_[2]);
 	SkillRenderer_[3]->ScaleToTexture();
 	SkillRenderer_[3]->GetTransform().SetWorldPosition(SkillPos_[3]);
+
+	GameEngineFontRenderer* FontRenderer_;
+	FontRenderer_ = CreateComponent<GameEngineFontRenderer>();
+	FontRenderer_->SetText("æ»≥Á«œººø‰");
 }
