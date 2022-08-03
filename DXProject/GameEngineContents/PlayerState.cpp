@@ -100,7 +100,16 @@ void Player::CommonIdleUpdate()
 	// Climb
 	if (true == IsUpKeyPress())
 	{
-		if (true == CanClimb())
+		if (true == CanClimb(1))
+		{
+			StateManager_.ChangeState(PLAYER_STATE_CLIMB);
+		}
+
+		return;
+	}
+	else if (true == IsDownKeyPress())
+	{
+		if (true == CanClimb(2))
 		{
 			StateManager_.ChangeState(PLAYER_STATE_CLIMB);
 		}
@@ -169,7 +178,16 @@ void Player::CommonMoveUpdate()
 	// Climb
 	if (true == IsUpKeyPress())
 	{
-		if (true == CanClimb())
+		if (true == CanClimb(1))
+		{
+			StateManager_.ChangeState(PLAYER_STATE_CLIMB);
+		}
+
+		return;
+	}
+	else if (true == IsDownKeyPress())
+	{
+		if (true == CanClimb(2))
 		{
 			StateManager_.ChangeState(PLAYER_STATE_CLIMB);
 		}
@@ -211,14 +229,6 @@ void Player::CommonSkill4Update()
 
 void Player::CommonClimbUpdate()
 {
-	// TODO::밧줄 범위를 벗어나면 Climb상태 -> Idle로 전환
-	if (false == CanClimb())
-	{
-		StateManager_.ChangeState(PLAYER_STATE_IDLE);
-
-		return;
-	}
-
 	// climb상태에서 위아래 조작
 	if (true == IsUpKeyPress())
 	{
@@ -227,6 +237,14 @@ void Player::CommonClimbUpdate()
 	if (true == IsDownKeyPress())
 	{
 		GetTransform().SetWorldMove(GetTransform().GetDownVector() * Speed_ * DeltaTime_);
+	}
+
+	// 밧줄 범위를 벗어나면 Climb상태 -> Idle로 전환
+	if (false == CanClimb(0) && false == CanClimb(2))
+	{
+		StateManager_.ChangeState(PLAYER_STATE_IDLE);
+
+		return;
 	}
 }
 

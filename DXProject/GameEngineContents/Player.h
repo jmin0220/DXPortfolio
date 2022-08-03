@@ -147,7 +147,7 @@ protected:
 #pragma endregion
 
 	// ±â´É
-	bool CanClimb();
+	bool CanClimb(int _CheckPosFlg);
 
 	GameEngineTextureRenderer* Renderer_;
 	float DeltaTime_;

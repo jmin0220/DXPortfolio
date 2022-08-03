@@ -550,24 +550,81 @@ bool Player::GroundLeftCheck()
 	return true;
 }
 
-
-bool Player::CanClimb()
+// ¹åÁÙÅ¸±â ÆÇÁ¤ ÇÔ¼ö
+bool Player::CanClimb(int _CheckPosFlg)
 {
-	float4 ColorCenter[4] = {};
+	// int _CheckPosFlg
+	// 0 = Top
+	// 1 = Center
+	// 2 = Bottom
 
-	// ¹åÁÙÀÇ 4ÇÈ¼¿ÀÌ ¸ðµÎ °ãÃÄÁ®¾ß ÁÙÅ¸±â
-	ColorCenter[0] = ColMap_->GetPixel(ColorCheckPos_.ix(), ColorCheckPos_.iy());
-	ColorCenter[1] = ColMap_->GetPixel(ColorCheckPos_.ix() - 1, ColorCheckPos_.iy());
-	ColorCenter[2] = ColMap_->GetPixel(ColorCheckPos_.ix() + 1, ColorCheckPos_.iy());
-	ColorCenter[3] = ColMap_->GetPixel(ColorCheckPos_.ix() + 2, ColorCheckPos_.iy());
-
-	if (true == ColorCenter[0].CompareInt4D({ 0.0f, 1.0f, 0.0f }) &&
-		true == ColorCenter[1].CompareInt4D({ 0.0f, 1.0f, 0.0f }) &&
-		true == ColorCenter[2].CompareInt4D({ 0.0f, 1.0f, 0.0f }) &&
-		true == ColorCenter[3].CompareInt4D({ 0.0f, 1.0f, 0.0f }))
+	switch (_CheckPosFlg)
 	{
-		return true;
-	}
+	case 0:
+	{
+		float4 Color[4] = {};
 
-	return false;
+		// ¹åÁÙÀÇ 4ÇÈ¼¿ÀÌ ¸ðµÎ °ãÃÄÁ®¾ß ÁÙÅ¸±â
+		Color[0] = ColMap_->GetPixel(ColorCheckPos_.ix(), ColorCheckPos_.iy() - Renderer_->GetCurTexture()->GetScale().hiy());
+		Color[1] = ColMap_->GetPixel(ColorCheckPos_.ix() - 1, ColorCheckPos_.iy() - Renderer_->GetCurTexture()->GetScale().hiy());
+		Color[2] = ColMap_->GetPixel(ColorCheckPos_.ix() + 1, ColorCheckPos_.iy() - Renderer_->GetCurTexture()->GetScale().hiy());
+		Color[3] = ColMap_->GetPixel(ColorCheckPos_.ix() + 2, ColorCheckPos_.iy() - Renderer_->GetCurTexture()->GetScale().hiy());
+
+		if (true == Color[0].CompareInt4D({ 0.0f, 1.0f, 0.0f }) &&
+			true == Color[1].CompareInt4D({ 0.0f, 1.0f, 0.0f }) &&
+			true == Color[2].CompareInt4D({ 0.0f, 1.0f, 0.0f }) &&
+			true == Color[3].CompareInt4D({ 0.0f, 1.0f, 0.0f }))
+		{
+			return true;
+		}
+
+		return false;
+	}
+		break;
+	case 1:
+	{
+		float4 Color[4] = {};
+
+		// ¹åÁÙÀÇ 4ÇÈ¼¿ÀÌ ¸ðµÎ °ãÃÄÁ®¾ß ÁÙÅ¸±â
+		Color[0] = ColMap_->GetPixel(ColorCheckPos_.ix(), ColorCheckPos_.iy());
+		Color[1] = ColMap_->GetPixel(ColorCheckPos_.ix() - 1, ColorCheckPos_.iy());
+		Color[2] = ColMap_->GetPixel(ColorCheckPos_.ix() + 1, ColorCheckPos_.iy());
+		Color[3] = ColMap_->GetPixel(ColorCheckPos_.ix() + 2, ColorCheckPos_.iy());
+
+		if (true == Color[0].CompareInt4D({ 0.0f, 1.0f, 0.0f }) &&
+			true == Color[1].CompareInt4D({ 0.0f, 1.0f, 0.0f }) &&
+			true == Color[2].CompareInt4D({ 0.0f, 1.0f, 0.0f }) &&
+			true == Color[3].CompareInt4D({ 0.0f, 1.0f, 0.0f }))
+		{
+			return true;
+		}
+
+		return false;
+	}
+		break;
+	case 2:
+	{
+		float4 Color[4] = {};
+
+		// ¹åÁÙÀÇ 4ÇÈ¼¿ÀÌ ¸ðµÎ °ãÃÄÁ®¾ß ÁÙÅ¸±â
+		Color[0] = ColMap_->GetPixel(ColorCheckPos_.ix(), ColorCheckPos_.iy() + Renderer_->GetCurTexture()->GetScale().hiy());
+		Color[1] = ColMap_->GetPixel(ColorCheckPos_.ix() - 1, ColorCheckPos_.iy() + Renderer_->GetCurTexture()->GetScale().hiy());
+		Color[2] = ColMap_->GetPixel(ColorCheckPos_.ix() + 1, ColorCheckPos_.iy() + Renderer_->GetCurTexture()->GetScale().hiy());
+		Color[3] = ColMap_->GetPixel(ColorCheckPos_.ix() + 2, ColorCheckPos_.iy() + Renderer_->GetCurTexture()->GetScale().hiy());
+
+		if (true == Color[0].CompareInt4D({ 0.0f, 1.0f, 0.0f }) &&
+			true == Color[1].CompareInt4D({ 0.0f, 1.0f, 0.0f }) &&
+			true == Color[2].CompareInt4D({ 0.0f, 1.0f, 0.0f }) &&
+			true == Color[3].CompareInt4D({ 0.0f, 1.0f, 0.0f }))
+		{
+			return true;
+		}
+
+		return false;
+	}
+		break;
+	default:
+		return false;
+		break;
+	}
 }

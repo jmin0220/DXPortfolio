@@ -62,7 +62,7 @@ void Commando::StateInit()
 	StateManager_.CreateStateMember(PLAYER_STATE_SKILL2, this, &Commando::Skill2Update, &Commando::Skill2Start, &Commando::Skill2End);
 	StateManager_.CreateStateMember(PLAYER_STATE_SKILL3, this, &Commando::Skill3Update, &Commando::Skill3Start, &Commando::Skill3End);
 	StateManager_.CreateStateMember(PLAYER_STATE_SKILL4, this, &Commando::Skill4Update, &Commando::Skill4Start, &Commando::Skill4End);
-	StateManager_.CreateStateMember(PLAYER_STATE_CLIMB, this, &Commando::ClimbUpdate, &Commando::ClimbStart);
+	StateManager_.CreateStateMember(PLAYER_STATE_CLIMB, this, &Commando::ClimbUpdate, &Commando::ClimbStart, &Commando::ClimbEnd);
 	StateManager_.CreateStateMember(PLAYER_STATE_DEATH, this, &Commando::DeathUpdate, &Commando::DeathStart, &Commando::DeathEnd);
 
 	// 초기 스테이트전환
