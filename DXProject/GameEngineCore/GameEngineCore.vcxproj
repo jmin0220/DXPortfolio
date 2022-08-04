@@ -31,6 +31,10 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="GameEngineCore.h" />
+    <ClInclude Include="GameEngineCoreDebug.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="GameEngineDefaultRenderer.h" />
     <ClInclude Include="GameEngineDepthStencil.h" />
     <ClInclude Include="GameEngineDepthStencilTexture.h">
@@ -121,6 +125,10 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="GameEngineCore.cpp" />
+    <ClCompile Include="GameEngineCoreDebug.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="GameEngineCore_Resources.cpp">
       <SubType>
       </SubType>
