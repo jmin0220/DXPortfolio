@@ -15,7 +15,7 @@ void Commando::AnimationInit()
 	Renderer_->SetSamplingModePoint();
 
 	// 局聪皋捞记 积己
-	Renderer_->CreateFrameAnimationFolder(PLAYER_ANIM_IDLE, FrameAnimation_DESC(TEX_PLAYER_ANIM_COMMANDO_IDLE, FrameAnimDelay_, false));
+	Renderer_->CreateFrameAnimationFolder(PLAYER_ANIM_IDLE, FrameAnimation_DESC(TEX_PLAYER_ANIM_COMMANDO_IDLE, FrameAnimDelay_, true));
 	Renderer_->CreateFrameAnimationFolder(PLAYER_ANIM_SKILL1, FrameAnimation_DESC(TEX_PLAYER_ANIM_COMMANDO_SKILL1, FrameAnimDelay_, false));
 	Renderer_->CreateFrameAnimationFolder(PLAYER_ANIM_SKILL2, FrameAnimation_DESC(TEX_PLAYER_ANIM_COMMANDO_SKILL2, FrameAnimDelay_, false));
 	Renderer_->CreateFrameAnimationFolder(PLAYER_ANIM_SKILL3, FrameAnimation_DESC(TEX_PLAYER_ANIM_COMMANDO_SKILL3, FrameAnimDelay_, false));

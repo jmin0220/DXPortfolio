@@ -187,6 +187,14 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="Lemurian.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Monster.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="ObjectGroup.h" />
     <ClInclude Include="Player.h">
       <SubType>
@@ -241,6 +249,14 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="HUD.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Lemurian.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Monster.cpp">
       <SubType>
       </SubType>
     </ClCompile>

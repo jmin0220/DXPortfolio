@@ -43,6 +43,9 @@
     <Filter Include="01_Actor\01_Play\Interface">
       <UniqueIdentifier>{9b8cc97b-5298-44a2-ae60-1b59d06f95b4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="01_Actor\01_Play\Monsters">
+      <UniqueIdentifier>{bc597eed-4c3f-409c-8793-363c2818149b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PreCompile.h">
@@ -99,6 +102,12 @@
     <ClInclude Include="HUD.h">
       <Filter>01_Actor\01_Play\Interface</Filter>
     </ClInclude>
+    <ClInclude Include="Monster.h">
+      <Filter>01_Actor\01_Play\Monsters</Filter>
+    </ClInclude>
+    <ClInclude Include="Lemurian.h">
+      <Filter>01_Actor\01_Play\Monsters</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PreCompile.cpp">
@@ -154,6 +163,12 @@
     </ClCompile>
     <ClCompile Include="HUD.cpp">
       <Filter>01_Actor\01_Play\Interface</Filter>
+    </ClCompile>
+    <ClCompile Include="Monster.cpp">
+      <Filter>01_Actor\01_Play\Monsters</Filter>
+    </ClCompile>
+    <ClCompile Include="Lemurian.cpp">
+      <Filter>01_Actor\01_Play\Monsters</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
