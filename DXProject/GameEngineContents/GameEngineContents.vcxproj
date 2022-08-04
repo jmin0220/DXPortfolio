@@ -195,6 +195,7 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="MonsterManager.h" />
     <ClInclude Include="ObjectGroup.h" />
     <ClInclude Include="Player.h">
       <SubType>
@@ -225,7 +226,6 @@
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="UnitFsm.h" />
     <ClInclude Include="Option.h" />
   </ItemGroup>
   <ItemGroup>
@@ -260,6 +260,7 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="MonsterManager.cpp" />
     <ClCompile Include="Player.cpp">
       <SubType>
       </SubType>

@@ -17,18 +17,36 @@ RiskOfRain::~RiskOfRain()
 
 void RiskOfRain::Start()
 {
-	// 캐릭터 애니메이션 로딩
-	GameEngineDirectory Dir;
-	Dir.MoveParentToExitsChildDirectory(DIR_RESOURCE);
-	Dir.Move(DIR_RESOURCE);
-	Dir.Move(DIR_TEXTURE);
-	Dir.Move(DIR_CHARACTERS);
-
-	std::vector<GameEngineDirectory> RecursiveDir = Dir.GetRecursiveAllDirectory();
-
-	for (auto& TmpDir : RecursiveDir)
 	{
-		GameEngineFolderTexture::Load(TmpDir.GetFullPath());
+		// 캐릭터 애니메이션 로딩
+		GameEngineDirectory Dir;
+		Dir.MoveParentToExitsChildDirectory(DIR_RESOURCE);
+		Dir.Move(DIR_RESOURCE);
+		Dir.Move(DIR_TEXTURE);
+		Dir.Move(DIR_CHARACTERS);
+
+		std::vector<GameEngineDirectory> RecursiveDir = Dir.GetRecursiveAllDirectory();
+
+		for (auto& TmpDir : RecursiveDir)
+		{
+			GameEngineFolderTexture::Load(TmpDir.GetFullPath());
+		}
+	}
+
+	{
+		// 캐릭터 애니메이션 로딩
+		GameEngineDirectory Dir;
+		Dir.MoveParentToExitsChildDirectory(DIR_RESOURCE);
+		Dir.Move(DIR_RESOURCE);
+		Dir.Move(DIR_TEXTURE);
+		Dir.Move(DIR_MONSTER);
+
+		std::vector<GameEngineDirectory> RecursiveDir = Dir.GetRecursiveAllDirectory();
+
+		for (auto& TmpDir : RecursiveDir)
+		{
+			GameEngineFolderTexture::Load(TmpDir.GetFullPath());
+		}
 	}
 
 	// 스테이지 로딩

@@ -24,6 +24,13 @@
 #define PLAYER_STATE_CLIMB "Climb"
 #define PLAYER_STATE_DEATH "Death"
 
+// 몬스터 FSM
+#define MONSTER_FSM_IDLE "MonsterIdle"
+#define MONSTER_FSM_MOVE "MonsterMove"
+#define MONSTER_FSM_CHASE "MonsterChase"
+#define MONSTER_FSM_ATTACK "MonsterAttack"
+#define MONSTER_FSM_DEATH "MonsterDeath"
+
 // 플레이어 애니메이션
 #define PLAYER_ANIM_IDLE "PlayerIdle"
 #define PLAYER_ANIM_SKILL1 "PlayerSkill1"
@@ -38,6 +45,16 @@
 #define COMMANDO_ANIM_SELECT "CommandoSelect"
 #define BANDIT_ANIM_SELECT "BanditSelect"
 
+// 몬스터 애니메이션
+// Lemurian
+#define LEMURIAN_ANIM_IDLE "LemurianIdle"
+#define LEMURIAN_ANIM_JUMP "LemurianJump"
+#define LEMURIAN_ANIM_SHOOT "LemurianShoot"
+#define LEMURIAN_ANIM_SPAWN "LemurianSpawn"
+#define LEMURIAN_ANIM_WALK "LemurianWalk"
+#define LEMURIAN_ANIM_DEATH "LemurianDeath"
+
+
 // 캐릭터별 특수 애니메이션
 #define PLAYER_ANIM_COMMANDO_SKILL4_1 "CommandoSkill4_1"
 #define PLAYER_ANIM_COMMANDO_SKILL4_2 "CommandoSkill4_2"
@@ -48,8 +65,10 @@
 #define DIR_RESOURCE "Resources"
 #define DIR_TEXTURE "Texture"
 #define DIR_CHARACTERS "Characters"
+#define DIR_MONSTER "Monster"
 #define DIR_STAGE "Stage"
 #define DIR_INTERFACE "Interface"
+#define DIR_OBJECT "Object"
 
 // 레벨
 #define LEVEL_TITLE "Title"
@@ -58,13 +77,15 @@
 #define LEVEL_STAGE1 "Stage1"
 
 // 텍스쳐
+// 배경
 #define TEX_TITLE_BG "Title.png"
 #define TEX_STAGE_ONE "stage1.png"
 #define TEX_STAGE_ONE_COLLISION "stage1Collision.png"
-
+// 선택창
 #define TEX_SELECTED_COMMANDO "CommandoSelected.png"
 #define TEX_SELECTED_BANDIT "BanditSelected.png"
-
+// Player
+// Commando
 #define TEX_PLAYER_ANIM_COMMANDO_IDLE "CommandoIdle"
 #define TEX_PLAYER_ANIM_COMMANDO_SKILL1 "CommandoSkill1"
 #define TEX_PLAYER_ANIM_COMMANDO_SKILL2 "CommandoSkill2"
@@ -76,7 +97,7 @@
 #define TEX_PLAYER_ANIM_COMMANDO_CLIMB "CommandoClimb"
 #define TEX_PLAYER_ANIM_COMMANDO_DEATH "CommandoDeath"
 #define TEX_PLAYER_ANIM_COMMANDO_SELECT "CommandoSelect"
-
+// Bandit
 #define TEX_PLAYER_ANIM_BANDIT_IDLE "BanditIdle"
 #define TEX_PLAYER_ANIM_BANDIT_SKILL1 "BanditSkill1"
 #define TEX_PLAYER_ANIM_BANDIT_SKILL2 "BanditSkill2"
@@ -89,6 +110,16 @@
 #define TEX_PLAYER_ANIM_BANDIT_DEATH "BanditDeath"
 #define TEX_PLAYER_ANIM_BANDIT_SELECT "BanditSelect"
 
+// Monster
+// Lemurian
+#define TEX_MONSTER_ANIM_LEMURIAN_IDLE "LemurianIdle"
+#define TEX_MONSTER_ANIM_LEMURIAN_JUMP "LemurianJump"
+#define TEX_MONSTER_ANIM_LEMURIAN_SHOOT "LemurianShoot"
+#define TEX_MONSTER_ANIM_LEMURIAN_SPAWN "LemurianSpawn"
+#define TEX_MONSTER_ANIM_LEMURIAN_WALK "LemurianWalk"
+
+
+// 인터페이스
 #define TEX_INTERFACE_HUD "HUD.png"
 
 // 스킬 아이콘

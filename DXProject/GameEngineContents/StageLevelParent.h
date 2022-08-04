@@ -1,6 +1,7 @@
 #pragma once
 #include <GameEngineCore/GameEngineLevel.h>
 #include "Option.h"
+#include "MonsterManager.h"
 
 // Ό³Έν :
 class GameEngineActor;
@@ -30,8 +31,7 @@ protected:
 	Player* Player_;
 	StageGround* StageActor_;
 	Option Option_;
-	
+	MonsterManager* MonsterManager_;
 private:
-
 };
 

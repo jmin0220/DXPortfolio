@@ -490,8 +490,6 @@ void Player::GroundFallCheck()
 			}
 		}
 	}
-
-
 }
 
 // 캐릭터 오른쪽 맵 충돌 체크

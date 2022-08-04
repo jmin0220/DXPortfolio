@@ -69,9 +69,6 @@
     <ClInclude Include="ObjectGroup.h">
       <Filter>98_Global</Filter>
     </ClInclude>
-    <ClInclude Include="UnitFsm.h">
-      <Filter>98_Global</Filter>
-    </ClInclude>
     <ClInclude Include="TitleBG.h">
       <Filter>01_Actor\00_StartEnd</Filter>
     </ClInclude>
@@ -106,6 +103,9 @@
       <Filter>01_Actor\01_Play\Monsters</Filter>
     </ClInclude>
     <ClInclude Include="Lemurian.h">
+      <Filter>01_Actor\01_Play\Monsters</Filter>
+    </ClInclude>
+    <ClInclude Include="MonsterManager.h">
       <Filter>01_Actor\01_Play\Monsters</Filter>
     </ClInclude>
   </ItemGroup>
@@ -168,6 +168,9 @@
       <Filter>01_Actor\01_Play\Monsters</Filter>
     </ClCompile>
     <ClCompile Include="Lemurian.cpp">
+      <Filter>01_Actor\01_Play\Monsters</Filter>
+    </ClCompile>
+    <ClCompile Include="MonsterManager.cpp">
       <Filter>01_Actor\01_Play\Monsters</Filter>
     </ClCompile>
   </ItemGroup>

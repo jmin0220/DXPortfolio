@@ -24,6 +24,8 @@ void Stage1Level::Start()
 	CameraActor->GetCameraComponent()->SetProjectionMode(CAMERAPROJECTIONMODE::Orthographic);
 
 	StageActor_ = CreateActor<StageGround>(ObjectGroup::Stage);
+	MonsterManager_ = CreateActor<MonsterManager>();
+
 }
 
 void Stage1Level::Update(float _DeltaTime)
@@ -58,4 +60,5 @@ void Stage1Level::OnEvent()
 
 	// 플레이어에게 충돌맵 설정
 	Player_->SetColMapInfo(StageActor_->GetColStage()->GetCurTexture());
+	MonsterManager_->SetColMapInfo(StageActor_->GetColStage()->GetCurTexture());
 }
