@@ -33,7 +33,7 @@ public:
 		return Context_;
 	}
 
-	static GameEngineRenderTarget* GetBackBuffer()
+	static GameEngineRenderTarget* GetBackBuffer() 
 	{
 		return BackBufferTarget;
 	}

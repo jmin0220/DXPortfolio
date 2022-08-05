@@ -23,7 +23,7 @@ public:
 
 	void SetText(const std::string& _Text, const std::string& _Font = "µ¸¿ò");
 
-	std::string GetText()
+	std::string GetText() 
 	{
 		return Text;
 	}

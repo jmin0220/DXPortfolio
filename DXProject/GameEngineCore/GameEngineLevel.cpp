@@ -6,8 +6,9 @@
 #include "GameEngineCameraActor.h"
 #include "GameEngineCollision.h"
 #include "GameEngineGUI.h"
+#include "GameEngineCoreDebug.h"
 
-GameEngineLevel::GameEngineLevel()
+GameEngineLevel::GameEngineLevel() 
 {
 	Cameras.resize(static_cast<unsigned int>(CAMERAORDER::UICAMERA));
 
@@ -26,7 +27,7 @@ GameEngineLevel::GameEngineLevel()
 	}
 }
 
-GameEngineLevel::~GameEngineLevel()
+GameEngineLevel::~GameEngineLevel() 
 {
 	for (const std::pair<int, std::list<GameEngineActor*>>& Group : AllActors)
 	{
@@ -47,7 +48,7 @@ void GameEngineLevel::ActorUpdate(float _DeltaTime)
 {
 	for (const std::pair<int, std::list<GameEngineActor*>>& Group : AllActors)
 	{
-		float ScaleTime = GameEngineTime::GetInst()->GetDeltaTime(Group.first);
+		// float ScaleTime = GameEngineTime::GetInst()->GetDeltaTime(Group.first);
 		for (GameEngineActor* const Actor : Group.second)
 		{
 			if (false == Actor->IsUpdate())
@@ -55,10 +56,41 @@ void GameEngineLevel::ActorUpdate(float _DeltaTime)
 				continue;
 			}
 
-			Actor->AllUpdate(ScaleTime, _DeltaTime);
+			Actor->AllUpdate(_DeltaTime);
 		}
 	}
+}
 
+void GameEngineLevel::ActorOnEvent() 
+{
+	for (const std::pair<int, std::list<GameEngineActor*>>& Group : AllActors)
+	{
+		float ScaleTime = GameEngineTime::GetInst()->GetDeltaTime(Group.first);
+		for (GameEngineActor* const Actor : Group.second)
+		{
+			if (false == Actor->IsUpdate())
+			{
+				continue;
+			}
+			Actor->OnEvent();
+		}
+	}
+}
+
+void GameEngineLevel::ActorOffEvent()
+{
+	for (const std::pair<int, std::list<GameEngineActor*>>& Group : AllActors)
+	{
+		float ScaleTime = GameEngineTime::GetInst()->GetDeltaTime(Group.first);
+		for (GameEngineActor* const Actor : Group.second)
+		{
+			if (false == Actor->IsUpdate())
+			{
+				continue;
+			}
+			Actor->OffEvent();
+		}
+	}
 }
 
 void GameEngineLevel::PushRenderer(GameEngineRenderer* _Renderer, int _CameraOrder)
@@ -118,7 +150,11 @@ void GameEngineLevel::Render(float _DelataTime)
 		Cameras[i]->Render(_DelataTime);
 	}
 
+	// 여기서 그려져야 합니다.
+	GameEngineDebug::Debug3DRender();
+
 	GameEngineGUI::GUIRender(this, _DelataTime);
+
 
 	GameEngineDevice::RenderEnd();
 }
@@ -141,7 +177,6 @@ void GameEngineLevel::Release(float _DelataTime)
 
 		Cameras[i]->Release(_DelataTime);
 	}
-
 	{
 		std::map<int, std::list<GameEngineCollision*>>::iterator StartGroupIter = AllCollisions.begin();
 		std::map<int, std::list<GameEngineCollision*>>::iterator EndGroupIter = AllCollisions.end();
@@ -165,7 +200,6 @@ void GameEngineLevel::Release(float _DelataTime)
 			}
 		}
 	}
-
 	std::map<int, std::list<GameEngineActor*>>::iterator StartGroupIter = AllActors.begin();
 	std::map<int, std::list<GameEngineActor*>>::iterator EndGroupIter = AllActors.end();
 
@@ -184,11 +218,11 @@ void GameEngineLevel::Release(float _DelataTime)
 			{
 				GroupStart = Group.erase(GroupStart);
 			}
-			else
+			else 
 			{
 				++GroupStart;
 			}
-
+			
 		}
 	}
 
@@ -230,7 +264,7 @@ void GameEngineLevel::PushCollision(GameEngineCollision* _Collision, int _Order)
 void GameEngineLevel::OverChildMove(GameEngineLevel* _NextLevel)
 {
 	// 플레이 레벨
-
+	
 	// 로그인 레벨
 	// _NextLevel
 	{

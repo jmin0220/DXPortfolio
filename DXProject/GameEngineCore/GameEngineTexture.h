@@ -47,7 +47,7 @@ public:
 	void VSSetting(int _BindPoint);
 	void PSSetting(int _BindPoint);
 
-	size_t GetCutCount()
+	size_t GetCutCount() 
 	{
 		return CutData.size();
 	}
@@ -66,7 +66,7 @@ public:
 
 		return CutData[_Index];
 	}
-
+	
 	void TextureLoad(const std::string& _Path);
 
 	float4 GetScale()
@@ -75,8 +75,8 @@ public:
 	}
 
 	float4 GetCutScale(int _Index)
-	{
-		return { CutData[_Index].SizeX * static_cast<float>(Desc.Width), CutData[_Index].SizeY * static_cast<float>(Desc.Height) };
+	{					
+		return { CutData[_Index].SizeX * static_cast<float>(Desc.Width), CutData[_Index].SizeY * static_cast<float>(Desc.Height)};
 	}
 
 	void TextureCreate(const D3D11_TEXTURE2D_DESC& _Desc);

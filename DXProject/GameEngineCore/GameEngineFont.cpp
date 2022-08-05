@@ -23,19 +23,19 @@ public:
 
 GameEngineFontInit Inst;
 
-GameEngineFont::GameEngineFont()
+GameEngineFont::GameEngineFont() 
 	: FontWrapper(nullptr)
 {
 }
 
-GameEngineFont::~GameEngineFont()
+GameEngineFont::~GameEngineFont() 
 {
 	if (nullptr != FontWrapper)
 	{
 		FontWrapper->Release();
 		FontWrapper = nullptr;
 	}
-
+	
 }
 
 
@@ -60,6 +60,14 @@ void GameEngineFont::LoadFont(const std::string& _Path)
 void GameEngineFont::FontDraw(const std::string& _Text, float _FontSize, float4 _ScreenPos, float4 Color, UINT Flag)
 {
 	std::wstring Text = GameEngineString::AnsiToUnicodeReturn(_Text);
+
+	//for (size_t i = 0; i < Text.size(); i++)
+	//{
+	//	std::wstring Character;
+	//	Character.resize(2);
+	//	Character[0] = Text[i];
+	//	FontWrapper->DrawString(GameEngineDevice::GetContext(), Character.c_str(), _FontSize, _ScreenPos.x, _ScreenPos.y, Color.GetUIntColor(), Flag);
+	//}
 
 	FontWrapper->DrawString(GameEngineDevice::GetContext(), Text.c_str(), _FontSize, _ScreenPos.x, _ScreenPos.y, Color.GetUIntColor(), Flag);
 }

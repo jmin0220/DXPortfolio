@@ -32,6 +32,7 @@ void GameEngineRenderTarget::SetPrevRenderTarget()
 		PrevDepthStencilView->Release();
 	}
 }
+
 //GameEngineRenderTarget* GameEngineRenderTarget::Create(const std::string& _Name, ID3D11Texture2D* _Texture) 
 //{
 //
@@ -60,7 +61,7 @@ void GameEngineRenderTarget::CreateRenderTargetTexture(float4 _Size, float4 _Col
 
 void GameEngineRenderTarget::CreateRenderTargetTexture(float4 _Size, DXGI_FORMAT _Format, float4 _Color)
 {
-	D3D11_TEXTURE2D_DESC NewData = { 0 };
+	D3D11_TEXTURE2D_DESC NewData = {0};
 	NewData.ArraySize = 1; // 한번에 10장짜리도 만들수 있어요
 	NewData.Width = _Size.uix();
 	NewData.Height = _Size.uiy();
@@ -88,6 +89,7 @@ void GameEngineRenderTarget::CreateRenderTargetTexture(D3D11_TEXTURE2D_DESC _Dat
 	GameEngineTexture* NewTexture = GameEngineTexture::Create(_Data);
 	CreateRenderTargetTexture(NewTexture, _Color);
 }
+
 void GameEngineRenderTarget::Clear()
 {
 	for (size_t i = 0; i < RenderTargetViews.size(); i++)

@@ -24,15 +24,15 @@ void Bandit::AnimationInit()
 	Renderer_->CreateFrameAnimationFolder(PLAYER_ANIM_CLIMB, FrameAnimation_DESC(TEX_PLAYER_ANIM_BANDIT_CLIMB, FrameAnimDelay_, false));
 	Renderer_->CreateFrameAnimationFolder(PLAYER_ANIM_DEATH, FrameAnimation_DESC(TEX_PLAYER_ANIM_BANDIT_DEATH, FrameAnimDelay_, false));
 
-	Renderer_->AnimationBindFrame(PLAYER_ANIM_IDLE, &Bandit::FrameAnimation, this);
-	Renderer_->AnimationBindFrame(PLAYER_ANIM_SKILL1, &Bandit::FrameAnimation, this);
-	Renderer_->AnimationBindFrame(PLAYER_ANIM_SKILL2, &Bandit::FrameAnimation, this);
-	Renderer_->AnimationBindFrame(PLAYER_ANIM_SKILL3, &Bandit::FrameAnimation, this);
-	Renderer_->AnimationBindFrame(PLAYER_ANIM_SKILL4, &Bandit::FrameAnimation, this);
-	Renderer_->AnimationBindFrame(PLAYER_ANIM_WALK, &Bandit::FrameAnimation, this);
-	Renderer_->AnimationBindFrame(PLAYER_ANIM_JUMP, &Bandit::FrameAnimation, this);
-	Renderer_->AnimationBindFrame(PLAYER_ANIM_CLIMB, &Bandit::FrameAnimation, this);
-	Renderer_->AnimationBindFrame(PLAYER_ANIM_DEATH, &Bandit::FrameAnimation, this);
+	Renderer_->AnimationBindFrame(PLAYER_ANIM_IDLE, std::bind(&Bandit::FrameAnimation, this, std::placeholders::_1));
+	Renderer_->AnimationBindFrame(PLAYER_ANIM_SKILL1, std::bind(&Bandit::FrameAnimation, this, std::placeholders::_1));
+	Renderer_->AnimationBindFrame(PLAYER_ANIM_SKILL2, std::bind(&Bandit::FrameAnimation, this, std::placeholders::_1));
+	Renderer_->AnimationBindFrame(PLAYER_ANIM_SKILL3, std::bind(&Bandit::FrameAnimation, this, std::placeholders::_1));
+	Renderer_->AnimationBindFrame(PLAYER_ANIM_SKILL4, std::bind(&Bandit::FrameAnimation, this, std::placeholders::_1));
+	Renderer_->AnimationBindFrame(PLAYER_ANIM_WALK, std::bind(&Bandit::FrameAnimation, this, std::placeholders::_1));
+	Renderer_->AnimationBindFrame(PLAYER_ANIM_JUMP, std::bind(&Bandit::FrameAnimation, this, std::placeholders::_1));
+	Renderer_->AnimationBindFrame(PLAYER_ANIM_CLIMB, std::bind(&Bandit::FrameAnimation, this, std::placeholders::_1));
+	Renderer_->AnimationBindFrame(PLAYER_ANIM_DEATH, std::bind(&Bandit::FrameAnimation, this, std::placeholders::_1));
 
 	Renderer_->ChangeFrameAnimation(PLAYER_ANIM_IDLE);
 	Renderer_->SetScaleModeImage();
@@ -40,14 +40,32 @@ void Bandit::AnimationInit()
 
 void Bandit::StateInit()
 {
-	StateManager_.CreateStateMember(PLAYER_STATE_IDLE, this, &Bandit::IdleUpdate, &Bandit::IdleStart, &Bandit::IdleEnd);
-	StateManager_.CreateStateMember(PLAYER_STATE_MOVE, this, &Bandit::MoveUpdate, &Bandit::MoveStart, &Bandit::MoveEnd);
-	StateManager_.CreateStateMember(PLAYER_STATE_SKILL1, this, &Bandit::Skill1Update, &Bandit::Skill1Start, &Bandit::Skill1End);
-	StateManager_.CreateStateMember(PLAYER_STATE_SKILL2, this, &Bandit::Skill2Update, &Bandit::Skill2Start, &Bandit::Skill2End);
-	StateManager_.CreateStateMember(PLAYER_STATE_SKILL3, this, &Bandit::Skill3Update, &Bandit::Skill3Start, &Bandit::Skill3End);
-	StateManager_.CreateStateMember(PLAYER_STATE_SKILL4, this, &Bandit::Skill4Update, &Bandit::Skill4Start, &Bandit::Skill4End);
-	StateManager_.CreateStateMember(PLAYER_STATE_CLIMB, this, &Bandit::ClimbUpdate, &Bandit::ClimbStart, &Bandit::ClimbEnd);
-	StateManager_.CreateStateMember(PLAYER_STATE_DEATH, this, &Bandit::DeathUpdate, &Bandit::DeathStart, &Bandit::DeathEnd);
+	StateManager_.CreateStateMember(PLAYER_STATE_IDLE, std::bind(&Bandit::IdleUpdate, this, std::placeholders::_1, std::placeholders::_2)
+													 , std::bind(&Bandit::IdleStart, this, std::placeholders::_1)
+													 , std::bind(&Bandit::IdleEnd, this, std::placeholders::_1));
+	StateManager_.CreateStateMember(PLAYER_STATE_MOVE, std::bind(&Bandit::MoveUpdate, this, std::placeholders::_1, std::placeholders::_2)
+													 , std::bind(&Bandit::MoveStart, this, std::placeholders::_1)
+													 , std::bind(&Bandit::MoveEnd, this, std::placeholders::_1));
+	StateManager_.CreateStateMember(PLAYER_STATE_SKILL1, std::bind(&Bandit::Skill1Update, this, std::placeholders::_1, std::placeholders::_2)
+													 , std::bind(&Bandit::Skill1Start, this, std::placeholders::_1)
+													 , std::bind(&Bandit::Skill1End, this, std::placeholders::_1));
+	StateManager_.CreateStateMember(PLAYER_STATE_SKILL2, std::bind(&Bandit::Skill2Update, this, std::placeholders::_1, std::placeholders::_2)
+													 , std::bind(&Bandit::Skill2Start, this, std::placeholders::_1)
+													 , std::bind(&Bandit::Skill2End, this, std::placeholders::_1));
+	StateManager_.CreateStateMember(PLAYER_STATE_SKILL3, std::bind(&Bandit::Skill3Update, this, std::placeholders::_1, std::placeholders::_2)
+													 , std::bind(&Bandit::Skill3Start, this, std::placeholders::_1)
+													 , std::bind(&Bandit::Skill3End, this, std::placeholders::_1));
+	StateManager_.CreateStateMember(PLAYER_STATE_SKILL4, std::bind(&Bandit::Skill4Update, this, std::placeholders::_1, std::placeholders::_2)
+													 , std::bind(&Bandit::Skill4Start, this, std::placeholders::_1)
+													 , std::bind(&Bandit::Skill4End, this, std::placeholders::_1));
+	StateManager_.CreateStateMember(PLAYER_STATE_CLIMB, std::bind(&Bandit::ClimbUpdate, this, std::placeholders::_1, std::placeholders::_2)
+													 , std::bind(&Bandit::ClimbStart, this, std::placeholders::_1)
+													 , std::bind(&Bandit::ClimbEnd, this, std::placeholders::_1));
+	StateManager_.CreateStateMember(PLAYER_STATE_DEATH, std::bind(&Bandit::DeathUpdate, this, std::placeholders::_1, std::placeholders::_2)
+													 , std::bind(&Bandit::DeathStart, this, std::placeholders::_1)
+													 , std::bind(&Bandit::DeathEnd, this, std::placeholders::_1));
+
+
 	StateManager_.ChangeState(PLAYER_STATE_IDLE);
 }
 

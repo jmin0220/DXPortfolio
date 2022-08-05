@@ -129,6 +129,7 @@ void GameEngineTexture::TextureLoad(const std::string& _Path)
 
 	// GameEngineDevice::GetDevice()->쉬운텍스처함수
 
+	// 이건 라이브러리에서 지원해주는 함수이고
 	if (S_OK != DirectX::CreateShaderResourceView(
 		GameEngineDevice::GetDevice(),
 		Image.GetImages(),

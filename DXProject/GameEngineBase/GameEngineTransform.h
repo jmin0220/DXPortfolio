@@ -8,9 +8,9 @@
 enum class CollisionType
 {
 	CT_POINT2D,
-	CT_SPHERE2D,
-	CT_AABB2D,
-	CT_OBB2D,
+	CT_SPHERE2D, 
+	CT_AABB2D, 
+	CT_OBB2D, 
 	CT_POINT,
 	CT_SPHERE, // 정방원
 	CT_AABB, // 회전하지 않은 박스
@@ -22,14 +22,14 @@ class CollisionData
 {
 	friend class GameEngineTransform;
 
-	union
+	union 
 	{
 		DirectX::BoundingSphere SPHERE;
 		DirectX::BoundingBox AABB;
 		DirectX::BoundingOrientedBox OBB;
 	};
 
-	CollisionData()
+	CollisionData() 
 		: OBB()
 	{
 
@@ -278,12 +278,12 @@ public:
 		Data.ProjectionMatrix = _Mat;
 	}
 
-	const TransformData& GetTransformData()
+	const TransformData& GetTransformData() const
 	{
 		return Data;
 	}
 
-	void Copy(GameEngineTransform& _Trans);
+	void Copy(const GameEngineTransform& _Trans);
 
 protected:
 
@@ -384,7 +384,7 @@ private:
 	virtual void End() {}
 
 
-	/////////////////////////// 충돌관련
+/////////////////////////// 충돌관련
 public:
 	static bool SphereToSphere(const GameEngineTransform& _Left, const GameEngineTransform& _Right);
 
@@ -392,7 +392,6 @@ public:
 
 	static bool OBBToOBB(const GameEngineTransform& _Left, const GameEngineTransform& _Right);
 
-	// 2D충돌은 z값을 무시
 	static bool Sphere2DToSphere2D(const GameEngineTransform& _Left, const GameEngineTransform& _Right);
 
 	static bool AABB2DToAABB2D(const GameEngineTransform& _Left, const GameEngineTransform& _Right);

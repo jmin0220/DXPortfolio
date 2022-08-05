@@ -15,6 +15,7 @@
 class GameEngineRandom
 {
 public:
+	// 이녀석가지고 생성하면 
 	static GameEngineRandom MainRandom;
 
 private:

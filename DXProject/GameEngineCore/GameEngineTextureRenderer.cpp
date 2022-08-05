@@ -9,7 +9,7 @@ void FrameAnimation::Reset()
 	Info.CurFrame = 0;
 }
 
-void FrameAnimation::Update(float _Delta)
+void FrameAnimation::Update(float _Delta) 
 {
 
 	Info.FrameTime += _Delta;
@@ -19,7 +19,7 @@ void FrameAnimation::Update(float _Delta)
 		Time(Info, _Delta);
 	}
 
-	if (false == bOnceStart
+	if (false == bOnceStart 
 		&& Info.CurFrame == 0)
 	{
 		if (nullptr != Start)
@@ -51,9 +51,9 @@ void FrameAnimation::Update(float _Delta)
 			{
 				Info.CurFrame = 0;
 			}
-			else
+			else 
 			{
-				Info.CurFrame = Info.Frames.size() - 1;
+				Info.CurFrame = static_cast<unsigned int>(Info.Frames.size()) - 1;
 			}
 		}
 
@@ -71,7 +71,7 @@ void FrameAnimation::Update(float _Delta)
 					ParentRenderer->ScaleToCutTexture(Info.Frames[Info.CurFrame]);
 				}
 			}
-			else
+			else 
 			{
 				if (ParentRenderer->ScaleMode == SCALEMODE::IMAGE)
 				{
@@ -101,7 +101,7 @@ void FrameAnimation::Update(float _Delta)
 	}
 }
 
-GameEngineTextureRenderer::GameEngineTextureRenderer()
+GameEngineTextureRenderer::GameEngineTextureRenderer() 
 	: CurAni(nullptr)
 	, CurTex(nullptr)
 	, PivotMode(PIVOTMODE::CUSTOM)
@@ -110,7 +110,7 @@ GameEngineTextureRenderer::GameEngineTextureRenderer()
 {
 }
 
-GameEngineTextureRenderer::~GameEngineTextureRenderer()
+GameEngineTextureRenderer::~GameEngineTextureRenderer() 
 {
 }
 
@@ -126,10 +126,10 @@ void GameEngineTextureRenderer::SetTextureRendererSetting()
 
 	ShaderResources.SetConstantBufferLink("AtlasData", FrameData);
 	ShaderResources.SetConstantBufferLink("ColorData", ColorData);
-
+	
 }
 
-void GameEngineTextureRenderer::Start()
+void GameEngineTextureRenderer::Start() 
 {
 	GameEngineDefaultRenderer::Start();
 
@@ -173,7 +173,7 @@ void GameEngineTextureRenderer::SetPivot(PIVOTMODE _Mode)
 	PivotMode = _Mode;
 }
 
-void GameEngineTextureRenderer::SetPivotToVector(const float4& _Value)
+void GameEngineTextureRenderer::SetPivotToVector(const float4& _Value) 
 {
 	GetTransform().SetLocalPosition(_Value);
 }
@@ -239,8 +239,6 @@ void GameEngineTextureRenderer::CreateFrameAnimationFolder(const std::string& _A
 		{
 			NewAni.Info.Frames.push_back(i);
 		}
-		//NewAni.Info.Start = 0;
-		//NewAni.Info.End = static_cast<unsigned int>(NewAni.FolderTexture->GetTextureCount() - 1);
 	}
 }
 
@@ -279,7 +277,7 @@ void GameEngineTextureRenderer::ChangeFrameAnimation(const std::string& _Animati
 		{
 			SetTexture(CurAni->Texture, CurAni->Info.Frames[CurAni->Info.CurFrame]);
 		}
-		else if (nullptr != CurAni->FolderTexture)
+		else if(nullptr != CurAni->FolderTexture)
 		{
 			SetTexture(CurAni->FolderTexture->GetTexture(CurAni->Info.Frames[CurAni->Info.CurFrame]));
 		}
@@ -288,7 +286,7 @@ void GameEngineTextureRenderer::ChangeFrameAnimation(const std::string& _Animati
 
 void GameEngineTextureRenderer::FrameDataReset()
 {
-	FrameData = { 0.0f , 0.0f, 1.0f, 1.0f };
+	FrameData = { 0.0f , 0.0f, 1.0f, 1.0f};
 }
 
 

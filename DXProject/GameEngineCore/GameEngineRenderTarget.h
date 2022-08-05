@@ -54,6 +54,8 @@ protected:
 	std::vector<ID3D11ShaderResourceView*> ShaderResourceViews;
 	std::vector<float4> ClearColors;
 
+	// std::vector<ID3D11RenderTargetView*> RenderTargetViews;
+
 	ID3D11DepthStencilView* DepthStencilView;
 
 	GameEngineDepthStencilTexture* DepthTexture;

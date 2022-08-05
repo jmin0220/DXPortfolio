@@ -20,11 +20,16 @@ public:
 	}
 
 
+	static GameEngineLevel* GetCurLevel()
+	{
+		return CurrentLevel;
+	}
+
 
 protected:
 	virtual std::string GetWindowTitle() { return "MainWindow"; }
-	//virtual float4 StartWindowSize() { return  { 1600, 900 }; }
-	//virtual float4 StartWindowPosition() { return { 0,0 }; };
+	virtual float4 StartWindowSize() { return { 1600.0f, 900.0f }; }
+	virtual float4 StartWindowPosition() { return { 0,0 }; }
 
 	// 너희들이 간섭할수 있는 내용.
 	virtual void Start() = 0;

@@ -27,10 +27,11 @@ protected:
 	virtual void Update(float _DeltaTime) {}
 	virtual void End() {}
 
-	CAMERAORDER CameraOrder;
-
 	void PushRendererToMainCamera();
 	void PushRendererToUICamera();
+
+
+	CAMERAORDER CameraOrder;
 
 private:
 	virtual void Render(float _DeltaTime) = 0;

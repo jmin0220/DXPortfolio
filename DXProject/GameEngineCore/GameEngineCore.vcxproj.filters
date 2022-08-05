@@ -391,6 +391,8 @@
     <CopyFileToFolders Include="ThirdParty\bin\Debug\FW1FontWrapper.lib">
       <Filter>ThirdParty\bin\Debug</Filter>
     </CopyFileToFolders>
-    <CopyFileToFolders Include="ThirdParty\bin\Release\FW1FontWrapper.lib" />
+    <CopyFileToFolders Include="ThirdParty\bin\Release\FW1FontWrapper.lib">
+      <Filter>ThirdParty\bin\Release</Filter>
+    </CopyFileToFolders>
   </ItemGroup>
 </Project>

@@ -27,27 +27,27 @@ void Commando::AnimationInit()
 	Renderer_->CreateFrameAnimationFolder(PLAYER_ANIM_DEATH, FrameAnimation_DESC(TEX_PLAYER_ANIM_COMMANDO_DEATH, FrameAnimDelay_, false));
 
 	// 프레임마다 실행할 함수
-	Renderer_->AnimationBindFrame(PLAYER_ANIM_IDLE, &Commando::FrameAnimation, this);
-	Renderer_->AnimationBindFrame(PLAYER_ANIM_SKILL1, &Commando::FrameAnimation, this);
-	Renderer_->AnimationBindFrame(PLAYER_ANIM_SKILL2, &Commando::FrameAnimation, this);
-	Renderer_->AnimationBindFrame(PLAYER_ANIM_SKILL3, &Commando::FrameAnimation, this);
-	Renderer_->AnimationBindFrame(PLAYER_ANIM_COMMANDO_SKILL4_1, &Commando::FrameAnimation, this);
-	Renderer_->AnimationBindFrame(PLAYER_ANIM_COMMANDO_SKILL4_2, &Commando::FrameAnimation, this);
-	Renderer_->AnimationBindFrame(PLAYER_ANIM_WALK, &Commando::FrameAnimation, this);
-	Renderer_->AnimationBindFrame(PLAYER_ANIM_JUMP, &Commando::FrameAnimation, this);
-	Renderer_->AnimationBindFrame(PLAYER_ANIM_CLIMB, &Commando::FrameAnimation, this);
-	Renderer_->AnimationBindFrame(PLAYER_ANIM_DEATH, &Commando::FrameAnimation, this);
+	Renderer_->AnimationBindFrame(PLAYER_ANIM_IDLE, std::bind(&Commando::FrameAnimation, this, std::placeholders::_1));
+	Renderer_->AnimationBindFrame(PLAYER_ANIM_SKILL1, std::bind(&Commando::FrameAnimation, this, std::placeholders::_1));
+	Renderer_->AnimationBindFrame(PLAYER_ANIM_SKILL2, std::bind(&Commando::FrameAnimation, this, std::placeholders::_1));
+	Renderer_->AnimationBindFrame(PLAYER_ANIM_SKILL3, std::bind(&Commando::FrameAnimation, this, std::placeholders::_1));
+	Renderer_->AnimationBindFrame(PLAYER_ANIM_COMMANDO_SKILL4_1, std::bind(&Commando::FrameAnimation, this, std::placeholders::_1));
+	Renderer_->AnimationBindFrame(PLAYER_ANIM_COMMANDO_SKILL4_2, std::bind(&Commando::FrameAnimation, this, std::placeholders::_1));
+	Renderer_->AnimationBindFrame(PLAYER_ANIM_WALK, std::bind(&Commando::FrameAnimation, this, std::placeholders::_1));
+	Renderer_->AnimationBindFrame(PLAYER_ANIM_JUMP, std::bind(&Commando::FrameAnimation, this, std::placeholders::_1));
+	Renderer_->AnimationBindFrame(PLAYER_ANIM_CLIMB, std::bind(&Commando::FrameAnimation, this, std::placeholders::_1));
+	Renderer_->AnimationBindFrame(PLAYER_ANIM_DEATH, std::bind(&Commando::FrameAnimation, this, std::placeholders::_1));
 
 	// 프레임 종료마다 실행할 함수
-	Renderer_->AnimationBindEnd(PLAYER_ANIM_IDLE, &Commando::EndAnimation, this);
-	Renderer_->AnimationBindEnd(PLAYER_ANIM_SKILL1, &Commando::EndAnimation, this);
-	Renderer_->AnimationBindEnd(PLAYER_ANIM_SKILL2, &Commando::EndAnimation, this);
-	Renderer_->AnimationBindEnd(PLAYER_ANIM_SKILL3, &Commando::EndAnimation, this);
-	Renderer_->AnimationBindEnd(PLAYER_ANIM_COMMANDO_SKILL4_1, &Commando::EndAnimation, this);
-	Renderer_->AnimationBindEnd(PLAYER_ANIM_COMMANDO_SKILL4_2, &Commando::EndAnimation, this);
-	Renderer_->AnimationBindEnd(PLAYER_ANIM_WALK, &Commando::EndAnimation, this);
-	Renderer_->AnimationBindEnd(PLAYER_ANIM_JUMP, &Commando::EndAnimation, this);
-	Renderer_->AnimationBindEnd(PLAYER_ANIM_DEATH, &Commando::EndAnimation, this);
+	Renderer_->AnimationBindEnd(PLAYER_ANIM_IDLE, std::bind(&Commando::EndAnimation, this, std::placeholders::_1));
+	Renderer_->AnimationBindEnd(PLAYER_ANIM_SKILL1, std::bind(&Commando::EndAnimation, this, std::placeholders::_1));
+	Renderer_->AnimationBindEnd(PLAYER_ANIM_SKILL2, std::bind(&Commando::EndAnimation, this, std::placeholders::_1));
+	Renderer_->AnimationBindEnd(PLAYER_ANIM_SKILL3, std::bind(&Commando::EndAnimation, this, std::placeholders::_1));
+	Renderer_->AnimationBindEnd(PLAYER_ANIM_COMMANDO_SKILL4_1, std::bind(&Commando::EndAnimation, this, std::placeholders::_1));
+	Renderer_->AnimationBindEnd(PLAYER_ANIM_COMMANDO_SKILL4_2, std::bind(&Commando::EndAnimation, this, std::placeholders::_1));
+	Renderer_->AnimationBindEnd(PLAYER_ANIM_WALK, std::bind(&Commando::EndAnimation, this, std::placeholders::_1));
+	Renderer_->AnimationBindEnd(PLAYER_ANIM_JUMP, std::bind(&Commando::EndAnimation, this, std::placeholders::_1));
+	Renderer_->AnimationBindEnd(PLAYER_ANIM_DEATH, std::bind(&Commando::EndAnimation, this, std::placeholders::_1));
 
 	// 초기 애니메이션 전환
 	Renderer_->ChangeFrameAnimation(PLAYER_ANIM_IDLE);
@@ -56,14 +56,30 @@ void Commando::AnimationInit()
 
 void Commando::StateInit()
 {
-	StateManager_.CreateStateMember(PLAYER_STATE_IDLE, this, &Commando::IdleUpdate, &Commando::IdleStart, &Commando::IdleEnd);
-	StateManager_.CreateStateMember(PLAYER_STATE_MOVE, this, &Commando::MoveUpdate, &Commando::MoveStart, &Commando::MoveEnd);
-	StateManager_.CreateStateMember(PLAYER_STATE_SKILL1, this, &Commando::Skill1Update, &Commando::Skill1Start, &Commando::Skill1End);
-	StateManager_.CreateStateMember(PLAYER_STATE_SKILL2, this, &Commando::Skill2Update, &Commando::Skill2Start, &Commando::Skill2End);
-	StateManager_.CreateStateMember(PLAYER_STATE_SKILL3, this, &Commando::Skill3Update, &Commando::Skill3Start, &Commando::Skill3End);
-	StateManager_.CreateStateMember(PLAYER_STATE_SKILL4, this, &Commando::Skill4Update, &Commando::Skill4Start, &Commando::Skill4End);
-	StateManager_.CreateStateMember(PLAYER_STATE_CLIMB, this, &Commando::ClimbUpdate, &Commando::ClimbStart, &Commando::ClimbEnd);
-	StateManager_.CreateStateMember(PLAYER_STATE_DEATH, this, &Commando::DeathUpdate, &Commando::DeathStart, &Commando::DeathEnd);
+	StateManager_.CreateStateMember(PLAYER_STATE_IDLE, std::bind(&Commando::IdleUpdate, this, std::placeholders::_1, std::placeholders::_2)
+		                                             , std::bind(&Commando::IdleStart, this, std::placeholders::_1)
+		                                             , std::bind(&Commando::IdleEnd, this, std::placeholders::_1));
+	StateManager_.CreateStateMember(PLAYER_STATE_MOVE, std::bind(&Commando::MoveUpdate, this, std::placeholders::_1, std::placeholders::_2)
+											   		 , std::bind(&Commando::MoveStart, this, std::placeholders::_1)
+													 , std::bind(&Commando::MoveEnd, this, std::placeholders::_1));
+	StateManager_.CreateStateMember(PLAYER_STATE_SKILL1, std::bind(&Commando::Skill1Update, this, std::placeholders::_1, std::placeholders::_2)
+													 , std::bind(&Commando::Skill1Start, this, std::placeholders::_1)
+													 , std::bind(&Commando::Skill1End, this, std::placeholders::_1));
+	StateManager_.CreateStateMember(PLAYER_STATE_SKILL2, std::bind(&Commando::Skill2Update, this, std::placeholders::_1, std::placeholders::_2)
+													 , std::bind(&Commando::Skill2Start, this, std::placeholders::_1)
+													 , std::bind(&Commando::Skill2End, this, std::placeholders::_1));
+	StateManager_.CreateStateMember(PLAYER_STATE_SKILL3, std::bind(&Commando::Skill3Update, this, std::placeholders::_1, std::placeholders::_2)
+													 , std::bind(&Commando::Skill3Start, this, std::placeholders::_1)
+													 , std::bind(&Commando::Skill3End, this, std::placeholders::_1));
+	StateManager_.CreateStateMember(PLAYER_STATE_SKILL4, std::bind(&Commando::Skill4Update, this, std::placeholders::_1, std::placeholders::_2)
+													 , std::bind(&Commando::Skill4Start, this, std::placeholders::_1)
+													 , std::bind(&Commando::Skill4End, this, std::placeholders::_1));
+	StateManager_.CreateStateMember(PLAYER_STATE_CLIMB, std::bind(&Commando::ClimbUpdate, this, std::placeholders::_1, std::placeholders::_2)
+													 , std::bind(&Commando::ClimbStart, this, std::placeholders::_1)
+													 , std::bind(&Commando::ClimbEnd, this, std::placeholders::_1));
+	StateManager_.CreateStateMember(PLAYER_STATE_DEATH, std::bind(&Commando::DeathUpdate, this, std::placeholders::_1, std::placeholders::_2)
+													 , std::bind(&Commando::DeathStart, this, std::placeholders::_1)
+													 , std::bind(&Commando::DeathEnd, this, std::placeholders::_1));
 
 	// 초기 스테이트전환
 	StateManager_.ChangeState(PLAYER_STATE_IDLE);

@@ -18,6 +18,7 @@
 #include "GameEngineRenderTarget.h"
 #include "GameEngineDepthStencilTexture.h"
 #include "GameEngineDepthStencil.h"
+#include "GameEngineFont.h"
 
 #include "GameEngineVertexShader.h"
 #include "GameEnginePixelShader.h"
@@ -179,6 +180,15 @@ void EngineRenderingPipeLine()
 		NewPipe->SetVertexShader("TextureAtlas.hlsl");
 		NewPipe->SetPixelShader("TextureAtlas.hlsl");
 	}
+
+	{
+		GameEngineRenderingPipeLine* NewPipe = GameEngineRenderingPipeLine::Create("3DDebug");
+		NewPipe->SetInputAssembler1VertexBuffer("Box");
+		NewPipe->SetInputAssembler2IndexBuffer("Box");
+		NewPipe->SetVertexShader("Debug3D.hlsl");
+		NewPipe->SetPixelShader("Debug3D.hlsl");
+	}
+
 }
 
 void EngineMesh() 
@@ -272,6 +282,8 @@ void EngineMesh()
 
 		GameEngineIndexBuffer::Create("Box", Index);
 	}
+
+	GameEngineFont::Load("µ¸¿ò");
 }
 
 void GameEngineCore::EngineResourcesInitialize()
@@ -310,6 +322,8 @@ void GameEngineCore::EngineResourcesDestroy()
 	GameEngineRasterizer::ResourcesDestroy();
 	GameEngineBlend::ResourcesDestroy();
 	GameEngineConstantBuffer::ResourcesDestroy();
+	GameEngineSound::ResourcesDestroy();
+	GameEngineFont::ResourcesDestroy();
 
 	GameEngineDevice::Destroy();
 }
