@@ -46,6 +46,9 @@ protected:
 	void CommonAttackStart(std::string _AnimName);
 	void CommonChaseStart(std::string _AnimName);
 	void CommonDeathStart(std::string _AnimName);
+
+	void CommonIdleUpdate();
+	void CommonMoveUpdate();
 #pragma endregion
 
 
@@ -72,5 +75,12 @@ protected:
 
 	// 충돌용 맵 정보
 	GameEngineTexture* ColMap_;
+
+	// FSM전환용 수치값
+	float ToMoveGauge_;
+	bool MoveDirFlg_;	// 0 ->Left 1 -> Right
+	float ToIdleGauge_;
+	bool AttackFlg_;
+	bool ChaseFlg_;
 };
 

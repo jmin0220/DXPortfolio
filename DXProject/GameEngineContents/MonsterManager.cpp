@@ -30,7 +30,7 @@ void MonsterManager::Update(float _DeltaTime)
 	GroupMonsterRespawnTimer_ += _DeltaTime;
 
 	// 임시 타이머
-	if (SingleMonsterRespawnTimer_ >= 3.0f)
+	if (SingleMonsterRespawnTimer_ >= 5.0f)
 	{
 		Monster_ = GetLevel()->CreateActor<Lemurian>();
 		Monster_->GetTransform().SetWorldPosition(RespawnPos_);

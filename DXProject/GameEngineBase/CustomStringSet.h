@@ -14,6 +14,10 @@
 #define Player_KEY_SKILL3 "PlayerSkill3"
 #define Player_KEY_SKILL4 "PlayerSkill4"
 
+// 플레이어 수치값
+#define Player_MOVE_SPEED 100.0f
+#define Player_JUMP_SPEED -150.0f
+
 // 플레이어 FSM
 #define PLAYER_STATE_IDLE "Idle"
 #define PLAYER_STATE_MOVE "Move"
@@ -25,6 +29,7 @@
 #define PLAYER_STATE_DEATH "Death"
 
 // 몬스터 FSM
+#define MONSTER_FSM_SPAWN "MonsterSpawn"
 #define MONSTER_FSM_IDLE "MonsterIdle"
 #define MONSTER_FSM_MOVE "MonsterMove"
 #define MONSTER_FSM_CHASE "MonsterChase"

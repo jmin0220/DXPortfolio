@@ -1,13 +1,13 @@
 #include "PreCompile.h"
 #include "Monster.h"
+#include <GameEngineBase/GameEngineRandom.h>
 
 Monster::Monster() 
 	: Renderer_(nullptr)
-	, Speed_(100.0f)
 	, JumpSpeed_(0.f)
 	, FallSpeed_(270.f)
 	, DeltaTime_(0.0f)
-	, FrameAnimDelay_(0.07f)
+	, FrameAnimDelay_(0.06f)
 {
 }
 
@@ -250,6 +250,60 @@ void Monster::CommonDeathStart(std::string _AnimName)
 	// 애니메이션 전환
 	Renderer_->ChangeFrameAnimation(_AnimName);
 	Renderer_->ScaleToTexture();
+}
+
+void Monster::CommonIdleUpdate()
+{
+	ToMoveGauge_ += DeltaTime_;
+
+	if (ToMoveGauge_ >= 3.0f)
+	{
+		// Idle에서 Move로 전환될때 방향을 지정해줌
+		MoveDirFlg_ = GameEngineRandom::MainRandom.RandomInt(0, 1);
+		StateManager_.ChangeState(MONSTER_FSM_MOVE);
+		ToMoveGauge_ = 0.0f;
+	}
+}
+
+void Monster::CommonMoveUpdate()
+{
+	ToIdleGauge_ += DeltaTime_;
+
+	if (ToIdleGauge_ >= 3.0f)
+	{
+		StateManager_.ChangeState(MONSTER_FSM_IDLE);
+		ToIdleGauge_ = 0.0f;
+	}
+
+	switch (MoveDirFlg_)
+	{
+	case false:
+
+		MoveDir_ = float4::LEFT;
+
+		if (true == GroundLeftCheck())
+		{
+			return;
+		}
+
+		GetTransform().SetWorldMove(GetTransform().GetLeftVector() * Speed_ * DeltaTime_);
+
+		break;
+	case true:
+
+		MoveDir_ = float4::RIGHT;
+
+		if (true == GroundRightCheck())
+		{
+			return;
+		}
+
+		GetTransform().SetWorldMove(GetTransform().GetRightVector() * Speed_ * DeltaTime_);
+
+		break;
+	default:
+		break;
+	}
 }
 
 #pragma endregion
