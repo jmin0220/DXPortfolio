@@ -18,12 +18,12 @@ MonsterManager::~MonsterManager()
 
 void MonsterManager::Start()
 {
-	// TODO::적이 생성될 포지션 출력
 }
 
 void MonsterManager::Update(float _DeltaTime)
 {
 	// TODO::적이 생성될 포지션 입력
+	RespawnPos_ = { 600.0f, -800.0f, 0.0f, 0.0f };
 
 	// TODO:: 타이머에 따라 리스폰 구현
 	SingleMonsterRespawnTimer_ += _DeltaTime;
