@@ -12,6 +12,7 @@ Player::Player()
 	, ColMap_(nullptr)
 	, IsGround_(false)
 	, IsClimb_(false)
+	, MoveDir_(float4::RIGHT)
 	, FrameAnimDelay_(0.06f)
 	, ColorCheckPos_(float4::ZERO)
 {

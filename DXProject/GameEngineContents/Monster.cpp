@@ -146,29 +146,31 @@ bool Monster::GroundRightCheck()
 		MsgBoxAssert("충돌맵이 존재하지 않습니다.");
 	}
 
+	// 오른쪽 하단
+	// 바닥이 없으면 못감
+	{
+		float4 Color = ColMap_->GetPixel(this->GetTransform().GetWorldPosition().ix() + Renderer_->GetCurTexture()->GetScale().ix()
+			, -this->GetTransform().GetWorldPosition().iy() + Renderer_->GetCurTexture()->GetScale().hiy() + 1);
+
+		if (false == Color.CompareInt4D({ 1.0f, 0.0f, 1.0f }))
+		{
+			return true;
+		}
+	}
+
 	// 오른쪽 중단
+	// 벽에 막혀 있으면 못감
 	{
 		float4 Color = ColMap_->GetPixel(this->GetTransform().GetWorldPosition().ix() + Renderer_->GetCurTexture()->GetScale().ix()
 			, -this->GetTransform().GetWorldPosition().iy());
 
-		if (false == Color.CompareInt4D({ 1.0f, 0.0f, 1.0f }))
+		if (true == Color.CompareInt4D({ 1.0f, 0.0f, 1.0f }))
 		{
-			return false;
+			return true;
 		}
 	}
 
-	// 오른쪽 하단
-	{
-		float4 Color = ColMap_->GetPixel(this->GetTransform().GetWorldPosition().ix() + Renderer_->GetCurTexture()->GetScale().ix()
-			, -this->GetTransform().GetWorldPosition().iy() + Renderer_->GetCurTexture()->GetScale().hiy());
-
-		if (false == Color.CompareInt4D({ 1.0f, 0.0f, 1.0f }))
-		{
-			return false;
-		}
-	}
-
-	return true;
+	return false;
 }
 
 bool Monster::GroundLeftCheck()
@@ -178,29 +180,31 @@ bool Monster::GroundLeftCheck()
 		MsgBoxAssert("충돌맵이 존재하지 않습니다.");
 	}
 
+	// 왼쪽 하단
+	// 바닥이 없으면 못감
+	{
+		float4 Color = ColMap_->GetPixel(this->GetTransform().GetWorldPosition().ix()
+			, -this->GetTransform().GetWorldPosition().iy() + Renderer_->GetCurTexture()->GetScale().hiy() + 1);
+
+		if (false == Color.CompareInt4D({ 1.0f, 0.0f, 1.0f }))
+		{
+			return true;
+		}
+	}
+
 	// 왼쪽 중단
+	// 벽에 막혀 있으면 못감
 	{
 		float4 Color = ColMap_->GetPixel(this->GetTransform().GetWorldPosition().ix()
 			, -this->GetTransform().GetWorldPosition().iy());
 
-		if (false == Color.CompareInt4D({ 1.0f, 0.0f, 1.0f }))
+		if (true == Color.CompareInt4D({ 1.0f, 0.0f, 1.0f }))
 		{
-			return false;
+			return true;
 		}
 	}
 
-	// 왼쪽 하단
-	{
-		float4 Color = ColMap_->GetPixel(this->GetTransform().GetWorldPosition().ix()
-			, -this->GetTransform().GetWorldPosition().iy() + Renderer_->GetCurTexture()->GetScale().hiy());
-
-		if (false == Color.CompareInt4D({ 1.0f, 0.0f, 1.0f }))
-		{
-			return false;
-		}
-	}
-
-	return true;
+	return false;
 }
 
 
@@ -256,10 +260,11 @@ void Monster::CommonIdleUpdate()
 {
 	ToMoveGauge_ += DeltaTime_;
 
-	if (ToMoveGauge_ >= 3.0f)
+	if (ToMoveGauge_ >= 1.0f)
 	{
 		// Idle에서 Move로 전환될때 방향을 지정해줌
-		MoveDirFlg_ = GameEngineRandom::MainRandom.RandomInt(0, 1);
+		//MoveDirFlg_ = GameEngineRandom::MainRandom.RandomInt(0, 1);
+		MoveDirFlg_ = 0;
 		StateManager_.ChangeState(MONSTER_FSM_MOVE);
 		ToMoveGauge_ = 0.0f;
 	}
@@ -269,7 +274,7 @@ void Monster::CommonMoveUpdate()
 {
 	ToIdleGauge_ += DeltaTime_;
 
-	if (ToIdleGauge_ >= 3.0f)
+	if (ToIdleGauge_ >= 2.0f)
 	{
 		StateManager_.ChangeState(MONSTER_FSM_IDLE);
 		ToIdleGauge_ = 0.0f;
