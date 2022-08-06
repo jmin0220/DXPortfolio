@@ -25,7 +25,6 @@ void Stage1Level::Start()
 
 	StageActor_ = CreateActor<StageGround>(ObjectGroup::Stage);
 	MonsterManager_ = CreateActor<MonsterManager>();
-
 }
 
 void Stage1Level::Update(float _DeltaTime)
@@ -34,6 +33,9 @@ void Stage1Level::Update(float _DeltaTime)
 	{
 		//GetMainCameraActor()->FreeCameraModeOnOff();
 	}
+
+	// 몬스터매니저에 플레이어 위치를 갱신
+	MonsterManager_->SetPlayerPos(Player_->GetTransform().GetWorldPosition());
 }
 
 void Stage1Level::End()

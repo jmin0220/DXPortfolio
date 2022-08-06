@@ -20,6 +20,11 @@ public:
 		ColMap_ = _ColMap;
 	}
 
+	inline void SetPlayerPos(float4 _Pos)
+	{
+		PlayerPos_ = _Pos;
+	}
+
 protected:
 	void Start() override;
 	void Update(float _DeltaTime) override;
@@ -34,6 +39,7 @@ protected:
 	void GroundFallCheck();
 	bool GroundRightCheck();
 	bool GroundLeftCheck();
+	void ChaseFlgUpdate();
 
 	void MonsterJump();
 
@@ -49,8 +55,8 @@ protected:
 
 	void CommonIdleUpdate();
 	void CommonMoveUpdate();
+	void CommonChaseUpdate();
 #pragma endregion
-
 
 	GameEngineTextureRenderer* Renderer_;
 	float DeltaTime_;
@@ -72,6 +78,8 @@ protected:
 	float4 MoveDir_;
 	// 색깔 체크용 공통 포지션
 	float4 ColorCheckPos_;
+	// 플레이어의 위치
+	float4 PlayerPos_;
 
 	// 충돌용 맵 정보
 	GameEngineTexture* ColMap_;
@@ -79,8 +87,11 @@ protected:
 	// FSM전환용 수치값
 	float ToMoveGauge_;
 	bool MoveDirFlg_;	// 0 ->Left 1 -> Right
+	
 	float ToIdleGauge_;
-	bool AttackFlg_;
+	
 	bool ChaseFlg_;
+	float ChaseRange_;
+
 };
 

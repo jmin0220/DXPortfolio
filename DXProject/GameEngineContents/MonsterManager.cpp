@@ -6,7 +6,6 @@ MonsterManager::MonsterManager()
 	: SingleMonsterRespawnTimer_(0.0f)
 	, GroupMonsterRespawnTimer_(0.0f)
 	, RespawnPos_(float4::ZERO)
-	, Monster_(nullptr)
 {
 }
 
@@ -32,11 +31,23 @@ void MonsterManager::Update(float _DeltaTime)
 	// 임시 타이머
 	if (SingleMonsterRespawnTimer_ >= 5.0f)
 	{
-		Monster_ = GetLevel()->CreateActor<Lemurian>();
-		Monster_->GetTransform().SetWorldPosition(RespawnPos_);
+		Monster* NewMonster_ = GetLevel()->CreateActor<Lemurian>();
+		NewMonster_->GetTransform().SetWorldPosition(RespawnPos_);
+		NewMonster_->SetColMapInfo(ColMap_);
 
-		Monster_->SetColMapInfo(ColMap_);
+		Monster_.push_back(NewMonster_);
 
 		SingleMonsterRespawnTimer_ = 0.0f;
+	}
+
+	// TODO::더 좋은 방법이 있을지도?
+	for (Monster* SingleMonster : Monster_)
+	{
+		if (SingleMonster == nullptr)
+		{
+			continue;
+		}
+
+		SingleMonster->SetPlayerPos(PlayerPos_);
 	}
 }

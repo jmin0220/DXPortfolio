@@ -8,6 +8,8 @@ Monster::Monster()
 	, FallSpeed_(270.f)
 	, DeltaTime_(0.0f)
 	, FrameAnimDelay_(0.06f)
+	, ChaseFlg_(false)
+	, ChaseRange_(20.0f)
 {
 }
 
@@ -30,6 +32,8 @@ void Monster::Update(float _DeltaTime)
 
 	// 픽셀맵과의 충돌처리
 	GroundFallCheck();
+
+	ChaseFlgUpdate();
 
 	JumpUpdate();
 
@@ -77,6 +81,38 @@ void Monster::JumpUpdate()
 		JumpSpeed_ = 0.0f;
 	}
 }
+
+void Monster::ChaseFlgUpdate()
+{
+	// 둘 사이의 거리가 설정된 값보다 가까우면 chase상태로 전환
+	// ChaseFlg는 false로 전환되지 않음
+	if (false == ChaseFlg_)
+	{
+		// 몬스터와 플레이어 사이의 거리를 취득
+		float4 MonsterLength = { this->GetTransform().GetWorldPosition().x
+							   , this->GetTransform().GetWorldPosition().y, 0.0f };
+		float4 PlayerLength = { PlayerPos_.x, PlayerPos_.y, 0.0f };
+		float4 Length = MonsterLength - PlayerLength;
+
+		if (Length.Length() <= ChaseRange_)
+		{
+			ChaseFlg_ = true;
+		}
+	}
+}
+
+void Monster::MonsterJump()
+{
+	// 땅에 닿아있는 경우에만 점프 가능
+	if (true == IsGround_)
+	{
+		IsGround_ = false;
+		JumpSpeed_ = -150.0f;
+	}
+}
+
+#pragma region GroundCheck
+
 
 void Monster::GroundFallCheck()
 {
@@ -139,6 +175,7 @@ void Monster::GroundFallCheck()
 	}
 }
 
+// TODO::캐릭터들의 피봇이 결정되면 충돌판정의 위치도 함께 수정될 것.
 bool Monster::GroundRightCheck()
 {
 	if (nullptr == ColMap_)
@@ -207,18 +244,9 @@ bool Monster::GroundLeftCheck()
 	return false;
 }
 
+#pragma endregion
 
-void Monster::MonsterJump()
-{
-	// 땅에 닿아있는 경우에만 점프 가능
-	if (true == IsGround_)
-	{
-		IsGround_ = false;
-		JumpSpeed_ = -150.0f;
-	}
-}
-
-#pragma region Common FSM Function
+#pragma region Common FSM Function Start
 
 
 void Monster::CommonIdleStart(std::string _AnimName)
@@ -256,8 +284,18 @@ void Monster::CommonDeathStart(std::string _AnimName)
 	Renderer_->ScaleToTexture();
 }
 
+#pragma endregion
+
+
+#pragma region Common FSM Function Update
+
 void Monster::CommonIdleUpdate()
 {
+	if (true == ChaseFlg_)
+	{
+		StateManager_.ChangeState(MONSTER_FSM_CHASE);
+	}
+
 	ToMoveGauge_ += DeltaTime_;
 
 	if (ToMoveGauge_ >= 1.0f)
@@ -308,6 +346,37 @@ void Monster::CommonMoveUpdate()
 		break;
 	default:
 		break;
+	}
+}
+
+void Monster::CommonChaseUpdate()
+{
+	float4 MonsterPos = this->GetTransform().GetWorldPosition();
+
+	// 오른쪽으로 
+	if (MonsterPos.x <= PlayerPos_.x)
+	{
+		MoveDir_ = float4::RIGHT;
+
+		if (true == GroundRightCheck())
+		{
+			return;
+		}
+
+		GetTransform().SetWorldMove(GetTransform().GetRightVector() * Speed_ * DeltaTime_);
+
+	}
+	// 왼쪽으로
+	else if (MonsterPos.x >= PlayerPos_.x)
+	{
+		MoveDir_ = float4::LEFT;
+
+		if (true == GroundLeftCheck())
+		{
+			return;
+		}
+
+		GetTransform().SetWorldMove(GetTransform().GetLeftVector() * Speed_ * DeltaTime_);
 	}
 }
 

@@ -84,13 +84,17 @@ void Lemurian::IdleUpdate(float _DeltaTime, const StateInfo& _Info)
 {
 	CommonIdleUpdate();
 }
+
 void Lemurian::MoveUpdate(float _DeltaTime, const StateInfo& _Info)
 {
 	CommonMoveUpdate();
 }
+
 void Lemurian::ChaseUpdate(float _DeltaTime, const StateInfo& _Info)
 {
+	CommonChaseUpdate();
 }
+
 void Lemurian::AttackUpdate(float _DeltaTime, const StateInfo& _Info)
 {
 }

@@ -493,6 +493,7 @@ void Player::GroundFallCheck()
 	}
 }
 
+// TODO::캐릭터들의 피봇이 결정되면 충돌판정의 위치도 함께 수정될 것.
 // 캐릭터 오른쪽 맵 충돌 체크
 bool Player::GroundRightCheck()
 {

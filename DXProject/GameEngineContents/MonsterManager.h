@@ -22,6 +22,11 @@ public:
 		ColMap_ = _ColMap;
 	}
 
+	inline void SetPlayerPos(float4 _Pos)
+	{
+		PlayerPos_ = _Pos;
+	}
+
 protected:
 	void Start() override;
 	void Update(float _DeltaTime) override;
@@ -39,9 +44,11 @@ private:
 
 	// 리스폰 될 위치
 	float4 RespawnPos_;
+	// 플레이어 캐릭터의 위치
+	float4 PlayerPos_;
 
 	// 생성될 몬스터
-	Monster* Monster_;
+	std::vector<Monster*> Monster_;
 
 	// 충돌용 맵 정보
 	GameEngineTexture* ColMap_;
