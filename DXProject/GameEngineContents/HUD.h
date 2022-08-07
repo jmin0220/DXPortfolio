@@ -27,6 +27,9 @@ private:
 	// 스킬아이콘
 	GameEngineUIRenderer* SkillRenderer_[4];
 
+	GameEngineUIRenderer* DifficultyHUDRenderer_;
+	GameEngineUIRenderer* DifficultyTimerRenderer_;
+
 	float4 SkillPos_[4];
 
 	Option Option_;

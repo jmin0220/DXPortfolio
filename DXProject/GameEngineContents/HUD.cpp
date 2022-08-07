@@ -16,13 +16,26 @@ HUD::~HUD()
 }
 
 void HUD::Start()
-{
+{	
 	// HUD
 	HUDRenderer_ = CreateComponent<GameEngineUIRenderer>();
 	HUDRenderer_->SetTexture(TEX_INTERFACE_HUD);
 
 	HUDRenderer_->ScaleToTexture();
 	HUDRenderer_->GetTransform().SetWorldPosition({0, -390, -100});
+
+	DifficultyHUDRenderer_ = CreateComponent<GameEngineUIRenderer>();
+	DifficultyHUDRenderer_->SetTexture(TEX_INTERFACE_DIFFICULTY_HUD);
+	DifficultyHUDRenderer_->ScaleToTexture();
+	DifficultyHUDRenderer_->GetTransform().SetWorldPosition({ GameEngineWindow::GetInst()->GetScale().x / 2 - 80
+															, GameEngineWindow::GetInst()->GetScale().y / 2 - 110, -101});
+
+	DifficultyTimerRenderer_ = CreateComponent<GameEngineUIRenderer>();
+	DifficultyTimerRenderer_->SetTexture(TEX_INTERFACE_DIFFICULTY_TIMER);
+	DifficultyTimerRenderer_->ScaleToTexture();
+	DifficultyTimerRenderer_->GetTransform().SetWorldPosition({ GameEngineWindow::GetInst()->GetScale().x / 2 - 83
+															  , GameEngineWindow::GetInst()->GetScale().y / 2 - 119, -100 });
+
 
 	for (int i = 0; i < 4; i++)
 	{
@@ -63,8 +76,4 @@ void HUD::Start()
 	SkillRenderer_[2]->GetTransform().SetWorldPosition(SkillPos_[2]);
 	SkillRenderer_[3]->ScaleToTexture();
 	SkillRenderer_[3]->GetTransform().SetWorldPosition(SkillPos_[3]);
-
-	GameEngineFontRenderer* FontRenderer_;
-	FontRenderer_ = CreateComponent<GameEngineFontRenderer>();
-	FontRenderer_->SetText("æ»≥Á«œººø‰");
 }

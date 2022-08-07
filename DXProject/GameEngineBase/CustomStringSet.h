@@ -126,6 +126,8 @@
 
 // 인터페이스
 #define TEX_INTERFACE_HUD "HUD.png"
+#define TEX_INTERFACE_DIFFICULTY_HUD "DifficultyHUD.png"
+#define TEX_INTERFACE_DIFFICULTY_TIMER "DifficultyTimer.png"
 
 // 스킬 아이콘
 #define TEX_SKILLICON_COMMANDO_0 "sGManSkills_0.png"
