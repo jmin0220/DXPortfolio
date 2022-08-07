@@ -36,7 +36,6 @@ protected:
 	void IdleEnd(const StateInfo& _Info);
 	void MoveEnd(const StateInfo& _Info);
 	void ChaseEnd(const StateInfo& _Info);
-	void AttackEnd(const StateInfo& _Info);
 	void DeathEnd(const StateInfo& _Info);
 
 };

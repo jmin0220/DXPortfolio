@@ -9,7 +9,7 @@ Monster::Monster()
 	, DeltaTime_(0.0f)
 	, FrameAnimDelay_(0.06f)
 	, ChaseFlg_(false)
-	, ChaseRange_(20.0f)
+	, ChaseRange_(120.0f)
 {
 }
 
@@ -112,7 +112,6 @@ void Monster::MonsterJump()
 }
 
 #pragma region GroundCheck
-
 
 void Monster::GroundFallCheck()
 {
@@ -248,7 +247,6 @@ bool Monster::GroundLeftCheck()
 
 #pragma region Common FSM Function Start
 
-
 void Monster::CommonIdleStart(std::string _AnimName)
 {
 	// 애니메이션 전환
@@ -301,8 +299,8 @@ void Monster::CommonIdleUpdate()
 	if (ToMoveGauge_ >= 1.0f)
 	{
 		// Idle에서 Move로 전환될때 방향을 지정해줌
-		//MoveDirFlg_ = GameEngineRandom::MainRandom.RandomInt(0, 1);
-		MoveDirFlg_ = 0;
+		MoveDirFlg_ = GameEngineRandom::MainRandom.RandomInt(0, 1);
+		MoveDirFlg_ = 1;
 		StateManager_.ChangeState(MONSTER_FSM_MOVE);
 		ToMoveGauge_ = 0.0f;
 	}
@@ -310,6 +308,13 @@ void Monster::CommonIdleUpdate()
 
 void Monster::CommonMoveUpdate()
 {
+	if (true == ChaseFlg_)
+	{
+		StateManager_.ChangeState(MONSTER_FSM_CHASE);
+
+		return;
+	}
+
 	ToIdleGauge_ += DeltaTime_;
 
 	if (ToIdleGauge_ >= 2.0f)
@@ -317,6 +322,7 @@ void Monster::CommonMoveUpdate()
 		StateManager_.ChangeState(MONSTER_FSM_IDLE);
 		ToIdleGauge_ = 0.0f;
 	}
+
 
 	switch (MoveDirFlg_)
 	{
@@ -352,6 +358,19 @@ void Monster::CommonMoveUpdate()
 void Monster::CommonChaseUpdate()
 {
 	float4 MonsterPos = this->GetTransform().GetWorldPosition();
+
+	// 몬스터와 플레이어 사이의 거리를 취득
+	float4 MonsterLength = { this->GetTransform().GetWorldPosition().x
+						   , this->GetTransform().GetWorldPosition().y, 0.0f };
+	float4 PlayerLength = { PlayerPos_.x, PlayerPos_.y, 0.0f };
+	float4 Length = MonsterLength - PlayerLength;
+
+	// 거리가 몬스터와 가까워졌을경우 공격으로 전환
+	if (Length.Length() <= Renderer_->GetCurTexture()->GetScale().ix())
+	{
+		StateManager_.ChangeState(MONSTER_FSM_ATTACK);
+		return;
+	}
 
 	// 오른쪽으로 
 	if (MonsterPos.x <= PlayerPos_.x)
