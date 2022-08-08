@@ -21,14 +21,14 @@ namespace GameEngineDebug
 
 	public:
 		DebugInfo(DebugRenderType _Type, const float4& _Color)
-			: Type{static_cast<int>(_Type)}
+			: Type{ static_cast<int>(_Type) }
 			, Color(_Color)
 		{
 
 		}
 	};
 
-	struct DebugRenderData 
+	struct DebugRenderData
 	{
 	public:
 		DebugInfo Info;
@@ -37,7 +37,7 @@ namespace GameEngineDebug
 
 	std::vector<DebugRenderData> DebugData = std::vector<DebugRenderData>();
 
-	void DrawBox(const GameEngineTransform& _Trans, const float4& _Color) 
+	void DrawBox(const GameEngineTransform& _Trans, const float4& _Color)
 	{
 		DrawBox(_Trans, GameEngineCore::GetCurLevel()->GetMainCamera(), _Color);
 	}
@@ -51,24 +51,29 @@ namespace GameEngineDebug
 		DebugTrans.CalculateWorldViewProjection();
 
 		DebugData.push_back(DebugRenderData{ DebugInfo(DebugRenderType::Box, _Color) , DebugTrans.GetTransformData() });
-
-		// DebugData[0].Data = _Trans.Gettransf
 	}
 
-	//void DrawBox(float4 _Postion, float4 _Rot, float4 _Scale)
-	//{
-	//	GameEngineTransform Trans;
-	//	Trans.SetWorldPosition(_Postion);
-	//	Trans.SetWorldRotation(_Rot);
-	//	Trans.SetWorldScale(_Scale);
-	//	// DebugData.push_back(DebugRenderData());
-	//	int a = 0;
-	//}
+	void DrawSphere(const GameEngineTransform& _Trans, const float4& _Color)
+	{
+		DrawSphere(_Trans, GameEngineCore::GetCurLevel()->GetMainCamera(), _Color);
+	}
+	void DrawSphere(const GameEngineTransform& _Trans, GameEngineCamera* _Camera, const float4& _Color)
+	{
+		static GameEngineTransform DebugTrans;
+
+		DebugTrans.Copy(_Trans);
+		DebugTrans.SetView(_Camera->GetView());
+		DebugTrans.SetProjection(_Camera->GetProjectionMatrix());
+		DebugTrans.CalculateWorldViewProjection();
+
+		DebugData.push_back(DebugRenderData{ DebugInfo(DebugRenderType::Sphere, _Color) , DebugTrans.GetTransformData() });
+	}
+
 
 	GameEngineShaderResourcesHelper DebugShaderResources;
 	GameEngineRenderingPipeLine* DebugRenderingPipeLine;
 
-	void Debug3DInitialize() 
+	void Debug3DInitialize()
 	{
 		static bool IsOnce = false;
 
@@ -84,10 +89,6 @@ namespace GameEngineDebug
 		IsOnce = true;
 	}
 
-	void DrawSphere()
-	{
-
-	};
 
 	void Debug3DRender()
 	{
@@ -103,5 +104,5 @@ namespace GameEngineDebug
 		DebugData.clear();
 		int a = 0;
 	}
-	
+
 };
