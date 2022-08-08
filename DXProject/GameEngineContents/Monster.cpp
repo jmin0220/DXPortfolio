@@ -121,13 +121,13 @@ void Monster::GroundFallCheck()
 	}
 
 	// 하단 중앙
-	float4 ColorDown = ColMap_->GetPixel(this->GetTransform().GetWorldPosition().ix() + Renderer_->GetCurTexture()->GetScale().hix()
+	float4 ColorDown = ColMap_->GetPixelToFloat4(this->GetTransform().GetWorldPosition().ix() + Renderer_->GetCurTexture()->GetScale().hix()
 		, -this->GetTransform().GetWorldPosition().iy() + Renderer_->GetCurTexture()->GetScale().hiy() + JumpSpeed_ * DeltaTime_);
 	// 하단 좌측
-	float4 ColorDownLeft = ColMap_->GetPixel(this->GetTransform().GetWorldPosition().ix() + 2
+	float4 ColorDownLeft = ColMap_->GetPixelToFloat4(this->GetTransform().GetWorldPosition().ix() + 2
 		, -this->GetTransform().GetWorldPosition().iy() + Renderer_->GetCurTexture()->GetScale().hiy() + JumpSpeed_ * DeltaTime_);
 	// 하단 우측
-	float4 ColorDownRight = ColMap_->GetPixel(this->GetTransform().GetWorldPosition().ix() + Renderer_->GetCurTexture()->GetScale().hix() - 2
+	float4 ColorDownRight = ColMap_->GetPixelToFloat4(this->GetTransform().GetWorldPosition().ix() + Renderer_->GetCurTexture()->GetScale().hix() - 2
 		, -this->GetTransform().GetWorldPosition().iy() + Renderer_->GetCurTexture()->GetScale().hiy() + JumpSpeed_ * DeltaTime_);
 
 	// 하단 3점이 모두 땅에 닿지 않아야 바닥으로
@@ -151,13 +151,13 @@ void Monster::GroundFallCheck()
 
 			// 올린뒤의 픽셀 취득
 			// 하단 중앙
-			ColorDown = ColMap_->GetPixel(this->GetTransform().GetWorldPosition().ix() + Renderer_->GetCurTexture()->GetScale().hix()
+			ColorDown = ColMap_->GetPixelToFloat4(this->GetTransform().GetWorldPosition().ix() + Renderer_->GetCurTexture()->GetScale().hix()
 				, -this->GetTransform().GetWorldPosition().iy() + Renderer_->GetCurTexture()->GetScale().hiy() + JumpSpeed_ * DeltaTime_);
 			// 하단 좌측
-			ColorDownLeft = ColMap_->GetPixel(this->GetTransform().GetWorldPosition().ix() + 2
+			ColorDownLeft = ColMap_->GetPixelToFloat4(this->GetTransform().GetWorldPosition().ix() + 2
 				, -this->GetTransform().GetWorldPosition().iy() + Renderer_->GetCurTexture()->GetScale().hiy() + JumpSpeed_ * DeltaTime_);
 			// 하단 우측
-			ColorDownRight = ColMap_->GetPixel(this->GetTransform().GetWorldPosition().ix() + Renderer_->GetCurTexture()->GetScale().hix() - 2
+			ColorDownRight = ColMap_->GetPixelToFloat4(this->GetTransform().GetWorldPosition().ix() + Renderer_->GetCurTexture()->GetScale().hix() - 2
 				, -this->GetTransform().GetWorldPosition().iy() + Renderer_->GetCurTexture()->GetScale().hiy() + JumpSpeed_ * DeltaTime_);
 
 			// 가장 위로 올라왔으면 탈출
@@ -185,7 +185,7 @@ bool Monster::GroundRightCheck()
 	// 오른쪽 하단
 	// 바닥이 없으면 못감
 	{
-		float4 Color = ColMap_->GetPixel(this->GetTransform().GetWorldPosition().ix() + Renderer_->GetCurTexture()->GetScale().ix()
+		float4 Color = ColMap_->GetPixelToFloat4(this->GetTransform().GetWorldPosition().ix() + Renderer_->GetCurTexture()->GetScale().ix()
 			, -this->GetTransform().GetWorldPosition().iy() + Renderer_->GetCurTexture()->GetScale().hiy() + 1);
 
 		if (false == Color.CompareInt4D({ 1.0f, 0.0f, 1.0f }))
@@ -197,7 +197,7 @@ bool Monster::GroundRightCheck()
 	// 오른쪽 중단
 	// 벽에 막혀 있으면 못감
 	{
-		float4 Color = ColMap_->GetPixel(this->GetTransform().GetWorldPosition().ix() + Renderer_->GetCurTexture()->GetScale().ix()
+		float4 Color = ColMap_->GetPixelToFloat4(this->GetTransform().GetWorldPosition().ix() + Renderer_->GetCurTexture()->GetScale().ix()
 			, -this->GetTransform().GetWorldPosition().iy());
 
 		if (true == Color.CompareInt4D({ 1.0f, 0.0f, 1.0f }))
@@ -219,7 +219,7 @@ bool Monster::GroundLeftCheck()
 	// 왼쪽 하단
 	// 바닥이 없으면 못감
 	{
-		float4 Color = ColMap_->GetPixel(this->GetTransform().GetWorldPosition().ix()
+		float4 Color = ColMap_->GetPixelToFloat4(this->GetTransform().GetWorldPosition().ix()
 			, -this->GetTransform().GetWorldPosition().iy() + Renderer_->GetCurTexture()->GetScale().hiy() + 1);
 
 		if (false == Color.CompareInt4D({ 1.0f, 0.0f, 1.0f }))
@@ -231,7 +231,7 @@ bool Monster::GroundLeftCheck()
 	// 왼쪽 중단
 	// 벽에 막혀 있으면 못감
 	{
-		float4 Color = ColMap_->GetPixel(this->GetTransform().GetWorldPosition().ix()
+		float4 Color = ColMap_->GetPixelToFloat4(this->GetTransform().GetWorldPosition().ix()
 			, -this->GetTransform().GetWorldPosition().iy());
 
 		if (true == Color.CompareInt4D({ 1.0f, 0.0f, 1.0f }))

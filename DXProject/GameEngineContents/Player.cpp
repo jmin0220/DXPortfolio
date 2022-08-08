@@ -440,13 +440,13 @@ void Player::GroundFallCheck()
 	}
 
 	// 하단 중앙
-	float4 ColorDown = ColMap_->GetPixel(this->GetTransform().GetWorldPosition().ix() + Renderer_->GetCurTexture()->GetScale().hix()
+	float4 ColorDown = ColMap_->GetPixelToFloat4(this->GetTransform().GetWorldPosition().ix() + Renderer_->GetCurTexture()->GetScale().hix()
 		, -this->GetTransform().GetWorldPosition().iy() + Renderer_->GetCurTexture()->GetScale().hiy() + JumpSpeed_ * DeltaTime_);
 	// 하단 좌측
-	float4 ColorDownLeft = ColMap_->GetPixel(this->GetTransform().GetWorldPosition().ix() + 2
+	float4 ColorDownLeft = ColMap_->GetPixelToFloat4(this->GetTransform().GetWorldPosition().ix() + 2
 		, -this->GetTransform().GetWorldPosition().iy() + Renderer_->GetCurTexture()->GetScale().hiy() + JumpSpeed_ * DeltaTime_);
 	// 하단 우측
-	float4 ColorDownRight = ColMap_->GetPixel(this->GetTransform().GetWorldPosition().ix() + Renderer_->GetCurTexture()->GetScale().hix() - 2
+	float4 ColorDownRight = ColMap_->GetPixelToFloat4(this->GetTransform().GetWorldPosition().ix() + Renderer_->GetCurTexture()->GetScale().hix() - 2
 		, -this->GetTransform().GetWorldPosition().iy() + Renderer_->GetCurTexture()->GetScale().hiy() + JumpSpeed_ * DeltaTime_);
 
 	// 하단 3점이 모두 땅에 닿지 않아야 바닥으로
@@ -470,13 +470,13 @@ void Player::GroundFallCheck()
 
 			// 올린뒤의 픽셀 취득
 			// 하단 중앙
-			ColorDown = ColMap_->GetPixel(this->GetTransform().GetWorldPosition().ix() + Renderer_->GetCurTexture()->GetScale().hix()
+			ColorDown = ColMap_->GetPixelToFloat4(this->GetTransform().GetWorldPosition().ix() + Renderer_->GetCurTexture()->GetScale().hix()
 				, -this->GetTransform().GetWorldPosition().iy() + Renderer_->GetCurTexture()->GetScale().hiy() + JumpSpeed_ * DeltaTime_);
 			// 하단 좌측
-			ColorDownLeft = ColMap_->GetPixel(this->GetTransform().GetWorldPosition().ix() + 2
+			ColorDownLeft = ColMap_->GetPixelToFloat4(this->GetTransform().GetWorldPosition().ix() + 2
 				, -this->GetTransform().GetWorldPosition().iy() + Renderer_->GetCurTexture()->GetScale().hiy() + JumpSpeed_ * DeltaTime_);
 			// 하단 우측
-			ColorDownRight = ColMap_->GetPixel(this->GetTransform().GetWorldPosition().ix() + Renderer_->GetCurTexture()->GetScale().hix() - 2
+			ColorDownRight = ColMap_->GetPixelToFloat4(this->GetTransform().GetWorldPosition().ix() + Renderer_->GetCurTexture()->GetScale().hix() - 2
 				, -this->GetTransform().GetWorldPosition().iy() + Renderer_->GetCurTexture()->GetScale().hiy() + JumpSpeed_ * DeltaTime_);
 
 			// 가장 위로 올라왔으면 탈출
@@ -504,7 +504,7 @@ bool Player::GroundRightCheck()
 
 	// 오른쪽 중단
 	{
-		float4 Color = ColMap_->GetPixel(this->GetTransform().GetWorldPosition().ix() + Renderer_->GetCurTexture()->GetScale().ix()
+		float4 Color = ColMap_->GetPixelToFloat4(this->GetTransform().GetWorldPosition().ix() + Renderer_->GetCurTexture()->GetScale().ix()
 			, -this->GetTransform().GetWorldPosition().iy());
 
 		if (false == Color.CompareInt4D({ 1.0f, 0.0f, 1.0f }))
@@ -515,7 +515,7 @@ bool Player::GroundRightCheck()
 
 	// 오른쪽 하단
 	{
-		float4 Color = ColMap_->GetPixel(this->GetTransform().GetWorldPosition().ix() + Renderer_->GetCurTexture()->GetScale().ix()
+		float4 Color = ColMap_->GetPixelToFloat4(this->GetTransform().GetWorldPosition().ix() + Renderer_->GetCurTexture()->GetScale().ix()
 			, -this->GetTransform().GetWorldPosition().iy() + Renderer_->GetCurTexture()->GetScale().hiy());
 
 		if (false == Color.CompareInt4D({ 1.0f, 0.0f, 1.0f }))
@@ -537,7 +537,7 @@ bool Player::GroundLeftCheck()
 
 	// 왼쪽 중단
 	{
-		float4 Color = ColMap_->GetPixel(this->GetTransform().GetWorldPosition().ix()
+		float4 Color = ColMap_->GetPixelToFloat4(this->GetTransform().GetWorldPosition().ix()
 			, -this->GetTransform().GetWorldPosition().iy());
 
 		if (false == Color.CompareInt4D({ 1.0f, 0.0f, 1.0f }))
@@ -548,7 +548,7 @@ bool Player::GroundLeftCheck()
 
 	// 왼쪽 하단
 	{
-		float4 Color = ColMap_->GetPixel(this->GetTransform().GetWorldPosition().ix()
+		float4 Color = ColMap_->GetPixelToFloat4(this->GetTransform().GetWorldPosition().ix()
 			, -this->GetTransform().GetWorldPosition().iy() + Renderer_->GetCurTexture()->GetScale().hiy());
 
 		if (false == Color.CompareInt4D({ 1.0f, 0.0f, 1.0f }))
@@ -575,10 +575,10 @@ bool Player::CanClimb(int _CheckPosFlg)
 		float4 Color[4] = {};
 
 		// 밧줄의 4픽셀이 모두 겹쳐져야 줄타기
-		Color[0] = ColMap_->GetPixel(ColorCheckPos_.ix(), ColorCheckPos_.iy() - Renderer_->GetCurTexture()->GetScale().hiy());
-		Color[1] = ColMap_->GetPixel(ColorCheckPos_.ix() - 1, ColorCheckPos_.iy() - Renderer_->GetCurTexture()->GetScale().hiy());
-		Color[2] = ColMap_->GetPixel(ColorCheckPos_.ix() + 1, ColorCheckPos_.iy() - Renderer_->GetCurTexture()->GetScale().hiy());
-		Color[3] = ColMap_->GetPixel(ColorCheckPos_.ix() + 2, ColorCheckPos_.iy() - Renderer_->GetCurTexture()->GetScale().hiy());
+		Color[0] = ColMap_->GetPixelToFloat4(ColorCheckPos_.ix(), ColorCheckPos_.iy() - Renderer_->GetCurTexture()->GetScale().hiy());
+		Color[1] = ColMap_->GetPixelToFloat4(ColorCheckPos_.ix() - 1, ColorCheckPos_.iy() - Renderer_->GetCurTexture()->GetScale().hiy());
+		Color[2] = ColMap_->GetPixelToFloat4(ColorCheckPos_.ix() + 1, ColorCheckPos_.iy() - Renderer_->GetCurTexture()->GetScale().hiy());
+		Color[3] = ColMap_->GetPixelToFloat4(ColorCheckPos_.ix() + 2, ColorCheckPos_.iy() - Renderer_->GetCurTexture()->GetScale().hiy());
 
 		if (true == Color[0].CompareInt4D({ 0.0f, 1.0f, 0.0f }) &&
 			true == Color[1].CompareInt4D({ 0.0f, 1.0f, 0.0f }) &&
@@ -596,10 +596,10 @@ bool Player::CanClimb(int _CheckPosFlg)
 		float4 Color[4] = {};
 
 		// 밧줄의 4픽셀이 모두 겹쳐져야 줄타기
-		Color[0] = ColMap_->GetPixel(ColorCheckPos_.ix(), ColorCheckPos_.iy());
-		Color[1] = ColMap_->GetPixel(ColorCheckPos_.ix() - 1, ColorCheckPos_.iy());
-		Color[2] = ColMap_->GetPixel(ColorCheckPos_.ix() + 1, ColorCheckPos_.iy());
-		Color[3] = ColMap_->GetPixel(ColorCheckPos_.ix() + 2, ColorCheckPos_.iy());
+		Color[0] = ColMap_->GetPixelToFloat4(ColorCheckPos_.ix(), ColorCheckPos_.iy());
+		Color[1] = ColMap_->GetPixelToFloat4(ColorCheckPos_.ix() - 1, ColorCheckPos_.iy());
+		Color[2] = ColMap_->GetPixelToFloat4(ColorCheckPos_.ix() + 1, ColorCheckPos_.iy());
+		Color[3] = ColMap_->GetPixelToFloat4(ColorCheckPos_.ix() + 2, ColorCheckPos_.iy());
 
 		if (true == Color[0].CompareInt4D({ 0.0f, 1.0f, 0.0f }) &&
 			true == Color[1].CompareInt4D({ 0.0f, 1.0f, 0.0f }) &&
@@ -617,10 +617,10 @@ bool Player::CanClimb(int _CheckPosFlg)
 		float4 Color[4] = {};
 
 		// 밧줄의 4픽셀이 모두 겹쳐져야 줄타기
-		Color[0] = ColMap_->GetPixel(ColorCheckPos_.ix(), ColorCheckPos_.iy() + Renderer_->GetCurTexture()->GetScale().hiy());
-		Color[1] = ColMap_->GetPixel(ColorCheckPos_.ix() - 1, ColorCheckPos_.iy() + Renderer_->GetCurTexture()->GetScale().hiy());
-		Color[2] = ColMap_->GetPixel(ColorCheckPos_.ix() + 1, ColorCheckPos_.iy() + Renderer_->GetCurTexture()->GetScale().hiy());
-		Color[3] = ColMap_->GetPixel(ColorCheckPos_.ix() + 2, ColorCheckPos_.iy() + Renderer_->GetCurTexture()->GetScale().hiy());
+		Color[0] = ColMap_->GetPixelToFloat4(ColorCheckPos_.ix(), ColorCheckPos_.iy() + Renderer_->GetCurTexture()->GetScale().hiy());
+		Color[1] = ColMap_->GetPixelToFloat4(ColorCheckPos_.ix() - 1, ColorCheckPos_.iy() + Renderer_->GetCurTexture()->GetScale().hiy());
+		Color[2] = ColMap_->GetPixelToFloat4(ColorCheckPos_.ix() + 1, ColorCheckPos_.iy() + Renderer_->GetCurTexture()->GetScale().hiy());
+		Color[3] = ColMap_->GetPixelToFloat4(ColorCheckPos_.ix() + 2, ColorCheckPos_.iy() + Renderer_->GetCurTexture()->GetScale().hiy());
 
 		if (true == Color[0].CompareInt4D({ 0.0f, 1.0f, 0.0f }) &&
 			true == Color[1].CompareInt4D({ 0.0f, 1.0f, 0.0f }) &&
