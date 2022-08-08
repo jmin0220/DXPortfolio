@@ -72,7 +72,7 @@ void GameEngineLevel::ActorOnEvent()
 			{
 				continue;
 			}
-			Actor->OnEvent();
+			Actor->AllOnEvent();
 		}
 	}
 }
@@ -88,7 +88,7 @@ void GameEngineLevel::ActorOffEvent()
 			{
 				continue;
 			}
-			Actor->OffEvent();
+			Actor->AllOffEvent();
 		}
 	}
 }
