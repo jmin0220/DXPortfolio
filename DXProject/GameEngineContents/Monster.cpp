@@ -22,6 +22,9 @@ void Monster::Start()
 	// 애니메이션 초기화
 	AnimationInit();
 
+	// 콜리전 초기화
+	CollisionInit();
+
 	// 스테이트 초기화
 	StateInit();
 }

@@ -19,6 +19,7 @@ protected:
 
 	// 초기화 함수
 	void AnimationInit() override;
+	void CollisionInit() override;
 	void StateInit() override;
 
 	void IdleStart(const StateInfo& _Info);

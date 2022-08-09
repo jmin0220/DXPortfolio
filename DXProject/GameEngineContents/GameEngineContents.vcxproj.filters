@@ -46,6 +46,12 @@
     <Filter Include="01_Actor\01_Play\Monsters">
       <UniqueIdentifier>{bc597eed-4c3f-409c-8793-363c2818149b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="01_Actor\01_Play\Object">
+      <UniqueIdentifier>{d0f8830b-5810-40ac-b897-fade875cbcb1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01_Actor\01_Play\Effect">
+      <UniqueIdentifier>{4f0a6611-260b-4677-a293-1b83719f410a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PreCompile.h">
@@ -107,6 +113,9 @@
     </ClInclude>
     <ClInclude Include="MonsterManager.h">
       <Filter>01_Actor\01_Play\Monsters</Filter>
+    </ClInclude>
+    <ClInclude Include="Bullet.h">
+      <Filter>01_Actor\01_Play\Effect</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -172,6 +181,9 @@
     </ClCompile>
     <ClCompile Include="MonsterManager.cpp">
       <Filter>01_Actor\01_Play\Monsters</Filter>
+    </ClCompile>
+    <ClCompile Include="Bullet.cpp">
+      <Filter>01_Actor\01_Play\Effect</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

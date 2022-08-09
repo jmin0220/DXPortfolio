@@ -3,9 +3,11 @@
 // #include <DirectXCollision.inl>
 
 
-void GameEngineTransform::CollisionScaleSetting() {
-	CollisionDataObject.OBB.Extents = (Data.WorldScaling * 0.5f);
+void GameEngineTransform::CollisionScaleSetting()
+{
+	CollisionDataObject.OBB.Extents = (Data.WorldScaling.ABS3DReturn() * 0.5f);
 }
+
 void GameEngineTransform::CollisionRotationSetting() {
 	CollisionDataObject.OBB.Orientation = Data.WorldRotation.DegreeRotationToQuaternionReturn();
 }

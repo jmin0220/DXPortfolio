@@ -31,7 +31,7 @@ void Player::Start()
 	// 스테이트 초기화
 	StateInit();
 
-	HUD_ = GetLevel()->CreateActor<HUD>(ObjectGroup::UI);
+	HUD_ = GetLevel()->CreateActor<HUD>();
 }
 
 void Player::Update(float _DeltaTime)

@@ -34,6 +34,13 @@ void Lemurian::AnimationInit()
 	Renderer_->SetScaleModeImage();
 }
 
+void Lemurian::CollisionInit()
+{
+	Collision_ = CreateComponent<GameEngineCollision>();
+	Collision_->GetTransform().SetWorldScale({ 15.0f, 30.0f, 0.0f });
+	Collision_->ChangeOrder(ObjectGroup::Monster);
+}
+
 void Lemurian::StateInit()
 {
 	// StateSpawn = 애니메이션이 끝날때까지 대기하는 상태

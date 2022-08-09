@@ -32,6 +32,7 @@ protected:
 	// 초기화 함수
 	virtual void AnimationInit() {};
 	virtual void StateInit() {};
+	virtual void CollisionInit() {};
 
 	// 업데이트 함수
 	void CheckNegativeX();
@@ -59,6 +60,7 @@ protected:
 #pragma endregion
 
 	GameEngineTextureRenderer* Renderer_;
+	GameEngineCollision* Collision_;
 	float DeltaTime_;
 
 	// 속도 관련

@@ -23,7 +23,7 @@ void Stage1Level::Start()
 	CameraActor->GetTransform().SetLocalPosition({ 0.0f, 0.0f, -100.0f });
 	CameraActor->GetCameraComponent()->SetProjectionMode(CAMERAPROJECTIONMODE::Orthographic);
 
-	StageActor_ = CreateActor<StageGround>(ObjectGroup::Stage);
+	StageActor_ = CreateActor<StageGround>();
 	MonsterManager_ = CreateActor<MonsterManager>();
 }
 
@@ -49,10 +49,10 @@ void Stage1Level::OnEvent()
 	switch (Option_.CharacterSelect_)
 	{
 	case CharacterSelectEnum::Commando:
-		Player_ = CreateActor<Commando>(ObjectGroup::Player);
+		Player_ = CreateActor<Commando>();
 		break;
 	case CharacterSelectEnum::Bandit:
-		Player_ = CreateActor<Bandit>(ObjectGroup::Player);
+		Player_ = CreateActor<Bandit>();
 		break;
 	case CharacterSelectEnum::None:
 		break;
