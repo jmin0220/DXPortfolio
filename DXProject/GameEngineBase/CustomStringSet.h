@@ -122,6 +122,7 @@
 #define TEX_MONSTER_ANIM_LEMURIAN_SHOOT "LemurianShoot"
 #define TEX_MONSTER_ANIM_LEMURIAN_SPAWN "LemurianSpawn"
 #define TEX_MONSTER_ANIM_LEMURIAN_WALK "LemurianWalk"
+#define TEX_MONSTER_ANIM_LEMURIAN_DEATH "LumurianDeath"
 
 
 // 인터페이스

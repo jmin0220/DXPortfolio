@@ -30,6 +30,11 @@ public:
 		MonsterHp_ -= _Damage;
 	}
 
+	inline bool GetMonsterDeath() const
+	{
+		return IsMonsterDeath_;
+	}
+
 protected:
 	void Start() override;
 	void Update(float _DeltaTime) override;
@@ -82,6 +87,8 @@ protected:
 	bool IsGround_;
 	// 스테이트에서 넣어줄 점프플래그
 	bool IsJump_;
+	// 죽음처리(시체남음)
+	bool IsMonsterDeath_;
 
 	// 방향 관련
 	float4 MoveDir_;

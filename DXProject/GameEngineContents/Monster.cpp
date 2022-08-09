@@ -10,6 +10,7 @@ Monster::Monster()
 	, FrameAnimDelay_(0.06f)
 	, ChaseFlg_(false)
 	, ChaseRange_(120.0f)
+	, IsMonsterDeath_(false)
 {
 }
 
@@ -120,7 +121,10 @@ void Monster::DeathSwitch()
 {
 	if (MonsterHp_ <= 0)
 	{
-		this->Death();
+		IsMonsterDeath_ = true;
+
+		Collision_->Off();
+		StateManager_.ChangeState(MONSTER_FSM_DEATH);
 	}
 }
 

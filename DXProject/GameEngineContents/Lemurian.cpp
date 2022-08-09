@@ -23,8 +23,7 @@ void Lemurian::AnimationInit()
 	Renderer_->CreateFrameAnimationFolder(LEMURIAN_ANIM_SHOOT, FrameAnimation_DESC(TEX_MONSTER_ANIM_LEMURIAN_SHOOT, FrameAnimDelay_, false));
 	Renderer_->CreateFrameAnimationFolder(LEMURIAN_ANIM_SPAWN, FrameAnimation_DESC(TEX_MONSTER_ANIM_LEMURIAN_SPAWN, FrameAnimDelay_, false));
 	Renderer_->CreateFrameAnimationFolder(LEMURIAN_ANIM_WALK, FrameAnimation_DESC(TEX_MONSTER_ANIM_LEMURIAN_WALK, FrameAnimDelay_, true));
-	// ↓수정필요
-	Renderer_->CreateFrameAnimationFolder(LEMURIAN_ANIM_DEATH, FrameAnimation_DESC(TEX_MONSTER_ANIM_LEMURIAN_WALK, FrameAnimDelay_, true));
+	Renderer_->CreateFrameAnimationFolder(LEMURIAN_ANIM_DEATH, FrameAnimation_DESC(TEX_MONSTER_ANIM_LEMURIAN_DEATH, FrameAnimDelay_, false));
 
 	// 프레임이 종료되었을 때
 	Renderer_->AnimationBindEnd(LEMURIAN_ANIM_SPAWN, [=](const FrameAnimation_DESC& _Info) { StateManager_.ChangeState(MONSTER_FSM_IDLE); Collision_->On(); });

@@ -46,8 +46,9 @@ void MonsterManager::Update(float _DeltaTime)
 
 	for (; MonsteriterStart != MonsteriterEnd;)
 	{
-		if (true == (*MonsteriterStart)->IsDeath())
+		if (true == (*MonsteriterStart)->GetMonsterDeath())
 		{
+			// 죽은 몬스터를 매니저에서 삭제
 			MonsteriterStart = Monster_.erase(MonsteriterStart);
 			
 			continue;
