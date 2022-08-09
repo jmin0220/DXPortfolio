@@ -40,14 +40,26 @@ void MonsterManager::Update(float _DeltaTime)
 		SingleMonsterRespawnTimer_ = 0.0f;
 	}
 
-	// TODO::더 좋은 방법이 있을지도?
+
+	std::list<Monster*>::iterator Monsteriter = Monster_.begin();
+
 	for (Monster* SingleMonster : Monster_)
 	{
-		if (SingleMonster == nullptr)
+		if (true == SingleMonster->IsDeath())
 		{
+			Monsteriter = Monster_.erase(Monsteriter);
+
+			if (Monster_.size() == 0)
+			{
+				break;
+			}
+
 			continue;
 		}
-
-		SingleMonster->SetPlayerPos(PlayerPos_);
+		else
+		{
+			SingleMonster->SetPlayerPos(PlayerPos_);
+			++Monsteriter;
+		}
 	}
 }

@@ -14,7 +14,7 @@ void Bullet::Start()
 {
 	Collision_ = CreateComponent<GameEngineCollision>();
 	Collision_->ChangeOrder(ObjectGroup::PlayerBullet);
-	Collision_->GetTransform().SetWorldScale({ 10.0f, 10.0f, 0.0f });
+	Collision_->GetTransform().SetWorldScale({ 10.0f, 10.0f, 1.0f });
 }
 
 void Bullet::Update(float _DeltaTime)
@@ -29,6 +29,7 @@ bool Bullet::CollisionCheck(GameEngineCollision* _This, GameEngineCollision* _Ot
 {
 	// TODO::임시코드
 	_Other->GetActor()->Death();
+	this->Death();
 
 	return false;
 }

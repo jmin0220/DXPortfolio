@@ -37,8 +37,11 @@ void Lemurian::AnimationInit()
 void Lemurian::CollisionInit()
 {
 	Collision_ = CreateComponent<GameEngineCollision>();
-	Collision_->GetTransform().SetWorldScale({ 15.0f, 30.0f, 0.0f });
+	Collision_->GetTransform().SetWorldScale({ 15.0f, 30.0f, 1.0f });
 	Collision_->ChangeOrder(ObjectGroup::Monster);
+
+	// 디버그용 
+	// GameEngineDebug::DrawBox(Collision_->GetTransform(), { 1.0, 0.0, 0.0, 0.5 });
 }
 
 void Lemurian::StateInit()

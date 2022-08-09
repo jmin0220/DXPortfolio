@@ -48,7 +48,7 @@ private:
 	float4 PlayerPos_;
 
 	// 생성될 몬스터
-	std::vector<Monster*> Monster_;
+	std::list<Monster*> Monster_;
 
 	// 충돌용 맵 정보
 	GameEngineTexture* ColMap_;
