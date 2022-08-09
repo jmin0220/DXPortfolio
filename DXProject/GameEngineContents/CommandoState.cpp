@@ -84,6 +84,7 @@ void Commando::Skill1Start(const StateInfo& _Info)
 
 	Bullet* bullet = GetLevel()->CreateActor<Bullet>();
 	bullet->GetTransform().SetWorldPosition(this->GetTransform().GetWorldPosition());
+	bullet->SetDamage(Damage_);
 }
 
 void Commando::Skill2Start(const StateInfo& _Info)

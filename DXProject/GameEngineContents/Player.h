@@ -142,5 +142,19 @@ protected:
 	// 스킬창등의 UI
 	HUD* HUD_;
 
+	// 플레이어 스테이터스
+	float Hp_;
+	float LvPerHp_;
+	float HpRegen_;
+	float LvPerHpRegen_;
+
+	int Damage_;
+	int LvPerDamage_;
+	float AtkSpeed_;
+
+	int Exp_;
+	int Lv_;
+
+	float CritChance_;
 };
 

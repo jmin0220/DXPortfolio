@@ -1,5 +1,6 @@
 #include "PreCompile.h"
 #include "Bullet.h"
+#include "Monster.h"
 
 Bullet::Bullet() 
 	: Collision_(nullptr)
@@ -27,8 +28,9 @@ void Bullet::Update(float _DeltaTime)
 
 bool Bullet::CollisionCheck(GameEngineCollision* _This, GameEngineCollision* _Other)
 {
-	// TODO::임시코드
-	_Other->GetActor()->Death();
+	Monster* TmpMonster = dynamic_cast<Monster*>(_Other->GetActor());
+	TmpMonster->HitFunction(Damage_);
+
 	this->Death();
 
 	return false;

@@ -32,8 +32,6 @@ protected:
 	void Update(float _DeltaTime) override;
 
 private:
-	void SetColMapInfoToMonster(GameEngineTexture* _ColMap);
-
 	// 몬스터의 생성주기
 	// 1마리 -> 30초후 -> 2마리 -> 30초후 -> 4마리 -> .... 반복
 	// 30초 간격으로 생성되는 몬스터들 사이의 타이머

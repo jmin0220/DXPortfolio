@@ -31,6 +31,8 @@ void Monster::Start()
 
 void Monster::Update(float _DeltaTime)
 {
+	DeathSwitch();
+
 	DeltaTime_ = _DeltaTime;
 
 	// ÇÈ¼¿¸Ê°úÀÇ Ãæµ¹Ã³¸®
@@ -111,6 +113,14 @@ void Monster::MonsterJump()
 	{
 		IsGround_ = false;
 		JumpSpeed_ = -150.0f;
+	}
+}
+
+void Monster::DeathSwitch()
+{
+	if (MonsterHp_ <= 0)
+	{
+		this->Death();
 	}
 }
 

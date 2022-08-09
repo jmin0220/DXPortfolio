@@ -16,6 +16,11 @@ public:
 	Bullet& operator=(const Bullet& _Other) = delete;
 	Bullet& operator=(Bullet&& _Other) noexcept = delete;
 
+	void SetDamage(int _Damage)
+	{
+		Damage_ = _Damage;
+	}
+
 protected:
 	void Start() override;
 	void Update(float _DeltaTime) override;
@@ -23,5 +28,6 @@ protected:
 private:
 	GameEngineCollision* Collision_;
 	bool CollisionCheck(GameEngineCollision* _This, GameEngineCollision* _Other);
+	int Damage_;
 };
 

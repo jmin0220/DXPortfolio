@@ -4,7 +4,8 @@
 Lemurian::Lemurian() 
 {
 	Speed_ = Player_MOVE_SPEED;
-
+	MonsterHp_ = 100;
+	Damage_ = 14;
 }
 
 Lemurian::~Lemurian() 
@@ -26,7 +27,7 @@ void Lemurian::AnimationInit()
 	Renderer_->CreateFrameAnimationFolder(LEMURIAN_ANIM_DEATH, FrameAnimation_DESC(TEX_MONSTER_ANIM_LEMURIAN_WALK, FrameAnimDelay_, true));
 
 	// 프레임이 종료되었을 때
-	Renderer_->AnimationBindEnd(LEMURIAN_ANIM_SPAWN, [=](const FrameAnimation_DESC& _Info) { StateManager_.ChangeState(MONSTER_FSM_IDLE); });
+	Renderer_->AnimationBindEnd(LEMURIAN_ANIM_SPAWN, [=](const FrameAnimation_DESC& _Info) { StateManager_.ChangeState(MONSTER_FSM_IDLE); Collision_->On(); });
 	Renderer_->AnimationBindEnd(LEMURIAN_ANIM_SHOOT, [=](const FrameAnimation_DESC& _Info) { StateManager_.ChangeState(MONSTER_FSM_CHASE); });
 
 	// 초기 애니메이션 전환
@@ -40,8 +41,8 @@ void Lemurian::CollisionInit()
 	Collision_->GetTransform().SetWorldScale({ 15.0f, 30.0f, 1.0f });
 	Collision_->ChangeOrder(ObjectGroup::Monster);
 
-	// 디버그용 
-	// GameEngineDebug::DrawBox(Collision_->GetTransform(), { 1.0, 0.0, 0.0, 0.5 });
+	// 초기에 콜리전 off, spawn 애니메이션 종료후에 활성화
+	Collision_->Off();
 }
 
 void Lemurian::StateInit()

@@ -25,6 +25,11 @@ public:
 		PlayerPos_ = _Pos;
 	}
 
+	inline void HitFunction(int _Damage)
+	{
+		MonsterHp_ -= _Damage;
+	}
+
 protected:
 	void Start() override;
 	void Update(float _DeltaTime) override;
@@ -43,6 +48,8 @@ protected:
 	void ChaseFlgUpdate();
 
 	void MonsterJump();
+	
+	void DeathSwitch();
 
 	// FSM 매니저
 	GameEngineStateManager StateManager_;
@@ -89,11 +96,14 @@ protected:
 	// FSM전환용 수치값
 	float ToMoveGauge_;
 	bool MoveDirFlg_;	// 0 ->Left 1 -> Right
-	
+	// Move->Idle 스테이트 변경치
 	float ToIdleGauge_;
-	
+	// 추척관련 수치
 	bool ChaseFlg_;
 	float ChaseRange_;
 
+	// 몬스터 스테이터스
+	int MonsterHp_;
+	int Damage_;
 };
 

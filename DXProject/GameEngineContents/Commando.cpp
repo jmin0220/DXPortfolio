@@ -3,6 +3,17 @@
 
 Commando::Commando() 
 {
+	// https://riskofrain.fandom.com/wiki/Commando_(RoR)?so=search
+	Hp_ = 110;
+	LvPerHp_ = 32;
+
+	HpRegen_ = 0.6;
+	LvPerHpRegen_ = 0.12;
+
+	Damage_ = 12;
+	LvPerDamage_ = 3;
+
+	AtkSpeed_ = 163.63;
 }
 
 Commando::~Commando() 

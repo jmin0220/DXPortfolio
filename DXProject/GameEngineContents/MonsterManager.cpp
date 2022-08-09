@@ -41,25 +41,21 @@ void MonsterManager::Update(float _DeltaTime)
 	}
 
 
-	std::list<Monster*>::iterator Monsteriter = Monster_.begin();
+	std::list<Monster*>::iterator MonsteriterStart = Monster_.begin();
+	std::list<Monster*>::iterator MonsteriterEnd = Monster_.end();
 
-	for (Monster* SingleMonster : Monster_)
+	for (; MonsteriterStart != MonsteriterEnd;)
 	{
-		if (true == SingleMonster->IsDeath())
+		if (true == (*MonsteriterStart)->IsDeath())
 		{
-			Monsteriter = Monster_.erase(Monsteriter);
-
-			if (Monster_.size() == 0)
-			{
-				break;
-			}
-
+			MonsteriterStart = Monster_.erase(MonsteriterStart);
+			
 			continue;
 		}
 		else
 		{
-			SingleMonster->SetPlayerPos(PlayerPos_);
-			++Monsteriter;
+			(*MonsteriterStart)->SetPlayerPos(PlayerPos_);
+			++MonsteriterStart;
 		}
 	}
 }
