@@ -35,6 +35,11 @@ public:
 		return IsMonsterDeath_;
 	}
 
+	inline void ChangeStateToHitted()
+	{
+		StateManager_.ChangeState(MONSTER_FSM_HITTED);
+	}
+
 protected:
 	void Start() override;
 	void Update(float _DeltaTime) override;

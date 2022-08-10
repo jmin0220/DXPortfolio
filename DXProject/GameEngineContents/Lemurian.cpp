@@ -24,10 +24,12 @@ void Lemurian::AnimationInit()
 	Renderer_->CreateFrameAnimationFolder(LEMURIAN_ANIM_SPAWN, FrameAnimation_DESC(TEX_MONSTER_ANIM_LEMURIAN_SPAWN, FrameAnimDelay_, false));
 	Renderer_->CreateFrameAnimationFolder(LEMURIAN_ANIM_WALK, FrameAnimation_DESC(TEX_MONSTER_ANIM_LEMURIAN_WALK, FrameAnimDelay_, true));
 	Renderer_->CreateFrameAnimationFolder(LEMURIAN_ANIM_DEATH, FrameAnimation_DESC(TEX_MONSTER_ANIM_LEMURIAN_DEATH, FrameAnimDelay_, false));
+	Renderer_->CreateFrameAnimationFolder(LEMURIAN_ANIM_HITTED, FrameAnimation_DESC(TEX_MONSTER_ANIM_LEMURIAN_HITTED, FrameAnimDelay_, false));
 
 	// 프레임이 종료되었을 때
 	Renderer_->AnimationBindEnd(LEMURIAN_ANIM_SPAWN, [=](const FrameAnimation_DESC& _Info) { StateManager_.ChangeState(MONSTER_FSM_IDLE); Collision_->On(); });
 	Renderer_->AnimationBindEnd(LEMURIAN_ANIM_SHOOT, [=](const FrameAnimation_DESC& _Info) { StateManager_.ChangeState(MONSTER_FSM_CHASE); });
+	Renderer_->AnimationBindEnd(LEMURIAN_ANIM_HITTED, [=](const FrameAnimation_DESC& _Info) { StateManager_.ChangeState(MONSTER_FSM_CHASE); });
 
 	// 초기 애니메이션 전환
 	Renderer_->ChangeFrameAnimation(LEMURIAN_ANIM_SPAWN);
@@ -63,6 +65,44 @@ void Lemurian::StateInit()
 	StateManager_.CreateStateMember(MONSTER_FSM_DEATH, std::bind(&Lemurian::DeathUpdate, this, std::placeholders::_1, std::placeholders::_2)
 													, std::bind(&Lemurian::DeathStart, this, std::placeholders::_1)
 													, std::bind(&Lemurian::DeathEnd, this, std::placeholders::_1));
+	StateManager_.CreateStateMember(MONSTER_FSM_HITTED, [=](float _DeltaTime, const StateInfo& _Info_) 
+									{
+
+			float4 MonsterPos = this->GetTransform().GetWorldPosition();
+
+			// 몬스터와 플레이어 사이의 거리를 취득
+			float4 MonsterLength = { this->GetTransform().GetWorldPosition().x
+								   , this->GetTransform().GetWorldPosition().y, 0.0f };
+			float4 PlayerLength = { PlayerPos_.x, PlayerPos_.y, 0.0f };
+			float4 Length = MonsterLength - PlayerLength;
+
+			// 오른쪽으로 
+			if (MonsterPos.x <= PlayerPos_.x)
+			{
+				MoveDir_ = float4::RIGHT;
+
+				if (true == GroundLeftCheck())
+				{
+					return;
+				}
+
+				GetTransform().SetWorldMove(GetTransform().GetLeftVector() * Speed_ / 3 * DeltaTime_);
+
+			}
+			// 왼쪽으로
+			else if (MonsterPos.x >= PlayerPos_.x)
+			{
+				MoveDir_ = float4::LEFT;
+
+				if (true == GroundRightCheck())
+				{
+					return;
+				}
+
+				GetTransform().SetWorldMove(GetTransform().GetRightVector() * Speed_ / 3 * DeltaTime_);
+			}
+									}
+	                                                , [=](const StateInfo& _Info_) {Renderer_->ChangeFrameAnimation(LEMURIAN_ANIM_HITTED); });
 
 	// 초기 스테이트전환
 	StateManager_.ChangeState(MONSTER_FSM_SPAWN);

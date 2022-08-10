@@ -30,6 +30,7 @@ bool Bullet::CollisionCheck(GameEngineCollision* _This, GameEngineCollision* _Ot
 {
 	Monster* TmpMonster = dynamic_cast<Monster*>(_Other->GetActor());
 	TmpMonster->HitFunction(Damage_);
+	TmpMonster->ChangeStateToHitted();
 
 	this->Death();
 

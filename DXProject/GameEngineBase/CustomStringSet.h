@@ -35,6 +35,7 @@
 #define MONSTER_FSM_CHASE "MonsterChase"
 #define MONSTER_FSM_ATTACK "MonsterAttack"
 #define MONSTER_FSM_DEATH "MonsterDeath"
+#define MONSTER_FSM_HITTED "MonsterHitted"
 
 // 플레이어 애니메이션
 #define PLAYER_ANIM_IDLE "PlayerIdle"
@@ -58,6 +59,7 @@
 #define LEMURIAN_ANIM_SPAWN "LemurianSpawn"
 #define LEMURIAN_ANIM_WALK "LemurianWalk"
 #define LEMURIAN_ANIM_DEATH "LemurianDeath"
+#define LEMURIAN_ANIM_HITTED "LemurianHitted"
 
 
 // 캐릭터별 특수 애니메이션
@@ -123,7 +125,7 @@
 #define TEX_MONSTER_ANIM_LEMURIAN_SPAWN "LemurianSpawn"
 #define TEX_MONSTER_ANIM_LEMURIAN_WALK "LemurianWalk"
 #define TEX_MONSTER_ANIM_LEMURIAN_DEATH "LumurianDeath"
-
+#define TEX_MONSTER_ANIM_LEMURIAN_HITTED "LemurianHitted"
 
 // 인터페이스
 #define TEX_INTERFACE_HUD "HUD.png"
