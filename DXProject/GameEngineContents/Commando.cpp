@@ -1,5 +1,6 @@
 #include "PreCompile.h"
 #include "Commando.h"
+#include "Bullet.h"
 
 Commando::Commando() 
 {
@@ -13,7 +14,7 @@ Commando::Commando()
 	Damage_ = 12;
 	LvPerDamage_ = 3;
 
-	AtkSpeed_ = 163.63;
+	AtkSpeed_ = 0.5;
 }
 
 Commando::~Commando() 
@@ -39,7 +40,15 @@ void Commando::AnimationInit()
 
 	// 프레임마다 실행할 함수
 	Renderer_->AnimationBindFrame(PLAYER_ANIM_IDLE, std::bind(&Commando::FrameAnimation, this, std::placeholders::_1));
-	Renderer_->AnimationBindFrame(PLAYER_ANIM_SKILL1, std::bind(&Commando::FrameAnimation, this, std::placeholders::_1));
+	Renderer_->AnimationBindFrame(PLAYER_ANIM_SKILL1, [=](const FrameAnimation_DESC& _Info)
+		{
+			if (_Info.CurFrame == 1 || _Info.CurFrame == 3)
+			{
+				Bullet* bullet = GetLevel()->CreateActor<Bullet>();
+				bullet->GetTransform().SetWorldPosition(this->GetTransform().GetWorldPosition());
+				bullet->SetDamage(Damage_);
+			}
+		});
 	Renderer_->AnimationBindFrame(PLAYER_ANIM_SKILL2, std::bind(&Commando::FrameAnimation, this, std::placeholders::_1));
 	Renderer_->AnimationBindFrame(PLAYER_ANIM_SKILL3, std::bind(&Commando::FrameAnimation, this, std::placeholders::_1));
 	Renderer_->AnimationBindFrame(PLAYER_ANIM_COMMANDO_SKILL4_1, std::bind(&Commando::FrameAnimation, this, std::placeholders::_1));

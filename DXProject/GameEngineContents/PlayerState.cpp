@@ -24,6 +24,9 @@ void Player::CommonSkill1Start()
 	// 애니메이션 전환
 	Renderer_->ChangeFrameAnimation(PLAYER_ANIM_SKILL1);
 	Renderer_->ScaleToTexture();
+
+	// 평타 딜레이 초기화
+	AtkTimer_ = 0.0f;
 }
 
 
@@ -69,7 +72,7 @@ void Player::CommonDeathStart()
 
 void Player::CommonIdleUpdate()
 {
-	if (true == IsSkill1KeyPress())
+	if (true == IsSkill1KeyPress() && AtkTimer_ >= AtkSpeed_)
 	{
 		StateManager_.ChangeState(PLAYER_STATE_SKILL1);
 		return;
@@ -122,7 +125,7 @@ void Player::CommonIdleUpdate()
 void Player::CommonMoveUpdate()
 {
 	// 공격키가 눌리면 스테이트 전환
-	if (true == IsSkill1KeyPress())
+	if (true == IsSkill1KeyPress() && AtkTimer_ >= AtkSpeed_)
 	{
 		StateManager_.ChangeState(PLAYER_STATE_SKILL1);
 		return;

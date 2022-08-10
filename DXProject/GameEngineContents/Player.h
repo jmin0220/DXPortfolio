@@ -151,6 +151,7 @@ protected:
 	int Damage_;
 	int LvPerDamage_;
 	float AtkSpeed_;
+	float AtkTimer_;
 
 	int Exp_;
 	int Lv_;

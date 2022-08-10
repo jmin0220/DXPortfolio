@@ -1,6 +1,5 @@
 #include "PreCompile.h"
 #include "Commando.h"
-#include "Bullet.h"
 
 // 업데이트
 void Commando::IdleUpdate(float _DeltaTime, const StateInfo& _Info)
@@ -81,10 +80,6 @@ void Commando::MoveStart(const StateInfo& _Info)
 void Commando::Skill1Start(const StateInfo& _Info)
 {
 	CommonSkill1Start();
-
-	Bullet* bullet = GetLevel()->CreateActor<Bullet>();
-	bullet->GetTransform().SetWorldPosition(this->GetTransform().GetWorldPosition());
-	bullet->SetDamage(Damage_);
 }
 
 void Commando::Skill2Start(const StateInfo& _Info)

@@ -44,6 +44,9 @@ void Player::Update(float _DeltaTime)
 	// 델타타임 초기화
 	DeltaTime_ = _DeltaTime;
 
+	// 타이머 측정
+	AtkTimer_ += DeltaTime_;
+
 	// 픽셀맵과의 충돌처리
 	GroundFallCheck();
 
