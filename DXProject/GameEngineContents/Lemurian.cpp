@@ -66,8 +66,8 @@ void Lemurian::StateInit()
 													, std::bind(&Lemurian::DeathStart, this, std::placeholders::_1)
 													, std::bind(&Lemurian::DeathEnd, this, std::placeholders::_1));
 	StateManager_.CreateStateMember(MONSTER_FSM_HITTED, [=](float _DeltaTime, const StateInfo& _Info_) 
-									{
-
+	{
+			// Update
 			float4 MonsterPos = this->GetTransform().GetWorldPosition();
 
 			// 몬스터와 플레이어 사이의 거리를 취득
@@ -101,8 +101,8 @@ void Lemurian::StateInit()
 
 				GetTransform().SetWorldMove(GetTransform().GetRightVector() * Speed_ / 3 * DeltaTime_);
 			}
-									}
-	                                                , [=](const StateInfo& _Info_) {Renderer_->ChangeFrameAnimation(LEMURIAN_ANIM_HITTED); });
+	}
+	, [=](const StateInfo& _Info_) { /*Start*/ Renderer_->ChangeFrameAnimation(LEMURIAN_ANIM_HITTED); });
 
 	// 초기 스테이트전환
 	StateManager_.ChangeState(MONSTER_FSM_SPAWN);
