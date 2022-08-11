@@ -1,4 +1,7 @@
 #pragma once
+
+#define ANIMATION_FRAME_DELAY 0.06f
+
 // 플레이어 조작키
 #define PLAYER_KEY_LEFT "PlayerLeft"
 #define PLAYER_KEY_RIGHT "PlayerRight"
@@ -68,6 +71,9 @@
 
 #define PLAYER_ANIM_BANDIT_SKILL2_EXPLOSION "BanditSkill2Explosion"
 
+// 이펙트 애니메이션
+#define EFFECT_ANIM_NORMAL_SPARK "NormalSpark"
+
 // 디렉토리
 #define DIR_RESOURCE "Resources"
 #define DIR_TEXTURE "Texture"
@@ -75,6 +81,7 @@
 #define DIR_MONSTER "Monster"
 #define DIR_STAGE "Stage"
 #define DIR_INTERFACE "Interface"
+#define DIR_EFFECT "Effect"
 #define DIR_OBJECT "Object"
 
 // 레벨
@@ -142,6 +149,9 @@
 #define TEX_SKILLICON_BANDIT_1 "sCowboySkills_1.png"
 #define TEX_SKILLICON_BANDIT_2 "sCowboySkills_2.png"
 #define TEX_SKILLICON_BANDIT_3 "sCowboySkills_3.png"
+
+// 이펙트
+#define TEX_EFFECT_NORMAL_SPARK "NormalSpark"
 
 // 레벨 조작키
 #define CHANGE_LEVEL_CHRACTER_SELECT "ChangeLevelToCharacterSelect"

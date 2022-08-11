@@ -21,13 +21,28 @@ public:
 		Damage_ = _Damage;
 	}
 
+	void SetDirection(float4 _Direction)
+	{
+		Direction_ = _Direction;
+	}
+
 protected:
 	void Start() override;
 	void Update(float _DeltaTime) override;
 
 private:
-	GameEngineCollision* Collision_;
+
+	void CheckNegativeX();
+
 	bool CollisionCheck(GameEngineCollision* _This, GameEngineCollision* _Other);
+	void BulletDeath();
+
+	GameEngineCollision* Collision_;
+	GameEngineTextureRenderer* Renderer_;
+
 	int Damage_;
+	float4 Direction_;
+	float FlyLength_;
+	bool BulletDeathFlg_;
 };
 

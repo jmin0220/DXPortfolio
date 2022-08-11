@@ -47,6 +47,7 @@ void Commando::AnimationInit()
 				Bullet* bullet = GetLevel()->CreateActor<Bullet>();
 				bullet->GetTransform().SetWorldPosition(this->GetTransform().GetWorldPosition());
 				bullet->SetDamage(Damage_);
+				bullet->SetDirection(MoveDir_);
 			}
 		});
 	Renderer_->AnimationBindFrame(PLAYER_ANIM_SKILL2, std::bind(&Commando::FrameAnimation, this, std::placeholders::_1));

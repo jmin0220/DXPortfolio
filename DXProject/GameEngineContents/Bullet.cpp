@@ -4,6 +4,8 @@
 
 Bullet::Bullet() 
 	: Collision_(nullptr)
+	, Renderer_(nullptr)
+	, BulletDeathFlg_(false)
 {
 }
 
@@ -20,10 +22,33 @@ void Bullet::Start()
 
 void Bullet::Update(float _DeltaTime)
 {
-	this->GetTransform().SetWorldMove({ 1.0, 0.0, 0.0 });
+	// 총알의 파괴애니메이션이 출력중이면 더이상 업데이트하지 않음.
+	if (true == BulletDeathFlg_)
+	{
+		return;
+	}
 
-	Collision_->IsCollision(CollisionType::CT_AABB2D, ObjectGroup::Monster, CollisionType::CT_AABB2D
-		                   , std::bind(&Bullet::CollisionCheck, this, std::placeholders::_1, std::placeholders::_2));
+	if (Direction_.CompareInt3D(float4::LEFT))
+	{
+		this->GetTransform().SetWorldMove(GetTransform().GetLeftVector() * _DeltaTime * 1000);
+		FlyLength_ += GetTransform().GetRightVector().x * _DeltaTime * 1000;
+	}
+	else
+	{
+		this->GetTransform().SetWorldMove(GetTransform().GetRightVector() * _DeltaTime * 1000);
+		FlyLength_ += GetTransform().GetLeftVector().x * _DeltaTime * 1000;
+	}
+
+	// 일정거리 이상 날아가면 파괴
+	if (std::abs(FlyLength_) >= 800.0f)
+	{
+		BulletDeath();
+	}
+	else
+	{
+		Collision_->IsCollision(CollisionType::CT_AABB2D, ObjectGroup::Monster, CollisionType::CT_AABB2D
+			, std::bind(&Bullet::CollisionCheck, this, std::placeholders::_1, std::placeholders::_2));
+	}
 }
 
 bool Bullet::CollisionCheck(GameEngineCollision* _This, GameEngineCollision* _Other)
@@ -32,7 +57,40 @@ bool Bullet::CollisionCheck(GameEngineCollision* _This, GameEngineCollision* _Ot
 	TmpMonster->HitFunction(Damage_);
 	TmpMonster->ChangeStateToHitted();
 
-	this->Death();
+	BulletDeath();
 
 	return false;
+}
+
+void Bullet::CheckNegativeX()
+{
+
+	if (Direction_.CompareInt3D(float4::LEFT))
+	{
+		// 좌우반전
+		Renderer_->GetTransform().PixLocalNegativeX();
+	}
+	else
+	{
+		Renderer_->GetTransform().PixLocalPositiveX();
+	}
+
+	Renderer_->SetPivot(PIVOTMODE::CENTER);
+}
+
+void Bullet::BulletDeath()
+{
+	BulletDeathFlg_ = true;
+	Collision_->Off();
+
+	Renderer_ = CreateComponent<GameEngineTextureRenderer>();
+
+	Renderer_->SetSamplingModePoint();
+	Renderer_->CreateFrameAnimationFolder(EFFECT_ANIM_NORMAL_SPARK, FrameAnimation_DESC(TEX_EFFECT_NORMAL_SPARK, ANIMATION_FRAME_DELAY, false));
+	Renderer_->ChangeFrameAnimation(EFFECT_ANIM_NORMAL_SPARK);
+	Renderer_->AnimationBindEnd(EFFECT_ANIM_NORMAL_SPARK, [=](const FrameAnimation_DESC&) {	this->Death(); });
+	Renderer_->SetScaleModeImage();
+	Renderer_->ScaleToTexture();
+
+	CheckNegativeX();
 }
