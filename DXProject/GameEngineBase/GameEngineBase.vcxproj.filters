@@ -34,6 +34,9 @@
     <Filter Include="Custom">
       <UniqueIdentifier>{711a786d-a47d-4c7a-8446-624a9078d43f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Enum">
+      <UniqueIdentifier>{ff138108-8d12-4d5a-98f4-0730f6897cb3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameEngineDebug.cpp">
@@ -139,6 +142,15 @@
     </ClInclude>
     <ClInclude Include="CustomStringSet.h">
       <Filter>Custom</Filter>
+    </ClInclude>
+    <ClInclude Include="magic_enum_format.hpp">
+      <Filter>Enum</Filter>
+    </ClInclude>
+    <ClInclude Include="magic_enum.hpp">
+      <Filter>Enum</Filter>
+    </ClInclude>
+    <ClInclude Include="magic_enum_fuse.hpp">
+      <Filter>Enum</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
