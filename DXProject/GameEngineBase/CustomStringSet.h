@@ -83,6 +83,7 @@
 #define DIR_INTERFACE "Interface"
 #define DIR_EFFECT "Effect"
 #define DIR_OBJECT "Object"
+#define DIR_FONT "Font"
 
 // 레벨
 #define LEVEL_TITLE "Title"
@@ -156,3 +157,6 @@
 // 레벨 조작키
 #define CHANGE_LEVEL_CHRACTER_SELECT "ChangeLevelToCharacterSelect"
 #define CHANGE_LECEL_STAGE1 "ChangeLevelToStage1"
+
+// 폰트
+#define FONT_RISKOFRAIN "riskofrainfont"

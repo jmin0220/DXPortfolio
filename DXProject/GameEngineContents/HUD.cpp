@@ -19,28 +19,33 @@ void HUD::Start()
 {	
 	// HUD
 	HUDRenderer_ = CreateComponent<GameEngineUIRenderer>();
+	DifficultyHUDRenderer_ = CreateComponent<GameEngineUIRenderer>();
+	DifficultyTimerRenderer_ = CreateComponent<GameEngineUIRenderer>();
+
+	for (int i = 0; i < 4; i++)
+	{
+		SkillRenderer_[i] = CreateComponent<GameEngineUIRenderer>();
+	}
+
+	FontRenderer_ = CreateComponent<GameEngineFontRenderer>();
+
+
 	HUDRenderer_->SetTexture(TEX_INTERFACE_HUD);
 
 	HUDRenderer_->ScaleToTexture();
 	HUDRenderer_->GetTransform().SetWorldPosition({0, -390, -100});
 
-	DifficultyHUDRenderer_ = CreateComponent<GameEngineUIRenderer>();
 	DifficultyHUDRenderer_->SetTexture(TEX_INTERFACE_DIFFICULTY_HUD);
 	DifficultyHUDRenderer_->ScaleToTexture();
 	DifficultyHUDRenderer_->GetTransform().SetWorldPosition({ GameEngineWindow::GetInst()->GetScale().x / 2 - 80
 															, GameEngineWindow::GetInst()->GetScale().y / 2 - 110, -101});
 
-	DifficultyTimerRenderer_ = CreateComponent<GameEngineUIRenderer>();
 	DifficultyTimerRenderer_->SetTexture(TEX_INTERFACE_DIFFICULTY_TIMER);
 	DifficultyTimerRenderer_->ScaleToTexture();
 	DifficultyTimerRenderer_->GetTransform().SetWorldPosition({ GameEngineWindow::GetInst()->GetScale().x / 2 - 83
 															  , GameEngineWindow::GetInst()->GetScale().y / 2 - 119, -100 });
 
 
-	for (int i = 0; i < 4; i++)
-	{
-		SkillRenderer_[i] = CreateComponent<GameEngineUIRenderer>();
-	}
 
 	// 생성되는 플레이어의 종류에 따라 HUD 스킬 아이콘 생성
 	switch (Option_.CharacterSelect_)
@@ -76,4 +81,9 @@ void HUD::Start()
 	SkillRenderer_[2]->GetTransform().SetWorldPosition(SkillPos_[2]);
 	SkillRenderer_[3]->ScaleToTexture();
 	SkillRenderer_[3]->GetTransform().SetWorldPosition(SkillPos_[3]);
+
+	// 폰트
+	FontRenderer_->SetText("123123", "riskofrainfont");
+	FontRenderer_->SetColor({ 1.0f, 1.0f, 1.0f });
+	FontRenderer_->SetScreenPostion({ 800, 840});
 }

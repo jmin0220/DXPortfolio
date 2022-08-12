@@ -129,6 +129,26 @@ void RiskOfRain::Start()
 	}
 
 
+	// 폰트 로딩
+	{
+		GameEngineDirectory Dir;
+
+		Dir.MoveParentToExitsChildDirectory(DIR_RESOURCE);
+		Dir.Move(DIR_RESOURCE);
+		Dir.Move(DIR_FONT);
+
+		std::vector<GameEngineFile> Fonts = Dir.GetAllFile();
+
+		for (size_t i = 0; i < Fonts.size(); i++)
+		{
+			GameEngineFont::Load(Fonts[i].GetFullPath());
+		}
+
+
+		GameEngineFont::Load("riskofrainfont");
+	}
+
+
 	// 레벨 생성
 	CreateLevel<StartLevel>(LEVEL_TITLE);
 	CreateLevel<EndLevel>(LEVEL_END);

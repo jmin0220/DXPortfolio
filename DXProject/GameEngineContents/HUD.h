@@ -30,6 +30,10 @@ private:
 	GameEngineUIRenderer* DifficultyHUDRenderer_;
 	GameEngineUIRenderer* DifficultyTimerRenderer_;
 
+	// 폰트 렌더러
+	GameEngineFontRenderer* FontRenderer_;
+
+
 	float4 SkillPos_[4];
 
 	Option Option_;
