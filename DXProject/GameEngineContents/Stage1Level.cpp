@@ -25,6 +25,7 @@ void Stage1Level::Start()
 
 	StageActor_ = CreateActor<StageGround>();
 	MonsterManager_ = CreateActor<MonsterManager>();
+	CharacterCreater_ = CreateActor<CharacterCreater>();
 }
 
 void Stage1Level::Update(float _DeltaTime)
@@ -59,6 +60,10 @@ void Stage1Level::OnEvent()
 	default:
 		break;
 	}
+
+	CharacterCreater_->SetColMapInfo(StageActor_->GetColStage()->GetCurTexture());
+	CharacterCreater_->MakePosition();
+	Player_->GetTransform().SetWorldPosition(CharacterCreater_->OutputPlayerCreatePos());
 
 	// 플레이어에게 충돌맵 설정
 	Player_->SetColMapInfo(StageActor_->GetColStage()->GetCurTexture());

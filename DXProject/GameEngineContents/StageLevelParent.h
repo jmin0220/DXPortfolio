@@ -2,6 +2,7 @@
 #include <GameEngineCore/GameEngineLevel.h>
 #include "Option.h"
 #include "MonsterManager.h"
+#include "CharacterCreater.h"
 
 // Ό³Έν :
 class GameEngineActor;
@@ -32,6 +33,8 @@ protected:
 	StageGround* StageActor_;
 	Option Option_;
 	MonsterManager* MonsterManager_;
+	CharacterCreater* CharacterCreater_;
+
 private:
 };
 

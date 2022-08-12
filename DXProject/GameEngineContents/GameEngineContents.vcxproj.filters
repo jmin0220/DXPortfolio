@@ -52,6 +52,9 @@
     <Filter Include="01_Actor\01_Play\Effect">
       <UniqueIdentifier>{4f0a6611-260b-4677-a293-1b83719f410a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="01_Actor\01_Play\Manager">
+      <UniqueIdentifier>{f259d62c-7645-4bb8-b9a8-30494f17930c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PreCompile.h">
@@ -111,11 +114,14 @@
     <ClInclude Include="Lemurian.h">
       <Filter>01_Actor\01_Play\Monsters</Filter>
     </ClInclude>
-    <ClInclude Include="MonsterManager.h">
-      <Filter>01_Actor\01_Play\Monsters</Filter>
-    </ClInclude>
     <ClInclude Include="Bullet.h">
       <Filter>01_Actor\01_Play\Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="MonsterManager.h">
+      <Filter>01_Actor\01_Play\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="CharacterCreater.h">
+      <Filter>01_Actor\01_Play\Manager</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -179,11 +185,14 @@
     <ClCompile Include="Lemurian.cpp">
       <Filter>01_Actor\01_Play\Monsters</Filter>
     </ClCompile>
-    <ClCompile Include="MonsterManager.cpp">
-      <Filter>01_Actor\01_Play\Monsters</Filter>
-    </ClCompile>
     <ClCompile Include="Bullet.cpp">
       <Filter>01_Actor\01_Play\Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="MonsterManager.cpp">
+      <Filter>01_Actor\01_Play\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="CharacterCreater.cpp">
+      <Filter>01_Actor\01_Play\Manager</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
