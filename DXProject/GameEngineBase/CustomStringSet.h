@@ -1,6 +1,6 @@
 #pragma once
 
-#define ANIMATION_FRAME_DELAY 0.06f
+#define ANIMATION_FRAME_DELAY 0.08f
 
 // 플레이어 조작키
 #define PLAYER_KEY_LEFT "PlayerLeft"
@@ -153,6 +153,13 @@
 
 // 이펙트
 #define TEX_EFFECT_NORMAL_SPARK "NormalSpark"
+// 경험치
+#define TEX_EFFECT_NORMAL_EXP "ExpNormal"
+#define TEX_EFFECT_BIG_EXP "ExpBig"
+#define TEX_EFFECT_DEATH_EXP "ExpDeath"
+// 골드
+#define TEX_EFFECT_NORMAL_GOLD "GoldNormal"
+#define TEX_EFFECT_BIG_GOLD "GoldBig"
 
 // 레벨 조작키
 #define CHANGE_LEVEL_CHRACTER_SELECT "ChangeLevelToCharacterSelect"

@@ -123,6 +123,15 @@
     <ClInclude Include="CharacterCreater.h">
       <Filter>01_Actor\01_Play\Manager</Filter>
     </ClInclude>
+    <ClInclude Include="Drops.h">
+      <Filter>01_Actor\01_Play\Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="Gold.h">
+      <Filter>01_Actor\01_Play\Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="Exp.h">
+      <Filter>01_Actor\01_Play\Effect</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PreCompile.cpp">
@@ -193,6 +202,15 @@
     </ClCompile>
     <ClCompile Include="CharacterCreater.cpp">
       <Filter>01_Actor\01_Play\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="Drops.cpp">
+      <Filter>01_Actor\01_Play\Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="Gold.cpp">
+      <Filter>01_Actor\01_Play\Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="Exp.cpp">
+      <Filter>01_Actor\01_Play\Effect</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -2,6 +2,8 @@
 #include "MonsterManager.h"
 #include "CharacterCreater.h"
 #include "Lemurian.h"
+#include "Exp.h"
+#include "Gold.h"
 
 MonsterManager::MonsterManager() 
 	: SingleMonsterRespawnTimer_(0.0f)
@@ -54,9 +56,18 @@ void MonsterManager::Update(float _DeltaTime)
 	{
 		if (true == (*MonsteriterStart)->GetMonsterDeath())
 		{
+			// 골드 생성
+			Gold* tmpGold = GetLevel()->CreateActor<Gold>();
+			tmpGold->GetTransform().SetWorldPosition((*MonsteriterStart)->GetTransform().GetWorldPosition());
+
+			// 경험치 생성
+			Exp* tmpExp = GetLevel()->CreateActor<Exp>();
+			tmpExp->GetTransform().SetWorldPosition((*MonsteriterStart)->GetTransform().GetWorldPosition());
+
 			// 죽은 몬스터를 매니저에서 삭제
 			MonsteriterStart = Monster_.erase(MonsteriterStart);
 			
+
 			continue;
 		}
 		else

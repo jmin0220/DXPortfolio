@@ -187,7 +187,19 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="Drops.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="EndLevel.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Exp.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Gold.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -260,7 +272,19 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="CommandoState.cpp" />
+    <ClCompile Include="Drops.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="EndLevel.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Exp.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Gold.cpp">
       <SubType>
       </SubType>
     </ClCompile>

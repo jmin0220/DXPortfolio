@@ -366,8 +366,6 @@ void Monster::CommonMoveUpdate()
 		GetTransform().SetWorldMove(GetTransform().GetRightVector() * Speed_ * DeltaTime_);
 
 		break;
-	default:
-		break;
 	}
 }
 
