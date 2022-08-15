@@ -155,6 +155,7 @@ protected:
 
 	int Exp_;
 	int Lv_;
+	int Gold_;
 
 	float CritChance_;
 };

@@ -28,6 +28,11 @@ void Monster::Start()
 
 	// 스테이트 초기화
 	StateInit();
+
+	// 몬스터 개체마다 다른 골드, 경험치를 생성
+	GameEngineRandom* tmpRandom = new GameEngineRandom();
+	Gold_ = tmpRandom->RandomInt(1 * Lv_, 3 * Lv_);
+	Exp_ = tmpRandom->RandomInt(10 * Lv_, 13 * Lv_);
 }
 
 void Monster::Update(float _DeltaTime)

@@ -56,11 +56,24 @@ void MonsterManager::Update(float _DeltaTime)
 	{
 		if (true == (*MonsteriterStart)->GetMonsterDeath())
 		{
+			int GoldValue = (*MonsteriterStart)->GetMonsterGold();
+			// 5골드짜리 갯수
+			int GoldFive = GoldValue / 5;
+			// 1골드짜리 갯수
+			int GoldOne = GoldValue % 5;
+
+			// TODO::갯수만큼 골드를 출력
+			for (;;)
+			{
+
+			}
 			// 골드 생성
+			// TODO::골드가 생성될때 떨어질 각도를 설정
 			Gold* tmpGold = GetLevel()->CreateActor<Gold>();
 			tmpGold->GetTransform().SetWorldPosition((*MonsteriterStart)->GetTransform().GetWorldPosition());
 
 			// 경험치 생성
+			// TODO::경험치가 생성될때 최종 이동위치를 설정
 			Exp* tmpExp = GetLevel()->CreateActor<Exp>();
 			tmpExp->GetTransform().SetWorldPosition((*MonsteriterStart)->GetTransform().GetWorldPosition());
 

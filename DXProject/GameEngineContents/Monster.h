@@ -40,6 +40,16 @@ public:
 		StateManager_.ChangeState(MONSTER_FSM_HITTED);
 	}
 
+	inline int GetMonsterGold() const
+	{
+		return Gold_;
+	}
+
+	inline int GetMonsterExp() const
+	{
+		return Exp_;
+	}
+
 protected:
 	void Start() override;
 	void Update(float _DeltaTime) override;
@@ -117,5 +127,12 @@ protected:
 	// 몬스터 스테이터스
 	int MonsterHp_;
 	int Damage_;
+
+	// TODO::레벨은 경과한 시간에 따라서 증가
+	int Lv_;
+
+	// 몬스터가 죽었을때 드랍할 골드와 경험치
+	int Gold_;
+	int Exp_;
 };
 

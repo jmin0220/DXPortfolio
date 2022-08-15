@@ -155,11 +155,11 @@
 #define TEX_EFFECT_NORMAL_SPARK "NormalSpark"
 // 경험치
 #define TEX_EFFECT_NORMAL_EXP "ExpNormal"
-#define TEX_EFFECT_BIG_EXP "ExpBig"
+#define TEX_EFFECT_SMALL_EXP "ExpSmall"
 #define TEX_EFFECT_DEATH_EXP "ExpDeath"
 // 골드
-#define TEX_EFFECT_NORMAL_GOLD "GoldNormal"
-#define TEX_EFFECT_BIG_GOLD "GoldBig"
+#define TEX_EFFECT_SMALL_GOLD "CoinSmall"
+#define TEX_EFFECT_COIN "CoinNormal"
 
 // 레벨 조작키
 #define CHANGE_LEVEL_CHRACTER_SELECT "ChangeLevelToCharacterSelect"

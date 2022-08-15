@@ -17,6 +17,7 @@ Player::Player()
 	, ColorCheckPos_(float4::ZERO)
 	, Lv_(1)
 	, Exp_(0)
+	, Gold_(0)
 {
 }
 
