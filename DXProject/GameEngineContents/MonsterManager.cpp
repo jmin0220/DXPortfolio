@@ -1,5 +1,6 @@
 #include "PreCompile.h"
 #include "MonsterManager.h"
+#include "CharacterCreater.h"
 #include "Lemurian.h"
 
 MonsterManager::MonsterManager() 
@@ -17,20 +18,25 @@ MonsterManager::~MonsterManager()
 
 void MonsterManager::Start()
 {
+	CharacterCreater_ = GetLevel()->CreateActor<CharacterCreater>();
 }
 
 void MonsterManager::Update(float _DeltaTime)
 {
-	// TODO::적이 생성될 포지션 입력
-	RespawnPos_ = { 600.0f, -800.0f, 0.0f, 0.0f };
-
-	// TODO:: 타이머에 따라 리스폰 구현
+	// 리스폰 간격 타이머
 	SingleMonsterRespawnTimer_ += _DeltaTime;
 	GroupMonsterRespawnTimer_ += _DeltaTime;
 
-	// 임시 타이머
+	// 몬스터 생성타이머
 	if (SingleMonsterRespawnTimer_ >= 5.0f)
 	{
+		// 몬스터는 플레이어 주위에 생성 가능한 위치에 무작위로 생성됨
+		// 캐릭터Creater에서 플레이어 위치를 받아서, 다음에 생성할 몬스터의 위치를 조정
+		CharacterCreater_->MakeMonsterPosition();
+
+		// 적이 생성될 포지션 입력
+		RespawnPos_ = CharacterCreater_->OutputMonsterCreatePos();
+
 		Monster* NewMonster_ = GetLevel()->CreateActor<Lemurian>();
 		NewMonster_->GetTransform().SetWorldPosition(RespawnPos_);
 		NewMonster_->SetColMapInfo(ColMap_);

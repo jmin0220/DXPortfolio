@@ -20,21 +20,36 @@ public:
 		ColMap_ = _ColMap;
 	}
 
+	inline void SetCurPlayerPos(float4 _Pos)
+	{
+		CurPlayerPos_ = _Pos;
+	}
+
 	inline float4 OutputPlayerCreatePos()
 	{
 		return CreatePlayerPos_;
 	}
 
-	void MakePosition();
+	inline float4 OutputMonsterCreatePos()
+	{
+		return CreateMonsterPos_;
+	}
+
+	void MakePlayerPosition();
+	void MakeMonsterPosition();
 
 protected:
 	void Start() override;
 	void Update(float _DeltaTime) override;
 
 private:
+	float4 MakePosition(int _CreateMod);
 
-	GameEngineTexture* ColMap_;
+	static GameEngineTexture* ColMap_;
 
+	static float4 CurPlayerPos_;
 	float4 CreatePlayerPos_;
+
+	float4 CreateMonsterPos_;
 };
 

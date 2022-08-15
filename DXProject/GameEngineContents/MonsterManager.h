@@ -4,6 +4,7 @@
 #include "Monster.h"
 
 // 설명 :
+class CharacterCreater;
 class MonsterManager : public GameEngineActor
 {
 public:
@@ -25,6 +26,11 @@ public:
 	inline void SetPlayerPos(float4 _Pos)
 	{
 		PlayerPos_ = _Pos;
+	}
+
+	inline void SetRespawnPos(float4 _Pos)
+	{
+		RespawnPos_ = _Pos;
 	}
 
 protected:
@@ -50,4 +56,6 @@ private:
 
 	// 충돌용 맵 정보
 	GameEngineTexture* ColMap_;
+
+	CharacterCreater* CharacterCreater_;
 };

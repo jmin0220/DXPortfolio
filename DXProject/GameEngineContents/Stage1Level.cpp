@@ -35,8 +35,12 @@ void Stage1Level::Update(float _DeltaTime)
 		//GetMainCameraActor()->FreeCameraModeOnOff();
 	}
 
+	// 캐릭터 크리에이터에 플레이어 위치를 갱신
+	CharacterCreater_->SetCurPlayerPos(Player_->GetTransform().GetWorldPosition());
+
 	// 몬스터매니저에 플레이어 위치를 갱신
 	MonsterManager_->SetPlayerPos(Player_->GetTransform().GetWorldPosition());
+
 }
 
 void Stage1Level::End()
@@ -62,7 +66,7 @@ void Stage1Level::OnEvent()
 	}
 
 	CharacterCreater_->SetColMapInfo(StageActor_->GetColStage()->GetCurTexture());
-	CharacterCreater_->MakePosition();
+	CharacterCreater_->MakePlayerPosition();
 	Player_->GetTransform().SetWorldPosition(CharacterCreater_->OutputPlayerCreatePos());
 
 	// 플레이어에게 충돌맵 설정

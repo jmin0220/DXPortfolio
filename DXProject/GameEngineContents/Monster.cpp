@@ -317,7 +317,6 @@ void Monster::CommonIdleUpdate()
 	{
 		// Idle에서 Move로 전환될때 방향을 지정해줌
 		MoveDirFlg_ = GameEngineRandom::MainRandom.RandomInt(0, 1);
-		MoveDirFlg_ = 1;
 		StateManager_.ChangeState(MONSTER_FSM_MOVE);
 		ToMoveGauge_ = 0.0f;
 	}
