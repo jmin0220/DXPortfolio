@@ -54,12 +54,17 @@ public:
 	void SetParent(GameEngineUpdateObject*) override;
 
 
-	void SetLevelOverOn() 
+	void SetLevelOverOn()
 	{
 		IsLevelOver = true;
 	}
 
 	void ActorUpdate(float _DeltaTime);
+
+	bool IsRoot()
+	{
+		return nullptr == GetParent();
+	}
 
 protected:
 	virtual void Start() override;
@@ -68,7 +73,6 @@ protected:
 
 
 private:
-
 	void SetLevel(GameEngineLevel* _ParentLevel)
 	{
 		ParentLevel = _ParentLevel;
