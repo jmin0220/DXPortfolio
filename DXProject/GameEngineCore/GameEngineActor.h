@@ -19,7 +19,7 @@ class GameEngineActor :
 public:
 	// constrcuter destructer
 	GameEngineActor();
-	virtual ~GameEngineActor() = 0;
+	virtual ~GameEngineActor();
 
 	// delete Function
 	GameEngineActor(const GameEngineActor& _Other) = delete;
