@@ -5,7 +5,8 @@
 GameEngineTime* GameEngineTime::Inst_ = new GameEngineTime();
 
 
-GameEngineTime::GameEngineTime() 
+GameEngineTime::GameEngineTime()
+	: GlobalScale(1.0f)
 {
 }
 

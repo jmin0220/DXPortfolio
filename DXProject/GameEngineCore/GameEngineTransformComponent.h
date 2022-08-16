@@ -28,7 +28,7 @@ public:
 	template<typename ParentType>
 	ParentType* GetActor()
 	{
-		return GetParent<ParentType>();
+		return GetRoot<ParentType>();
 	}
 
 	void DetachObject() override;
