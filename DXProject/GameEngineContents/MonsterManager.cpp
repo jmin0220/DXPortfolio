@@ -75,7 +75,7 @@ void MonsterManager::Update(float _DeltaTime)
 				tmpGold->UpdateGoldOption();
 
 				// TODO::골드가 생성될때 떨어질 각도를 설정
-				tmpGold->SetFlyDir({ Random->RandomFloat(-1.0, 1.0), 0.0f, 0.0f });
+				tmpGold->SetFlyDir({ Random->RandomFloat(-50.0, 50.0), 0.0f, 0.0f });
 				tmpGold->GoldPop();
 
 			}
@@ -90,7 +90,7 @@ void MonsterManager::Update(float _DeltaTime)
 				tmpGold->UpdateGoldOption();
 
 				// TODO::골드가 생성될때 떨어질 각도를 설정
-				tmpGold->SetFlyDir({ Random->RandomFloat(-1.0, 1.0), 0.0f, 0.0f });
+				tmpGold->SetFlyDir({ Random->RandomFloat(-50.0, 50.0), 0.0f, 0.0f });
 				tmpGold->GoldPop();
 			}
 			

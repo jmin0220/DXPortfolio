@@ -33,6 +33,9 @@ void Monster::Start()
 	GameEngineRandom* tmpRandom = new GameEngineRandom();
 	Gold_ = tmpRandom->RandomInt(4 * Lv_, 5 * Lv_);
 	Exp_ = tmpRandom->RandomInt(10 * Lv_, 13 * Lv_);
+
+	delete tmpRandom;
+	tmpRandom = nullptr;
 }
 
 void Monster::Update(float _DeltaTime)

@@ -65,6 +65,7 @@ void Gold::GroundFallCheck(float _DeltaTime)
 		}
 
 		GetTransform().SetWorldMove(GetTransform().GetDownVector()* PopSpeed_* _DeltaTime);
+		GetTransform().SetWorldMove(flyDir_ * _DeltaTime);
 	}
 	else
 	{
