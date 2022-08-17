@@ -4,6 +4,7 @@
 #include "Lemurian.h"
 #include "Exp.h"
 #include "Gold.h"
+#include <GameEngineBase/GameEngineRandom.h>
 
 MonsterManager::MonsterManager() 
 	: SingleMonsterRespawnTimer_(0.0f)
@@ -62,26 +63,35 @@ void MonsterManager::Update(float _DeltaTime)
 			// 1골드짜리 갯수
 			int GoldOne = GoldValue % 5;
 
+			GameEngineRandom* Random = new GameEngineRandom();
+
 			// 5골드 출력
 			for (int i = 0; i < GoldFive; i++)
 			{
 				// 골드 생성
-				// TODO::골드가 생성될때 떨어질 각도를 설정
 				Gold* tmpGold = GetLevel()->CreateActor<Gold>();
 				tmpGold->GetTransform().SetWorldPosition((*MonsteriterStart)->GetTransform().GetWorldPosition());
 				tmpGold->SetGoldValue(5);
 				tmpGold->UpdateGoldOption();
+
+				// TODO::골드가 생성될때 떨어질 각도를 설정
+				tmpGold->SetFlyDir({ Random->RandomFloat(-1.0, 1.0), 0.0f, 0.0f });
+				tmpGold->GoldPop();
+
 			}
 
 			// 1골드 출력
 			for (int i = 0; i < GoldOne; i++)
 			{
 				// 골드 생성
-				// TODO::골드가 생성될때 떨어질 각도를 설정
 				Gold* tmpGold = GetLevel()->CreateActor<Gold>();
 				tmpGold->GetTransform().SetWorldPosition((*MonsteriterStart)->GetTransform().GetWorldPosition());
 				tmpGold->SetGoldValue(1);
 				tmpGold->UpdateGoldOption();
+
+				// TODO::골드가 생성될때 떨어질 각도를 설정
+				tmpGold->SetFlyDir({ Random->RandomFloat(-1.0, 1.0), 0.0f, 0.0f });
+				tmpGold->GoldPop();
 			}
 			
 			
@@ -92,7 +102,9 @@ void MonsterManager::Update(float _DeltaTime)
 
 			// 죽은 몬스터를 매니저에서 삭제
 			MonsteriterStart = Monster_.erase(MonsteriterStart);
-			
+
+			delete Random;
+			Random = nullptr;
 
 			continue;
 		}

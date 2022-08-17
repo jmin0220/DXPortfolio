@@ -48,14 +48,27 @@ void Gold::GroundFallCheck(float _DeltaTime)
 		MsgBoxAssert("Ãæµ¹¸ÊÀÌ Á¸ÀçÇÏÁö ¾Ê½À´Ï´Ù.");
 	}
 
+	// °ñµå ³«ÇÏ Ã³¸®
 	// ÇÏ´Ü Áß¾Ó
 	float4 ColorDown = ColMap_->GetPixelToFloat4(this->GetTransform().GetWorldPosition().ix() + Renderer_->GetCurTexture()->GetScale().hix()
 		, -this->GetTransform().GetWorldPosition().iy() + Renderer_->GetCurTexture()->GetScale().hiy() + 300 * _DeltaTime);
 
-	// ÇÏ´Ü 3Á¡ÀÌ ¸ðµÎ ¶¥¿¡ ´êÁö ¾Ê¾Æ¾ß ¹Ù´ÚÀ¸·Î
+	// ¹Ù´ÚÀÌ ´êÁö ¾ÊÀ¸¸é ³«ÇÏ
 	if (false == ColorDown.CompareInt4D({ 1.0f, 0.0f, 1.0f }))
 	{
-		GetTransform().SetWorldMove(GetTransform().GetDownVector() * 300 * _DeltaTime);
+		// Gold PopÃ³¸®
+		PopSpeed_ += GameEngineTime::GetDeltaTime() * 270.0f;
+
+		if (PopSpeed_ >= 270.0f)
+		{
+			PopSpeed_ = 270.0f;
+		}
+
+		GetTransform().SetWorldMove(GetTransform().GetDownVector()* PopSpeed_* _DeltaTime);
+	}
+	else
+	{
+		PopSpeed_ = 0.0f;
 	}
 }
 
@@ -72,4 +85,9 @@ void Gold::UpdateGoldOption()
 	default:
 		break;
 	}
+}
+
+void Gold::GoldPop()
+{
+	PopSpeed_ = -100.0f;
 }
