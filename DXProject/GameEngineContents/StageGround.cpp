@@ -29,6 +29,13 @@ void StageGround::Start()
 
 	// ÇÈ¼¿¸Ê ¼û±â±â
 	ColRenderer_->OnOffSwitch();
+
+	BackGroundRenderer_ = CreateComponent<GameEngineTextureRenderer>();
+	BackGroundRenderer_->SetTexture(TEX_BG_PURPLE_STARS);
+	BackGroundRenderer_->GetTransform().SetLocalScale({ 2000, 2000 });
+	BackGroundRenderer_->SetPivot(PIVOTMODE::LEFTTOP);
+	BackGroundRenderer_->GetTransform().SetWorldPosition({ 0, 0, 5000});
+
 }
 
 void StageGround::Update(float _DeltaTime)

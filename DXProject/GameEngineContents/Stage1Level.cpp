@@ -18,10 +18,7 @@ Stage1Level::~Stage1Level()
 
 void Stage1Level::Start()
 {	
-	// 카메라 액터 생성
-	GameEngineCameraActor* CameraActor = CreateActor<GameEngineCameraActor>();
-	CameraActor->GetTransform().SetLocalPosition({ 0.0f, 0.0f, -100.0f });
-	CameraActor->GetCameraComponent()->SetProjectionMode(CAMERAPROJECTIONMODE::Orthographic);
+	GetMainCamera()->SetProjectionMode(CAMERAPROJECTIONMODE::PersPective);
 
 	StageActor_ = CreateActor<StageGround>();
 	MonsterManager_ = CreateActor<MonsterManager>();
@@ -68,6 +65,7 @@ void Stage1Level::OnEvent()
 	CharacterCreater_->SetColMapInfo(StageActor_->GetColStage()->GetCurTexture());
 	CharacterCreater_->MakePlayerPosition();
 	Player_->GetTransform().SetWorldPosition(CharacterCreater_->OutputPlayerCreatePos());
+	Player_->GetTransform().SetWorldPosition({100, 100});
 
 	// 플레이어에게 충돌맵 설정
 	Player_->SetColMapInfo(StageActor_->GetColStage()->GetCurTexture());

@@ -5,7 +5,17 @@
     <FxCompile Include="TransformHeader.fx" />
     <FxCompile Include="Texture.hlsl" />
     <FxCompile Include="TextureAtlas.hlsl" />
-    <FxCompile Include="Debug3D.hlsl" />
-    <FxCompile Include="DebugTexture.hlsl" />
+    <FxCompile Include="RenderOption.fx" />
+    <FxCompile Include="Debug3D.hlsl">
+      <Filter>Debug</Filter>
+    </FxCompile>
+    <FxCompile Include="DebugTexture.hlsl">
+      <Filter>Debug</Filter>
+    </FxCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Debug">
+      <UniqueIdentifier>{0147525c-3c53-44e3-93e6-aa37ea7a4323}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
 </Project>

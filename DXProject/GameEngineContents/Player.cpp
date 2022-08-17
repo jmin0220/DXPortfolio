@@ -375,7 +375,7 @@ void Player::CameraUpdate()
 	float4 PlayerPos = this->GetTransform().GetLocalPosition();
 
 	// 카메라 추적
-	GetLevel()->GetMainCameraActorTransform().SetLocalPosition({ PlayerPos.x, PlayerPos.y });
+	GetLevel()->GetMainCameraActorTransform().SetWorldPosition({ PlayerPos.x, PlayerPos.y, -1700 });
 }
 
 // 시간에 따른 점프 스피드 값 조정

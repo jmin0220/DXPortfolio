@@ -32,5 +32,7 @@ protected:
 private:
 	GameEngineTextureRenderer* Renderer_;
 	GameEngineTextureRenderer* ColRenderer_;
+
+	GameEngineTextureRenderer* BackGroundRenderer_;
 };
 

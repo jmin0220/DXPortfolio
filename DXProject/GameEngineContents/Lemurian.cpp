@@ -7,6 +7,8 @@ Lemurian::Lemurian()
 	MonsterHp_ = 100;
 	Damage_ = 14;
 	Lv_ = 1;
+
+	Exp_ = 3;
 }
 
 Lemurian::~Lemurian() 

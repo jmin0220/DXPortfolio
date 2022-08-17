@@ -15,11 +15,6 @@ CharacterSelect::~CharacterSelect()
 
 void CharacterSelect::Start()
 {
-	// 카메라 액터 생성
-	GameEngineCameraActor* CameraActor = CreateActor<GameEngineCameraActor>();
-	CameraActor->GetTransform().SetLocalPosition({ 0.0f, 0.0f, -100.0f });
-	CameraActor->GetCameraComponent()->SetProjectionMode(CAMERAPROJECTIONMODE::Orthographic);
-
 	CharacterSelecter_ = CreateActor<CharacterSelecter>();	
 
 

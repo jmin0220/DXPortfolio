@@ -30,9 +30,23 @@ void Gold::Start()
 	Renderer_->CreateFrameAnimationFolder(TEX_EFFECT_SMALL_GOLD, FrameAnimation_DESC(TEX_EFFECT_SMALL_GOLD, ANIMATION_FRAME_DELAY, true));
 	Renderer_->CreateFrameAnimationFolder(TEX_EFFECT_COIN, FrameAnimation_DESC(TEX_EFFECT_COIN, ANIMATION_FRAME_DELAY, true));
 
-	Renderer_->ChangeFrameAnimation(TEX_EFFECT_SMALL_GOLD);
 }
 
 void Gold::Update(float _DeltaTime)
 {
+}
+
+void Gold::UpdateGoldOption()
+{
+	switch (GoldValue_)
+	{
+	case 1: // 1°ñµå
+		Renderer_->ChangeFrameAnimation(TEX_EFFECT_SMALL_GOLD);
+		break;
+	case 5: // 5°ñµå
+		Renderer_->ChangeFrameAnimation(TEX_EFFECT_COIN);
+		break;
+	default:
+		break;
+	}
 }

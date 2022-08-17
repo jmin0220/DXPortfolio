@@ -96,6 +96,7 @@
 #define TEX_TITLE_BG "Title.png"
 #define TEX_STAGE_ONE "stage1.png"
 #define TEX_STAGE_ONE_COLLISION "stage1Collision.png"
+#define TEX_BG_PURPLE_STARS "PurpleStars1.png"
 // º±≈√√¢
 #define TEX_SELECTED_COMMANDO "CommandoSelected.png"
 #define TEX_SELECTED_BANDIT "BanditSelected.png"
