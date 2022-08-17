@@ -7,6 +7,7 @@
 #include "CharacterSelectEnum.h"
 #include "Bandit.h"
 #include "Commando.h"
+#include "Gold.h"
 
 Stage1Level::Stage1Level() 
 {
@@ -23,21 +24,17 @@ void Stage1Level::Start()
 	StageActor_ = CreateActor<StageGround>();
 	MonsterManager_ = CreateActor<MonsterManager>();
 	CharacterCreater_ = CreateActor<CharacterCreater>();
+
+	Gold::SetColMap(StageActor_->GetColStage()->GetCurTexture());
 }
 
 void Stage1Level::Update(float _DeltaTime)
 {
-	if (GameEngineInput::GetInst()->IsDown("FreeCameaOnOff"))
-	{
-		//GetMainCameraActor()->FreeCameraModeOnOff();
-	}
-
 	// 캐릭터 크리에이터에 플레이어 위치를 갱신
 	CharacterCreater_->SetCurPlayerPos(Player_->GetTransform().GetWorldPosition());
 
 	// 몬스터매니저에 플레이어 위치를 갱신
 	MonsterManager_->SetPlayerPos(Player_->GetTransform().GetWorldPosition());
-
 }
 
 void Stage1Level::End()

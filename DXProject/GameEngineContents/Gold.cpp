@@ -1,9 +1,10 @@
 #include "PreCompile.h"
 #include "Gold.h"
 
-//https://riskofrain.fandom.com/wiki/Gold?so=search
 /*
 * 오브젝트당 금화량
+https://riskofrain.fandom.com/wiki/Gold?so=search
+
 Small coins now represent 1
 Coins now represent 5
 Gold coins now represent 25
@@ -11,6 +12,9 @@ Platinum coins now represent 125
 Bag of Coins represent 625
 Platinum Bag of Coins represent 3125
 */
+
+GameEngineTexture* Gold::ColMap_ = nullptr;
+
 Gold::Gold() 
 {
 }
@@ -34,6 +38,25 @@ void Gold::Start()
 
 void Gold::Update(float _DeltaTime)
 {
+	GroundFallCheck(_DeltaTime);
+}
+
+void Gold::GroundFallCheck(float _DeltaTime)
+{
+	if (nullptr == ColMap_)
+	{
+		MsgBoxAssert("충돌맵이 존재하지 않습니다.");
+	}
+
+	// 하단 중앙
+	float4 ColorDown = ColMap_->GetPixelToFloat4(this->GetTransform().GetWorldPosition().ix() + Renderer_->GetCurTexture()->GetScale().hix()
+		, -this->GetTransform().GetWorldPosition().iy() + Renderer_->GetCurTexture()->GetScale().hiy() + 300 * _DeltaTime);
+
+	// 하단 3점이 모두 땅에 닿지 않아야 바닥으로
+	if (false == ColorDown.CompareInt4D({ 1.0f, 0.0f, 1.0f }))
+	{
+		GetTransform().SetWorldMove(GetTransform().GetDownVector() * 300 * _DeltaTime);
+	}
 }
 
 void Gold::UpdateGoldOption()

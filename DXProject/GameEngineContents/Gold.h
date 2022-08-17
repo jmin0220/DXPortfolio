@@ -20,6 +20,11 @@ public:
 		GoldValue_ = _Value;
 	}
 
+	static inline void SetColMap(GameEngineTexture* _ColMap)
+	{
+		ColMap_ = _ColMap;
+	}
+
 	void UpdateGoldOption();
 
 protected:
@@ -28,5 +33,8 @@ protected:
 
 private:
 	int GoldValue_;
+	static GameEngineTexture* ColMap_;
+
+	void GroundFallCheck(float _DeltaTime);
 };
 
