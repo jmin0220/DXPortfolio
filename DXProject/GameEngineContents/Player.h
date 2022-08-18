@@ -84,6 +84,7 @@ protected:
 	void GroundFallCheck();
 	bool GroundRightCheck();
 	bool GroundLeftCheck();
+	void GoldFontUpdate();
 
 	void PlayerJump();
 
@@ -151,6 +152,8 @@ protected:
 
 	// 스킬창등의 UI
 	HUD* HUD_;
+	GameEngineFontRenderer* GoldIconFontRenderer_;
+	GameEngineFontRenderer* GoldFontRenderer_;
 
 	// 플레이어 스테이터스
 	float Hp_;
