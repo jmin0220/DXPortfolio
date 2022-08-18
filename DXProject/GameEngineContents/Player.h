@@ -21,6 +21,16 @@ public:
 		ColMap_ = _ColMap;
 	}
 
+	static void AddGold(int _Gold)
+	{
+		Gold_ += _Gold;
+	}
+
+	static void AddExp(int _Exp)
+	{
+		Exp_ += _Exp;
+	}
+
 protected:
 	void Start() override;
 	void Update(float _DeltaTime) override;
@@ -153,9 +163,9 @@ protected:
 	float AtkSpeed_;
 	float AtkTimer_;
 
-	int Exp_;
 	int Lv_;
-	int Gold_;
+	static int Gold_;
+	static int Exp_;
 
 	float CritChance_;
 };

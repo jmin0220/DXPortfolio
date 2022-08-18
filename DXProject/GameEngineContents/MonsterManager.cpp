@@ -110,7 +110,7 @@ void MonsterManager::Update(float _DeltaTime)
 				tmpExp->GetTransform().SetWorldPosition((*MonsteriterStart)->GetTransform().GetWorldPosition());
 				tmpExp->SetExpValue(5);
 
-				// TODO::경험치가 생성될때 최종 이동위치를 설정
+				// 경험치가 생성될때 최종 이동위치를 설정
 				tmpExp->SetDestPos({ Random->RandomFloat(-15.0, 15.0), Random->RandomFloat(-15.0, 15.0), 0.0f });
 			}
 
@@ -122,10 +122,9 @@ void MonsterManager::Update(float _DeltaTime)
 				tmpExp->GetTransform().SetWorldPosition((*MonsteriterStart)->GetTransform().GetWorldPosition());
 				tmpExp->SetExpValue(5);
 
-				// TODO::경험치가 생성될때 최종 이동위치를 설정
+				// 경험치가 생성될때 최종 이동위치를 설정
 				tmpExp->SetDestPos({ Random->RandomFloat(-15.0, 15.0), Random->RandomFloat(-15.0, 15.0), 0.0f });
 			}
-
 
 
 			// 죽은 몬스터를 매니저에서 삭제

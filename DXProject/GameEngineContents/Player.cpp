@@ -3,6 +3,9 @@
 #include "Stage1Level.h"
 #include "HUD.h"
 
+int Player::Gold_ = 0;
+int Player::Exp_ = 0;
+
 Player::Player() 
 	:Renderer_(nullptr)
 	, Speed_(100.0f)
@@ -16,8 +19,6 @@ Player::Player()
 	, FrameAnimDelay_(0.06f)
 	, ColorCheckPos_(float4::ZERO)
 	, Lv_(1)
-	, Exp_(0)
-	, Gold_(0)
 {
 }
 

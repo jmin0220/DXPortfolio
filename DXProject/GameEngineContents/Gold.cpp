@@ -1,6 +1,6 @@
 #include "PreCompile.h"
 #include "Gold.h"
-
+#include "Player.h"
 /*
 * 오브젝트당 금화량
 https://riskofrain.fandom.com/wiki/Gold?so=search
@@ -38,7 +38,40 @@ void Gold::Start()
 
 void Gold::Update(float _DeltaTime)
 {
-	GroundFallCheck(_DeltaTime);
+	PlayerChaseTimer_ += _DeltaTime;
+
+	if (PlayerChaseTimer_ <= 2.0f)
+	{
+		GroundFallCheck(_DeltaTime);
+	}
+	else
+	{
+		// 오브젝트가 플레이어에게 충분히 근접했다면
+		if (false == ChasePlayer())
+		{
+			// 플레이어에 골드 추가
+			Player::AddGold(GoldValue_);
+
+			// 오브젝트 삭제
+			this->Death();
+
+			return;
+		}
+	}
+
+	FlyDir_ = PlayerPos_ - this->GetTransform().GetWorldPosition();
+
+	// 오브젝트가 충분히 근접함
+	if (FlyDir_.Length() <= 10)
+	{
+		// 플레이어에 골드 추가
+		Player::AddGold(GoldValue_);
+
+		// 오브젝트 삭제
+		this->Death();
+
+		return;
+	}
 }
 
 void Gold::GroundFallCheck(float _DeltaTime)

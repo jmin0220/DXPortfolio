@@ -15,12 +15,22 @@ public:
 	Drops& operator=(const Drops& _Other) = delete;
 	Drops& operator=(Drops&& _Other) noexcept = delete;
 
+	static inline void SetPlayerPos(float4 _Pos)
+	{
+		PlayerPos_ = _Pos;
+	}
+
 protected:
-	void Start() override;
-	void Update(float _DeltaTime) override;
+	void Start() override {};
+	void Update(float _DeltaTime) override {};
 
 	GameEngineTextureRenderer* Renderer_;
-private:
 
+	bool ChasePlayer();
+	float PlayerChaseTimer_;
+
+	float4 FlyDir_;
+
+	static float4 PlayerPos_;
 };
 
