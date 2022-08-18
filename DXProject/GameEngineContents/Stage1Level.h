@@ -22,6 +22,5 @@ protected:
 
 	void OnEvent() override;
 private:
-
 };
 

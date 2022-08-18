@@ -247,6 +247,14 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="Option.h" />
+    <ClInclude Include="Tutorial.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="TutorialUse.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Bandit.cpp" />
@@ -335,6 +343,14 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="Option.cpp" />
+    <ClCompile Include="Tutorial.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="TutorialUse.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

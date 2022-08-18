@@ -132,6 +132,12 @@
     <ClInclude Include="Exp.h">
       <Filter>01_Actor\01_Play\Effect</Filter>
     </ClInclude>
+    <ClInclude Include="Tutorial.h">
+      <Filter>01_Actor\01_Play\Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="TutorialUse.h">
+      <Filter>01_Actor\01_Play\Interface</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PreCompile.cpp">
@@ -211,6 +217,12 @@
     </ClCompile>
     <ClCompile Include="Exp.cpp">
       <Filter>01_Actor\01_Play\Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="Tutorial.cpp">
+      <Filter>01_Actor\01_Play\Interface</Filter>
+    </ClCompile>
+    <ClCompile Include="TutorialUse.cpp">
+      <Filter>01_Actor\01_Play\Interface</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
