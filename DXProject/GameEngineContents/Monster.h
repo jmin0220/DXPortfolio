@@ -94,9 +94,12 @@ protected:
 	float Speed_;
 	float JumpSpeed_;
 	float FallSpeed_;
+	float AtkSpeed_;
 
 	// 애니메이션 프레임간의 시간
 	float FrameAnimDelay_;
+	// 공격간의 타이머
+	float AtkTimer_;
 
 	// 땅에 닿아있음 판정
 	bool IsGround_;

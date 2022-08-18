@@ -4,6 +4,7 @@
 Lemurian::Lemurian() 
 {
 	Speed_ = Player_MOVE_SPEED;
+	AtkSpeed_ = 0.3;
 	MonsterHp_ = 100;
 	Damage_ = 14;
 	Lv_ = 1;

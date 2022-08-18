@@ -379,6 +379,8 @@ void Monster::CommonMoveUpdate()
 
 void Monster::CommonChaseUpdate()
 {
+	AtkTimer_ += DeltaTime_;
+
 	float4 MonsterPos = this->GetTransform().GetWorldPosition();
 
 	// 몬스터와 플레이어 사이의 거리를 취득
@@ -388,8 +390,9 @@ void Monster::CommonChaseUpdate()
 	float4 Length = MonsterLength - PlayerLength;
 
 	// 거리가 몬스터와 가까워졌을경우 공격으로 전환
-	if (Length.Length() <= Renderer_->GetCurTexture()->GetScale().ix())
+	if (Length.Length() <= Renderer_->GetCurTexture()->GetScale().ix() && AtkTimer_ >= AtkSpeed_)
 	{
+		AtkTimer_ = 0.0f;
 		StateManager_.ChangeState(MONSTER_FSM_ATTACK);
 		return;
 	}
