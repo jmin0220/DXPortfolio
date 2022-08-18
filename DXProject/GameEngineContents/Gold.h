@@ -48,5 +48,7 @@ private:
 	static GameEngineTexture* ColMap_;
 
 	void GroundFallCheck(float _DeltaTime);
+
+	bool ChasePlayer();
 };
 

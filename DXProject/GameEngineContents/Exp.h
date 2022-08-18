@@ -32,5 +32,7 @@ private:
 
 	// 날아갈 위치
 	float4 DestPos_;
+
+	bool ChasePlayer();
 };
 

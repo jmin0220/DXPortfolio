@@ -26,7 +26,6 @@ protected:
 
 	GameEngineTextureRenderer* Renderer_;
 
-	bool ChasePlayer();
 	float PlayerChaseTimer_;
 
 	float4 FlyDir_;
