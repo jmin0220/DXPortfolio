@@ -31,6 +31,16 @@ public:
 		Exp_ += _Exp;
 	}
 
+	static int GetPlayerGold()
+	{
+		return Gold_;
+	}
+
+	static int GetPlayerExp()
+	{
+		return Exp_;
+	}
+
 protected:
 	void Start() override;
 	void Update(float _DeltaTime) override;
@@ -84,7 +94,6 @@ protected:
 	void GroundFallCheck();
 	bool GroundRightCheck();
 	bool GroundLeftCheck();
-	void GoldFontUpdate();
 
 	void PlayerJump();
 
@@ -152,8 +161,6 @@ protected:
 
 	// 스킬창등의 UI
 	HUD* HUD_;
-	GameEngineFontRenderer* GoldIconFontRenderer_;
-	GameEngineFontRenderer* GoldFontRenderer_;
 
 	// 플레이어 스테이터스
 	float Hp_;

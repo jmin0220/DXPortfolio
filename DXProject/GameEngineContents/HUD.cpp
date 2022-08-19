@@ -27,9 +27,6 @@ void HUD::Start()
 		SkillRenderer_[i] = CreateComponent<GameEngineUIRenderer>();
 	}
 
-	FontRenderer_ = CreateComponent<GameEngineFontRenderer>();
-
-
 	HUDRenderer_->SetTexture(TEX_INTERFACE_HUD);
 
 	HUDRenderer_->ScaleToTexture();
@@ -46,6 +43,14 @@ void HUD::Start()
 															  , GameEngineWindow::GetInst()->GetScale().y / 2 - 119, -100 });
 
 
+	// 소지금
+	GoldIconRenderer_ = CreateComponent<GameEngineUIRenderer>();
+	GoldIconRenderer_->SetTexture(TEX_INTERFACE_MONEY_INTERFACE);
+	GoldIconRenderer_->ScaleToTexture();
+	GoldIconRenderer_->GetTransform().SetWorldPosition({ -GameEngineWindow::GetInst()->GetScale().x / 2 + 50
+													   , GameEngineWindow::GetInst()->GetScale().y / 2 - 50, -100 });
+
+	GoldFontRenderer_ = CreateComponent<GameEngineFontRenderer>();
 
 	// 생성되는 플레이어의 종류에 따라 HUD 스킬 아이콘 생성
 	switch (Option_.CharacterSelect_)
@@ -83,7 +88,17 @@ void HUD::Start()
 	SkillRenderer_[3]->GetTransform().SetWorldPosition(SkillPos_[3]);
 
 	// 폰트
+	FontRenderer_ = CreateComponent<GameEngineFontRenderer>();
 	FontRenderer_->SetText("123123", "riskofrainfont");
 	FontRenderer_->SetColor({ 1.0f, 1.0f, 1.0f });
 	FontRenderer_->SetScreenPostion({ 800, 840});
+}
+
+void HUD::Update(float _DeltaTime)
+{
+	// TODO::소지 골드양에 따라서 폰트 위치 이동
+	GoldFontRenderer_->SetText("25", "riskofrainfont");
+	GoldFontRenderer_->SetColor({ 1.0f, 1.0f, 1.0f });
+	GoldFontRenderer_->SetScreenPostion({ 100, 50 });
+	GoldFontRenderer_->SetSize(30.0f);
 }

@@ -35,10 +35,8 @@ void Player::Start()
 	// 스테이트 초기화
 	StateInit();
 
+	// 애니메이션 관련
 	HUD_ = GetLevel()->CreateActor<HUD>();
-
-	GoldIconFontRenderer_ = CreateComponent<GameEngineFontRenderer>();
-	GoldFontRenderer_ = CreateComponent<GameEngineFontRenderer>();
 }
 
 void Player::Update(float _DeltaTime)
@@ -66,9 +64,6 @@ void Player::Update(float _DeltaTime)
 
 	// 카메라 업데이트
 	CameraUpdate();
-
-	// 골드 업데이트
-	GoldFontUpdate();
 }
 
 void Player::KeyInit()
@@ -571,21 +566,6 @@ bool Player::GroundLeftCheck()
 	}
 
 	return true;
-}
-
-void Player::GoldFontUpdate()
-{
-	// TODO::FontRenderer->TextureRenderer로 변경필요
-	GoldIconFontRenderer_->SetText("$", "riskofrainfont");
-	GoldIconFontRenderer_->SetColor({ 0.44f, 0.64f, 0.47f });
-	GoldIconFontRenderer_->SetScreenPostion({ 72, 50 });
-	GoldIconFontRenderer_->SetSize(30.0f);
-
-	// TODO::소지 골드양에 따라서 폰트 위치 이동
-	GoldFontRenderer_->SetText("25", "riskofrainfont");
-	GoldFontRenderer_->SetColor({ 1.0f, 1.0f, 1.0f });
-	GoldFontRenderer_->SetScreenPostion({ 100, 50 });
-	GoldFontRenderer_->SetSize(30.0f);
 }
 
 // 밧줄타기 판정 함수

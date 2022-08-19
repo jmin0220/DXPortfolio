@@ -142,6 +142,7 @@
 #define TEX_INTERFACE_DIFFICULTY_TIMER "DifficultyTimer.png"
 #define TEX_INTERFACE_TUTORIAL "Tutorial"
 #define TEX_INTERFACE_TUTORIAL_USE "TutorialUse"
+#define TEX_INTERFACE_MONEY_INTERFACE "sMoney_0.png"
 
 // 스킬 아이콘
 #define TEX_SKILLICON_COMMANDO_0 "sGManSkills_0.png"

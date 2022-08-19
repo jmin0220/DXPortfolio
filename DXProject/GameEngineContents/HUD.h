@@ -18,7 +18,7 @@ public:
 
 protected:
 	void Start() override;
-	void Update(float _DeltaTime) {}
+	void Update(float _DeltaTime);
 	void End() {}
 
 private:
@@ -33,6 +33,10 @@ private:
 	// 폰트 렌더러
 	GameEngineFontRenderer* FontRenderer_;
 
+	// 소지금 아이콘
+	GameEngineUIRenderer* GoldIconRenderer_;
+	// 소지금
+	GameEngineFontRenderer* GoldFontRenderer_;
 
 	float4 SkillPos_[4];
 
