@@ -45,7 +45,7 @@ void Stage1Level::End()
 
 }
 
-void Stage1Level::OnEvent()
+void Stage1Level::LevelStartEvent()
 {
 	// 플레이어 액터 생성
 	switch (Option_.CharacterSelect_)
