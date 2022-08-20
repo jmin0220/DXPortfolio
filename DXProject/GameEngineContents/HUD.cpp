@@ -92,6 +92,9 @@ void HUD::Start()
 	FontRenderer_->SetText("123123", "riskofrainfont");
 	FontRenderer_->SetColor({ 1.0f, 1.0f, 1.0f });
 	FontRenderer_->SetScreenPostion({ 800, 840});
+
+	ContentsFont_ = GetLevel()->CreateActor<ContentsFont>();
+	ContentsFont_->CreateFontRenderer("123456789", { 0, 0 });
 }
 
 void HUD::Update(float _DeltaTime)

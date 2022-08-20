@@ -1,6 +1,7 @@
 #pragma once
 #include <GameEngineCore/GameEngineActor.h>
 #include "Option.h"
+#include "ContentsFont.h"
 
 // 설명 :
 class HUD : public GameEngineActor
@@ -27,11 +28,14 @@ private:
 	// 스킬아이콘
 	GameEngineUIRenderer* SkillRenderer_[4];
 
+	// 시간 및 난이도 인터페이스
 	GameEngineUIRenderer* DifficultyHUDRenderer_;
 	GameEngineUIRenderer* DifficultyTimerRenderer_;
 
-	// 폰트 렌더러
+	// 폰트파일 렌더러
 	GameEngineFontRenderer* FontRenderer_;
+	// 텍스쳐 폰트 렌더러
+	ContentsFont* ContentsFont_;
 
 	// 소지금 아이콘
 	GameEngineUIRenderer* GoldIconRenderer_;

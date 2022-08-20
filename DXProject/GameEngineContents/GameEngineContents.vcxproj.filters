@@ -55,6 +55,9 @@
     <Filter Include="01_Actor\01_Play\Manager">
       <UniqueIdentifier>{f259d62c-7645-4bb8-b9a8-30494f17930c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="98_Global\Enum">
+      <UniqueIdentifier>{ad5326f6-785a-41c1-a508-062725c50311}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PreCompile.h">
@@ -74,9 +77,6 @@
     </ClInclude>
     <ClInclude Include="RiskOfRain.h">
       <Filter>97_Contents</Filter>
-    </ClInclude>
-    <ClInclude Include="ObjectGroup.h">
-      <Filter>98_Global</Filter>
     </ClInclude>
     <ClInclude Include="TitleBG.h">
       <Filter>01_Actor\00_StartEnd</Filter>
@@ -100,9 +100,6 @@
       <Filter>01_Actor\00_StartEnd</Filter>
     </ClInclude>
     <ClInclude Include="Option.h">
-      <Filter>98_Global</Filter>
-    </ClInclude>
-    <ClInclude Include="CharacterSelectEnum.h">
       <Filter>98_Global</Filter>
     </ClInclude>
     <ClInclude Include="HUD.h">
@@ -137,6 +134,15 @@
     </ClInclude>
     <ClInclude Include="TutorialUse.h">
       <Filter>01_Actor\01_Play\Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjectGroup.h">
+      <Filter>98_Global\Enum</Filter>
+    </ClInclude>
+    <ClInclude Include="CharacterSelectEnum.h">
+      <Filter>98_Global\Enum</Filter>
+    </ClInclude>
+    <ClInclude Include="ContentsFont.h">
+      <Filter>98_Global</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -223,6 +229,9 @@
     </ClCompile>
     <ClCompile Include="TutorialUse.cpp">
       <Filter>01_Actor\01_Play\Interface</Filter>
+    </ClCompile>
+    <ClCompile Include="ContentsFont.cpp">
+      <Filter>98_Global</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
