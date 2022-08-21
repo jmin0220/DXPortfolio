@@ -60,7 +60,7 @@ bool Bullet::CollisionCheck(GameEngineCollision* _This, GameEngineCollision* _Ot
 
 	// 데미지 폰트 출력
 	DamageFont_ = GetLevel()->CreateActor<ContentsFont>();
-	DamageFont_->CreateFontNormalRenderer<GameEngineTextureRenderer>("14", { 0, 0 });
+	DamageFont_->CreateFontRenderer<GameEngineTextureRenderer>("14", { 0, 0 });
 	DamageFont_->GetTransform().SetWorldPosition({this->GetTransform().GetWorldPosition().x, this->GetTransform().GetWorldPosition().y});
 
 	DamageFont_->SetDeathTimer(2.0f);

@@ -43,12 +43,6 @@ void HUD::Start()
 															  , GameEngineWindow::GetInst()->GetScale().y / 2 - 119, -100 });
 
 
-	// 소지금
-	GoldIconRenderer_ = CreateComponent<GameEngineUIRenderer>();
-	GoldIconRenderer_->SetTexture(TEX_INTERFACE_MONEY_INTERFACE);
-	GoldIconRenderer_->ScaleToTexture();
-	GoldIconRenderer_->GetTransform().SetWorldPosition({ -GameEngineWindow::GetInst()->GetScale().x / 2 + 50
-													   , GameEngineWindow::GetInst()->GetScale().y / 2 - 50, -100 });
 
 	// 생성되는 플레이어의 종류에 따라 HUD 스킬 아이콘 생성
 	switch (Option_.CharacterSelect_)
@@ -86,15 +80,22 @@ void HUD::Start()
 	SkillRenderer_[3]->GetTransform().SetWorldPosition(SkillPos_[3]);
 
 	// 폰트
-	FontRenderer_ = CreateComponent<GameEngineFontRenderer>();
-	FontRenderer_->SetText("123123", "riskofrainfont");
-	FontRenderer_->SetColor({ 1.0f, 1.0f, 1.0f });
-	FontRenderer_->SetScreenPostion({ 800, 840});
+	//FontRenderer_ = CreateComponent<GameEngineFontRenderer>();
+	//FontRenderer_->SetText("123123", "riskofrainfont");
+	//FontRenderer_->SetColor({ 1.0f, 1.0f, 1.0f });
+	//FontRenderer_->SetScreenPostion({ 800, 840});
+
+	// 소지금
+	GoldIconRenderer_ = CreateComponent<GameEngineUIRenderer>();
+	GoldIconRenderer_->SetTexture(TEX_INTERFACE_MONEY_INTERFACE);
+	GoldIconRenderer_->ScaleToTexture();
+	GoldIconRenderer_->GetTransform().SetWorldPosition({ -GameEngineWindow::GetInst()->GetScale().x / 2 + 50
+													   , GameEngineWindow::GetInst()->GetScale().y / 2 - 50, -100 });
 
 	GoldFontRenderer_ = GetLevel()->CreateActor<ContentsFont>();
-	GoldFontRenderer_->CreateFontNormalRenderer<GameEngineUIRenderer>("123456789", { 0, 0 });
-	GoldFontRenderer_->GetTransform().SetWorldPosition({ -GameEngineWindow::GetInst()->GetScale().x / 2 + 50
-													   , GameEngineWindow::GetInst()->GetScale().y / 2 - 50, -100 });
+	// TODO::플레이어가 가지고 있는 소지금의 길이만큼 포지션을 조정
+	GoldFontRenderer_->CreateFontRenderer<GameEngineUIRenderer>("1424", { 0, 0 }, TextType::Large);
+	GoldFontRenderer_->GetTransform().SetWorldPosition({ GoldIconRenderer_->GetTransform().GetWorldPosition().x + 50.0f, GoldIconRenderer_->GetTransform().GetWorldPosition().y });
 }
 
 void HUD::Update(float _DeltaTime)

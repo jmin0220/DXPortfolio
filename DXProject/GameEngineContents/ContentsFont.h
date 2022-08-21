@@ -48,7 +48,7 @@ private:
 public:
 	// 폰트 렌더러를 새로 생성
 	template<typename RendererType>
-	void CreateFontNormalRenderer(std::string _Text, float4 _Pivot, TextType _Type = TextType::Normal)
+	void CreateFontRenderer(std::string _Text, float4 _Pivot, TextType _Type = TextType::Normal)
 	{
 		FontRendererVector_.reserve(_Text.size());
 		size_t FontSize = _Text.size();
@@ -141,15 +141,15 @@ public:
 			FontRendererVector_.at(Count_)->ScaleToTexture();
 
 			// 위치 조정
+			// TODO::설정된 렌더러의 크기별로 다른 위치를 설정
 			FontRendererVector_.at(Count_)->GetTransform().SetLocalPosition({ _Pivot.x + MarginX, 0 + _Pivot.y });
-			MarginX += FontRendererVector_.at(Count_)->GetCurTexture()->GetScale().x + 1.5f;
+			MarginX += FontRendererVector_.at(Count_)->GetCurTexture()->GetScale().x + 5.0f;
 		}
 	}
 
-
 	// 이미 존재하는 폰트 렌더러를 수정
 	template<typename RendererType>
-	void ChangeFontNormalRenderer(std::string _Text, float4 _Pivot, TextType _Type = TextType::Normal)
+	void ChangeFontRenderer(std::string _Text, float4 _Pivot, TextType _Type = TextType::Normal)
 	{
 		// 저장되어있던 랜더러를 삭제
 		std::vector<GameEngineTextureRenderer*>::iterator Start = FontRendererVector_.begin();
