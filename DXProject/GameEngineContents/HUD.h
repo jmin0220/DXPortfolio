@@ -34,13 +34,11 @@ private:
 
 	// 폰트파일 렌더러
 	GameEngineFontRenderer* FontRenderer_;
-	// 텍스쳐 폰트 렌더러
-	ContentsFont* ContentsFont_;
 
 	// 소지금 아이콘
 	GameEngineUIRenderer* GoldIconRenderer_;
 	// 소지금
-	GameEngineFontRenderer* GoldFontRenderer_;
+	ContentsFont* GoldFontRenderer_;
 
 	float4 SkillPos_[4];
 

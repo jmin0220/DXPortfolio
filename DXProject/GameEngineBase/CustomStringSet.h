@@ -145,6 +145,8 @@
 #define TEX_INTERFACE_MONEY_INTERFACE "sMoney_0.png"
 
 // ÆùÆ®
+#define FontName "sDamage"
+
 #define TEX_FONT_NORMAL_0 "sDamage_0.png"
 #define TEX_FONT_NORMAL_1 "sDamage_1.png"
 #define TEX_FONT_NORMAL_2 "sDamage_2.png"

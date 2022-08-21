@@ -1,6 +1,7 @@
 #include "PreCompile.h"
 #include "Bullet.h"
 #include "Monster.h"
+#include "ContentsFont.h"
 
 Bullet::Bullet() 
 	: Collision_(nullptr)
@@ -57,6 +58,13 @@ bool Bullet::CollisionCheck(GameEngineCollision* _This, GameEngineCollision* _Ot
 	TmpMonster->HitFunction(Damage_);
 	TmpMonster->ChangeStateToHitted();
 
+	// 데미지 폰트 출력
+	DamageFont_ = GetLevel()->CreateActor<ContentsFont>();
+	DamageFont_->CreateFontNormalRenderer<GameEngineTextureRenderer>("14", { 0, 0 });
+	DamageFont_->GetTransform().SetWorldPosition({this->GetTransform().GetWorldPosition().x, this->GetTransform().GetWorldPosition().y});
+
+	DamageFont_->SetDeathTimer(2.0f);
+
 	BulletDeath();
 
 	return false;
@@ -91,6 +99,12 @@ void Bullet::BulletDeath()
 	Renderer_->AnimationBindEnd(EFFECT_ANIM_NORMAL_SPARK, [=](const FrameAnimation_DESC&) {	this->Death(); });
 	Renderer_->SetScaleModeImage();
 	Renderer_->ScaleToTexture();
+
+	if (DamageFont_ != nullptr && false == DamageFont_->GetDeathFlg())
+	{
+		DamageFont_->Death();
+	}
+
 
 	CheckNegativeX();
 }

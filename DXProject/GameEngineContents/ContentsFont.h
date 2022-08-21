@@ -1,6 +1,13 @@
 #pragma once
 #include <GameEngineCore/GameEngineActor.h>
 
+enum class TextType
+{
+	Normal,
+	Large,
+	Crit,
+};
+
 // 설명 :
 class ContentsFont : public GameEngineActor
 {
@@ -15,35 +22,149 @@ public:
 	ContentsFont& operator=(const ContentsFont& _Other) = delete;
 	ContentsFont& operator=(ContentsFont&& _Other) noexcept = delete;
 
+
+	inline void SetDeathTimer(float _Timer = 1.0f)
+	{
+		DeathTimer_ = _Timer;
+		DeathFlg_ = true;
+	}
+
+	inline bool GetDeathFlg()
+	{
+		return DeathFlg_;
+	}
+
 protected:
-	virtual void Start() override;
-	virtual void Update(float _DeltaTime) override;
+	void Start() override;
+	void Update(float _DeltaTime) override;
 
 private:
 	std::vector<GameEngineTextureRenderer*> FontRendererVector_;
 
+	float DeathTimer_;
+	float LiveTimer_;
+	bool DeathFlg_;
 
 public:
-	void CreateFontRenderer(std::string _Text, float4 _Pivot);
+	// 폰트 렌더러를 새로 생성
+	template<typename RendererType>
+	void CreateFontNormalRenderer(std::string _Text, float4 _Pivot, TextType _Type = TextType::Normal)
+	{
+		FontRendererVector_.reserve(_Text.size());
+		size_t FontSize = _Text.size();
+		std::string FontSizeSetter = "";
 
-	void ChangeFontRenderer(std::string _Text, float4 _Pivot);
+		// 설정된 text의 글자수만큼 렌더러를 생성
+		for (int i = 0; i < FontSize; ++i)
+		{
+			RendererType* TmpRenderer = CreateComponent<RendererType>();
+			FontRendererVector_.push_back(static_cast<GameEngineTextureRenderer*>(TmpRenderer));
+		}
 
-};
+		switch (_Type)
+		{
+		case TextType::Normal:
+			FontSizeSetter = "";
+			break;
+		case TextType::Large:
+			FontSizeSetter = "Large";
+			break;
+		case TextType::Crit:
+			FontSizeSetter = "Crit";
+			break;
+		default:
+			FontSizeSetter = "";
+			break;
+		}
+
+		// 설정된 text에 맞춰 랜더러에 텍스쳐를 설정
+		float MarginX = 0;
+		for (int Count_ = 0; Count_ < FontSize; ++Count_)
+		{
+			switch (_Text.c_str()[Count_])
+			{
+			case '0':
+				FontRendererVector_.at(Count_)->SetTexture(FontName + FontSizeSetter + "_0.png");
+				break;
+			case '1':
+				FontRendererVector_.at(Count_)->SetTexture(FontName + FontSizeSetter + "_1.png");
+				break;
+			case '2':
+				FontRendererVector_.at(Count_)->SetTexture(FontName + FontSizeSetter + "_2.png");
+				break;
+			case '3':
+				FontRendererVector_.at(Count_)->SetTexture(FontName + FontSizeSetter + "_3.png");
+				break;
+			case '4':
+				FontRendererVector_.at(Count_)->SetTexture(FontName + FontSizeSetter + "_4.png");
+				break;
+			case '5':
+				FontRendererVector_.at(Count_)->SetTexture(FontName + FontSizeSetter + "_5.png");
+				break;
+			case '6':
+				FontRendererVector_.at(Count_)->SetTexture(FontName + FontSizeSetter + "_6.png");
+				break;
+			case '7':
+				FontRendererVector_.at(Count_)->SetTexture(FontName + FontSizeSetter + "_7.png");
+				break;
+			case '8':
+				FontRendererVector_.at(Count_)->SetTexture(FontName + FontSizeSetter + "_8.png");
+				break;
+			case '9':
+				FontRendererVector_.at(Count_)->SetTexture(FontName + FontSizeSetter + "_9.png");
+				break;
+			case '!':
+				// 존재하지 않는 텍스쳐라면 Normal사이즈의 0
+				if (_Type == TextType::Large)
+				{
+					FontRendererVector_.at(Count_)->SetTexture(TEX_FONT_NORMAL_0);
+					break;
+				}
+
+				FontRendererVector_.at(Count_)->SetTexture(FontName + FontSizeSetter + "_10.png");
+				break;
+			case '$':
+				// 존재하지 않는 텍스쳐라면 Normal사이즈의 0
+				if (_Type == TextType::Large || _Type == TextType::Crit)
+				{
+					FontRendererVector_.at(Count_)->SetTexture(TEX_FONT_NORMAL_0);
+					break;
+				}
+
+				FontRendererVector_.at(Count_)->SetTexture(FontName + FontSizeSetter + "_11.png");
+				break;
+
+			default:
+				FontRendererVector_.at(Count_)->SetTexture("NSet.png");
+				break;
+			}
+			FontRendererVector_.at(Count_)->ScaleToTexture();
+
+			// 위치 조정
+			FontRendererVector_.at(Count_)->GetTransform().SetLocalPosition({ _Pivot.x + MarginX, 0 + _Pivot.y });
+			MarginX += FontRendererVector_.at(Count_)->GetCurTexture()->GetScale().x + 1.5f;
+		}
+	}
 
 
-enum class FONT_INDEX
-{
-	Zero,
-	One,
-	Two,
-	Three,
-	Four,
-	Five,
-	Six,
-	Seven,
-	Eight,
-	Nine,
-	Dollar,							//$
-	Exclamaion_Mark,				//!
-	Empty,
+	// 이미 존재하는 폰트 렌더러를 수정
+	template<typename RendererType>
+	void ChangeFontNormalRenderer(std::string _Text, float4 _Pivot, TextType _Type = TextType::Normal)
+	{
+		// 저장되어있던 랜더러를 삭제
+		std::vector<GameEngineTextureRenderer*>::iterator Start = FontRendererVector_.begin();
+
+		for (Start; Start != FontRendererVector_.end(); ++Start)
+		{
+			if ((*Start) != nullptr)
+			{
+				(*Start)->Death();
+			}
+		}
+
+		FontRendererVector_.clear();
+
+		// 설정된 텍스트로 렌더러를 다시 생성
+		CreateFontNormalRenderer<RendererType>(_Text, _Pivot, _Type);
+	}
 };

@@ -2,7 +2,7 @@
 #include <GameEngineCore/GameEngineActor.h>
 
 // Ό³Έν :
-class GameEngineCollision;
+class ContentsFont;
 class Bullet : public GameEngineActor
 {
 public:
@@ -39,6 +39,7 @@ private:
 
 	GameEngineCollision* Collision_;
 	GameEngineTextureRenderer* Renderer_;
+	ContentsFont* DamageFont_;
 
 	int Damage_;
 	float4 Direction_;
