@@ -26,6 +26,11 @@ public:
 		Direction_ = _Direction;
 	}
 
+	void SetBulletYPositionLevel(int _PosLevel)
+	{
+		BulletYPositionLevel_ = _PosLevel;
+	}
+
 protected:
 	void Start() override;
 	void Update(float _DeltaTime) override;
@@ -45,5 +50,7 @@ private:
 	float4 Direction_;
 	float FlyLength_;
 	bool BulletDeathFlg_;
+
+	int BulletYPositionLevel_;
 };
 

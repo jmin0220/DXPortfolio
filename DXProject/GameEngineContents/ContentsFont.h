@@ -34,6 +34,11 @@ public:
 		return DeathFlg_;
 	}
 
+	inline void SetIsBulletDmg(bool _Flg)
+	{
+		IsBulletDmg_ = _Flg;
+	}
+
 protected:
 	void Start() override;
 	void Update(float _DeltaTime) override;
@@ -44,6 +49,9 @@ private:
 	float DeathTimer_;
 	float LiveTimer_;
 	bool DeathFlg_;
+	bool IsBulletDmg_;
+
+	float UpperMoveSpeed_;
 
 public:
 	// 폰트 렌더러를 새로 생성

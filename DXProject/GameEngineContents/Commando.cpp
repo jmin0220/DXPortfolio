@@ -42,12 +42,22 @@ void Commando::AnimationInit()
 	Renderer_->AnimationBindFrame(PLAYER_ANIM_IDLE, std::bind(&Commando::FrameAnimation, this, std::placeholders::_1));
 	Renderer_->AnimationBindFrame(PLAYER_ANIM_SKILL1, [=](const FrameAnimation_DESC& _Info)
 		{
+			static int YposLevel = 0;
+
 			if (_Info.CurFrame == 1 || _Info.CurFrame == 3)
 			{
 				Bullet* bullet = GetLevel()->CreateActor<Bullet>();
 				bullet->GetTransform().SetWorldPosition(this->GetTransform().GetWorldPosition());
 				bullet->SetDamage(Damage_);
 				bullet->SetDirection(MoveDir_);
+				bullet->SetBulletYPositionLevel(YposLevel);
+				YposLevel++;
+
+				// 이번 애니메이션에서 총알을 모두 쏨
+				if (_Info.CurFrame == 3)
+				{
+					YposLevel = 0;
+				}
 			}
 		});
 	Renderer_->AnimationBindFrame(PLAYER_ANIM_SKILL2, std::bind(&Commando::FrameAnimation, this, std::placeholders::_1));

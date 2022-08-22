@@ -7,6 +7,7 @@ Bullet::Bullet()
 	: Collision_(nullptr)
 	, Renderer_(nullptr)
 	, BulletDeathFlg_(false)
+	, BulletYPositionLevel_(0)
 {
 }
 
@@ -60,10 +61,11 @@ bool Bullet::CollisionCheck(GameEngineCollision* _This, GameEngineCollision* _Ot
 
 	// 데미지 폰트 출력
 	DamageFont_ = GetLevel()->CreateActor<ContentsFont>();
-	DamageFont_->CreateFontRenderer<GameEngineTextureRenderer>("14", { 0, 0 });
+	DamageFont_->CreateFontRenderer<GameEngineTextureRenderer>("14", { 0, 30.0f + 25.0f * BulletYPositionLevel_ });
 	DamageFont_->GetTransform().SetWorldPosition({this->GetTransform().GetWorldPosition().x, this->GetTransform().GetWorldPosition().y});
+	DamageFont_->SetIsBulletDmg(true);
 
-	DamageFont_->SetDeathTimer(2.0f);
+	DamageFont_->SetDeathTimer(1.0f);
 
 	BulletDeath();
 
