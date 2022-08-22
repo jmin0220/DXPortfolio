@@ -96,6 +96,7 @@ public:
 				break;
 			case '1':
 				FontRendererVector_.at(Count_)->SetTexture(FontName + FontSizeSetter + "_1.png");
+				MarginX -= FontRendererVector_.at(Count_)->GetCurTexture()->GetScale().hx();
 				break;
 			case '2':
 				FontRendererVector_.at(Count_)->SetTexture(FontName + FontSizeSetter + "_2.png");
@@ -151,7 +152,15 @@ public:
 			// 위치 조정
 			// TODO::설정된 렌더러의 크기별로 다른 위치를 설정
 			FontRendererVector_.at(Count_)->GetTransform().SetLocalPosition({ _Pivot.x + MarginX, 0 + _Pivot.y });
-			MarginX += FontRendererVector_.at(Count_)->GetCurTexture()->GetScale().x + 5.0f;
+			MarginX += FontRendererVector_.at(Count_)->GetCurTexture()->GetScale().x + 2.0f;
+
+			// 1일때 다음 글자의 포지션을 조정
+			// 왜?
+			if (_Text.c_str()[Count_] == '1')
+			{
+				MarginX += FontRendererVector_.at(Count_)->GetCurTexture()->GetScale().hx();
+			}
+
 		}
 	}
 

@@ -94,7 +94,7 @@ void HUD::Start()
 
 	GoldFontRenderer_ = GetLevel()->CreateActor<ContentsFont>();
 	// TODO::플레이어가 가지고 있는 소지금의 길이만큼 포지션을 조정
-	GoldFontRenderer_->CreateFontRenderer<GameEngineUIRenderer>("1424", { 0, 0 }, TextType::Large);
+	GoldFontRenderer_->CreateFontRenderer<GameEngineUIRenderer>("515", { 0, 0 }, TextType::Large);
 	GoldFontRenderer_->GetTransform().SetWorldPosition({ GoldIconRenderer_->GetTransform().GetWorldPosition().x + 50.0f, GoldIconRenderer_->GetTransform().GetWorldPosition().y });
 }
 
