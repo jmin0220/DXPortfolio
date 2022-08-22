@@ -19,6 +19,7 @@ Player::Player()
 	, FrameAnimDelay_(0.06f)
 	, ColorCheckPos_(float4::ZERO)
 	, Lv_(1)
+	, CritChance_(5)
 {
 }
 

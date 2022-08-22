@@ -177,6 +177,7 @@ protected:
 	static int Gold_;
 	static int Exp_;
 
-	float CritChance_;
+	// 크리티컬찬스 (MAX = 100)
+	int CritChance_;
 };
 

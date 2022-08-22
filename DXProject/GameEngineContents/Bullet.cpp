@@ -61,7 +61,15 @@ bool Bullet::CollisionCheck(GameEngineCollision* _This, GameEngineCollision* _Ot
 
 	// 데미지 폰트 출력
 	DamageFont_ = GetLevel()->CreateActor<ContentsFont>();
-	DamageFont_->CreateFontRenderer<GameEngineTextureRenderer>("14", { 0, 30.0f + 25.0f * BulletYPositionLevel_ });
+
+	if (true == CirtFlg_)
+	{
+		DamageFont_->CreateFontRenderer<GameEngineTextureRenderer>(std::to_string(Damage_), { 0, 30.0f + 25.0f * BulletYPositionLevel_ }, TextType::Crit);
+	}
+	else
+	{
+		DamageFont_->CreateFontRenderer<GameEngineTextureRenderer>(std::to_string(Damage_), { 0, 30.0f + 25.0f * BulletYPositionLevel_ });
+	}
 	DamageFont_->GetTransform().SetWorldPosition({this->GetTransform().GetWorldPosition().x, this->GetTransform().GetWorldPosition().y});
 	DamageFont_->SetIsBulletDmg(true);
 

@@ -52,7 +52,9 @@ private:
 	bool IsBulletDmg_;
 
 	float UpperMoveSpeed_;
+	// 투명도
 	float Invisible_;
+
 public:
 	// 폰트 렌더러를 새로 생성
 	template<typename RendererType>
@@ -150,7 +152,6 @@ public:
 			FontRendererVector_.at(Count_)->ScaleToTexture();
 
 			// 위치 조정
-			// TODO::설정된 렌더러의 크기별로 다른 위치를 설정
 			FontRendererVector_.at(Count_)->GetTransform().SetLocalPosition({ _Pivot.x + MarginX, 0 + _Pivot.y });
 			MarginX += FontRendererVector_.at(Count_)->GetCurTexture()->GetScale().x + 2.0f;
 
@@ -161,6 +162,19 @@ public:
 				MarginX += FontRendererVector_.at(Count_)->GetCurTexture()->GetScale().hx();
 			}
 
+		}
+
+		// 크리티컬일경우 '!' 추가
+		if (_Type == TextType::Crit)
+		{
+			RendererType* TmpRenderer = CreateComponent<RendererType>();
+			TmpRenderer->SetTexture(TEX_FONT_CRIT_10);
+			TmpRenderer->ScaleToTexture();
+
+			MarginX -= TmpRenderer->GetCurTexture()->GetScale().hx();
+			TmpRenderer->GetTransform().SetLocalPosition({ _Pivot.x + MarginX, 0 + _Pivot.y });
+
+			FontRendererVector_.push_back(static_cast<GameEngineTextureRenderer*>(TmpRenderer));
 		}
 	}
 

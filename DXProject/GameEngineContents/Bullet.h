@@ -16,17 +16,22 @@ public:
 	Bullet& operator=(const Bullet& _Other) = delete;
 	Bullet& operator=(Bullet&& _Other) noexcept = delete;
 
-	void SetDamage(int _Damage)
+	inline void SetDamage(int _Damage)
 	{
 		Damage_ = _Damage;
 	}
 
-	void SetDirection(float4 _Direction)
+	inline void SetCritFlgTrue()
+	{
+		CirtFlg_ = true;
+	}
+
+	inline void SetDirection(float4 _Direction)
 	{
 		Direction_ = _Direction;
 	}
 
-	void SetBulletYPositionLevel(int _PosLevel)
+	inline void SetBulletYPositionLevel(int _PosLevel)
 	{
 		BulletYPositionLevel_ = _PosLevel;
 	}
@@ -46,9 +51,15 @@ private:
 	GameEngineTextureRenderer* Renderer_;
 	ContentsFont* DamageFont_;
 
+	// 데미지
 	int Damage_;
+	// 크리티컬
+	bool CirtFlg_;
+	// 날아갈 방향
 	float4 Direction_;
+	// 날아간 거리
 	float FlyLength_;
+	// Death타이머가 세팅되어있는가
 	bool BulletDeathFlg_;
 
 	int BulletYPositionLevel_;

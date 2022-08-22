@@ -1,6 +1,7 @@
 #include "PreCompile.h"
 #include "Commando.h"
 #include "Bullet.h"
+#include <GameEngineBase/GameEngineRandom.h>
 
 Commando::Commando() 
 {
@@ -40,30 +41,32 @@ void Commando::AnimationInit()
 
 	// 프레임마다 실행할 함수
 	Renderer_->AnimationBindFrame(PLAYER_ANIM_IDLE, std::bind(&Commando::FrameAnimation, this, std::placeholders::_1));
+	
 	Renderer_->AnimationBindFrame(PLAYER_ANIM_SKILL1, [=](const FrameAnimation_DESC& _Info)
 		{
-			static int YposLevel = 0;
-
 			if (_Info.CurFrame == 1 || _Info.CurFrame == 3)
 			{
-				Bullet* bullet = GetLevel()->CreateActor<Bullet>();
-				bullet->GetTransform().SetWorldPosition(this->GetTransform().GetWorldPosition());
-				bullet->SetDamage(Damage_);
-				bullet->SetDirection(MoveDir_);
-				bullet->SetBulletYPositionLevel(YposLevel);
-				YposLevel++;
-
-				// 이번 애니메이션에서 총알을 모두 쏨
-				if (_Info.CurFrame == 3)
-				{
-					YposLevel = 0;
-				}
+				CreateBullet(_Info.CurFrame, 3);
 			}
 		});
+
 	Renderer_->AnimationBindFrame(PLAYER_ANIM_SKILL2, std::bind(&Commando::FrameAnimation, this, std::placeholders::_1));
 	Renderer_->AnimationBindFrame(PLAYER_ANIM_SKILL3, std::bind(&Commando::FrameAnimation, this, std::placeholders::_1));
 	Renderer_->AnimationBindFrame(PLAYER_ANIM_COMMANDO_SKILL4_1, std::bind(&Commando::FrameAnimation, this, std::placeholders::_1));
-	Renderer_->AnimationBindFrame(PLAYER_ANIM_COMMANDO_SKILL4_2, std::bind(&Commando::FrameAnimation, this, std::placeholders::_1));
+	
+	Renderer_->AnimationBindFrame(PLAYER_ANIM_COMMANDO_SKILL4_2, [=](const FrameAnimation_DESC& _Info)
+		{
+			if (_Info.CurFrame == 1 
+				|| _Info.CurFrame == 3
+				|| _Info.CurFrame == 5
+				|| _Info.CurFrame == 7
+				|| _Info.CurFrame == 9
+				|| _Info.CurFrame == 11)
+			{
+				CreateBullet(_Info.CurFrame, 11);
+			}
+		});
+
 	Renderer_->AnimationBindFrame(PLAYER_ANIM_WALK, std::bind(&Commando::FrameAnimation, this, std::placeholders::_1));
 	Renderer_->AnimationBindFrame(PLAYER_ANIM_JUMP, std::bind(&Commando::FrameAnimation, this, std::placeholders::_1));
 	Renderer_->AnimationBindFrame(PLAYER_ANIM_CLIMB, std::bind(&Commando::FrameAnimation, this, std::placeholders::_1));
@@ -130,4 +133,33 @@ void Commando::FrameAnimation(const FrameAnimation_DESC& _Info)
 	//std::string y = std::to_string(Renderer_->GetTransform().GetLocalScale().y);
 
 	//GameEngineDebug::OutPutString(Renderer_->GetCurTexture()->GetNameCopy() + "  " + StateManager_.GetCurStateStateName() + " >> x : " + x + " , y : " + y);
+}
+
+void Commando::CreateBullet(int _CurFrame, int _LastFrame)
+{
+	static int YposLevel = 0;
+
+	int tmp = GameEngineRandom::MainRandom.RandomInt(Lv_ * 0, Lv_ * 3);
+	int TrueDmg = (Damage_ + tmp) * 0.6f;
+
+	Bullet* bullet = GetLevel()->CreateActor<Bullet>();
+
+	// 크리티컬 찬스
+	if (CritChance_ >= GameEngineRandom::MainRandom.RandomInt(0, 100))
+	{
+		bullet->SetCritFlgTrue();
+		TrueDmg *= 1.5f;
+	}
+
+	bullet->GetTransform().SetWorldPosition(this->GetTransform().GetWorldPosition());
+	bullet->SetDamage(TrueDmg);
+	bullet->SetDirection(MoveDir_);
+	bullet->SetBulletYPositionLevel(YposLevel);
+	YposLevel++;
+
+	// 이번 애니메이션에서 총알을 모두 쏨
+	if (_CurFrame == _LastFrame)
+	{
+		YposLevel = 0;
+	}
 }

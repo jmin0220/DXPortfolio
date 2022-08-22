@@ -56,6 +56,6 @@ protected:
 	void FrameAnimation(const FrameAnimation_DESC& _Info);
 
 private:
-
+	void CreateBullet(int _CurFrame, int _LastFrame);
 };
 
