@@ -8,6 +8,7 @@ Bullet::Bullet()
 	, Renderer_(nullptr)
 	, BulletDeathFlg_(false)
 	, BulletYPositionLevel_(0)
+	, BulletSpeed_(4000)
 {
 }
 
@@ -32,13 +33,13 @@ void Bullet::Update(float _DeltaTime)
 
 	if (Direction_.CompareInt3D(float4::LEFT))
 	{
-		this->GetTransform().SetWorldMove(GetTransform().GetLeftVector() * _DeltaTime * 1000);
-		FlyLength_ += GetTransform().GetRightVector().x * _DeltaTime * 1000;
+		this->GetTransform().SetWorldMove(GetTransform().GetLeftVector() * _DeltaTime * BulletSpeed_);
+		FlyLength_ += GetTransform().GetRightVector().x * _DeltaTime * BulletSpeed_;
 	}
 	else
 	{
-		this->GetTransform().SetWorldMove(GetTransform().GetRightVector() * _DeltaTime * 1000);
-		FlyLength_ += GetTransform().GetLeftVector().x * _DeltaTime * 1000;
+		this->GetTransform().SetWorldMove(GetTransform().GetRightVector() * _DeltaTime * BulletSpeed_);
+		FlyLength_ += GetTransform().GetLeftVector().x * _DeltaTime * BulletSpeed_;
 	}
 
 	// 일정거리 이상 날아가면 파괴

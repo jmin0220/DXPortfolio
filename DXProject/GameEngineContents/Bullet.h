@@ -59,6 +59,7 @@ private:
 	float4 Direction_;
 	// 날아간 거리
 	float FlyLength_;
+	float BulletSpeed_;
 	// Death타이머가 세팅되어있는가
 	bool BulletDeathFlg_;
 
