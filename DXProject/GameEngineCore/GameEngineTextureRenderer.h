@@ -44,6 +44,8 @@ public:
 	bool Loop;
 	// 아틀라스 애니메이션
 
+	class GameEngineTextureRenderer* Renderer;
+
 public:
 	FrameAnimation_DESC()
 		: Loop(false)
