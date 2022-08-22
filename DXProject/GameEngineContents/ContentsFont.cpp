@@ -7,6 +7,7 @@ ContentsFont::ContentsFont()
 	, DeathFlg_(false)
 	, IsBulletDmg_(false)
 	, UpperMoveSpeed_(60.0f)
+	, Invisible_(1.0f)
 {
 }
 
@@ -24,11 +25,24 @@ void ContentsFont::Update(float _DeltaTime)
 
 	if (LiveTimer_ >= DeathTimer_ && DeathFlg_ == true)
 	{
+		Invisible_ = 1.0f;
 		this->Death();
 	}
 
 	if (true == IsBulletDmg_)
 	{
+
 		this->GetTransform().SetWorldMove(GetTransform().GetUpVector() * UpperMoveSpeed_ * _DeltaTime);
+
+		// Death까지 남은 시간이 
+		if (DeathTimer_ - LiveTimer_ <= 0.5)
+		{
+			// 투명도 조절
+			for (auto& Renderer : FontRendererVector_)
+			{
+				Invisible_ -= _DeltaTime * 2;
+				Renderer->GetColorData().MulColor.a = Invisible_;
+			}
+		}
 	}
 }

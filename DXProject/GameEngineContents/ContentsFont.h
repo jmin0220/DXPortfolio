@@ -52,7 +52,7 @@ private:
 	bool IsBulletDmg_;
 
 	float UpperMoveSpeed_;
-
+	float Invisible_;
 public:
 	// 폰트 렌더러를 새로 생성
 	template<typename RendererType>
