@@ -21,11 +21,21 @@ struct Output
     float4 Tex : TEXCOORD;
 };
 
+// 1000
+// 0100
+// 2010
+// 0301
+
+// 1020
+// 0103
+// 0010
+// 0001
+
 
 // 그래픽카드에서 이뤄지는것.
 Output Texture_VS(Input _Input)
 {
-    Output NewOutPut = (Output) 0;
+    Output NewOutPut = (Output)0;
     NewOutPut.Pos = mul(_Input.Pos, WorldViewProjection);
     NewOutPut.PosLocal = _Input.Pos;
     NewOutPut.Tex = _Input.Tex;

@@ -22,13 +22,13 @@ public:
 
 	GameEngineActor* GetActor()
 	{
-		return GetParent<GameEngineActor>();
+		return GetRoot<GameEngineActor>();
 	}
 
 	template<typename ParentType>
 	ParentType* GetActor()
 	{
-		return GetRoot<ParentType>();
+		return GetParent<ParentType>();
 	}
 
 	void DetachObject() override;

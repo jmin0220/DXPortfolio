@@ -11,7 +11,7 @@
 #include "GameEngineBlend.h"
 
 
-GameEngineRenderingPipeLine::GameEngineRenderingPipeLine()
+GameEngineRenderingPipeLine::GameEngineRenderingPipeLine() 
 	: InputLayOut(nullptr)
 	, VertexBuffer(nullptr)
 	, VertexShader(nullptr)
@@ -29,7 +29,7 @@ GameEngineRenderingPipeLine::GameEngineRenderingPipeLine()
 	DepthStencil = GameEngineDepthStencil::Find("EngineBaseDepth");
 }
 
-GameEngineRenderingPipeLine::~GameEngineRenderingPipeLine()
+GameEngineRenderingPipeLine::~GameEngineRenderingPipeLine() 
 {
 }
 
@@ -64,7 +64,7 @@ GameEngineRenderingPipeLine* GameEngineRenderingPipeLine::Create(const std::stri
 	return CreateResName(_Name);
 }
 
-void GameEngineRenderingPipeLine::SetInputAssembler1VertexBuffer(const std::string& _Name)
+void GameEngineRenderingPipeLine::SetInputAssembler1VertexBuffer(const std::string& _Name) 
 {
 	VertexBuffer = GameEngineVertexBuffer::Find(_Name);
 
@@ -98,7 +98,7 @@ void GameEngineRenderingPipeLine::SetVertexShader(const std::string& _Name)
 	}
 }
 
-void GameEngineRenderingPipeLine::SetInputAssembler2IndexBuffer(const std::string& _Name)
+void GameEngineRenderingPipeLine::SetInputAssembler2IndexBuffer(const std::string& _Name) 
 {
 	IndexBuffer = GameEngineIndexBuffer::Find(_Name);
 
@@ -191,36 +191,36 @@ void GameEngineRenderingPipeLine::InputAssembler1VertexBufferSetting()
 	VertexBuffer->Setting();
 }
 
-void GameEngineRenderingPipeLine::VertexShaderSetting()
+void GameEngineRenderingPipeLine::VertexShaderSetting() 
 {
 	VertexShader->Setting();
 	// À§Ä¡ 
 	// D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST;
 }
 
-void GameEngineRenderingPipeLine::InputAssembler2IndexBufferSetting()
+void GameEngineRenderingPipeLine::InputAssembler2IndexBufferSetting() 
 {
 	GameEngineDevice::GetContext()->IASetPrimitiveTopology(Topology);
 
 	IndexBuffer->Setting();
 }
 
-void GameEngineRenderingPipeLine::RasterizerSetting()
+void GameEngineRenderingPipeLine::RasterizerSetting() 
 {
 	Rasterizer->Setting();
 }
 
-void GameEngineRenderingPipeLine::PixelShaderSetting()
+void GameEngineRenderingPipeLine::PixelShaderSetting() 
 {
 	PixelShader->Setting();
 }
 
-void GameEngineRenderingPipeLine::OutputMergerBlendSetting()
+void GameEngineRenderingPipeLine::OutputMergerBlendSetting() 
 {
 	Blend->Setting();
 }
 
-void GameEngineRenderingPipeLine::OutputMergerDepthStencilSetting()
+void GameEngineRenderingPipeLine::OutputMergerDepthStencilSetting() 
 {
 	DepthStencil->Setting();
 }
@@ -234,14 +234,14 @@ void GameEngineRenderingPipeLine::Draw()
 
 void GameEngineRenderingPipeLine::Copy(GameEngineRenderingPipeLine* _Original)
 {
-	InputLayOut = _Original->InputLayOut;
-	VertexBuffer = _Original->VertexBuffer;
-	VertexShader = _Original->VertexShader;
-	IndexBuffer = _Original->IndexBuffer;
-	Topology = _Original->Topology;
-	Rasterizer = _Original->Rasterizer;
-	PixelShader = _Original->PixelShader;
-	DepthStencil = _Original->DepthStencil;
-	Blend = _Original->Blend;
+	InputLayOut			= _Original->InputLayOut;
+	VertexBuffer			= _Original->VertexBuffer;
+	VertexShader			= _Original->VertexShader;
+	IndexBuffer			= _Original->IndexBuffer;
+	Topology				= _Original->Topology;
+	Rasterizer				= _Original->Rasterizer;
+	PixelShader			= _Original->PixelShader;
+	DepthStencil			= _Original->DepthStencil;
+	Blend					= _Original->Blend;
 
 }

@@ -12,6 +12,7 @@
     <FxCompile Include="DebugTexture.hlsl">
       <Filter>Debug</Filter>
     </FxCompile>
+    <FxCompile Include="TargetMerge.hlsl" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Debug">

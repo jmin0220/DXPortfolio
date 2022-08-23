@@ -4,8 +4,14 @@
 enum class PIVOTMODE
 {
 	CENTER,
-	LEFTTOP,
 	BOT,
+	TOP,
+	LEFT,
+	RIGHT,
+	LEFTTOP,
+	RIGHTTOP,
+	LEFTBOT,
+	RIGHTBOT,
 	CUSTOM,
 };
 
@@ -28,7 +34,15 @@ struct ColorData
 	}
 };
 
-class FrameAnimation_DESC
+struct AtlasData 
+{
+public:
+	float4 FrameData;
+	float4 PivotPos;
+};
+
+
+class FrameAnimation_DESC 
 {
 public:
 	std::string TextureName;
@@ -76,7 +90,7 @@ public:
 		, Frames(_Frames)
 		, FrameTime(0.0f)
 	{
-
+		
 	}
 
 
@@ -118,7 +132,7 @@ class FrameAnimation : public GameEngineNameObject
 	void Update(float _DeltaTime);
 
 public:
-	FrameAnimation()
+	FrameAnimation() 
 		: bOnceStart(true)
 		, bOnceEnd(false)
 		, Pause(false)
@@ -151,12 +165,12 @@ public:
 		ScaleMode = SCALEMODE::IMAGE;
 	}
 
-	void SetScaleRatio(float _Scale)
+	void SetScaleRatio(float _Scale) 
 	{
 		ScaleRatio = _Scale;
 	}
 
-	float GetScaleRatio()
+	float GetScaleRatio() 
 	{
 		return ScaleRatio;
 	}
@@ -179,6 +193,8 @@ public:
 
 	void SetTexture(GameEngineTexture* _Texture, UINT _Index);
 
+	void SetFolderTextureToIndex(const std::string& _Text, UINT _Index);
+
 	void CreateFrameAnimationFolder(const std::string& _AnimationName, const FrameAnimation_DESC& _Desc);
 
 	void CreateFrameAnimationCutTexture(const std::string& _AnimationName, const FrameAnimation_DESC& _Desc);
@@ -194,7 +210,7 @@ public:
 
 	void CurAnimationSetStartPivotFrame(int SetFrame);
 
-	ColorData& GetColorData()
+	ColorData& GetColorData() 
 	{
 		return ColorData;
 	}
@@ -270,6 +286,7 @@ private:
 	float4 FrameData;
 
 	ColorData ColorData;
+	AtlasData AtlasDataInst;
 
 	std::map<std::string, FrameAnimation> FrameAni;
 	FrameAnimation* CurAni;

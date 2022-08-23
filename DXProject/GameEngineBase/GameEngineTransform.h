@@ -7,9 +7,9 @@
 enum class CollisionType
 {
 	CT_POINT2D,
-	CT_SPHERE2D,
-	CT_AABB2D,
-	CT_OBB2D,
+	CT_SPHERE2D, 
+	CT_AABB2D, 
+	CT_OBB2D, 
 	CT_POINT,
 	CT_SPHERE, // 정방원
 	CT_AABB, // 회전하지 않은 박스
@@ -21,14 +21,14 @@ class CollisionData
 {
 	friend class GameEngineTransform;
 
-	union
+	union 
 	{
 		DirectX::BoundingSphere SPHERE;
 		DirectX::BoundingBox AABB;
 		DirectX::BoundingOrientedBox OBB;
 	};
 
-	CollisionData()
+	CollisionData() 
 		: OBB()
 	{
 
@@ -85,6 +85,11 @@ public:
 
 
 public:
+	inline void AddLocalScale(const float4& _Value)
+	{
+		SetLocalScale(Data.LocalScaling + _Value);
+	}
+
 	inline void SetLocalScale(const float4& _Value)
 	{
 		CalculateWorldScale(_Value);
@@ -383,7 +388,7 @@ private:
 	virtual void End() {}
 
 
-	/////////////////////////// 충돌관련
+/////////////////////////// 충돌관련
 public:
 	static bool SphereToSphere(const GameEngineTransform& _Left, const GameEngineTransform& _Right);
 
