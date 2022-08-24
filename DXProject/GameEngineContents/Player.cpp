@@ -1,7 +1,10 @@
 #include "PreCompile.h"
 #include "Player.h"
+#include <GameEngineBase/GameEngineRandom.h>
 #include "Stage1Level.h"
 #include "HUD.h"
+#include "Bullet.h"
+#include "PiercingBullet.h"
 
 int Player::Gold_ = 0;
 int Player::Exp_ = 0;
@@ -645,5 +648,64 @@ bool Player::CanClimb(int _CheckPosFlg)
 	default:
 		return false;
 		break;
+	}
+}
+
+
+void Player::CreateBullet(int _CurFrame, int _LastFrame, BulletType _BulletType, float _DmgRatio, float _PiercingLength)
+{
+	static int YposLevel = 0;
+
+	int tmp = GameEngineRandom::MainRandom.RandomInt(Lv_ * 0, Lv_ * 3);
+	int TrueDmg = (Damage_ + tmp) * _DmgRatio;
+
+	switch (_BulletType)
+	{
+	case BulletType::Bullet:
+	{
+		Bullet* bullet = GetLevel()->CreateActor<Bullet>();
+
+		// 크리티컬 찬스
+		if (CritChance_ >= GameEngineRandom::MainRandom.RandomInt(0, 100))
+		{
+			bullet->SetCritFlgTrue();
+			TrueDmg *= 1.5f;
+		}
+
+		bullet->GetTransform().SetWorldPosition(this->GetTransform().GetWorldPosition());
+		bullet->SetDamage(TrueDmg);
+		bullet->SetDirection(MoveDir_);
+		bullet->SetBulletYPositionLevel(YposLevel);
+	}
+	break;
+	case BulletType::PiercingBullet:
+	{
+		PiercingBullet* piercingbullet = GetLevel()->CreateActor<PiercingBullet>();
+
+		// 크리티컬 찬스
+		if (CritChance_ >= GameEngineRandom::MainRandom.RandomInt(0, 100))
+		{
+			piercingbullet->SetCritFlgTrue();
+			TrueDmg *= 1.5f;
+		}
+
+		piercingbullet->GetTransform().SetWorldPosition(this->GetTransform().GetWorldPosition());
+		piercingbullet->SetDamage(TrueDmg);
+		piercingbullet->SetDirection(MoveDir_);
+		piercingbullet->SetPiercingLength(_PiercingLength);
+		piercingbullet->ResizePiercingBulletXSize();
+		piercingbullet->SetBulletYPositionLevel(YposLevel);
+	}
+	break;
+	default:
+		break;
+	}
+
+	YposLevel++;
+
+	// 이번 애니메이션에서 총알을 모두 쏨
+	if (_CurFrame == _LastFrame)
+	{
+		YposLevel = 0;
 	}
 }

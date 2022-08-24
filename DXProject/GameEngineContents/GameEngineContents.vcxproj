@@ -221,6 +221,10 @@
     </ClInclude>
     <ClInclude Include="MonsterManager.h" />
     <ClInclude Include="ObjectGroup.h" />
+    <ClInclude Include="PiercingBullet.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="Player.h">
       <SubType>
       </SubType>
@@ -317,6 +321,10 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="MonsterManager.cpp" />
+    <ClCompile Include="PiercingBullet.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="Player.cpp">
       <SubType>
       </SubType>

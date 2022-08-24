@@ -22,13 +22,6 @@ public:
 	ContentsFont& operator=(const ContentsFont& _Other) = delete;
 	ContentsFont& operator=(ContentsFont&& _Other) noexcept = delete;
 
-
-	inline void SetDeathTimer(float _Timer = 1.0f)
-	{
-		DeathTimer_ = _Timer;
-		DeathFlg_ = true;
-	}
-
 	inline bool GetDeathFlg()
 	{
 		return DeathFlg_;

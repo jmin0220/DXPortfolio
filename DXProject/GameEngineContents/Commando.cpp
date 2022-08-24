@@ -39,6 +39,12 @@ void Commando::AnimationInit()
 	Renderer_->CreateFrameAnimationFolder(PLAYER_ANIM_CLIMB, FrameAnimation_DESC(TEX_PLAYER_ANIM_COMMANDO_CLIMB, FrameAnimDelay_ * 3, true));
 	Renderer_->CreateFrameAnimationFolder(PLAYER_ANIM_DEATH, FrameAnimation_DESC(TEX_PLAYER_ANIM_COMMANDO_DEATH, FrameAnimDelay_, false));
 
+	// 프레임 시작할때 실행할 함수
+	Renderer_->AnimationBindStart(PLAYER_ANIM_SKILL2, [=](const FrameAnimation_DESC& _Info)
+		{
+			CreateBullet(0, 0, BulletType::PiercingBullet, 2.5f, 800.0f);
+		});
+
 	// 프레임마다 실행할 함수
 	Renderer_->AnimationBindFrame(PLAYER_ANIM_IDLE, std::bind(&Commando::FrameAnimation, this, std::placeholders::_1));
 	
@@ -46,7 +52,7 @@ void Commando::AnimationInit()
 		{
 			if (_Info.CurFrame == 1 || _Info.CurFrame == 3)
 			{
-				CreateBullet(_Info.CurFrame, 3);
+				CreateBullet(_Info.CurFrame, 3, BulletType::Bullet, 0.6f);
 			}
 		});
 
@@ -63,7 +69,7 @@ void Commando::AnimationInit()
 				|| _Info.CurFrame == 9
 				|| _Info.CurFrame == 11)
 			{
-				CreateBullet(_Info.CurFrame, 11);
+				CreateBullet(_Info.CurFrame, 11, BulletType::Bullet, 0.6f);
 			}
 		});
 
@@ -133,33 +139,4 @@ void Commando::FrameAnimation(const FrameAnimation_DESC& _Info)
 	//std::string y = std::to_string(Renderer_->GetTransform().GetLocalScale().y);
 
 	//GameEngineDebug::OutPutString(Renderer_->GetCurTexture()->GetNameCopy() + "  " + StateManager_.GetCurStateStateName() + " >> x : " + x + " , y : " + y);
-}
-
-void Commando::CreateBullet(int _CurFrame, int _LastFrame)
-{
-	static int YposLevel = 0;
-
-	int tmp = GameEngineRandom::MainRandom.RandomInt(Lv_ * 0, Lv_ * 3);
-	int TrueDmg = (Damage_ + tmp) * 0.6f;
-
-	Bullet* bullet = GetLevel()->CreateActor<Bullet>();
-
-	// 크리티컬 찬스
-	if (CritChance_ >= GameEngineRandom::MainRandom.RandomInt(0, 100))
-	{
-		bullet->SetCritFlgTrue();
-		TrueDmg *= 1.5f;
-	}
-
-	bullet->GetTransform().SetWorldPosition(this->GetTransform().GetWorldPosition());
-	bullet->SetDamage(TrueDmg);
-	bullet->SetDirection(MoveDir_);
-	bullet->SetBulletYPositionLevel(YposLevel);
-	YposLevel++;
-
-	// 이번 애니메이션에서 총알을 모두 쏨
-	if (_CurFrame == _LastFrame)
-	{
-		YposLevel = 0;
-	}
 }

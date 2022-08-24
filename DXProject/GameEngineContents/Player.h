@@ -1,6 +1,12 @@
 #pragma once
 #include <GameEngineCore/GameEngineActor.h>
 
+enum class BulletType
+{
+	Bullet,
+	PiercingBullet,
+};
+
 // 설명 :
 class HUD;
 class Player : public GameEngineActor
@@ -179,5 +185,7 @@ protected:
 
 	// 크리티컬찬스 (MAX = 100)
 	int CritChance_;
+
+	void CreateBullet(int _CurFrame, int _LastFrame, BulletType _BulletType, float _DmgRatio = 1.0f, float _PiercingLength = 1.0f);
 };
 

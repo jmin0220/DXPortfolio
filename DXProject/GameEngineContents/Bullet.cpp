@@ -74,7 +74,7 @@ bool Bullet::CollisionCheck(GameEngineCollision* _This, GameEngineCollision* _Ot
 	DamageFont_->GetTransform().SetWorldPosition({this->GetTransform().GetWorldPosition().x, this->GetTransform().GetWorldPosition().y});
 	DamageFont_->SetIsBulletDmg(true);
 
-	DamageFont_->SetDeathTimer(1.0f);
+	DamageFont_->Death(1.0f);
 
 	BulletDeath();
 
@@ -105,6 +105,7 @@ void Bullet::BulletDeath()
 	Renderer_ = CreateComponent<GameEngineTextureRenderer>();
 
 	Renderer_->SetSamplingModePoint();
+	// TODO::총알파괴 애니메이션을 외부에서 Set할 수 있도록 수정
 	Renderer_->CreateFrameAnimationFolder(EFFECT_ANIM_NORMAL_SPARK, FrameAnimation_DESC(TEX_EFFECT_NORMAL_SPARK, ANIMATION_FRAME_DELAY, false));
 	Renderer_->ChangeFrameAnimation(EFFECT_ANIM_NORMAL_SPARK);
 	Renderer_->AnimationBindEnd(EFFECT_ANIM_NORMAL_SPARK, [=](const FrameAnimation_DESC&) {	this->Death(); });
