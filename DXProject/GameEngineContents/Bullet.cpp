@@ -74,7 +74,7 @@ bool Bullet::CollisionCheck(GameEngineCollision* _This, GameEngineCollision* _Ot
 	DamageFont_->GetTransform().SetWorldPosition({this->GetTransform().GetWorldPosition().x, this->GetTransform().GetWorldPosition().y});
 	DamageFont_->SetIsBulletDmg(true);
 
-	DamageFont_->Death(1.0f);
+	DamageFont_->SetDeathTimer(1.0f);
 
 	BulletDeath();
 

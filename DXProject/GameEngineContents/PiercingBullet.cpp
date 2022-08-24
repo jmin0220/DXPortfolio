@@ -56,7 +56,7 @@ bool PiercingBullet::CollisionCheck(GameEngineCollision* _This, GameEngineCollis
 	DamageFont_->GetTransform().SetWorldPosition({ _Other->GetTransform().GetWorldPosition().x, _Other->GetTransform().GetWorldPosition().y });
 	DamageFont_->SetIsBulletDmg(true);
 
-	DamageFont_->Death(1.0f);
+	DamageFont_->SetDeathTimer(1.0f);
 
 	return false;
 }

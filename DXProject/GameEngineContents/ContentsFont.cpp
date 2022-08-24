@@ -25,7 +25,6 @@ void ContentsFont::Update(float _DeltaTime)
 
 	if (LiveTimer_ >= DeathTimer_ && DeathFlg_ == true)
 	{
-		Invisible_ = 1.0f;
 		this->Death();
 	}
 
