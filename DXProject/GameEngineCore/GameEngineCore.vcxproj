@@ -22,6 +22,10 @@
     <ClInclude Include="CoreMinimal.h" />
     <ClInclude Include="GameEngineActor.h" />
     <ClInclude Include="GameEngineBlend.h" />
+    <ClInclude Include="GameEngineBlur.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="GameEngineCamera.h" />
     <ClInclude Include="GameEngineCameraActor.h" />
     <ClInclude Include="GameEngineCollision.h" />
@@ -65,6 +69,10 @@
     <ClInclude Include="GameEngineRasterizer.h" />
     <ClInclude Include="GameEngineRenderer.h" />
     <ClInclude Include="GameEngineRenderingPipeLine.h" />
+    <ClInclude Include="GameEngineRenderSet.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="GameEngineRenderTarget.h" />
     <ClInclude Include="GameEngineRes.h">
       <SubType>
@@ -117,6 +125,10 @@
   <ItemGroup>
     <ClCompile Include="GameEngineActor.cpp" />
     <ClCompile Include="GameEngineBlend.cpp" />
+    <ClCompile Include="GameEngineBlur.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="GameEngineCamera.cpp" />
     <ClCompile Include="GameEngineCameraActor.cpp" />
     <ClCompile Include="GameEngineCollision.cpp" />
@@ -164,6 +176,10 @@
     <ClCompile Include="GameEngineRasterizer.cpp" />
     <ClCompile Include="GameEngineRenderer.cpp" />
     <ClCompile Include="GameEngineRenderingPipeLine.cpp" />
+    <ClCompile Include="GameEngineRenderSet.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="GameEngineRenderTarget.cpp" />
     <ClCompile Include="GameEngineRes.cpp">
       <SubType>

@@ -10,7 +10,7 @@
 #include "GameEngineCoreDebug.h"
 #include "GEngine.h"
 
-GameEngineLevel::GameEngineLevel() 
+GameEngineLevel::GameEngineLevel()
 {
 	Cameras.resize(static_cast<unsigned int>(CAMERAORDER::UICAMERA));
 
@@ -29,7 +29,7 @@ GameEngineLevel::GameEngineLevel()
 	}
 }
 
-GameEngineLevel::~GameEngineLevel() 
+GameEngineLevel::~GameEngineLevel()
 {
 	for (const std::pair<int, std::list<GameEngineActor*>>& Group : AllActors)
 	{
@@ -63,7 +63,7 @@ void GameEngineLevel::ActorUpdate(float _DeltaTime)
 	}
 }
 
-void GameEngineLevel::ActorLevelStartEvent() 
+void GameEngineLevel::ActorLevelStartEvent()
 {
 	for (const std::pair<int, std::list<GameEngineActor*>>& Group : AllActors)
 	{
@@ -181,14 +181,26 @@ void GameEngineLevel::Render(float _DelataTime)
 			continue;
 		}
 
+		Cameras[i]->GetCameraRenderTarget()->EffectProcess();
+	}
+
+	for (size_t i = 0; i < Cameras.size(); i++)
+	{
+		if (nullptr == Cameras[i])
+		{
+			continue;
+		}
+
 		GameEngineDevice::GetBackBuffer()->Merge(Cameras[i]->CameraRenderTarget, 0);
 	}
+
+	GameEngineDevice::GetBackBuffer()->EffectProcess();
+
 
 	// 여기서 그려져야 합니다.
 	GameEngineDebug::Debug3DRender();
 
 	GameEngineGUI::GUIRender(this, _DelataTime);
-
 
 	GameEngineDevice::RenderEnd();
 }
@@ -265,11 +277,11 @@ void GameEngineLevel::Release(float _DelataTime)
 			{
 				GroupStart = Group.erase(GroupStart);
 			}
-			else 
+			else
 			{
 				++GroupStart;
 			}
-			
+
 		}
 	}
 
@@ -316,7 +328,7 @@ void GameEngineLevel::OverChildMove(GameEngineLevel* _NextLevel)
 	}
 
 	// 플레이 레벨
-	
+
 	// 로그인 레벨
 	// _NextLevel
 	{
@@ -402,7 +414,7 @@ void GameEngineLevel::OverChildMove(GameEngineLevel* _NextLevel)
 	}
 }
 
-void GameEngineLevel::AllClear() 
+void GameEngineLevel::AllClear()
 {
 	{
 		std::map<int, std::list<GameEngineActor*>>::iterator StartGroupIter = AllActors.begin();
@@ -417,7 +429,7 @@ void GameEngineLevel::AllClear()
 			std::list<GameEngineActor*>::iterator GroupEnd = Group.end();
 			for (; GroupStart != GroupEnd; ++GroupStart)
 			{
-				delete *GroupStart;
+				delete* GroupStart;
 			}
 		}
 	}
