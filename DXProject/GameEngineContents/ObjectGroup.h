@@ -5,4 +5,5 @@ enum class ObjectGroup
 	Monster,
 	Player,
 	PlayerBullet,
+	Bouncer,
 };

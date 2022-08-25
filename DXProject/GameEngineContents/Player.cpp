@@ -372,7 +372,7 @@ void Player::CheckNegativeX()
 	}
 
 	// TODO::애니메이션의 프레임에 따라서 피봇값을 조절할 필요 있음.
-	Renderer_->SetPivot(PIVOTMODE::CENTER);
+	Renderer_->SetPivot(PIVOTMODE::LEFT);
 }
 
 // 카메라 이동 업데이트

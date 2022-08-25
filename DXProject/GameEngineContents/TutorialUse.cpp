@@ -14,6 +14,7 @@ void TutorialUse::Start()
 	Renderer_ = CreateComponent<GameEngineTextureRenderer>();
 	Renderer_->CreateFrameAnimationFolder(TEX_INTERFACE_TUTORIAL_USE, FrameAnimation_DESC(TEX_INTERFACE_TUTORIAL_USE, 1.0f, true));
 	Renderer_->ChangeFrameAnimation(TEX_INTERFACE_TUTORIAL_USE);
+	Renderer_->ScaleToTexture();
 }
 
 void TutorialUse::Update(float _DeltaTime)

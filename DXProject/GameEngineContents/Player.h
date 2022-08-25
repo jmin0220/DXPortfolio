@@ -47,6 +47,11 @@ public:
 		return Exp_;
 	}
 
+	inline void SetJumpSpeedByBouncer()
+	{
+		JumpSpeed_ = BOUNCER_JUMP_SPEED;
+	}
+
 protected:
 	void Start() override;
 	void Update(float _DeltaTime) override;
@@ -142,6 +147,7 @@ protected:
 	bool CanClimb(int _CheckPosFlg);
 
 	GameEngineTextureRenderer* Renderer_;
+	GameEngineCollision* Collision_;
 	float DeltaTime_;
 	
 	// 속도 관련

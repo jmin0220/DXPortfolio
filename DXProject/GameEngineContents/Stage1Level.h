@@ -22,5 +22,6 @@ protected:
 
 	void LevelStartEvent() override;
 private:
+	class Tutorial* Tutorial_;
 };
 

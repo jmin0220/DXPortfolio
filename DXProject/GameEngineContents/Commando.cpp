@@ -92,6 +92,11 @@ void Commando::AnimationInit()
 	// 초기 애니메이션 전환
 	Renderer_->ChangeFrameAnimation(PLAYER_ANIM_IDLE);
 	Renderer_->SetScaleModeImage();
+
+	Collision_ = CreateComponent<GameEngineCollision>();
+	Collision_->ChangeOrder(ObjectGroup::Player);
+	Collision_->GetTransform().SetWorldScale({ 16.0f, 22.0f, 1.0f });
+
 }
 
 void Commando::StateInit()

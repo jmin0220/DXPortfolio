@@ -50,6 +50,11 @@ public:
 		return Exp_;
 	}
 
+	inline void SetJumpSpeedByBouncer()
+	{
+		JumpSpeed_ = BOUNCER_JUMP_SPEED;
+	}
+
 protected:
 	void Start() override;
 	void Update(float _DeltaTime) override;

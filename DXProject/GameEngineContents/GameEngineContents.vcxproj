@@ -166,6 +166,10 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Bandit.h" />
+    <ClInclude Include="Bouncer.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="Bullet.h">
       <SubType>
       </SubType>
@@ -267,6 +271,10 @@
   <ItemGroup>
     <ClCompile Include="Bandit.cpp" />
     <ClCompile Include="BanditState.cpp" />
+    <ClCompile Include="Bouncer.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="Bullet.cpp">
       <SubType>
       </SubType>

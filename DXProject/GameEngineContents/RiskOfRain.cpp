@@ -128,6 +128,22 @@ void RiskOfRain::Start()
 		}
 	}
 
+	// 인터페이스 로딩(애니메이션)
+	{
+		GameEngineDirectory Dir;
+
+		Dir.MoveParentToExitsChildDirectory(DIR_RESOURCE);
+		Dir.Move(DIR_RESOURCE);
+		Dir.Move(DIR_TEXTURE);
+		Dir.Move(DIR_INTERFACE);
+
+		std::vector<GameEngineDirectory> RecursiveDir = Dir.GetRecursiveAllDirectory();
+
+		for (auto& TmpDir : RecursiveDir)
+		{
+			GameEngineFolderTexture::Load(TmpDir.GetFullPath());
+		}
+	}
 
 	// 폰트 로딩
 	{

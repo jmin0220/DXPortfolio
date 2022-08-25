@@ -153,6 +153,9 @@
     <ClInclude Include="Commando.h">
       <Filter>01_Actor\01_Play\Characters\Players</Filter>
     </ClInclude>
+    <ClInclude Include="Bouncer.h">
+      <Filter>01_Actor\01_Play\Object</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PreCompile.cpp">
@@ -244,6 +247,9 @@
     </ClCompile>
     <ClCompile Include="CommandoState.cpp">
       <Filter>01_Actor\01_Play\Characters\Players</Filter>
+    </ClCompile>
+    <ClCompile Include="Bouncer.cpp">
+      <Filter>01_Actor\01_Play\Object</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

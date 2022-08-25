@@ -1,6 +1,7 @@
 #pragma once
 
 #define ANIMATION_FRAME_DELAY 0.08f
+#define BOUNCER_JUMP_SPEED -400.0f
 
 // 플레이어 조작키
 #define PLAYER_KEY_LEFT "PlayerLeft"
@@ -203,6 +204,9 @@
 // 골드
 #define TEX_EFFECT_SMALL_GOLD "CoinSmall"
 #define TEX_EFFECT_COIN "CoinNormal"
+
+// 오브젝트
+#define TEX_OBJECT_BOUNCER "Bouncer"
 
 // 레벨 조작키
 #define CHANGE_LEVEL_CHRACTER_SELECT "ChangeLevelToCharacterSelect"

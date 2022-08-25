@@ -9,6 +9,8 @@
 #include "Commando.h"
 #include "Gold.h"
 #include "Drops.h"
+#include "Bouncer.h"
+#include "Tutorial.h"
 
 Stage1Level::Stage1Level() 
 {
@@ -67,8 +69,15 @@ void Stage1Level::LevelStartEvent()
 	Player_->GetTransform().SetWorldPosition(CharacterCreater_->OutputPlayerCreatePos());
 	Player_->GetTransform().SetWorldPosition({100, 100});
 
+	// 키 튜토리얼 생성
+	Tutorial_ = CreateActor<Tutorial>();
+	Tutorial_->GetTransform().SetWorldPosition({ Player_->GetTransform().GetWorldPosition().x, Player_->GetTransform().GetWorldPosition().y + 100.0f });
+
 	// 플레이어에게 충돌맵 설정
 	Player_->SetColMapInfo(StageActor_->GetColStage()->GetCurTexture());
 	MonsterManager_->SetColMapInfo(StageActor_->GetColStage()->GetCurTexture());
 	Gold::SetColMap(StageActor_->GetColStage()->GetCurTexture());
+
+	// Bouncer생성
+	CreateActor<Bouncer>();
 }
