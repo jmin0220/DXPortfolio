@@ -16,6 +16,7 @@ class GameEngineRenderTarget;
 class GameEngineCamera : public GameEngineTransformComponent
 {
 	friend GameEngineLevel;
+	friend GameEngineRenderer;
 
 public:
 	// constrcuter destructer
@@ -52,7 +53,7 @@ public:
 
 	float4 GetMouseWorldPositionToActor();
 
-	inline float4x4 GetView() 
+	inline float4x4 GetView()
 	{
 		return View;
 	}
@@ -66,7 +67,7 @@ public:
 		return MouseDir;
 	}
 
-	inline void SetProjectionSize(const float4& _Value) 
+	inline void SetProjectionSize(const float4& _Value)
 	{
 		Size = _Value;
 		// return float4();
@@ -81,8 +82,11 @@ public:
 	// float4 GetMouseViewPortPosition();
 
 
+
 protected:
 	void Start();
+
+	void ChangeRenderingOrder(GameEngineRenderer* _Renderer, int _ChangeOrder);
 
 private:
 	void Render(float _DeltaTime);
