@@ -169,7 +169,7 @@ void Monster::GroundFallCheck()
 	{
 		IsGround_ = true;
 
-		for (;;)
+		for (int i = 0; i < 3; i++)
 		{
 			// 위로 한칸 올림
 			this->GetTransform().SetWorldUpMove(1.0f, DeltaTime_);

@@ -71,40 +71,40 @@ void Lemurian::StateInit()
 													, std::bind(&Lemurian::DeathEnd, this, std::placeholders::_1));
 	StateManager_.CreateStateMember(MONSTER_FSM_HITTED, [=](float _DeltaTime, const StateInfo& _Info_) 
 	{
-			// Update
-			float4 MonsterPos = this->GetTransform().GetWorldPosition();
+		// Update
+		float4 MonsterPos = this->GetTransform().GetWorldPosition();
 
-			// 몬스터와 플레이어 사이의 거리를 취득
-			float4 MonsterLength = { this->GetTransform().GetWorldPosition().x
-								   , this->GetTransform().GetWorldPosition().y, 0.0f };
-			float4 PlayerLength = { PlayerPos_.x, PlayerPos_.y, 0.0f };
-			float4 Length = MonsterLength - PlayerLength;
+		// 몬스터와 플레이어 사이의 거리를 취득
+		float4 MonsterLength = { this->GetTransform().GetWorldPosition().x
+								, this->GetTransform().GetWorldPosition().y, 0.0f };
+		float4 PlayerLength = { PlayerPos_.x, PlayerPos_.y, 0.0f };
+		float4 Length = MonsterLength - PlayerLength;
 
-			// 오른쪽으로 
-			if (MonsterPos.x <= PlayerPos_.x)
+		// 오른쪽으로 
+		if (MonsterPos.x <= PlayerPos_.x)
+		{
+			MoveDir_ = float4::RIGHT;
+
+			if (true == GroundLeftCheck())
 			{
-				MoveDir_ = float4::RIGHT;
-
-				if (true == GroundLeftCheck())
-				{
-					return;
-				}
-
-				GetTransform().SetWorldMove(GetTransform().GetLeftVector() * Speed_ / 3 * DeltaTime_);
-
+				return;
 			}
-			// 왼쪽으로
-			else if (MonsterPos.x >= PlayerPos_.x)
+
+			GetTransform().SetWorldMove(GetTransform().GetLeftVector() * Speed_ / 2 * DeltaTime_);
+
+		}
+		// 왼쪽으로
+		else if (MonsterPos.x >= PlayerPos_.x)
+		{
+			MoveDir_ = float4::LEFT;
+
+			if (true == GroundRightCheck())
 			{
-				MoveDir_ = float4::LEFT;
-
-				if (true == GroundRightCheck())
-				{
-					return;
-				}
-
-				GetTransform().SetWorldMove(GetTransform().GetRightVector() * Speed_ / 3 * DeltaTime_);
+				return;
 			}
+
+			GetTransform().SetWorldMove(GetTransform().GetRightVector() * Speed_ / 2 * DeltaTime_);
+		}
 	}
 	, [=](const StateInfo& _Info_) { /*Start*/ Renderer_->ChangeFrameAnimation(LEMURIAN_ANIM_HITTED); });
 

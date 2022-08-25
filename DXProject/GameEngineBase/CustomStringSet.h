@@ -18,8 +18,8 @@
 #define Player_KEY_SKILL4 "PlayerSkill4"
 
 // 플레이어 수치값
-#define Player_MOVE_SPEED 100.0f
-#define Player_JUMP_SPEED -150.0f
+#define Player_MOVE_SPEED 150.0f
+#define Player_JUMP_SPEED -210.0f
 
 // 플레이어 FSM
 #define PLAYER_STATE_IDLE "Idle"

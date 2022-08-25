@@ -11,9 +11,9 @@ int Player::Exp_ = 0;
 
 Player::Player() 
 	:Renderer_(nullptr)
-	, Speed_(100.0f)
+	, Speed_(Player_MOVE_SPEED)
 	, JumpSpeed_(0.f)
-	, FallSpeed_(270.f)
+	, FallSpeed_(350.f)
 	, DeltaTime_(0.0f)
 	, ColMap_(nullptr)
 	, IsGround_(false)
@@ -455,10 +455,10 @@ void Player::GroundFallCheck()
 	float4 ColorDown = ColMap_->GetPixelToFloat4(this->GetTransform().GetWorldPosition().ix() + Renderer_->GetCurTexture()->GetScale().hix()
 		, -this->GetTransform().GetWorldPosition().iy() + Renderer_->GetCurTexture()->GetScale().hiy() + JumpSpeed_ * DeltaTime_);
 	// 하단 좌측
-	float4 ColorDownLeft = ColMap_->GetPixelToFloat4(this->GetTransform().GetWorldPosition().ix() + 2
+	float4 ColorDownLeft = ColMap_->GetPixelToFloat4(this->GetTransform().GetWorldPosition().ix() + 4
 		, -this->GetTransform().GetWorldPosition().iy() + Renderer_->GetCurTexture()->GetScale().hiy() + JumpSpeed_ * DeltaTime_);
 	// 하단 우측
-	float4 ColorDownRight = ColMap_->GetPixelToFloat4(this->GetTransform().GetWorldPosition().ix() + Renderer_->GetCurTexture()->GetScale().hix() - 2
+	float4 ColorDownRight = ColMap_->GetPixelToFloat4(this->GetTransform().GetWorldPosition().ix() + Renderer_->GetCurTexture()->GetScale().hix() - 4
 		, -this->GetTransform().GetWorldPosition().iy() + Renderer_->GetCurTexture()->GetScale().hiy() + JumpSpeed_ * DeltaTime_);
 
 	// 하단 3점이 모두 땅에 닿지 않아야 바닥으로
@@ -469,13 +469,13 @@ void Player::GroundFallCheck()
 	{
 		IsGround_ = false;
 
-		GetTransform().SetWorldMove(GetTransform().GetDownVector() * JumpSpeed_ * DeltaTime_);
+		GetTransform().SetWorldMove(GetTransform().GetDownVector() * JumpSpeed_ * DeltaTime_ * 2);
 	}
 	else
 	{
 		IsGround_ = true;
 
-		for (;;)
+		for (int i = 0; i < 3; i++)
 		{
 			// 위로 한칸 올림
 			this->GetTransform().SetWorldUpMove(1.0f, DeltaTime_);
