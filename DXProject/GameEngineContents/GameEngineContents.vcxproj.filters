@@ -64,6 +64,9 @@
     <Filter Include="01_Actor\01_Play\Characters\Players">
       <UniqueIdentifier>{e7563fa1-494f-49b9-a951-92bf9792bbf4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="01_Actor\01_Play\Object\Boxes">
+      <UniqueIdentifier>{382e780d-e58e-4c3b-ba50-f1decc44e486}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PreCompile.h">
@@ -155,6 +158,21 @@
     </ClInclude>
     <ClInclude Include="Bouncer.h">
       <Filter>01_Actor\01_Play\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="ChestParent.h">
+      <Filter>01_Actor\01_Play\Object\Boxes</Filter>
+    </ClInclude>
+    <ClInclude Include="ChestSmall.h">
+      <Filter>01_Actor\01_Play\Object\Boxes</Filter>
+    </ClInclude>
+    <ClInclude Include="ChestNormal.h">
+      <Filter>01_Actor\01_Play\Object\Boxes</Filter>
+    </ClInclude>
+    <ClInclude Include="ChestLong.h">
+      <Filter>01_Actor\01_Play\Object\Boxes</Filter>
+    </ClInclude>
+    <ClInclude Include="ChestBig.h">
+      <Filter>01_Actor\01_Play\Object\Boxes</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -250,6 +268,21 @@
     </ClCompile>
     <ClCompile Include="Bouncer.cpp">
       <Filter>01_Actor\01_Play\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="ChestParent.cpp">
+      <Filter>01_Actor\01_Play\Object\Boxes</Filter>
+    </ClCompile>
+    <ClCompile Include="ChestSmall.cpp">
+      <Filter>01_Actor\01_Play\Object\Boxes</Filter>
+    </ClCompile>
+    <ClCompile Include="ChestNormal.cpp">
+      <Filter>01_Actor\01_Play\Object\Boxes</Filter>
+    </ClCompile>
+    <ClCompile Include="ChestLong.cpp">
+      <Filter>01_Actor\01_Play\Object\Boxes</Filter>
+    </ClCompile>
+    <ClCompile Include="ChestBig.cpp">
+      <Filter>01_Actor\01_Play\Object\Boxes</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

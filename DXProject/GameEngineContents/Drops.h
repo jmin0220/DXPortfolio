@@ -20,6 +20,8 @@ public:
 		PlayerPos_ = _Pos;
 	}
 
+	static void CreateCoinsAndExp(int _GoldValue, int _ExpValue, float4 _Pos, GameEngineLevel* _Level);
+
 protected:
 	void Start() override {};
 	void Update(float _DeltaTime) override {};

@@ -208,6 +208,14 @@
 // 오브젝트
 #define TEX_OBJECT_BOUNCER "Bouncer"
 
+// 상자
+#define TEX_OBJECT_CHEST_NORMAL_IDLE "CheckNormalIdle"
+#define TEX_OBJECT_CHEST_NORMAL_OPEN "ChestNormalOpen"
+#define TEX_OBJECT_CHEST_BIG_IDLE "ChestBigIdle"
+#define TEX_OBJECT_CHEST_BIG_OPEN "ChestBigOpen"
+#define TEX_OBJECT_CHEST_LONG_IDLE "ChestLongIdle"
+#define TEX_OBJECT_CHEST_LONG_OPEN "ChestLongOpen"
+
 // 레벨 조작키
 #define CHANGE_LEVEL_CHRACTER_SELECT "ChangeLevelToCharacterSelect"
 #define CHANGE_LECEL_STAGE1 "ChangeLevelToStage1"

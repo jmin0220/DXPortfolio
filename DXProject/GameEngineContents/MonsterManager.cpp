@@ -57,81 +57,11 @@ void MonsterManager::Update(float _DeltaTime)
 	{
 		if (true == (*MonsteriterStart)->GetMonsterDeath())
 		{
-			int GoldValue = (*MonsteriterStart)->GetMonsterGold();
-			// 5골드짜리 갯수
-			int GoldFive = GoldValue / 5;
-			// 1골드짜리 갯수
-			int GoldOne = GoldValue % 5;
-
-			GameEngineRandom* Random = new GameEngineRandom();
-
-			// 5골드 출력
-			for (int i = 0; i < GoldFive; i++)
-			{
-				// 골드 생성
-				Gold* tmpGold = GetLevel()->CreateActor<Gold>();
-				tmpGold->GetTransform().SetWorldPosition((*MonsteriterStart)->GetTransform().GetWorldPosition());
-				tmpGold->SetGoldValue(5);
-				tmpGold->UpdateGoldOption();
-
-				// 골드가 생성될때 떨어질 각도를 설정
-				tmpGold->SetFlyDir({ Random->RandomFloat(-50.0, 50.0), 0.0f, 0.0f });
-				tmpGold->GoldPop();
-
-			}
-
-			// 1골드 출력
-			for (int i = 0; i < GoldOne; i++)
-			{
-				// 골드 생성
-				Gold* tmpGold = GetLevel()->CreateActor<Gold>();
-				tmpGold->GetTransform().SetWorldPosition((*MonsteriterStart)->GetTransform().GetWorldPosition());
-				tmpGold->SetGoldValue(1);
-				tmpGold->UpdateGoldOption();
-
-				// 골드가 생성될때 떨어질 각도를 설정
-				tmpGold->SetFlyDir({ Random->RandomFloat(-50.0, 50.0), 0.0f, 0.0f });
-				tmpGold->GoldPop();
-			}
-			
-			
-			// 경험치 생성
-			int ExpValue = (*MonsteriterStart)->GetMonsterExp();
-			// 5경험치짜리 갯수 -> 렌더러는 동일함
-			int ExpFive = ExpValue / 5;
-			// 1경험치짜리 갯수
-			int ExpOne = ExpValue % 5;
-
-			// 5경험치 출력
-			for (int i = 0; i < ExpFive; i++)
-			{
-				// 경험치 생성
-				Exp* tmpExp = GetLevel()->CreateActor<Exp>();
-				tmpExp->GetTransform().SetWorldPosition((*MonsteriterStart)->GetTransform().GetWorldPosition());
-				tmpExp->SetExpValue(5);
-
-				// 경험치가 생성될때 최종 이동위치를 설정
-				tmpExp->SetDestPos({ Random->RandomFloat(-15.0, 15.0), Random->RandomFloat(-15.0, 15.0), 0.0f });
-			}
-
-			// 1경험치 출력
-			for (int i = 0; i < ExpOne; i++)
-			{
-				// 경험치 생성
-				Exp* tmpExp = GetLevel()->CreateActor<Exp>();
-				tmpExp->GetTransform().SetWorldPosition((*MonsteriterStart)->GetTransform().GetWorldPosition());
-				tmpExp->SetExpValue(5);
-
-				// 경험치가 생성될때 최종 이동위치를 설정
-				tmpExp->SetDestPos({ Random->RandomFloat(-15.0, 15.0), Random->RandomFloat(-15.0, 15.0), 0.0f });
-			}
-
+			Drops::CreateCoinsAndExp((*MonsteriterStart)->GetMonsterGold(), (*MonsteriterStart)->GetMonsterExp(), (*MonsteriterStart)->GetTransform().GetWorldPosition(), GetLevel());
 
 			// 죽은 몬스터를 매니저에서 삭제
 			MonsteriterStart = Monster_.erase(MonsteriterStart);
 
-			delete Random;
-			Random = nullptr;
 
 			continue;
 		}

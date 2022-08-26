@@ -170,6 +170,26 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="ChestBig.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="ChestLong.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="ChestNormal.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="ChestParent.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="ChestSmall.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="Bullet.h">
       <SubType>
       </SubType>
@@ -272,6 +292,26 @@
     <ClCompile Include="Bandit.cpp" />
     <ClCompile Include="BanditState.cpp" />
     <ClCompile Include="Bouncer.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="ChestBig.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="ChestLong.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="ChestNormal.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="ChestParent.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="ChestSmall.cpp">
       <SubType>
       </SubType>
     </ClCompile>
