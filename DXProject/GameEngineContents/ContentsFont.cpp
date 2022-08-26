@@ -40,7 +40,7 @@ void ContentsFont::Update(float _DeltaTime)
 			for (auto& Renderer : FontRendererVector_)
 			{
 				Invisible_ -= _DeltaTime * 2;
-				Renderer->GetColorData().MulColor.a = Invisible_;
+				Renderer->GetPixelData().MulColor.a = Invisible_;
 			}
 		}
 	}
