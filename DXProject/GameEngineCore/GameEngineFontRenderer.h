@@ -53,7 +53,7 @@ public:
 
 	void SetScreenPostion(float4 _ScreenPostion)
 	{
-		ScreenPostion = _ScreenPostion;
+ 		ScreenPostion = _ScreenPostion;
 	}
 
 	void SetColor(float4 _Color)

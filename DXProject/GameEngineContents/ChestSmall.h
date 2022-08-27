@@ -16,7 +16,7 @@ public:
 	ChestSmall& operator=(ChestSmall&& _Other) noexcept = delete;
 
 protected:
-	void AnimationInit() override;
+	void Initialize() override;
 
 private:
 

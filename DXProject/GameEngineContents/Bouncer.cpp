@@ -13,6 +13,7 @@ Bouncer::~Bouncer()
 
 void Bouncer::Start()
 {
+	// TODO::디버그용 임시위치
 	this->GetTransform().SetWorldPosition({719.0f, -863.0f});
 
 	Renderer_ = CreateComponent<GameEngineTextureRenderer>();

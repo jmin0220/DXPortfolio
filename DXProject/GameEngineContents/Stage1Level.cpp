@@ -11,6 +11,7 @@
 #include "Drops.h"
 #include "Bouncer.h"
 #include "Tutorial.h"
+#include "ChestNormal.h"
 
 Stage1Level::Stage1Level() 
 {
@@ -80,4 +81,6 @@ void Stage1Level::LevelStartEvent()
 
 	// Bouncer»ý¼º
 	CreateActor<Bouncer>();
+	ChestNormal* TmpChestNormal = CreateActor<ChestNormal>();
+	TmpChestNormal->GetTransform().SetWorldPosition({ 106.0f, -864.0f });
 }

@@ -16,7 +16,12 @@ public:
 	ChestNormal& operator=(ChestNormal&& _Other) noexcept = delete;
 
 protected:
-	void AnimationInit() override;
+	void Initialize() override;
+
+	inline void ChangeOpenAnim() override
+	{
+		Renderer_->ChangeFrameAnimation(TEX_OBJECT_CHEST_NORMAL_OPEN);
+	}
 
 private:
 

@@ -85,6 +85,7 @@ void Player::KeyInit()
 		GameEngineInput::GetInst()->CreateKey(Player_KEY_SKILL3, 'C');
 		GameEngineInput::GetInst()->CreateKey(Player_KEY_SKILL4, 'V');
 
+		GameEngineInput::GetInst()->CreateKey(Player_KEY_INTERACTIVE, 'A');
 
 		// TODO::디버그용 상하이동
 		GameEngineInput::GetInst()->CreateKey(PLAYER_KEY_DEBUG_UP, 'W');

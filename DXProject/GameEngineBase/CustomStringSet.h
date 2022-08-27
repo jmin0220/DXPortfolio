@@ -9,6 +9,7 @@
 #define PLAYER_KEY_JUMP "PlayerJump"
 #define PLAYER_KEY_UP "PlayerUp"
 #define PLAYER_KEY_DOWN "PlayerDown"
+#define Player_KEY_INTERACTIVE "PlayerInteravtive"
 
 #define PLAYER_KEY_DEBUG_UP "PlayerDebugUp"
 #define PLAYER_KEY_DEBUG_DOWN "PlayerDebugDown"

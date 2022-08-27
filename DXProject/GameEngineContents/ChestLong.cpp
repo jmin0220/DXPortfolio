@@ -10,7 +10,7 @@ ChestLong::~ChestLong()
 {
 }
 
-void ChestLong::AnimationInit()
+void ChestLong::Initialize()
 {
 	Renderer_ = CreateComponent<GameEngineTextureRenderer>();
 

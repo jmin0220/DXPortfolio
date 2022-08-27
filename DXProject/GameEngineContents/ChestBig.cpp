@@ -9,7 +9,7 @@ ChestBig::~ChestBig()
 {
 }
 
-void ChestBig::AnimationInit()
+void ChestBig::Initialize()
 {
 	Renderer_ = CreateComponent<GameEngineTextureRenderer>();
 }

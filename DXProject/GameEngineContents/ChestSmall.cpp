@@ -9,7 +9,7 @@ ChestSmall::~ChestSmall()
 {
 }
 
-void ChestSmall::AnimationInit()
+void ChestSmall::Initialize()
 {
 	Renderer_ = CreateComponent<GameEngineTextureRenderer>();
 
