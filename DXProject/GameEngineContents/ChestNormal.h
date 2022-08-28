@@ -20,6 +20,7 @@ protected:
 
 	inline void ChangeOpenAnim() override
 	{
+		IsOpen_ = true;
 		Renderer_->ChangeFrameAnimation(TEX_OBJECT_CHEST_NORMAL_OPEN);
 	}
 

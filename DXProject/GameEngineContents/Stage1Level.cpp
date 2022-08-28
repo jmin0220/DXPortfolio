@@ -12,6 +12,8 @@
 #include "Bouncer.h"
 #include "Tutorial.h"
 #include "ChestNormal.h"
+#include "ChestBig.h"
+#include "ChestLong.h"
 
 Stage1Level::Stage1Level() 
 {
@@ -81,6 +83,11 @@ void Stage1Level::LevelStartEvent()
 
 	// Bouncer생성
 	CreateActor<Bouncer>();
+	// TODO::테스트코드
 	ChestNormal* TmpChestNormal = CreateActor<ChestNormal>();
 	TmpChestNormal->GetTransform().SetWorldPosition({ 106.0f, -864.0f });
+	ChestBig* TmpChestBig = CreateActor<ChestBig>();
+	TmpChestBig->GetTransform().SetWorldPosition({ 50.0f, -864.0f });
+	ChestLong* TmpChestLong = CreateActor<ChestLong>();
+	TmpChestLong->GetTransform().SetWorldPosition({ 150.0f, -864.0f });
 }

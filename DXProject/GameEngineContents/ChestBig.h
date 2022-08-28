@@ -18,6 +18,12 @@ public:
 protected:
 	void Initialize() override;
 
+	inline void ChangeOpenAnim() override
+	{
+		IsOpen_ = true;
+		Renderer_->ChangeFrameAnimation(TEX_OBJECT_CHEST_BIG_OPEN);
+	}
+
 private:
 
 };
