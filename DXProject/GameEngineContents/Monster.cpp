@@ -76,11 +76,6 @@ void Monster::CheckNegativeX()
 
 void Monster::JumpUpdate()
 {
-	if (true == IsJump_)
-	{
-		MonsterJump();
-	}
-
 	if (false == IsGround_)
 	{
 		JumpSpeed_ += GameEngineTime::GetDeltaTime() * FallSpeed_;
@@ -161,41 +156,44 @@ void Monster::GroundFallCheck()
 		false == ColorDownRight.CompareInt4D({ 1.0f, 0.0f, 1.0f })
 		)
 	{
+		IsJump_ = true;
 		IsGround_ = false;
 
 		GetTransform().SetWorldMove(GetTransform().GetDownVector() * JumpSpeed_ * DeltaTime_);
 	}
 	else
 	{
+		IsJump_ = false;
 		IsGround_ = true;
 
-		for (int i = 0; i < 3; i++)
-		{
-			// 위로 한칸 올림
-			this->GetTransform().SetWorldUpMove(1.0f, DeltaTime_);
+		// TODO:: 삭제헤도 되는 코드?
+		//for (int i = 0; i < 3; i++)
+		//{
+		//	// 위로 한칸 올림
+		//	this->GetTransform().SetWorldUpMove(1.0f, DeltaTime_);
 
-			// 올린뒤의 픽셀 취득
-			// 하단 중앙
-			ColorDown = ColMap_->GetPixelToFloat4(this->GetTransform().GetWorldPosition().ix() + Renderer_->GetCurTexture()->GetScale().hix()
-				, -this->GetTransform().GetWorldPosition().iy() + Renderer_->GetCurTexture()->GetScale().hiy() + JumpSpeed_ * DeltaTime_);
-			// 하단 좌측
-			ColorDownLeft = ColMap_->GetPixelToFloat4(this->GetTransform().GetWorldPosition().ix() + 2
-				, -this->GetTransform().GetWorldPosition().iy() + Renderer_->GetCurTexture()->GetScale().hiy() + JumpSpeed_ * DeltaTime_);
-			// 하단 우측
-			ColorDownRight = ColMap_->GetPixelToFloat4(this->GetTransform().GetWorldPosition().ix() + Renderer_->GetCurTexture()->GetScale().hix() - 2
-				, -this->GetTransform().GetWorldPosition().iy() + Renderer_->GetCurTexture()->GetScale().hiy() + JumpSpeed_ * DeltaTime_);
+		//	// 올린뒤의 픽셀 취득
+		//	// 하단 중앙
+		//	ColorDown = ColMap_->GetPixelToFloat4(this->GetTransform().GetWorldPosition().ix() + Renderer_->GetCurTexture()->GetScale().hix()
+		//		, -this->GetTransform().GetWorldPosition().iy() + Renderer_->GetCurTexture()->GetScale().hiy() + JumpSpeed_ * DeltaTime_);
+		//	// 하단 좌측
+		//	ColorDownLeft = ColMap_->GetPixelToFloat4(this->GetTransform().GetWorldPosition().ix() + 2
+		//		, -this->GetTransform().GetWorldPosition().iy() + Renderer_->GetCurTexture()->GetScale().hiy() + JumpSpeed_ * DeltaTime_);
+		//	// 하단 우측
+		//	ColorDownRight = ColMap_->GetPixelToFloat4(this->GetTransform().GetWorldPosition().ix() + Renderer_->GetCurTexture()->GetScale().hix() - 2
+		//		, -this->GetTransform().GetWorldPosition().iy() + Renderer_->GetCurTexture()->GetScale().hiy() + JumpSpeed_ * DeltaTime_);
 
-			// 가장 위로 올라왔으면 탈출
-			if (false == ColorDown.CompareInt4D({ 1.0f, 0.0f, 1.0f }) &&
-				false == ColorDownLeft.CompareInt4D({ 1.0f, 0.0f, 1.0f }) &&
-				false == ColorDownRight.CompareInt4D({ 1.0f, 0.0f, 1.0f })
-				)
-			{
-				// 다시 한칸 내림
-				this->GetTransform().SetWorldDownMove(1.0f, DeltaTime_);
-				break;
-			}
-		}
+		//	// 가장 위로 올라왔으면 탈출
+		//	if (false == ColorDown.CompareInt4D({ 1.0f, 0.0f, 1.0f }) &&
+		//		false == ColorDownLeft.CompareInt4D({ 1.0f, 0.0f, 1.0f }) &&
+		//		false == ColorDownRight.CompareInt4D({ 1.0f, 0.0f, 1.0f })
+		//		)
+		//	{
+		//		// 다시 한칸 내림
+		//		this->GetTransform().SetWorldDownMove(1.0f, DeltaTime_);
+		//		break;
+		//	}
+		//}
 	}
 }
 
@@ -354,24 +352,39 @@ void Monster::CommonMoveUpdate()
 
 		MoveDir_ = float4::LEFT;
 
-		if (true == GroundLeftCheck())
+		if (true == GroundLeftCheck() && false == IsJump_)
 		{
 			return;
 		}
 
-		GetTransform().SetWorldMove(GetTransform().GetLeftVector() * Speed_ * DeltaTime_);
+		if (true == IsJump_)
+		{
+			GetTransform().SetWorldMove(GetTransform().GetLeftVector() * Speed_ / 2 * DeltaTime_);
+		}
+		else
+		{
+			GetTransform().SetWorldMove(GetTransform().GetLeftVector() * Speed_ * DeltaTime_);
+		}
+
 
 		break;
 	case true:
 
 		MoveDir_ = float4::RIGHT;
 
-		if (true == GroundRightCheck())
+		if (true == GroundRightCheck() && false == IsJump_)
 		{
 			return;
 		}
 
-		GetTransform().SetWorldMove(GetTransform().GetRightVector() * Speed_ * DeltaTime_);
+		if (true == IsJump_)
+		{
+			GetTransform().SetWorldMove(GetTransform().GetRightVector() * Speed_ / 2 * DeltaTime_);
+		}
+		else
+		{
+			GetTransform().SetWorldMove(GetTransform().GetRightVector() * Speed_ * DeltaTime_);
+		}
 
 		break;
 	}
@@ -402,12 +415,19 @@ void Monster::CommonChaseUpdate()
 	{
 		MoveDir_ = float4::RIGHT;
 
-		if (true == GroundRightCheck())
+		if (true == GroundRightCheck() && false == IsJump_)
 		{
 			return;
 		}
 
-		GetTransform().SetWorldMove(GetTransform().GetRightVector() * Speed_ * DeltaTime_);
+		if (true == IsJump_)
+		{
+			GetTransform().SetWorldMove(GetTransform().GetRightVector() * Speed_ / 2 * DeltaTime_);
+		}
+		else
+		{
+			GetTransform().SetWorldMove(GetTransform().GetRightVector() * Speed_ * DeltaTime_);
+		}
 
 	}
 	// 왼쪽으로
@@ -415,12 +435,19 @@ void Monster::CommonChaseUpdate()
 	{
 		MoveDir_ = float4::LEFT;
 
-		if (true == GroundLeftCheck())
+		if (true == GroundLeftCheck() && false == IsJump_)
 		{
 			return;
 		}
 
-		GetTransform().SetWorldMove(GetTransform().GetLeftVector() * Speed_ * DeltaTime_);
+		if (true == IsJump_)
+		{
+			GetTransform().SetWorldMove(GetTransform().GetLeftVector() * Speed_ / 2 * DeltaTime_);
+		}
+		else
+		{
+			GetTransform().SetWorldMove(GetTransform().GetLeftVector() * Speed_ * DeltaTime_);
+		}
 	}
 }
 
