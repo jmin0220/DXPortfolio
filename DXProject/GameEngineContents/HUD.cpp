@@ -5,7 +5,8 @@
 
 HUD::HUD() 
 	: HUDRenderer_(nullptr)
-	, ResecntGold_(0)
+	, RecentGold_(0)
+	, RecentHp_(0)
 {
 	SkillPos_[0] = { -74, -370, -100 };
 	SkillPos_[1] = { -28, -370, -100 };
@@ -81,34 +82,44 @@ void HUD::Start()
 	SkillRenderer_[3]->ScaleToTexture();
 	SkillRenderer_[3]->GetTransform().SetWorldPosition(SkillPos_[3]);
 
-	// 폰트
-	//FontRenderer_ = CreateComponent<GameEngineFontRenderer>();
-	//FontRenderer_->SetText("123123", "riskofrainfont");
-	//FontRenderer_->SetColor({ 1.0f, 1.0f, 1.0f });
-	//FontRenderer_->SetScreenPostion({ 800, 840});
+	// 현재 타겟폰트
+	TargetFontRenderer_ = CreateComponent<GameEngineFontRenderer>();
+	TargetFontRenderer_->SetText("Find the Teleporter.", "riskofrainfont");
+	TargetFontRenderer_->SetSize(14);
+	TargetFontRenderer_->SetColor({ 1.0f, 1.0f, 1.0f });
+	TargetFontRenderer_->SetLeftAndRightSort(LeftAndRightSort::CENTER);
+	TargetFontRenderer_->SetScreenPostion({ 800, 760});
 
-	// 소지금
+	// 소지금 아이콘
 	GoldIconRenderer_ = CreateComponent<GameEngineUIRenderer>();
 	GoldIconRenderer_->SetTexture(TEX_INTERFACE_MONEY_INTERFACE);
 	GoldIconRenderer_->ScaleToTexture();
 	GoldIconRenderer_->GetTransform().SetWorldPosition({ -GameEngineWindow::GetInst()->GetScale().x / 2 + 50
 													   , GameEngineWindow::GetInst()->GetScale().y / 2 - 50, -100 });
 
+	// 소지금
 	GoldFontRenderer_ = GetLevel()->CreateActor<ContentsFont>();
-	// TODO::플레이어가 가지고 있는 소지금의 길이만큼 포지션을 조정
 	GoldFontRenderer_->CreateFontRenderer<GameEngineUIRenderer>(std::to_string(Player::GetPlayerGold()), {0, 0}, TextType::Large);
 	GoldFontRenderer_->GetTransform().SetWorldPosition({ GoldIconRenderer_->GetTransform().GetWorldPosition().x + 40.0f, GoldIconRenderer_->GetTransform().GetWorldPosition().y });
+
+	PlayerHpFontRenderer_ = GetLevel()->CreateActor<ContentsFont>();
+	PlayerHpFontRenderer_->CreateFontRenderer<GameEngineUIRenderer>(std::to_string(Player::GetPlayerHp()) + "/" + std::to_string(Player::GetPlayerMaxHp()), {0, 0}, TextType::Normal);
+	PlayerHpFontRenderer_->GetTransform().SetWorldPosition({ -GameEngineWindow::GetInst()->GetScale().x / 2 + 764
+															, GameEngineWindow::GetInst()->GetScale().y / 2 - 867, -110 });
 }
 
 void HUD::Update(float _DeltaTime)
 {
-	if (ResecntGold_ != Player::GetPlayerGold())
+	// 변경이 있을때만 Change함수를 실행
+	if (RecentGold_ != Player::GetPlayerGold())
 	{
-		ResecntGold_ = Player::GetPlayerGold();
+		RecentGold_ = Player::GetPlayerGold();
 		GoldFontRenderer_->ChangeFontRenderer<GameEngineUIRenderer>(std::to_string(Player::GetPlayerGold()), { 0, 0 }, TextType::Large);
 	}
-}
 
-void HUD::RewriteGold()
-{
+	if (RecentHp_ != Player::GetPlayerHp())
+	{
+		RecentHp_ = Player::GetPlayerHp();
+		PlayerHpFontRenderer_->ChangeFontRenderer<GameEngineUIRenderer>(std::to_string(Player::GetPlayerHp()) + "/" + std::to_string(Player::GetPlayerMaxHp()), { 0, 0 }, TextType::Normal);
+	}
 }

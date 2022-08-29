@@ -37,6 +37,16 @@ public:
 		Exp_ += _Exp;
 	}
 
+	static int GetPlayerHp()
+	{
+		return Hp_;
+	}
+
+	static int GetPlayerMaxHp()
+	{
+		return MaxHp_;
+	}
+
 	static int GetPlayerGold()
 	{
 		return Gold_;
@@ -175,7 +185,8 @@ protected:
 	HUD* HUD_;
 
 	// 플레이어 스테이터스
-	float Hp_;
+	static int Hp_;
+	static int MaxHp_;
 	float LvPerHp_;
 	float HpRegen_;
 	float LvPerHpRegen_;

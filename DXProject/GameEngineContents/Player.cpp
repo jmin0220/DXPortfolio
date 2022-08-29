@@ -6,6 +6,8 @@
 #include "Bullet.h"
 #include "PiercingBullet.h"
 
+int Player::Hp_ = 0;
+int Player::MaxHp_ = 0;
 int Player::Gold_ = 0;
 int Player::Exp_ = 0;
 

@@ -17,8 +17,6 @@ public:
 	HUD& operator=(const HUD& _Other) = delete;
 	HUD& operator=(HUD&& _Other) noexcept = delete;
 
-	static void RewriteGold();
-
 protected:
 	void Start() override;
 	void Update(float _DeltaTime);
@@ -35,14 +33,25 @@ private:
 	GameEngineUIRenderer* DifficultyTimerRenderer_;
 
 	// 폰트파일 렌더러
-	GameEngineFontRenderer* FontRenderer_;
+	GameEngineFontRenderer* TargetFontRenderer_;
+
+	// TODO::하단 인터페이스 위에 레벨을 표시할 수 있도록 업데이트
+	GameEngineFontRenderer* LevelFontRenderer_;
+	// TODO::우상단 인터페이스 위에 시간을 표시할 수 있도록 업데이트
+	GameEngineFontRenderer* TimerMinuteFontRenderer_;
+	GameEngineFontRenderer* TimerSecendFontRenderer_;
+	// TODO::하단 인터페이스 위에 스킬 쿨타임을 표시할 수 있도록 업데이트
+	GameEngineFontRenderer* SkillCooldownFontRenderer_;
 
 	// 소지금 아이콘
 	GameEngineUIRenderer* GoldIconRenderer_;
 	// 소지금
 	ContentsFont* GoldFontRenderer_;
+	// 플레이어 HP
+	ContentsFont* PlayerHpFontRenderer_;
 
-	int ResecntGold_;
+	int RecentGold_;
+	int RecentHp_;
 
 	float4 SkillPos_[4];
 

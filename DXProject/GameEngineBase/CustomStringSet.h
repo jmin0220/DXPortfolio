@@ -99,6 +99,7 @@
 #define TEX_STAGE_ONE "stage1.png"
 #define TEX_STAGE_ONE_COLLISION "stage1Collision.png"
 #define TEX_BG_PURPLE_STARS "PurpleStars1.png"
+#define TEX_BG_BLUE_STARTS "bStars1_2_0.png"
 // º±≈√√¢
 #define TEX_SELECTED_COMMANDO "CommandoSelected.png"
 #define TEX_SELECTED_BANDIT "BanditSelected.png"
@@ -161,6 +162,7 @@
 #define TEX_FONT_NORMAL_9 "sDamage_9.png"
 #define TEX_FONT_NORMAL_10 "sDamage_10.png"
 #define TEX_FONT_NORMAL_11 "sDamage_11.png"
+#define TEX_FONT_NORMAL_12 "sDamage_12.png"
 
 #define TEX_FONT_LARGE_0 "sDamageLarge_0.png"
 #define TEX_FONT_LARGE_1 "sDamageLarge_1.png"

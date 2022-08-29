@@ -70,7 +70,7 @@ void Stage1Level::LevelStartEvent()
 	CharacterCreater_->SetColMapInfo(StageActor_->GetColStage()->GetCurTexture());
 	CharacterCreater_->MakePlayerPosition();
 	Player_->GetTransform().SetWorldPosition(CharacterCreater_->OutputPlayerCreatePos());
-	Player_->GetTransform().SetWorldPosition({100, 100});
+	Player_->GetTransform().SetWorldPosition({100, -750});
 
 	// 키 튜토리얼 생성
 	Tutorial_ = CreateActor<Tutorial>();

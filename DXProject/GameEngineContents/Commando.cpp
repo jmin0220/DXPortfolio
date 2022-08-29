@@ -7,6 +7,7 @@ Commando::Commando()
 {
 	// https://riskofrain.fandom.com/wiki/Commando_(RoR)?so=search
 	Hp_ = 110;
+	MaxHp_ = 110;
 	LvPerHp_ = 32;
 
 	HpRegen_ = 0.6;

@@ -143,7 +143,17 @@ public:
 
 				FontRendererVector_.at(Count_)->SetTexture(FontName + FontSizeSetter + "_11.png");
 				break;
+			case '/':
 
+				// 존재하지 않는 텍스쳐라면 Normal사이즈의 0
+				if (_Type == TextType::Large || _Type == TextType::Crit)
+				{
+					FontRendererVector_.at(Count_)->SetTexture(TEX_FONT_NORMAL_0);
+					break;
+				}
+
+				FontRendererVector_.at(Count_)->SetTexture(FontName + FontSizeSetter + "_12.png");
+				break;
 			default:
 				FontRendererVector_.at(Count_)->SetTexture("NSet.png");
 				break;

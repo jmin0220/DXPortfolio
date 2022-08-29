@@ -15,6 +15,7 @@ void StageGround::Start()
 {
 	// 화면에 표시되는 맵
 	Renderer_ = CreateComponent<GameEngineTextureRenderer>();
+	Renderer_->SetSamplingModePoint();
 	Renderer_->SetTexture(TEX_STAGE_ONE);
 	Renderer_->GetTransform().SetWorldPosition(float4::ZERO);
 	Renderer_->ScaleToTexture();
@@ -31,10 +32,11 @@ void StageGround::Start()
 	ColRenderer_->OnOffSwitch();
 
 	BackGroundRenderer_ = CreateComponent<GameEngineTextureRenderer>();
-	BackGroundRenderer_->SetTexture(TEX_BG_PURPLE_STARS);
-	BackGroundRenderer_->GetTransform().SetLocalScale({ 2000, 2000 });
-	BackGroundRenderer_->SetPivot(PIVOTMODE::LEFTTOP);
-	BackGroundRenderer_->GetTransform().SetWorldPosition({ 0, 0, 5000});
+	BackGroundRenderer_->SetSamplingModePoint();
+	BackGroundRenderer_->SetTexture(TEX_BG_BLUE_STARTS);
+	BackGroundRenderer_->GetTransform().SetLocalScale({ 51200, 29000 });
+	BackGroundRenderer_->SetPivot(PIVOTMODE::CENTER);
+	BackGroundRenderer_->GetTransform().SetWorldPosition({ Renderer_->GetCurTexture()->GetScale().hx(), Renderer_->GetCurTexture()->GetScale().hy(), 10000});
 
 }
 
