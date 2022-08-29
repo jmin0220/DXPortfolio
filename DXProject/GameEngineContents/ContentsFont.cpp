@@ -12,7 +12,7 @@ ContentsFont::ContentsFont()
 }
 
 ContentsFont::~ContentsFont() 
-{
+{	
 }
 
 void ContentsFont::Start()

@@ -67,7 +67,7 @@ public:
 		for (int i = 0; i < FontSize; ++i)
 		{
 			RendererType* TmpRenderer = CreateComponent<RendererType>();
-			FontRendererVector_.push_back(static_cast<GameEngineTextureRenderer*>(TmpRenderer));
+			FontRendererVector_.push_back(dynamic_cast<GameEngineTextureRenderer*>(TmpRenderer));
 		}
 
 		switch (_Type)
@@ -183,7 +183,7 @@ public:
 	{
 		// 저장되어있던 랜더러를 삭제
 		std::vector<GameEngineTextureRenderer*>::iterator Start = FontRendererVector_.begin();
-
+	
 		for (Start; Start != FontRendererVector_.end(); ++Start)
 		{
 			if ((*Start) != nullptr)
@@ -193,6 +193,7 @@ public:
 		}
 
 		FontRendererVector_.clear();
+		FontRendererVector_.shrink_to_fit();
 
 		// 설정된 텍스트로 렌더러를 다시 생성
 		CreateFontRenderer<RendererType>(_Text, _Pivot, _Type);

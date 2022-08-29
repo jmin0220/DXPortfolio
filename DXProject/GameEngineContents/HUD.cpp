@@ -5,6 +5,7 @@
 
 HUD::HUD() 
 	: HUDRenderer_(nullptr)
+	, ResecntGold_(0)
 {
 	SkillPos_[0] = { -74, -370, -100 };
 	SkillPos_[1] = { -28, -370, -100 };
@@ -101,8 +102,11 @@ void HUD::Start()
 
 void HUD::Update(float _DeltaTime)
 {
-	// TODO::소지 골드양에 따라서 폰트 위치 이동
-	GoldFontRenderer_->ChangeFontRenderer<GameEngineUIRenderer>(std::to_string(Player::GetPlayerGold()), { 0, 0 }, TextType::Large);
+	if (ResecntGold_ != Player::GetPlayerGold())
+	{
+		ResecntGold_ = Player::GetPlayerGold();
+		GoldFontRenderer_->ChangeFontRenderer<GameEngineUIRenderer>(std::to_string(Player::GetPlayerGold()), { 0, 0 }, TextType::Large);
+	}
 }
 
 void HUD::RewriteGold()

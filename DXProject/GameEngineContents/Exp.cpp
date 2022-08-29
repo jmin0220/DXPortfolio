@@ -62,7 +62,7 @@ void Exp::Update(float _DeltaTime)
 	if (FlyDir_.Length() <= 10)
 	{
 		// 플레이어에 골드 추가
-		Player::AddGold(ExpValue_);
+		Player::AddExp(ExpValue_);
 
 		// 오브젝트 삭제
 		this->Death();

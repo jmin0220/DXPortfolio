@@ -42,6 +42,8 @@ private:
 	// ¼ÒÁö±İ
 	ContentsFont* GoldFontRenderer_;
 
+	int ResecntGold_;
+
 	float4 SkillPos_[4];
 
 	Option Option_;
