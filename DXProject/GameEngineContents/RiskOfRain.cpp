@@ -161,7 +161,7 @@ void RiskOfRain::Start()
 		}
 
 
-		GameEngineFont::Load("riskofrainfont");
+		GameEngineFont::Load(FONT_RISKOFRAIN);
 	}
 
 

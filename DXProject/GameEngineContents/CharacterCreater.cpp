@@ -53,6 +53,7 @@ float4 CharacterCreater::MakePosition(int _CreateMod)
 	case 0:
 		CreatePos.x = Random->RandomInt(100, ColMap_->GetScale().x - 100);
 		CreatePos.y = Random->RandomInt(100, ColMap_->GetScale().y - 100);
+		CreatePos.z = static_cast<float>(ZOrder::Player);
 		break;
 	case 1:
 		CreatePos.x = Random->RandomInt(CurPlayerPos_.x - 1000, CurPlayerPos_.x + 1000);
@@ -67,6 +68,8 @@ float4 CharacterCreater::MakePosition(int _CreateMod)
 		{
 			CreatePos.y = ColMap_->GetScale().y - 100;
 		}
+
+		CreatePos.z = static_cast<float>(ZOrder::Monsters);
 
 		break;
 	case 2:
@@ -107,6 +110,7 @@ float4 CharacterCreater::MakePosition(int _CreateMod)
 		case 0:
 			CreatePos.x = Random->RandomInt(100, ColMap_->GetScale().x - 100);
 			CreatePos.y = Random->RandomInt(100, ColMap_->GetScale().y - 100);
+			CreatePos.z = static_cast<float>(ZOrder::Player);
 			break;
 		case 1:
 			CreatePos.x = Random->RandomInt(CurPlayerPos_.x - 1000, CurPlayerPos_.x + 1000);
@@ -121,6 +125,7 @@ float4 CharacterCreater::MakePosition(int _CreateMod)
 			{
 				CreatePos.y = ColMap_->GetScale().y - 100;
 			}
+			CreatePos.z = static_cast<float>(ZOrder::Monsters);
 
 			break;
 		case 2:

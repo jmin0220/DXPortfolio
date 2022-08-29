@@ -62,7 +62,7 @@ void Gold::Update(float _DeltaTime)
 	FlyDir_ = PlayerPos_ - this->GetTransform().GetWorldPosition();
 
 	// 오브젝트가 충분히 근접함
-	if (FlyDir_.Length() <= 10)
+	if (FlyDir_.Length() <= 13)
 	{
 		// 플레이어에 골드 추가
 		Player::AddGold(GoldValue_);

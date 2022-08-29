@@ -22,6 +22,7 @@ void Drops::CreateCoinsAndExp(int _GoldValue, int _ExpValue, float4 _Pos, GameEn
 	int GoldFive = GoldValue / 5;
 	// 1골드짜리 갯수
 	int GoldOne = GoldValue % 5;
+	float4 _RealPos = { _Pos.x, _Pos.y, static_cast<float>(ZOrder::Drops) };
 
 	GameEngineRandom* Random = new GameEngineRandom();
 
@@ -30,7 +31,7 @@ void Drops::CreateCoinsAndExp(int _GoldValue, int _ExpValue, float4 _Pos, GameEn
 	{
 		// 골드 생성
 		Gold* tmpGold = _Level->CreateActor<Gold>();
-		tmpGold->GetTransform().SetWorldPosition(_Pos);
+		tmpGold->GetTransform().SetWorldPosition(_RealPos);
 		tmpGold->SetGoldValue(5);
 		tmpGold->UpdateGoldOption();
 
@@ -45,7 +46,7 @@ void Drops::CreateCoinsAndExp(int _GoldValue, int _ExpValue, float4 _Pos, GameEn
 	{
 		// 골드 생성
 		Gold* tmpGold = _Level->CreateActor<Gold>();
-		tmpGold->GetTransform().SetWorldPosition(_Pos);
+		tmpGold->GetTransform().SetWorldPosition(_RealPos);
 		tmpGold->SetGoldValue(1);
 		tmpGold->UpdateGoldOption();
 
@@ -67,11 +68,11 @@ void Drops::CreateCoinsAndExp(int _GoldValue, int _ExpValue, float4 _Pos, GameEn
 	{
 		// 경험치 생성
 		Exp* tmpExp = _Level->CreateActor<Exp>();
-		tmpExp->GetTransform().SetWorldPosition(_Pos);
+		tmpExp->GetTransform().SetWorldPosition(_RealPos);
 		tmpExp->SetExpValue(5);
 
 		// 경험치가 생성될때 최종 이동위치를 설정
-		tmpExp->SetDestPos({ Random->RandomFloat(-15.0, 15.0), Random->RandomFloat(-15.0, 15.0), 0.0f });
+		tmpExp->SetDestPos({ Random->RandomFloat(-20.0, 20.0), Random->RandomFloat(-20.0, 20.0), 0.0f });
 	}
 
 	// 1경험치 출력
@@ -79,11 +80,11 @@ void Drops::CreateCoinsAndExp(int _GoldValue, int _ExpValue, float4 _Pos, GameEn
 	{
 		// 경험치 생성
 		Exp* tmpExp = _Level->CreateActor<Exp>();
-		tmpExp->GetTransform().SetWorldPosition(_Pos);
+		tmpExp->GetTransform().SetWorldPosition(_RealPos);
 		tmpExp->SetExpValue(5);
 
 		// 경험치가 생성될때 최종 이동위치를 설정
-		tmpExp->SetDestPos({ Random->RandomFloat(-15.0, 15.0), Random->RandomFloat(-15.0, 15.0), 0.0f });
+		tmpExp->SetDestPos({ Random->RandomFloat(-20.0, 20.0), Random->RandomFloat(-20.0, 20.0), 0.0f });
 	}
 
 	delete Random;

@@ -20,6 +20,21 @@ HUD::~HUD()
 
 void HUD::Start()
 {	
+	StageMainName_ = CreateComponent<GameEngineFontRenderer>();
+	StageSubName_ = CreateComponent<GameEngineFontRenderer>();
+
+	StageMainName_->SetText("Dried Lake", FONT_RISKOFRAIN);
+	StageMainName_->SetSize(25);
+	StageMainName_->SetColor({ 1.0, 1.0, 1.0 });
+	StageMainName_->SetScreenPostion({ 800, 400 });
+	StageMainName_->SetLeftAndRightSort(LeftAndRightSort::CENTER);
+
+	StageSubName_->SetText("Ground Zero", FONT_RISKOFRAIN);
+	StageSubName_->SetSize(15);
+	StageSubName_->SetColor({ 1.0, 1.0, 1.0 });
+	StageSubName_->SetScreenPostion({ 800, 500 });
+	StageSubName_->SetLeftAndRightSort(LeftAndRightSort::CENTER);
+
 	// HUD
 	HUDRenderer_ = CreateComponent<GameEngineUIRenderer>();
 	DifficultyHUDRenderer_ = CreateComponent<GameEngineUIRenderer>();
@@ -84,7 +99,7 @@ void HUD::Start()
 
 	// 현재 타겟폰트
 	TargetFontRenderer_ = CreateComponent<GameEngineFontRenderer>();
-	TargetFontRenderer_->SetText("Find the Teleporter.", "riskofrainfont");
+	TargetFontRenderer_->SetText("Find the Teleporter.", FONT_RISKOFRAIN);
 	TargetFontRenderer_->SetSize(14);
 	TargetFontRenderer_->SetColor({ 1.0f, 1.0f, 1.0f });
 	TargetFontRenderer_->SetLeftAndRightSort(LeftAndRightSort::CENTER);
@@ -110,6 +125,23 @@ void HUD::Start()
 
 void HUD::Update(float _DeltaTime)
 {
+	// 스테이지 타이틀 관련
+	static float StageNameTimer = 0.0f;
+	static float AlphaValue = 1.0f;
+	
+	if (StageNameTimer >= 2.0f && AlphaValue >= 0.0f)
+	{
+		StageMainName_->SetColor({ 1.0f, 1.0f, 1.0f, AlphaValue });
+		StageSubName_->SetColor({ 1.0f, 1.0f, 1.0f, AlphaValue });
+	}
+
+	if (AlphaValue > 0.0f)
+	{
+		StageNameTimer += _DeltaTime / 2;
+		AlphaValue = 3.0f - StageNameTimer;
+	}
+
+	// HUD 텍스트 관련
 	// 변경이 있을때만 Change함수를 실행
 	if (RecentGold_ != Player::GetPlayerGold())
 	{
@@ -122,4 +154,5 @@ void HUD::Update(float _DeltaTime)
 		RecentHp_ = Player::GetPlayerHp();
 		PlayerHpFontRenderer_->ChangeFontRenderer<GameEngineUIRenderer>(std::to_string(Player::GetPlayerHp()) + "/" + std::to_string(Player::GetPlayerMaxHp()), { 0, 0 }, TextType::Normal);
 	}
+
 }

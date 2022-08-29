@@ -70,7 +70,7 @@ void Stage1Level::LevelStartEvent()
 	CharacterCreater_->SetColMapInfo(StageActor_->GetColStage()->GetCurTexture());
 	CharacterCreater_->MakePlayerPosition();
 	Player_->GetTransform().SetWorldPosition(CharacterCreater_->OutputPlayerCreatePos());
-	Player_->GetTransform().SetWorldPosition({100, -750});
+	Player_->GetTransform().SetWorldPosition({100, -750, static_cast<float>(ZOrder::Player) });
 
 	// 키 튜토리얼 생성
 	Tutorial_ = CreateActor<Tutorial>();
@@ -85,9 +85,9 @@ void Stage1Level::LevelStartEvent()
 	CreateActor<Bouncer>();
 	// TODO::테스트코드
 	ChestNormal* TmpChestNormal = CreateActor<ChestNormal>();
-	TmpChestNormal->GetTransform().SetWorldPosition({ 106.0f, -864.0f });
+	TmpChestNormal->GetTransform().SetWorldPosition({ 106.0f, -864.0f, static_cast<float>(ZOrder::Chest) });
 	ChestBig* TmpChestBig = CreateActor<ChestBig>();
-	TmpChestBig->GetTransform().SetWorldPosition({ 50.0f, -864.0f });
+	TmpChestBig->GetTransform().SetWorldPosition({ 50.0f, -864.0f, 10.0f, static_cast<float>(ZOrder::Chest) });
 	ChestLong* TmpChestLong = CreateActor<ChestLong>();
-	TmpChestLong->GetTransform().SetWorldPosition({ 150.0f, -864.0f });
+	TmpChestLong->GetTransform().SetWorldPosition({ 150.0f, -864.0f, 10.0f, static_cast<float>(ZOrder::Chest) });
 }

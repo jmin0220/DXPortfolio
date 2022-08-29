@@ -23,6 +23,10 @@ protected:
 	void End() {}
 
 private:
+	// 스테이지 이름
+	GameEngineFontRenderer* StageMainName_;
+	GameEngineFontRenderer* StageSubName_;
+
 	// 하단 HUD
 	GameEngineUIRenderer* HUDRenderer_;
 	// 스킬아이콘

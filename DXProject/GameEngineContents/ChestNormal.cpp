@@ -29,7 +29,7 @@ void ChestNormal::Initialize()
 	Renderer_->SetPivot(PIVOTMODE::BOT);
 
 	FontRenderer_ = CreateComponent<GameEngineFontRenderer>();
-	FontRenderer_->SetText("Press 'A' to purchase chest ($ " + std::to_string(ChestPrice_) + ")", "riskofrainfont");
+	FontRenderer_->SetText("Press 'A' to purchase chest ($ " + std::to_string(ChestPrice_) + ")", FONT_RISKOFRAIN);
 	FontRenderer_->SetSize(15);
 	FontRenderer_->SetLeftAndRightSort(LeftAndRightSort::CENTER);
 	FontRenderer_->Off();
