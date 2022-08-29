@@ -1,6 +1,7 @@
 #include "PreCompile.h"
 #include "HUD.h"
 #include <GameEngineCore/GameEngineFontRenderer.h>
+#include "Player.h"
 
 HUD::HUD() 
 	: HUDRenderer_(nullptr)
@@ -94,13 +95,16 @@ void HUD::Start()
 
 	GoldFontRenderer_ = GetLevel()->CreateActor<ContentsFont>();
 	// TODO::플레이어가 가지고 있는 소지금의 길이만큼 포지션을 조정
-	GoldFontRenderer_->CreateFontRenderer<GameEngineUIRenderer>("515", { 0, 0 }, TextType::Large);
-	GoldFontRenderer_->GetTransform().SetWorldPosition({ GoldIconRenderer_->GetTransform().GetWorldPosition().x + 50.0f, GoldIconRenderer_->GetTransform().GetWorldPosition().y });
+	GoldFontRenderer_->CreateFontRenderer<GameEngineUIRenderer>(std::to_string(Player::GetPlayerGold()), {0, 0}, TextType::Large);
+	GoldFontRenderer_->GetTransform().SetWorldPosition({ GoldIconRenderer_->GetTransform().GetWorldPosition().x + 40.0f, GoldIconRenderer_->GetTransform().GetWorldPosition().y });
 }
 
 void HUD::Update(float _DeltaTime)
 {
 	// TODO::소지 골드양에 따라서 폰트 위치 이동
-	//GoldFontRenderer_->SetScreenPostion({ 100, 50 });
-	//GoldFontRenderer_->SetSize(30.0f);
+	GoldFontRenderer_->ChangeFontRenderer<GameEngineUIRenderer>(std::to_string(Player::GetPlayerGold()), { 0, 0 }, TextType::Large);
+}
+
+void HUD::RewriteGold()
+{
 }

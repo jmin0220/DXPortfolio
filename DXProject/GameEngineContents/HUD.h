@@ -17,6 +17,8 @@ public:
 	HUD& operator=(const HUD& _Other) = delete;
 	HUD& operator=(HUD&& _Other) noexcept = delete;
 
+	static void RewriteGold();
+
 protected:
 	void Start() override;
 	void Update(float _DeltaTime);

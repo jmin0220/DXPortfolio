@@ -195,6 +195,6 @@ public:
 		FontRendererVector_.clear();
 
 		// 설정된 텍스트로 렌더러를 다시 생성
-		CreateFontNormalRenderer<RendererType>(_Text, _Pivot, _Type);
+		CreateFontRenderer<RendererType>(_Text, _Pivot, _Type);
 	}
 };
