@@ -22,42 +22,47 @@ public:
 	Player& operator=(const Player& _Other) = delete;
 	Player& operator=(Player&& _Other) noexcept = delete;
 
+	static inline float GetPlayTimeTimer()
+	{
+		return PlayTimeTimer_;
+	}
+
 	inline void SetColMapInfo(GameEngineTexture* _ColMap)
 	{
 		ColMap_ = _ColMap;
 	}
 
-	static void AddGold(int _Gold)
+	static inline void AddGold(int _Gold)
 	{
 		Gold_ += _Gold;
 	}
 
-	static void AddExp(int _Exp)
+	static inline void AddExp(int _Exp)
 	{
 		Exp_ += _Exp;
 	}
 
-	static int GetPlayerHp()
+	static inline int GetPlayerHp()
 	{
 		return Hp_;
 	}
 
-	static int GetPlayerMaxHp()
+	static inline int GetPlayerMaxHp()
 	{
 		return MaxHp_;
 	}
 
-	static int GetPlayerGold()
+	static inline int GetPlayerGold()
 	{
 		return Gold_;
 	}
 
-	static int GetPlayerExp()
+	static inline int GetPlayerExp()
 	{
 		return Exp_;
 	}
 
-	inline void SetJumpSpeedByBouncer()
+	inline inline void SetJumpSpeedByBouncer()
 	{
 		JumpSpeed_ = BOUNCER_JUMP_SPEED;
 	}
@@ -159,6 +164,9 @@ protected:
 	GameEngineTextureRenderer* Renderer_;
 	GameEngineCollision* Collision_;
 	float DeltaTime_;
+
+	// 난이도 체크용 플레이타임 타이머
+	static float PlayTimeTimer_;
 	
 	// 속도 관련
 	float Speed_;

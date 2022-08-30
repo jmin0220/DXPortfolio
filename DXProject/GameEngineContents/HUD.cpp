@@ -58,7 +58,7 @@ void HUD::Start()
 	DifficultyTimerRenderer_->SetTexture(TEX_INTERFACE_DIFFICULTY_TIMER);
 	DifficultyTimerRenderer_->ScaleToTexture();
 	DifficultyTimerRenderer_->GetTransform().SetWorldPosition({ GameEngineWindow::GetInst()->GetScale().x / 2 - 83
-															  , GameEngineWindow::GetInst()->GetScale().y / 2 - 119, -100 });
+															  , GameEngineWindow::GetInst()->GetScale().y / 2 - 121, -100 });
 
 
 
@@ -125,7 +125,7 @@ void HUD::Start()
 
 void HUD::Update(float _DeltaTime)
 {
-	// 스테이지 타이틀 관련
+	// 스테이지 타이틀 관련----------------------------------------------------------------------------
 	static float StageNameTimer = 0.0f;
 	static float AlphaValue = 1.0f;
 	
@@ -141,7 +141,24 @@ void HUD::Update(float _DeltaTime)
 		AlphaValue = 3.0f - StageNameTimer;
 	}
 
-	// HUD 텍스트 관련
+
+	// 난이도 타이머 UI----------------------------------------------------------------------------
+	// 10초에 1번씩
+	int tmp = static_cast<int>(Player::GetPlayTimeTimer());
+	float PlayTimer = tmp / 100;
+	float SliceY = 1.0 - Player::GetPlayTimeTimer() / 1000;
+
+	if (SliceY < 0.0f)
+	{
+		SliceY = 0.0f;
+	}
+
+	DifficultyTimerRenderer_->GetPixelData().Slice = {0, SliceY, 0, 0};
+
+	// TODO::난이도 텍스트 및 아이콘 추가
+
+
+	// HUD 텍스트 관련----------------------------------------------------------------------------
 	// 변경이 있을때만 Change함수를 실행
 	if (RecentGold_ != Player::GetPlayerGold())
 	{

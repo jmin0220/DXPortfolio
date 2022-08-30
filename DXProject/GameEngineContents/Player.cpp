@@ -6,6 +6,7 @@
 #include "Bullet.h"
 #include "PiercingBullet.h"
 
+float Player::PlayTimeTimer_ = 0.0f;
 int Player::Hp_ = 0;
 int Player::MaxHp_ = 0;
 int Player::Gold_ = 0;
@@ -52,6 +53,9 @@ void Player::Update(float _DeltaTime)
 
 	// 델타타임 초기화
 	DeltaTime_ = _DeltaTime;
+
+	// 플레이 타이머
+	PlayTimeTimer_ += DeltaTime_;
 
 	// 타이머 측정
 	AtkTimer_ += DeltaTime_;
