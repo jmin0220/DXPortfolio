@@ -62,7 +62,7 @@ public:
 		return Exp_;
 	}
 
-	inline inline void SetJumpSpeedByBouncer()
+	inline void SetJumpSpeedByBouncer()
 	{
 		JumpSpeed_ = BOUNCER_JUMP_SPEED;
 	}

@@ -35,6 +35,7 @@ private:
 	// 시간 및 난이도 인터페이스
 	GameEngineUIRenderer* DifficultyHUDRenderer_;
 	GameEngineUIRenderer* DifficultyTimerRenderer_;
+	GameEngineUIRenderer* DifficultyIcon_;
 
 	// 폰트파일 렌더러
 	GameEngineFontRenderer* TargetFontRenderer_;

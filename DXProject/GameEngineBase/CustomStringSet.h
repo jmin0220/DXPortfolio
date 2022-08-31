@@ -143,6 +143,7 @@
 #define TEX_INTERFACE_HUD "HUD.png"
 #define TEX_INTERFACE_DIFFICULTY_HUD "DifficultyHUD.png"
 #define TEX_INTERFACE_DIFFICULTY_TIMER "DifficultyTimer.png"
+#define TEX_INTERFACE_DIFFUCULTY_ICON "DifficultyIcon"
 #define TEX_INTERFACE_TUTORIAL "Tutorial"
 #define TEX_INTERFACE_TUTORIAL_USE "TutorialUse"
 #define TEX_INTERFACE_MONEY_INTERFACE "sMoney_0.png"

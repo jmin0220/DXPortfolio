@@ -39,6 +39,7 @@ void HUD::Start()
 	HUDRenderer_ = CreateComponent<GameEngineUIRenderer>();
 	DifficultyHUDRenderer_ = CreateComponent<GameEngineUIRenderer>();
 	DifficultyTimerRenderer_ = CreateComponent<GameEngineUIRenderer>();
+	DifficultyIcon_ = CreateComponent<GameEngineUIRenderer>();
 
 	for (int i = 0; i < 4; i++)
 	{
@@ -52,14 +53,21 @@ void HUD::Start()
 
 	DifficultyHUDRenderer_->SetTexture(TEX_INTERFACE_DIFFICULTY_HUD);
 	DifficultyHUDRenderer_->ScaleToTexture();
-	DifficultyHUDRenderer_->GetTransform().SetWorldPosition({ GameEngineWindow::GetInst()->GetScale().x / 2 - 80
-															, GameEngineWindow::GetInst()->GetScale().y / 2 - 110, -101});
+	DifficultyHUDRenderer_->SetSamplingModePoint();
+	DifficultyHUDRenderer_->GetTransform().SetWorldPosition({ GameEngineWindow::GetInst()->GetScale().x / 2 - 105
+															, GameEngineWindow::GetInst()->GetScale().y / 2 - 128, -101});
 
 	DifficultyTimerRenderer_->SetTexture(TEX_INTERFACE_DIFFICULTY_TIMER);
 	DifficultyTimerRenderer_->ScaleToTexture();
-	DifficultyTimerRenderer_->GetTransform().SetWorldPosition({ GameEngineWindow::GetInst()->GetScale().x / 2 - 83
-															  , GameEngineWindow::GetInst()->GetScale().y / 2 - 121, -100 });
+	DifficultyTimerRenderer_->SetSamplingModePoint();
+	DifficultyTimerRenderer_->GetTransform().SetWorldPosition({ GameEngineWindow::GetInst()->GetScale().x / 2 - 108
+															  , GameEngineWindow::GetInst()->GetScale().y / 2 - 139, -100 });
 
+	DifficultyIcon_->SetFolderTextureToIndex(TEX_INTERFACE_DIFFUCULTY_ICON, 0);
+	DifficultyIcon_->ScaleToTexture();
+	DifficultyIcon_->SetSamplingModePoint();
+	DifficultyIcon_->GetTransform().SetWorldPosition({ GameEngineWindow::GetInst()->GetScale().x / 2 - 170
+													 , GameEngineWindow::GetInst()->GetScale().y / 2 - 50, -100 });
 
 
 	// 생성되는 플레이어의 종류에 따라 HUD 스킬 아이콘 생성
