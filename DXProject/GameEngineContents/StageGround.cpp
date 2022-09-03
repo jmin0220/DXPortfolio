@@ -17,7 +17,7 @@ void StageGround::Start()
 	Renderer_ = CreateComponent<GameEngineTextureRenderer>();
 	Renderer_->SetSamplingModePoint();
 	Renderer_->SetTexture(TEX_STAGE_ONE);
-	Renderer_->GetTransform().SetWorldPosition(float4::ZERO);
+	Renderer_->GetTransform().SetWorldPosition({ 0, 0, static_cast<float>(ZOrder::StageBackGround) });
 	Renderer_->ScaleToTexture();
 	Renderer_->SetPivot(PIVOTMODE::LEFTTOP);
 
@@ -31,6 +31,7 @@ void StageGround::Start()
 	// ÇÈ¼¿¸Ê ¼û±â±â
 	ColRenderer_->OnOffSwitch();
 
+	// ¹è°æ
 	BackGroundRenderer_ = CreateComponent<GameEngineTextureRenderer>();
 	BackGroundRenderer_->SetSamplingModePoint();
 	BackGroundRenderer_->SetTexture(TEX_BG_BLUE_STARTS);

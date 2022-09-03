@@ -87,7 +87,7 @@ void Stage1Level::LevelStartEvent()
 	ChestNormal* TmpChestNormal = CreateActor<ChestNormal>();
 	TmpChestNormal->GetTransform().SetWorldPosition({ 106.0f, -864.0f, static_cast<float>(ZOrder::Chest) });
 	ChestBig* TmpChestBig = CreateActor<ChestBig>();
-	TmpChestBig->GetTransform().SetWorldPosition({ 50.0f, -864.0f, 10.0f, static_cast<float>(ZOrder::Chest) });
+	TmpChestBig->GetTransform().SetWorldPosition({ 50.0f, -864.0f, static_cast<float>(ZOrder::Chest) });
 	ChestLong* TmpChestLong = CreateActor<ChestLong>();
-	TmpChestLong->GetTransform().SetWorldPosition({ 150.0f, -864.0f, 10.0f, static_cast<float>(ZOrder::Chest) });
+	TmpChestLong->GetTransform().SetWorldPosition({ 150.0f, -864.0f, static_cast<float>(ZOrder::Chest) });
 }
