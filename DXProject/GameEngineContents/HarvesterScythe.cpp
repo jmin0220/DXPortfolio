@@ -12,6 +12,7 @@ HarvesterScythe::~HarvesterScythe()
 void HarvesterScythe::Initialize()
 {
 	ItemType_ = ItemType::FrameItem;
+	ItemName_ = "HarvesterScythe";
 
 	Renderer_ = CreateComponent<GameEngineTextureRenderer>();
 	Renderer_->SetSamplingModePoint();
@@ -35,5 +36,6 @@ void HarvesterScythe::Initialize()
 void HarvesterScythe::BuffItemUpdate()
 {
 	// 5%의 추가 찬스를 얻음
+	// TODO::시연을 위해 값을 늘리는편이 좋을지도
 	PlayerStatus_.CritChance_ += 5;
 }

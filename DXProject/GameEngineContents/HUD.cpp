@@ -2,6 +2,7 @@
 #include "HUD.h"
 #include <GameEngineCore/GameEngineFontRenderer.h>
 #include "Player.h"
+#include "Item.h"
 
 HUD::HUD() 
 	: HUDRenderer_(nullptr)
@@ -163,9 +164,6 @@ void HUD::Update(float _DeltaTime)
 
 	DifficultyTimerRenderer_->GetPixelData().Slice = {0, SliceY, 0, 0};
 
-	// TODO::난이도 텍스트 및 아이콘 추가
-
-
 	// HUD 텍스트 관련----------------------------------------------------------------------------
 	// 변경이 있을때만 Change함수를 실행
 	if (RecentGold_ != Player::GetPlayerGold())
@@ -179,5 +177,24 @@ void HUD::Update(float _DeltaTime)
 		RecentHp_ = Player::GetPlayerHp();
 		PlayerHpFontRenderer_->ChangeFontRenderer<GameEngineUIRenderer>(std::to_string(Player::GetPlayerHp()) + "/" + std::to_string(Player::GetPlayerMaxHp()), { 0, 0 }, TextType::Normal);
 	}
+}
 
+// 하단의 아이템 획득 리스트
+void HUD::AddItemUpdate()
+{
+	float XMargin = 0.0f;
+
+	for (Item* item : Player::ItemVector_)
+	{
+
+		GameEngineUIRenderer* tmp = CreateComponent<GameEngineUIRenderer>();
+		tmp->SetTexture(item->GetRenderer()->GetCurTexture());
+		tmp->GetTransform().SetWorldPosition({ -(GameEngineWindow::GetInst()->GetScale().x / 2) + 50 + XMargin
+			                                 , -(GameEngineWindow::GetInst()->GetScale().y / 2) + 100, -101 });
+		tmp->ScaleToTexture();
+
+		UIRendererVector_.push_back(tmp);
+
+		XMargin += 68.0f;
+	}
 }

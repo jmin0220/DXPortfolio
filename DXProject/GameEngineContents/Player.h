@@ -182,6 +182,8 @@ protected:
 	// 줄에 타고 있는지 판정
 	bool IsClimb_;
 
+	static bool AddItemFlg_;
+
 	// 방향 관련
 	float4 MoveDir_;
 	// 색깔 체크용 공통 포지션

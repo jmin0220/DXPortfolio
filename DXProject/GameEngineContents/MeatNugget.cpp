@@ -12,6 +12,7 @@ MeatNugget::~MeatNugget()
 void MeatNugget::Initialize()
 {
 	ItemType_ = ItemType::AtkItem;
+	ItemName_ = "MeatNugget";
 
 	Renderer_ = CreateComponent<GameEngineTextureRenderer>();
 	Renderer_->SetSamplingModePoint();

@@ -31,6 +31,7 @@ void ItemManager::CreateItem(GameEngineLevel* _Level, float4 _Pos)
 
 	// TODO::테스트코드
 	CreateItem(_Level, ItemList::HarvesterScythe, _Pos);
+	CreateItem(_Level, ItemList::BarbedWire, { _Pos.x + 100.0f, _Pos.y });
 }
 
 void ItemManager::CreateItem(GameEngineLevel* _Level, ItemList _ItemList, float4 _Pos)

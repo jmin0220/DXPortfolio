@@ -12,6 +12,7 @@ int Player::MaxHp_ = 0;
 int Player::Gold_ = 0;
 int Player::Exp_ = 0;
 std::vector<Item*> Player::ItemVector_ = {};
+bool Player::AddItemFlg_ = false;
 
 Player::Player() 
 	:Renderer_(nullptr)
@@ -74,6 +75,12 @@ void Player::Update(float _DeltaTime)
 
 	// 좌우반전 체크
 	CheckNegativeX();
+
+	if (true == AddItemFlg_)
+	{
+		HUD_->AddItemUpdate();
+		AddItemFlg_ = false;
+	}
 
 	// 카메라 업데이트
 	CameraUpdate();
@@ -762,6 +769,8 @@ void Player::AddItem(Item * _Item)
 	{
 		tmpItem->BuffItemUpdate();
 	}
+
+	AddItemFlg_ = true;
 
 	return;
 }

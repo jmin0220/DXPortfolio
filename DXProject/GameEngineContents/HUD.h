@@ -17,6 +17,9 @@ public:
 	HUD& operator=(const HUD& _Other) = delete;
 	HUD& operator=(HUD&& _Other) noexcept = delete;
 
+	// 하단에 습득한 아이템을 반투명으로 표시
+	void AddItemUpdate();
+
 protected:
 	void Start() override;
 	void Update(float _DeltaTime);
@@ -54,6 +57,8 @@ private:
 	ContentsFont* GoldFontRenderer_;
 	// 플레이어 HP
 	ContentsFont* PlayerHpFontRenderer_;
+
+	std::vector<GameEngineUIRenderer*> UIRendererVector_;
 
 	int RecentGold_;
 	int RecentHp_;

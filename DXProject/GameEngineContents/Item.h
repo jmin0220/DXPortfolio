@@ -39,7 +39,14 @@ public:
 		PlayerPos_ = _Pos;
 	}
 
+	inline GameEngineTextureRenderer* GetRenderer()
+	{
+		return Renderer_;
+	}
+
 	virtual void Initialize() {};
+
+	
 
 	// 각 아이템마다 필요한 업데이트만을 상속받아서
 	// 자신의 업데이트를 실행시킴
@@ -61,9 +68,10 @@ protected:
 
 	PlayerStatus PlayerStatus_;
 
-private:
 	// 아이템 이름
 	std::string ItemName_;
+
+private:
 	// 습득된 아이템인가
 	bool ItemRootingFlg_;
 	bool RootingEffectEndFlg_;
