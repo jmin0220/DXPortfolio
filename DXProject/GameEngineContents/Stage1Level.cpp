@@ -14,6 +14,7 @@
 #include "ChestNormal.h"
 #include "ChestBig.h"
 #include "ChestLong.h"
+#include "ItemManager.h"
 
 Stage1Level::Stage1Level() 
 {
@@ -31,6 +32,7 @@ void Stage1Level::Start()
 	MonsterManager_ = CreateActor<MonsterManager>();
 	CharacterCreater_ = CreateActor<CharacterCreater>();
 	StageActor_ = CreateActor<StageGround>();
+	ItemManager_ = CreateActor<ItemManager>();
 }
 
 void Stage1Level::Update(float _DeltaTime)
@@ -43,6 +45,7 @@ void Stage1Level::Update(float _DeltaTime)
 
 	// 골드와 경험치에 플레이어 위치를 갱신
 	Drops::SetPlayerPos(Player_->GetTransform().GetWorldPosition());
+	ItemManager::SetPlayerPos(Player_->GetTransform().GetWorldPosition());
 }
 
 void Stage1Level::End()
@@ -90,4 +93,6 @@ void Stage1Level::LevelStartEvent()
 	TmpChestBig->GetTransform().SetWorldPosition({ 50.0f, -864.0f, static_cast<float>(ZOrder::Chest) });
 	ChestLong* TmpChestLong = CreateActor<ChestLong>();
 	TmpChestLong->GetTransform().SetWorldPosition({ 150.0f, -864.0f, static_cast<float>(ZOrder::Chest) });
+
+	ItemManager_->CreateItem();
 }

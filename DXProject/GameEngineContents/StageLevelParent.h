@@ -9,6 +9,7 @@ class GameEngineActor;
 class Player;
 class StageGround;
 class HUD;
+class ItemManager;
 class StageLevelParent : public GameEngineLevel
 {
 public:
@@ -33,6 +34,7 @@ protected:
 	StageGround* StageActor_;
 	Option Option_;
 	MonsterManager* MonsterManager_;
+	ItemManager* ItemManager_;
 	CharacterCreater* CharacterCreater_;
 
 private:

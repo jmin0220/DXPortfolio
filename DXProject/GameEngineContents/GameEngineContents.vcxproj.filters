@@ -67,6 +67,21 @@
     <Filter Include="01_Actor\01_Play\Object\Boxes">
       <UniqueIdentifier>{382e780d-e58e-4c3b-ba50-f1decc44e486}</UniqueIdentifier>
     </Filter>
+    <Filter Include="01_Actor\01_Play\Object\Items">
+      <UniqueIdentifier>{0d7e7914-6138-49e6-b24e-8f7e19803460}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01_Actor\01_Play\Object\Items\FrameItems">
+      <UniqueIdentifier>{808a906d-6a25-4620-8c0f-9f402b7fe772}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01_Actor\01_Play\Object\Items\AtkItems">
+      <UniqueIdentifier>{05b404e6-e87a-414c-a318-c936e845c12a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01_Actor\01_Play\Object\Items\LevelUpItems">
+      <UniqueIdentifier>{322ba4af-ae71-465e-9f50-0f44e19b5d22}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01_Actor\01_Play\Object\Items\BuffItem">
+      <UniqueIdentifier>{c578834c-ef32-4c4d-8233-1ad6b0b0ed05}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PreCompile.h">
@@ -177,6 +192,24 @@
     <ClInclude Include="ZOrder.h">
       <Filter>98_Global\Enum</Filter>
     </ClInclude>
+    <ClInclude Include="Item.h">
+      <Filter>01_Actor\01_Play\Object\Items</Filter>
+    </ClInclude>
+    <ClInclude Include="Warbanner.h">
+      <Filter>01_Actor\01_Play\Object\Items\LevelUpItems</Filter>
+    </ClInclude>
+    <ClInclude Include="MeatNugget.h">
+      <Filter>01_Actor\01_Play\Object\Items\AtkItems</Filter>
+    </ClInclude>
+    <ClInclude Include="BarbedWire.h">
+      <Filter>01_Actor\01_Play\Object\Items\FrameItems</Filter>
+    </ClInclude>
+    <ClInclude Include="RedWhip.h">
+      <Filter>01_Actor\01_Play\Object\Items\BuffItem</Filter>
+    </ClInclude>
+    <ClInclude Include="ItemManager.h">
+      <Filter>01_Actor\01_Play\Object\Items</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PreCompile.cpp">
@@ -286,6 +319,24 @@
     </ClCompile>
     <ClCompile Include="ChestBig.cpp">
       <Filter>01_Actor\01_Play\Object\Boxes</Filter>
+    </ClCompile>
+    <ClCompile Include="Item.cpp">
+      <Filter>01_Actor\01_Play\Object\Items</Filter>
+    </ClCompile>
+    <ClCompile Include="Warbanner.cpp">
+      <Filter>01_Actor\01_Play\Object\Items\LevelUpItems</Filter>
+    </ClCompile>
+    <ClCompile Include="MeatNugget.cpp">
+      <Filter>01_Actor\01_Play\Object\Items\AtkItems</Filter>
+    </ClCompile>
+    <ClCompile Include="BarbedWire.cpp">
+      <Filter>01_Actor\01_Play\Object\Items\FrameItems</Filter>
+    </ClCompile>
+    <ClCompile Include="RedWhip.cpp">
+      <Filter>01_Actor\01_Play\Object\Items\BuffItem</Filter>
+    </ClCompile>
+    <ClCompile Include="ItemManager.cpp">
+      <Filter>01_Actor\01_Play\Object\Items</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

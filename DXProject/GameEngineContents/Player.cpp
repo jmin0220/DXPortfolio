@@ -11,6 +11,7 @@ int Player::Hp_ = 0;
 int Player::MaxHp_ = 0;
 int Player::Gold_ = 0;
 int Player::Exp_ = 0;
+std::vector<Item*> Player::ItemVector_ = {};
 
 Player::Player() 
 	:Renderer_(nullptr)
@@ -715,4 +716,27 @@ void Player::CreateBullet(int _CurFrame, int _LastFrame, BulletType _BulletType,
 	{
 		YposLevel = 0;
 	}
+}
+
+void Player::AddItem(Item * _Item)
+{
+	for (Item* tmpItem : ItemVector_)
+	{
+		// 해당아이템을 이미 습득한 적이 있는경우
+		if (_Item->GetItemName() == tmpItem->GetItemName())
+		{
+			// 카운터를 올리고
+			tmpItem->AddOverlapCounter();
+
+			// 추가로 생성된 아이템을 삭제
+			_Item->Death();
+
+			return;
+		}
+	}
+
+	// 해당 아이템을 습득한 적이 없는 경우에는 ItemVector에 추가
+	ItemVector_.push_back(_Item);
+
+	return;
 }

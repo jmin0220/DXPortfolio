@@ -86,6 +86,10 @@
 #define DIR_EFFECT "Effect"
 #define DIR_OBJECT "Object"
 #define DIR_FONT "Font"
+#define DIR_ITEM "Item"
+#define DIR_ITEMICON "ItemIcon"
+#define DIR_ITEMUSEICON "ItemUseIcon"
+#define DIR_ITEMANIMATION "ItemAnimation"
 
 // 레벨
 #define LEVEL_TITLE "Title"
@@ -226,3 +230,15 @@
 
 // 폰트
 #define FONT_RISKOFRAIN "riskofrainfont"
+
+// 아이템
+#define ITEM_NAME_BARBEDWIRE "BarbedWire.png"
+#define ITEM_NAME_MEATNUGGET "MeatNugget.png"
+#define ITEM_NAME_WARBANNER "Warbanner.png"
+#define ITEM_NAME_REDWHIP "RedWhip.png"
+
+// 아이템 애니메이션
+#define ITEM_ANIMATION_MEATNUGGET_IDLE "MeatNuggetIdle"
+#define ITEM_ANIMATION_MEATNUGGET_JUMP "MeatNuggetJump"
+#define ITEM_ANIMATION_WARBANNER_CREATE "WarbannerCreate"
+#define ITEM_ANIMATION_THORN_EFFECT "ThornEffect"

@@ -166,6 +166,10 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Bandit.h" />
+    <ClInclude Include="BarbedWire.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="Bouncer.h">
       <SubType>
       </SubType>
@@ -239,7 +243,15 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="ItemManager.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="Lemurian.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="MeatNugget.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -258,6 +270,10 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="PreCompile.h" />
+    <ClInclude Include="RedWhip.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="RiskOfRain.h">
       <SubType>
       </SubType>
@@ -291,11 +307,19 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="Warbanner.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="ZOrder.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Bandit.cpp" />
     <ClCompile Include="BanditState.cpp" />
+    <ClCompile Include="BarbedWire.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="Bouncer.cpp">
       <SubType>
       </SubType>
@@ -369,7 +393,15 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="ItemManager.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="Lemurian.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="MeatNugget.cpp">
       <SubType>
       </SubType>
     </ClCompile>
@@ -390,6 +422,10 @@
     <ClCompile Include="PreCompile.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="RedWhip.cpp">
+      <SubType>
+      </SubType>
     </ClCompile>
     <ClCompile Include="RiskOfRain.cpp">
       <SubType>
@@ -421,6 +457,10 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="TutorialUse.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Warbanner.cpp">
       <SubType>
       </SubType>
     </ClCompile>

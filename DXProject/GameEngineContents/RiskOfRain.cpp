@@ -145,6 +145,45 @@ void RiskOfRain::Start()
 		}
 	}
 
+	// 아이템아이콘 로딩
+	{
+		GameEngineDirectory Dir;
+
+		Dir.MoveParentToExitsChildDirectory(DIR_RESOURCE);
+		Dir.Move(DIR_RESOURCE);
+		Dir.Move(DIR_TEXTURE);
+		Dir.Move(DIR_ITEM);
+
+		std::vector<GameEngineDirectory> RecursiveDir = Dir.GetRecursiveAllDirectory();
+
+		for (auto& TmpDir : RecursiveDir)
+		{
+			std::vector<GameEngineFile> Shaders = TmpDir.GetAllFile();
+
+			for (size_t i = 0; i < Shaders.size(); i++)
+			{
+				GameEngineTexture::Load(Shaders[i].GetFullPath());
+			}
+		}
+	}
+
+	// 아이템 애니메이션 로딩
+	{
+		GameEngineDirectory Dir;
+
+		Dir.MoveParentToExitsChildDirectory(DIR_RESOURCE);
+		Dir.Move(DIR_RESOURCE);
+		Dir.Move(DIR_TEXTURE);
+		Dir.Move(DIR_ITEMANIMATION);
+
+		std::vector<GameEngineDirectory> RecursiveDir = Dir.GetRecursiveAllDirectory();
+
+		for (auto& TmpDir : RecursiveDir)
+		{
+			GameEngineFolderTexture::Load(TmpDir.GetFullPath());
+		}
+	}
+
 	// 폰트 로딩
 	{
 		GameEngineDirectory Dir;

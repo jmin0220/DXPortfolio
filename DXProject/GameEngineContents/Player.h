@@ -1,5 +1,6 @@
 #pragma once
 #include <GameEngineCore/GameEngineActor.h>
+#include "Item.h"
 
 enum class BulletType
 {
@@ -66,6 +67,10 @@ public:
 	{
 		JumpSpeed_ = BOUNCER_JUMP_SPEED;
 	}
+
+	static std::vector<Item*> ItemVector_;
+
+	void AddItem(Item* _Item);
 
 protected:
 	void Start() override;
@@ -212,5 +217,6 @@ protected:
 	int CritChance_;
 
 	void CreateBullet(int _CurFrame, int _LastFrame, BulletType _BulletType, float _DmgRatio = 1.0f, float _PiercingLength = 1.0f);
+
 };
 
