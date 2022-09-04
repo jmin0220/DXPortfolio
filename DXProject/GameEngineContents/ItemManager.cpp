@@ -2,7 +2,15 @@
 #include "ItemManager.h"
 #include "Player.h"
 #include "Item.h"
+#include <GameEngineBase/GameEngineRandom.h>
+
+#pragma region ITEMS
 #include "BarbedWire.h"
+#include "MeatNugget.h"
+#include "Warbanner.h"
+#include "RedWhip.h"
+#include "HarvesterScythe.h"
+#pragma endregion
 
 std::vector<Item*> ItemManager::ItemVector_ = {};
 float4 ItemManager::PlayerPos_ = float4::ZERO;
@@ -15,19 +23,47 @@ ItemManager::~ItemManager()
 {
 }
 
-void ItemManager::CreateItem()
+void ItemManager::CreateItem(GameEngineLevel* _Level, float4 _Pos)
 {
-	// TODO::아이템이 무작위로 생성됨
-	Item* tmpItem = GetLevel()->CreateActor<BarbedWire>();
+	// 아이템이 무작위로 생성됨
+	int ItemMaxNum = static_cast<int>(ItemList::End) - 1;
+	// CreateItem(_Level, static_cast<ItemList>(GameEngineRandom::MainRandom.RandomInt(0, ItemMaxNum)), _Pos);
+
+	// TODO::테스트코드
+	CreateItem(_Level, ItemList::HarvesterScythe, _Pos);
+}
+
+void ItemManager::CreateItem(GameEngineLevel* _Level, ItemList _ItemList, float4 _Pos)
+{
+	Item* tmpItem = nullptr;
+
+	// 아이템 생성
+	switch (_ItemList)
+	{
+	case ItemList::BarbedWire:
+		tmpItem = _Level->CreateActor<BarbedWire>();
+		break;
+	case ItemList::RedWhip:
+		tmpItem = _Level->CreateActor<RedWhip>();
+		break;
+	case ItemList::MeatNugget:
+		tmpItem = _Level->CreateActor<MeatNugget>();
+		break;
+	case ItemList::Warbanner:
+		tmpItem = _Level->CreateActor<Warbanner>();
+		break;
+	case ItemList::HarvesterScythe:
+		tmpItem = _Level->CreateActor<HarvesterScythe>();
+		break;
+	case ItemList::End:
+		break;
+	default:
+		break;
+	}
+		
 	tmpItem->Initialize();
-	tmpItem->GetTransform().SetWorldPosition({ 156.0f, -804.0f, static_cast<float>(ZOrder::Item) });
-
-	ItemVector_.push_back(tmpItem);
-
-
-	tmpItem = GetLevel()->CreateActor<BarbedWire>();
-	tmpItem->Initialize();
-	tmpItem->GetTransform().SetWorldPosition({ 256.0f, -804.0f, static_cast<float>(ZOrder::Item) });
+	// 테스트용 포지션
+	tmpItem->GetTransform().SetWorldPosition({ _Pos.x, _Pos.y, static_cast<float>(ZOrder::Item) });
 
 	ItemVector_.push_back(tmpItem);
 }

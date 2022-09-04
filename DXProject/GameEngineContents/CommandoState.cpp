@@ -25,6 +25,8 @@ void Commando::Skill2Update(float _DeltaTime, const StateInfo& _Info)
 
 void Commando::Skill3Update(float _DeltaTime, const StateInfo& _Info)
 {
+	// 구르기는 기본 속도를 기반으로 이동함
+
 	if (MoveDir_.CompareInt3D(float4::LEFT))
 	{
 		if (true == GroundLeftCheck())

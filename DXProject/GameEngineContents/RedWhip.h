@@ -17,6 +17,8 @@ public:
 
 	void Initialize() override;
 
+	void BuffItemUpdate() override;
+
 protected:
 
 private:

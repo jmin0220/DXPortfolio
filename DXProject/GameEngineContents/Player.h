@@ -80,6 +80,7 @@ protected:
 	void KeyInit();
 	virtual void AnimationInit() {};
 	virtual void StateInit() {};
+	void PlayerBuffStatusInit();
 
 	// 키입력 관련 함수
 #pragma region KeyInput
@@ -172,11 +173,6 @@ protected:
 
 	// 난이도 체크용 플레이타임 타이머
 	static float PlayTimeTimer_;
-	
-	// 속도 관련
-	float Speed_;
-	float JumpSpeed_;
-	float FallSpeed_;
 
 	// 애니메이션 프레임간의 시간
 	float FrameAnimDelay_;
@@ -197,17 +193,22 @@ protected:
 	// 스킬창등의 UI
 	HUD* HUD_;
 
-	// 플레이어 스테이터스
-	static int Hp_;
-	static int MaxHp_;
-	float LvPerHp_;
-	float HpRegen_;
-	float LvPerHpRegen_;
+	// 기반이 될 플레이어 스테이터스
+	// 속도 관련
+	float Speed_;
+	float JumpSpeed_;
+	float FallSpeed_;
+
+	static int Hp_;			// 현재 HP
+	static int MaxHp_;		// HP 최대치
+	float LvPerHp_;			// 레벨당 증가할HP
+	float HpRegen_;			// HP 회복률
+	float LvPerHpRegen_;	// 레벨당 증가할 HP회복률
 
 	int Damage_;
 	int LvPerDamage_;
-	float AtkSpeed_;
-	float AtkTimer_;
+	float AtkSpeed_;	// 공격속도
+	float AtkTimer_;	// 공격간의 딜레이 측정용 타이머
 
 	int Lv_;
 	static int Gold_;
@@ -217,6 +218,5 @@ protected:
 	int CritChance_;
 
 	void CreateBullet(int _CurFrame, int _LastFrame, BulletType _BulletType, float _DmgRatio = 1.0f, float _PiercingLength = 1.0f);
-
 };
 

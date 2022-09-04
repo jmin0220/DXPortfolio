@@ -44,3 +44,5 @@
 #include "ObjectGroup.h"
 #include "GameEngineBase/CustomStringSet.h"
 #include "ZOrder.h"
+#include "ItemList.h"
+#include "PlayerStatus.h"

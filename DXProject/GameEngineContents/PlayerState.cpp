@@ -125,7 +125,7 @@ void Player::CommonIdleUpdate()
 void Player::CommonMoveUpdate()
 {
 	// 공격키가 눌리면 스테이트 전환
-	if (true == IsSkill1KeyPress() && AtkTimer_ >= AtkSpeed_)
+	if (true == IsSkill1KeyPress() && AtkTimer_ >= PlayerStatus::AtkSpeed_)
 	{
 		StateManager_.ChangeState(PLAYER_STATE_SKILL1);
 		return;
@@ -164,7 +164,7 @@ void Player::CommonMoveUpdate()
 			return;
 		}
 
-		GetTransform().SetWorldMove(GetTransform().GetLeftVector() * Speed_ * DeltaTime_);
+		GetTransform().SetWorldMove(GetTransform().GetLeftVector() * PlayerStatus::Speed_ * DeltaTime_);
 	}
 	if (true == GameEngineInput::GetInst()->IsPress(PLAYER_KEY_RIGHT))
 	{
@@ -175,7 +175,7 @@ void Player::CommonMoveUpdate()
 			return;
 		}
 
-		GetTransform().SetWorldMove(GetTransform().GetRightVector() * Speed_ * DeltaTime_);
+		GetTransform().SetWorldMove(GetTransform().GetRightVector() * PlayerStatus::Speed_ * DeltaTime_);
 	}
 
 	// Climb
@@ -201,12 +201,12 @@ void Player::CommonMoveUpdate()
 	// 디버그용 키
 	if (true == GameEngineInput::GetInst()->IsPress(PLAYER_KEY_DEBUG_UP))
 	{
-		GetTransform().SetWorldMove(GetTransform().GetUpVector() * Speed_ * DeltaTime_ * 10);
+		GetTransform().SetWorldMove(GetTransform().GetUpVector() * PlayerStatus::Speed_ * DeltaTime_ * 10);
 
 	}
 	if (true == GameEngineInput::GetInst()->IsPress(PLAYER_KEY_DEBUG_DOWN))
 	{
-		GetTransform().SetWorldMove(GetTransform().GetDownVector() * Speed_ * DeltaTime_ * 10);
+		GetTransform().SetWorldMove(GetTransform().GetDownVector() * PlayerStatus::Speed_ * DeltaTime_ * 10);
 	}
 }
 
@@ -235,11 +235,11 @@ void Player::CommonClimbUpdate()
 	// climb상태에서 위아래 조작
 	if (true == IsUpKeyPress())
 	{
-		GetTransform().SetWorldMove(GetTransform().GetUpVector() * Speed_ * DeltaTime_);
+		GetTransform().SetWorldMove(GetTransform().GetUpVector() * PlayerStatus::Speed_ * DeltaTime_);
 	}
 	if (true == IsDownKeyPress())
 	{
-		GetTransform().SetWorldMove(GetTransform().GetDownVector() * Speed_ * DeltaTime_);
+		GetTransform().SetWorldMove(GetTransform().GetDownVector() * PlayerStatus::Speed_ * DeltaTime_);
 	}
 
 	// 밧줄 범위를 벗어나면 Climb상태 -> Idle로 전환

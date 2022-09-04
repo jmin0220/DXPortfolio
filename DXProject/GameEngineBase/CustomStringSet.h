@@ -236,6 +236,7 @@
 #define ITEM_NAME_MEATNUGGET "MeatNugget.png"
 #define ITEM_NAME_WARBANNER "Warbanner.png"
 #define ITEM_NAME_REDWHIP "RedWhip.png"
+#define ITEM_NAME_HARVESTERSCYTHE "HarvesterScythe.png"
 
 // 아이템 애니메이션
 #define ITEM_ANIMATION_MEATNUGGET_IDLE "MeatNuggetIdle"

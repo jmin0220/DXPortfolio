@@ -204,11 +204,20 @@
     <ClInclude Include="BarbedWire.h">
       <Filter>01_Actor\01_Play\Object\Items\FrameItems</Filter>
     </ClInclude>
-    <ClInclude Include="RedWhip.h">
-      <Filter>01_Actor\01_Play\Object\Items\BuffItem</Filter>
-    </ClInclude>
     <ClInclude Include="ItemManager.h">
       <Filter>01_Actor\01_Play\Object\Items</Filter>
+    </ClInclude>
+    <ClInclude Include="ItemList.h">
+      <Filter>98_Global\Enum</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerStatus.h">
+      <Filter>98_Global</Filter>
+    </ClInclude>
+    <ClInclude Include="RedWhip.h">
+      <Filter>01_Actor\01_Play\Object\Items\FrameItems</Filter>
+    </ClInclude>
+    <ClInclude Include="HarvesterScythe.h">
+      <Filter>01_Actor\01_Play\Object\Items\BuffItem</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -332,11 +341,14 @@
     <ClCompile Include="BarbedWire.cpp">
       <Filter>01_Actor\01_Play\Object\Items\FrameItems</Filter>
     </ClCompile>
-    <ClCompile Include="RedWhip.cpp">
-      <Filter>01_Actor\01_Play\Object\Items\BuffItem</Filter>
-    </ClCompile>
     <ClCompile Include="ItemManager.cpp">
       <Filter>01_Actor\01_Play\Object\Items</Filter>
+    </ClCompile>
+    <ClCompile Include="RedWhip.cpp">
+      <Filter>01_Actor\01_Play\Object\Items\FrameItems</Filter>
+    </ClCompile>
+    <ClCompile Include="HarvesterScythe.cpp">
+      <Filter>01_Actor\01_Play\Object\Items\BuffItem</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

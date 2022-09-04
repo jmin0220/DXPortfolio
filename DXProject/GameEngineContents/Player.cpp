@@ -42,6 +42,8 @@ void Player::Start()
 	AnimationInit();
 	// 스테이트 초기화
 	StateInit();
+	// 최종적으로 적용될 스테이터스의 초기화
+	PlayerBuffStatusInit();
 
 	// 애니메이션 관련
 	HUD_ = GetLevel()->CreateActor<HUD>();
@@ -98,6 +100,21 @@ void Player::KeyInit()
 		GameEngineInput::GetInst()->CreateKey(PLAYER_KEY_DEBUG_UP, 'W');
 		GameEngineInput::GetInst()->CreateKey(PLAYER_KEY_DEBUG_DOWN, 'S');
 	}
+}
+
+void Player::PlayerBuffStatusInit()
+{
+	PlayerStatus::Speed_ = this->Speed_;
+	PlayerStatus::AtkSpeed_ = this->AtkSpeed_;
+	PlayerStatus::Damage_ = this->Damage_;
+	PlayerStatus::Hp_ = this->Hp_;
+	PlayerStatus::CritChance_ = this->CritChance_;
+
+	PlayerStatus::BaseSpeed_ = this->Speed_;
+	PlayerStatus::BaseAtkSpeed_ = this->AtkSpeed_;
+	PlayerStatus::BaseDamage_ = this->Damage_;
+	PlayerStatus::BaseHp_ = this->Hp_;
+	PlayerStatus::BaseCritChance_ = this->CritChance_;
 }
 
 
@@ -513,7 +530,6 @@ void Player::GroundFallCheck()
 	}
 }
 
-// TODO::캐릭터들의 피봇이 결정되면 충돌판정의 위치도 함께 수정될 것.
 // 캐릭터 오른쪽 맵 충돌 체크
 bool Player::GroundRightCheck()
 {
@@ -665,7 +681,7 @@ void Player::CreateBullet(int _CurFrame, int _LastFrame, BulletType _BulletType,
 	static int YposLevel = 0;
 
 	int tmp = GameEngineRandom::MainRandom.RandomInt(Lv_ * 0, Lv_ * 3);
-	int TrueDmg = (Damage_ + tmp) * _DmgRatio;
+	int TrueDmg = (PlayerStatus::Damage_ + tmp) * _DmgRatio;
 
 	switch (_BulletType)
 	{
@@ -674,7 +690,7 @@ void Player::CreateBullet(int _CurFrame, int _LastFrame, BulletType _BulletType,
 		Bullet* bullet = GetLevel()->CreateActor<Bullet>();
 
 		// 크리티컬 찬스
-		if (CritChance_ >= GameEngineRandom::MainRandom.RandomInt(0, 100))
+		if (PlayerStatus::CritChance_ >= GameEngineRandom::MainRandom.RandomInt(0, 100))
 		{
 			bullet->SetCritFlgTrue();
 			TrueDmg *= 1.5f;
@@ -691,7 +707,7 @@ void Player::CreateBullet(int _CurFrame, int _LastFrame, BulletType _BulletType,
 		PiercingBullet* piercingbullet = GetLevel()->CreateActor<PiercingBullet>();
 
 		// 크리티컬 찬스
-		if (CritChance_ >= GameEngineRandom::MainRandom.RandomInt(0, 100))
+		if (PlayerStatus::CritChance_ >= GameEngineRandom::MainRandom.RandomInt(0, 100))
 		{
 			piercingbullet->SetCritFlgTrue();
 			TrueDmg *= 1.5f;
@@ -720,6 +736,8 @@ void Player::CreateBullet(int _CurFrame, int _LastFrame, BulletType _BulletType,
 
 void Player::AddItem(Item * _Item)
 {
+	bool OverlapFlg = false;
+
 	for (Item* tmpItem : ItemVector_)
 	{
 		// 해당아이템을 이미 습득한 적이 있는경우
@@ -727,16 +745,23 @@ void Player::AddItem(Item * _Item)
 		{
 			// 카운터를 올리고
 			tmpItem->AddOverlapCounter();
-
+			OverlapFlg = true;
 			// 추가로 생성된 아이템을 삭제
 			_Item->Death(3.0f);
-
-			return;
 		}
 	}
 
-	// 해당 아이템을 습득한 적이 없는 경우에는 ItemVector에 추가
-	ItemVector_.push_back(_Item);
+	if (false == OverlapFlg)
+	{
+		// 해당 아이템을 습득한 적이 없는 경우에는 ItemVector에 추가
+		ItemVector_.push_back(_Item);
+	}
+
+	// 버프 아이템은 습득하자마자 업데이트를 진행함
+	for (Item* tmpItem : ItemVector_)
+	{
+		tmpItem->BuffItemUpdate();
+	}
 
 	return;
 }

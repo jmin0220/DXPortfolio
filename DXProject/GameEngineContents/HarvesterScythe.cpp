@@ -1,33 +1,39 @@
 #include "PreCompile.h"
-#include "Warbanner.h"
+#include "HarvesterScythe.h"
 
-Warbanner::Warbanner() 
+HarvesterScythe::HarvesterScythe() 
 {
 }
 
-Warbanner::~Warbanner() 
+HarvesterScythe::~HarvesterScythe() 
 {
 }
 
-void Warbanner::Initialize()
+void HarvesterScythe::Initialize()
 {
-	ItemType_ = ItemType::LevelUpItem;
+	ItemType_ = ItemType::FrameItem;
 
 	Renderer_ = CreateComponent<GameEngineTextureRenderer>();
 	Renderer_->SetSamplingModePoint();
-	Renderer_->SetTexture(ITEM_NAME_WARBANNER);
+	Renderer_->SetTexture(ITEM_NAME_HARVESTERSCYTHE);
 	Renderer_->SetPivot(PIVOTMODE::CENTER);
 	Renderer_->ScaleToTexture();
 
 	ItemNameRenderer_ = CreateComponent<GameEngineFontRenderer>();
-	ItemNameRenderer_->SetText("Warbanner", FONT_RISKOFRAIN);
+	ItemNameRenderer_->SetText("Harvester's Scythe", FONT_RISKOFRAIN);
 	ItemNameRenderer_->SetLeftAndRightSort(LeftAndRightSort::CENTER);
 	ItemNameRenderer_->SetSize(25.0f);
 	ItemNameRenderer_->Off();
 
 	PickUpRenderer_ = CreateComponent<GameEngineFontRenderer>();
-	PickUpRenderer_->SetText("Drop a Warbanner on leveling up, giving you great strength.", FONT_RISKOFRAIN);
+	PickUpRenderer_->SetText("Critical hits heal you.", FONT_RISKOFRAIN);
 	PickUpRenderer_->SetLeftAndRightSort(LeftAndRightSort::CENTER);
 	PickUpRenderer_->SetSize(15.0f);
 	PickUpRenderer_->Off();
+}
+
+void HarvesterScythe::BuffItemUpdate()
+{
+	// 5%의 추가 찬스를 얻음
+	PlayerStatus_.CritChance_ += 5;
 }

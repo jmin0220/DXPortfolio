@@ -1,5 +1,6 @@
 #pragma once
 
+
 // Ό³Έν :
 class Item;
 class ItemManager : public GameEngineActor
@@ -17,7 +18,9 @@ public:
 
 	static std::vector<Item*> ItemVector_;
 
-	void CreateItem();
+	static void CreateItem(GameEngineLevel* _Level, float4 _Pos);
+
+	static void CreateItem(GameEngineLevel* _Level, ItemList _ItemList, float4 _Pos);
 
 	static inline void SetPlayerPos(float4 _Pos)
 	{

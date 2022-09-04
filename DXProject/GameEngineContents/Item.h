@@ -24,7 +24,6 @@ public:
 
 	void SetItemRootingFlgTrue();
 
-	// 
 	inline void AddOverlapCounter()
 	{
 		OverlapCounter_ ++;
@@ -42,6 +41,14 @@ public:
 
 	virtual void Initialize() {};
 
+	// 각 아이템마다 필요한 업데이트만을 상속받아서
+	// 자신의 업데이트를 실행시킴
+	// 내가 없는 업데이트라면 아무것도 하지 않고 종료
+	virtual void FrameItemUpdate() { return; };
+	virtual void AtkItemUpdate() { return; };
+	virtual void LevelUpItemUpdate() { return; };
+	virtual void BuffItemUpdate() { return; };
+
 protected:
 	void Start() override;
 	void Update(float _DeltaTime) override;
@@ -51,6 +58,8 @@ protected:
 	GameEngineTextureRenderer* Renderer_;
 	GameEngineFontRenderer* ItemNameRenderer_;
 	GameEngineFontRenderer* PickUpRenderer_;
+
+	PlayerStatus PlayerStatus_;
 
 private:
 	// 아이템 이름
