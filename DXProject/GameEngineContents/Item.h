@@ -62,5 +62,8 @@ private:
 	int OverlapCounter_;
 
 	float4 PlayerPos_;
+
+	float PosYTimer_;
+	float PosY_;
 };
 

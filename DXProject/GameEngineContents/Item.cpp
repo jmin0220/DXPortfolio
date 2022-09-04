@@ -5,6 +5,8 @@
 Item::Item()
 	: ItemRootingFlg_(false)
 	, RootingEffectEndFlg_(false)
+	, PosYTimer_(0.0f)
+	, PosY_(0.0f)
 {
 }
 
@@ -21,27 +23,24 @@ void Item::Update(float _DeltaTime)
 {
 	if (false == RootingEffectEndFlg_ && true == ItemRootingFlg_)
 	{
-		static float PosYTimer = 0.0f;
-		PosYTimer += _DeltaTime;
+		PosYTimer_ += _DeltaTime;
 
-		static float PosY = 0.0f;
-
-		if (PosYTimer >= 0.3f)
+		if (PosYTimer_ >= 0.3f)
 		{
-			PosY -= 5.0f;
-			PosYTimer = 0.0f;
+			PosY_ -= 5.0f;
+			PosYTimer_ = 0.0f;
 		}
 
 		float4 thisPos = this->GetTransform().GetWorldPosition();
 		float4 MainCameraPos = GetLevel()->GetMainCameraActorTransform().GetWorldPosition();
 
 		ItemNameRenderer_->SetScreenPostion({ thisPos.x - MainCameraPos.x + GameEngineWindow::GetScale().x / 2
-									  , -(thisPos.y - MainCameraPos.y - GameEngineWindow::GetScale().y / 2) - 20.0f + PosY });
+									  , -(thisPos.y - MainCameraPos.y - GameEngineWindow::GetScale().y / 2) - 20.0f + PosY_ });
 
 		PickUpRenderer_->SetScreenPostion({ thisPos.x - MainCameraPos.x + GameEngineWindow::GetScale().x / 2
-									  , -(thisPos.y - MainCameraPos.y - GameEngineWindow::GetScale().y / 2) + 10.0f + PosY });
+									  , -(thisPos.y - MainCameraPos.y - GameEngineWindow::GetScale().y / 2) + 10.0f + PosY_ });
 
-		if (PosY <= -50.0f)
+		if (PosY_ <= -50.0f)
 		{
 			ItemNameRenderer_->Off();
 			PickUpRenderer_->Off();

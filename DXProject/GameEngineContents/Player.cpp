@@ -729,7 +729,7 @@ void Player::AddItem(Item * _Item)
 			tmpItem->AddOverlapCounter();
 
 			// 추가로 생성된 아이템을 삭제
-			_Item->Death();
+			_Item->Death(3.0f);
 
 			return;
 		}

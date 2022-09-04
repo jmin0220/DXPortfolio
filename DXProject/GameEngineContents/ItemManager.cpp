@@ -23,6 +23,13 @@ void ItemManager::CreateItem()
 	tmpItem->GetTransform().SetWorldPosition({ 156.0f, -804.0f, static_cast<float>(ZOrder::Item) });
 
 	ItemVector_.push_back(tmpItem);
+
+
+	tmpItem = GetLevel()->CreateActor<BarbedWire>();
+	tmpItem->Initialize();
+	tmpItem->GetTransform().SetWorldPosition({ 256.0f, -804.0f, static_cast<float>(ZOrder::Item) });
+
+	ItemVector_.push_back(tmpItem);
 }
 
 void ItemManager::Start()
