@@ -42,15 +42,14 @@ GameEngineCollision::~GameEngineCollision()
 
 void GameEngineCollision::Start()
 {
-	DebugRenderCamera = GameEngineCore::GetCurLevel()->GetMainCamera();
+	DebugCameraOrder = CAMERAORDER::MAINCAMERA;
 
 	GetActor()->GetLevel()->PushCollision(this, GetOrder());
 }
 
 void GameEngineCollision::SetUIDebugCamera()
 {
-	// UI와 Main카메라는 엔진에서 지원해주는 기능이기 때문에 이런식으로 엔진수준에서 편의함수를 제공할 수 있다.
-	DebugRenderCamera = GameEngineCore::GetCurLevel()->GetUICamera();
+	DebugCameraOrder = CAMERAORDER::UICAMERA;
 }
 
 void GameEngineCollision::ChangeOrder(int _Order)
@@ -108,6 +107,8 @@ bool GameEngineCollision::IsCollision(CollisionType _ThisType, int _GroupOrder
 
 void GameEngineCollision::DebugRender()
 {
+	GameEngineCamera* DebugRenderCamera = GetActor()->GetLevel()->Cameras[static_cast<UINT>(DebugCameraOrder)];
+
 	switch (DebugType)
 	{
 	case CollisionType::CT_POINT2D:

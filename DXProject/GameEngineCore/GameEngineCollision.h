@@ -54,16 +54,16 @@ public:
 
 	void SetUIDebugCamera();
 
-	void SetDebugCamera(GameEngineCamera* _DebugRenderCamera)
+	void SetDebugCamera(CAMERAORDER _Order)
 	{
-		DebugRenderCamera = _DebugRenderCamera;
+		DebugCameraOrder = _Order;
 	}
 
 protected:
 
 private:
-	GameEngineCamera* DebugRenderCamera;
 
+	CAMERAORDER DebugCameraOrder;
 	CollisionType DebugType;
 	float4 Color;
 
