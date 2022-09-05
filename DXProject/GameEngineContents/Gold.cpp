@@ -58,20 +58,6 @@ void Gold::Update(float _DeltaTime)
 			return;
 		}
 	}
-
-	FlyDir_ = PlayerPos_ - this->GetTransform().GetWorldPosition();
-
-	// 오브젝트가 충분히 근접함
-	if (FlyDir_.Length() <= 13)
-	{
-		// 플레이어에 골드 추가
-		Player::AddGold(GoldValue_);
-
-		// 오브젝트 삭제
-		this->Death();
-
-		return;
-	}
 }
 
 void Gold::GroundFallCheck(float _DeltaTime)
@@ -98,7 +84,7 @@ void Gold::GroundFallCheck(float _DeltaTime)
 		}
 
 		GetTransform().SetWorldMove(GetTransform().GetDownVector()* PopSpeed_* _DeltaTime);
-		GetTransform().SetWorldMove(flyDir_ * _DeltaTime);
+		GetTransform().SetWorldMove(FlyDir_ * _DeltaTime);
 	}
 	else
 	{

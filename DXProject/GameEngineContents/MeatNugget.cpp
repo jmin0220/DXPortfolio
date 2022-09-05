@@ -1,5 +1,7 @@
 #include "PreCompile.h"
 #include "MeatNugget.h"
+#include "MiniNugget.h"
+#include <GameEngineBase/GameEngineRandom.h>
 
 MeatNugget::MeatNugget() 
 {
@@ -11,7 +13,6 @@ MeatNugget::~MeatNugget()
 
 void MeatNugget::Initialize()
 {
-	ItemType_ = ItemType::AtkItem;
 	ItemName_ = "MeatNugget";
 
 	Renderer_ = CreateComponent<GameEngineTextureRenderer>();
@@ -31,4 +32,13 @@ void MeatNugget::Initialize()
 	PickUpRenderer_->SetLeftAndRightSort(LeftAndRightSort::CENTER);
 	PickUpRenderer_->SetSize(15.0f);
 	PickUpRenderer_->Off();
+}
+
+void MeatNugget::BulletItemUpdate(float4 _BulletPos)
+{
+	if (GameEngineRandom::MainRandom.RandomInt(0, 99) < 8)
+	{
+		MiniNugget* temp = GetLevel()->CreateActor<MiniNugget>();
+		temp->GetTransform().SetWorldPosition(_BulletPos);
+	}
 }

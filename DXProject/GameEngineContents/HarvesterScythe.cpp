@@ -11,7 +11,6 @@ HarvesterScythe::~HarvesterScythe()
 
 void HarvesterScythe::Initialize()
 {
-	ItemType_ = ItemType::FrameItem;
 	ItemName_ = "HarvesterScythe";
 
 	Renderer_ = CreateComponent<GameEngineTextureRenderer>();

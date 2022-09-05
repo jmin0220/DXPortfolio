@@ -43,6 +43,11 @@ public:
 		Exp_ += _Exp;
 	}
 
+	static inline void AddNowHp(int _Hp)
+	{
+		Hp_ += _Hp;
+	}
+
 	static inline int GetPlayerHp()
 	{
 		return Hp_;

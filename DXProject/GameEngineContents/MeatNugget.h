@@ -18,8 +18,8 @@ public:
 	void Initialize() override;
 
 protected:
+	void BulletItemUpdate(float4 _BulletPos) override;
 
 private:
-
 };
 

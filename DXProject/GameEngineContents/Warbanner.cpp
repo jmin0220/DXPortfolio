@@ -11,7 +11,6 @@ Warbanner::~Warbanner()
 
 void Warbanner::Initialize()
 {
-	ItemType_ = ItemType::LevelUpItem;
 	ItemName_ = "Warbanner";
 
 	Renderer_ = CreateComponent<GameEngineTextureRenderer>();

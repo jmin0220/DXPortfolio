@@ -8,6 +8,7 @@ float4 Drops::PlayerPos_ = float4::ZERO;
 
 Drops::Drops() 
 	: PlayerChaseTimer_(0.0f)
+	, FlyDir_(float4::ZERO)
 {
 }
 

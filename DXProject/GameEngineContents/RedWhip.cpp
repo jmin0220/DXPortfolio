@@ -11,7 +11,6 @@ RedWhip::~RedWhip()
 
 void RedWhip::Initialize()
 {
-	ItemType_ = ItemType::FrameItem;
 	ItemName_ = "RedWhip";
 
 	Renderer_ = CreateComponent<GameEngineTextureRenderer>();

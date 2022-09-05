@@ -82,7 +82,7 @@ void Stage1Level::LevelStartEvent()
 	// 플레이어에게 충돌맵 설정
 	Player_->SetColMapInfo(StageActor_->GetColStage()->GetCurTexture());
 	MonsterManager_->SetColMapInfo(StageActor_->GetColStage()->GetCurTexture());
-	Gold::SetColMap(StageActor_->GetColStage()->GetCurTexture());
+	Drops::SetColMap(StageActor_->GetColStage()->GetCurTexture());
 
 	// Bouncer생성
 	CreateActor<Bouncer>();

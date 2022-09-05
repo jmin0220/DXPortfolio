@@ -82,6 +82,12 @@
     <Filter Include="01_Actor\01_Play\Object\Items\BuffItem">
       <UniqueIdentifier>{c578834c-ef32-4c4d-8233-1ad6b0b0ed05}</UniqueIdentifier>
     </Filter>
+    <Filter Include="01_Actor\01_Play\Object\Items\BulletItem">
+      <UniqueIdentifier>{25051d4d-50dd-4c53-aab0-8b3999d9b0b0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01_Actor\01_Play\Object\Items\BulletItem\MeatNugget">
+      <UniqueIdentifier>{1876e055-2fbe-474c-8012-4212440f64f1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PreCompile.h">
@@ -198,9 +204,6 @@
     <ClInclude Include="Warbanner.h">
       <Filter>01_Actor\01_Play\Object\Items\LevelUpItems</Filter>
     </ClInclude>
-    <ClInclude Include="MeatNugget.h">
-      <Filter>01_Actor\01_Play\Object\Items\AtkItems</Filter>
-    </ClInclude>
     <ClInclude Include="BarbedWire.h">
       <Filter>01_Actor\01_Play\Object\Items\FrameItems</Filter>
     </ClInclude>
@@ -221,6 +224,12 @@
     </ClInclude>
     <ClInclude Include="ChestLongSet.h">
       <Filter>01_Actor\01_Play\Object\Boxes</Filter>
+    </ClInclude>
+    <ClInclude Include="MeatNugget.h">
+      <Filter>01_Actor\01_Play\Object\Items\BulletItem\MeatNugget</Filter>
+    </ClInclude>
+    <ClInclude Include="MiniNugget.h">
+      <Filter>01_Actor\01_Play\Object\Items\BulletItem\MeatNugget</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -338,9 +347,6 @@
     <ClCompile Include="Warbanner.cpp">
       <Filter>01_Actor\01_Play\Object\Items\LevelUpItems</Filter>
     </ClCompile>
-    <ClCompile Include="MeatNugget.cpp">
-      <Filter>01_Actor\01_Play\Object\Items\AtkItems</Filter>
-    </ClCompile>
     <ClCompile Include="BarbedWire.cpp">
       <Filter>01_Actor\01_Play\Object\Items\FrameItems</Filter>
     </ClCompile>
@@ -357,5 +363,11 @@
       <Filter>01_Actor\01_Play\Object\Boxes</Filter>
     </ClCompile>
     <ClCompile Include="PlayerStatus.cpp" />
+    <ClCompile Include="MeatNugget.cpp">
+      <Filter>01_Actor\01_Play\Object\Items\BulletItem\MeatNugget</Filter>
+    </ClCompile>
+    <ClCompile Include="MiniNugget.cpp">
+      <Filter>01_Actor\01_Play\Object\Items\BulletItem\MeatNugget</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

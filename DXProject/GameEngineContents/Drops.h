@@ -20,9 +20,17 @@ public:
 		PlayerPos_ = _Pos;
 	}
 
+	static inline void SetColMap(GameEngineTexture* _ColMap)
+	{
+		ColMap_ = _ColMap;
+	}
+
 	static void CreateCoinsAndExp(int _GoldValue, int _ExpValue, float4 _Pos, GameEngineLevel* _Level);
 
 protected:
+	// 추락 판정용 맵정보
+	static GameEngineTexture* ColMap_;
+
 	void Start() override {};
 	void Update(float _DeltaTime) override {};
 
@@ -30,6 +38,7 @@ protected:
 
 	float PlayerChaseTimer_;
 
+	// 등장한 뒤 날아갈 방향
 	float4 FlyDir_;
 
 	static float4 PlayerPos_;

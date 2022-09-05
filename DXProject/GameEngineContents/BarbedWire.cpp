@@ -11,7 +11,6 @@ BarbedWire::~BarbedWire()
 
 void BarbedWire::Initialize()
 {
-	ItemType_ = ItemType::FrameItem;
 	ItemName_ = "BarbedWire";
 
 	Renderer_ = CreateComponent<GameEngineTextureRenderer>();

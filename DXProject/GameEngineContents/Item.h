@@ -1,13 +1,5 @@
 #pragma once
 
-enum class ItemType
-{
-	FrameItem,		// 매 프레임마다 동작해야 하는 아이템
-	AtkItem,		// 공격할때만 동작해야 하는 아이템
-	LevelUpItem,	// 레벨업할때만 동작해야 하는 아이템
-	BuffItem,		// 스테이터스 버프 아이템
-};
-
 // 설명 :
 class Item : public GameEngineActor
 {
@@ -51,16 +43,15 @@ public:
 	// 각 아이템마다 필요한 업데이트만을 상속받아서
 	// 자신의 업데이트를 실행시킴
 	// 내가 없는 업데이트라면 아무것도 하지 않고 종료
-	virtual void FrameItemUpdate() { return; };
-	virtual void AtkItemUpdate() { return; };
-	virtual void LevelUpItemUpdate() { return; };
-	virtual void BuffItemUpdate() { return; };
+	virtual void FrameItemUpdate() { return; };		// 매 프레임마다 실행되어야할 아이템
+	virtual void AtkItemUpdate() { return; };		// 공격을 하는 순간에 실행
+	virtual void BulletItemUpdate(float4 _BulletPos) { return; };	// 총알이 몬스터에 부딪히는 순간에 실행
+	virtual void LevelUpItemUpdate() { return; };	// 레벨업하는 순간에 실행
+	virtual void BuffItemUpdate() { return; };		// 아이템을 습득하는 순간에 실행
 
 protected:
 	void Start() override;
 	void Update(float _DeltaTime) override;
-
-	ItemType ItemType_;
 
 	GameEngineTextureRenderer* Renderer_;
 	GameEngineFontRenderer* ItemNameRenderer_;

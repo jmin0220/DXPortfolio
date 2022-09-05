@@ -3,6 +3,7 @@
 #include "Monster.h"
 #include "ContentsFont.h"
 #include <algorithm>
+#include "Player.h"
 
 PiercingBullet::PiercingBullet() 
 {
@@ -41,6 +42,14 @@ bool PiercingBullet::CollisionCheck(GameEngineCollision* _This, GameEngineCollis
 	Monster* TmpMonster = dynamic_cast<Monster*>(_Other->GetActor());
 	TmpMonster->HitFunction(Damage_);
 	TmpMonster->ChangeStateToHitted();
+	
+	CreateHitEffect();
+
+	// 총알 아이템 업데이트
+	for (Item* tmpItem : Player::ItemVector_)
+	{
+		tmpItem->BulletItemUpdate(this->GetTransform().GetWorldPosition());
+	}
 
 	// 데미지 폰트 출력
 	DamageFont_ = GetLevel()->CreateActor<ContentsFont>();
@@ -57,6 +66,7 @@ bool PiercingBullet::CollisionCheck(GameEngineCollision* _This, GameEngineCollis
 	DamageFont_->SetIsBulletDmg(true);
 
 	DamageFont_->SetDeathTimer(1.0f);
+
 
 	return false;
 }

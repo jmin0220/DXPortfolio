@@ -30,7 +30,7 @@ void ItemManager::CreateItem(GameEngineLevel* _Level, float4 _Pos)
 	// CreateItem(_Level, static_cast<ItemList>(GameEngineRandom::MainRandom.RandomInt(0, ItemMaxNum)), _Pos);
 
 	// TODO::테스트코드
-	CreateItem(_Level, ItemList::HarvesterScythe, _Pos);
+	CreateItem(_Level, ItemList::MeatNugget, _Pos);
 	CreateItem(_Level, ItemList::BarbedWire, { _Pos.x + 100.0f, _Pos.y });
 }
 

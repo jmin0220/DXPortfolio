@@ -2,6 +2,7 @@
 #include "Bullet.h"
 #include "Monster.h"
 #include "ContentsFont.h"
+#include "Player.h"
 
 Bullet::Bullet() 
 	: Collision_(nullptr)
@@ -59,6 +60,12 @@ bool Bullet::CollisionCheck(GameEngineCollision* _This, GameEngineCollision* _Ot
 	Monster* TmpMonster = dynamic_cast<Monster*>(_Other->GetActor());
 	TmpMonster->HitFunction(Damage_);
 	TmpMonster->ChangeStateToHitted();
+
+	// 총알 아이템 업데이트
+	for (Item* tmpItem : Player::ItemVector_)
+	{
+		tmpItem->BulletItemUpdate(this->GetTransform().GetWorldPosition());
+	}
 
 	// 데미지 폰트 출력
 	DamageFont_ = GetLevel()->CreateActor<ContentsFont>();
