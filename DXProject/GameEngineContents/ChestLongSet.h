@@ -1,7 +1,7 @@
 #pragma once
+#include "ChestLong.h"
 
 // Ό³Έν :
-class ChestLong;
 class ChestLongSet : public GameEngineActor
 {
 public:
@@ -15,13 +15,15 @@ public:
 	ChestLongSet& operator=(const ChestLongSet& _Other) = delete;
 	ChestLongSet& operator=(ChestLongSet&& _Other) noexcept = delete;
 
+	void CreateChestLongSet(float4 _Pos);
+
 protected:
 	void Start();
 	void Update(float _DeltaTime);
 
-	ChestLong* ChestLong[3];
+	ChestLong* ChestLong_[3];
 
 private:
-
+	bool SomethingOpendFlg_;
 };
 

@@ -15,7 +15,15 @@ public:
 	ChestLong& operator=(const ChestLong& _Other) = delete;
 	ChestLong& operator=(ChestLong&& _Other) noexcept = delete;
 
+	// 구매시 아이템을 생성할 enum
+	ItemList GetItem()
+	{
+		return ItemList_;
+	}
+
 protected:
+	void Update(float _DeltaTime) override;
+
 	void Initialize() override;
 
 	inline void ChangeOpenAnim() override
@@ -27,6 +35,10 @@ protected:
 	}
 
 private:
+	void WaveAnimItemRenderer(float _DeltaTime);		// 아이템이 위아래로 일렁이는 애니메이션
+	bool CollisionFunc(GameEngineCollision* _This, GameEngineCollision* _Other);
 
+	GameEngineTextureRenderer* ShowItemRenderer_;
+	ItemList ItemList_;
 };
 

@@ -29,6 +29,11 @@ public:
 	ChestParent& operator=(const ChestParent& _Other) = delete;
 	ChestParent& operator=(ChestParent&& _Other) noexcept = delete;
 
+	bool GetIsOpen()
+	{
+		return IsOpen_;
+	}
+
 protected:
 	void Start() override;
 	void Update(float _DeltaTime) override;
@@ -45,9 +50,12 @@ protected:
 	int GoldValue_;
 	int ExpValue_;
 
+	// Chest의 종류에 따른 y포지션 가중치
+	float FontYPosWeighted;
+
 	bool IsOpen_;
 
-private:
 	bool CollisionCheckPlayer(GameEngineCollision* _This, GameEngineCollision* _Other);
+private:
 };
 

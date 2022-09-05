@@ -13,7 +13,7 @@
 #include "Tutorial.h"
 #include "ChestNormal.h"
 #include "ChestBig.h"
-#include "ChestLong.h"
+#include "ChestLongSet.h"
 #include "ItemManager.h"
 
 Stage1Level::Stage1Level() 
@@ -87,11 +87,11 @@ void Stage1Level::LevelStartEvent()
 	// Bouncer생성
 	CreateActor<Bouncer>();
 	// TODO::테스트코드
-	ChestNormal* TmpChestNormal = CreateActor<ChestNormal>();
-	TmpChestNormal->GetTransform().SetWorldPosition({ 106.0f, -864.0f, static_cast<float>(ZOrder::Chest) });
-	ChestBig* TmpChestBig = CreateActor<ChestBig>();
-	TmpChestBig->GetTransform().SetWorldPosition({ 50.0f, -864.0f, static_cast<float>(ZOrder::Chest) });
-	ChestLong* TmpChestLong = CreateActor<ChestLong>();
-	TmpChestLong->GetTransform().SetWorldPosition({ 150.0f, -864.0f, static_cast<float>(ZOrder::Chest) });
+	//ChestNormal* TmpChestNormal = CreateActor<ChestNormal>();
+	//TmpChestNormal->GetTransform().SetWorldPosition({ 106.0f, -864.0f, static_cast<float>(ZOrder::Chest) });
+	//ChestBig* TmpChestBig = CreateActor<ChestBig>();
+	//TmpChestBig->GetTransform().SetWorldPosition({ 50.0f, -864.0f, static_cast<float>(ZOrder::Chest) });
+	ChestLongSet* TmpChestLongSet = CreateActor<ChestLongSet>();
+	TmpChestLongSet->CreateChestLongSet({ 350.0f, -864.0f, static_cast<float>(ZOrder::Chest) });
 	ItemManager_->CreateItem(this, { 156.0f, -804.0f });
 }

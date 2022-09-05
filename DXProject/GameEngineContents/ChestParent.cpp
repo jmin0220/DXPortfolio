@@ -7,6 +7,7 @@ ChestParent::ChestParent()
 	, GoldValue_(1)
 	, ExpValue_(1)
 	, IsOpen_(false)
+	, FontYPosWeighted(0.0f)
 {
 }
 
@@ -48,7 +49,7 @@ bool ChestParent::CollisionCheckPlayer(GameEngineCollision* _This, GameEngineCol
 		FontRenderer_->On();
 		// 월드포지션을 스크린포지션으로 전환하여 FontRenderer에 적용
 		FontRenderer_->SetScreenPostion({ thisPos.x - MainCameraPos.x + GameEngineWindow::GetScale().x / 2
-									  , -(thisPos.y - MainCameraPos.y - GameEngineWindow::GetScale().y / 2) - 75.0f });
+									  , -(thisPos.y - MainCameraPos.y - GameEngineWindow::GetScale().y / 2 - FontYPosWeighted) - 75.0f });
 
 	}
 
