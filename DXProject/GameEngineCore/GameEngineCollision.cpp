@@ -1,13 +1,14 @@
 #include "PreCompile.h"
 #include "GameEngineCollision.h"
 #include "GameEngineCoreDebug.h"
+#include "GameEngineCore.h"
 
 bool (*GameEngineCollision::CollisionFunction[static_cast<int>(CollisionType::CT_MAX)][static_cast<int>(CollisionType::CT_MAX)])(const GameEngineTransform& _Left, const GameEngineTransform& _Right);
 
 class GameEngineCollisionFunctionInit
 {
 public:
-	GameEngineCollisionFunctionInit() 
+	GameEngineCollisionFunctionInit()
 	{
 		memset(GameEngineCollision::CollisionFunction, 0, sizeof(GameEngineCollision::CollisionFunction));
 
@@ -20,7 +21,7 @@ public:
 		GameEngineCollision::CollisionFunction[static_cast<int>(CollisionType::CT_OBB2D)][static_cast<int>(CollisionType::CT_OBB2D)] = &GameEngineTransform::OBB2DToOBB2D;
 	}
 
-	~GameEngineCollisionFunctionInit() 
+	~GameEngineCollisionFunctionInit()
 	{
 
 	}
@@ -28,20 +29,28 @@ public:
 
 GameEngineCollisionFunctionInit Inst;
 
-GameEngineCollision::GameEngineCollision() 
+GameEngineCollision::GameEngineCollision()
 	: DebugType(CollisionType::CT_SPHERE)
 	, Color(1.0f, 0.0f, 0.0f, 0.5f)
 {
 }
 
-GameEngineCollision::~GameEngineCollision() 
+GameEngineCollision::~GameEngineCollision()
 {
 }
 
 
 void GameEngineCollision::Start()
 {
+	DebugRenderCamera = GameEngineCore::GetCurLevel()->GetMainCamera();
+
 	GetActor()->GetLevel()->PushCollision(this, GetOrder());
+}
+
+void GameEngineCollision::SetUIDebugCamera()
+{
+	// UI와 Main카메라는 엔진에서 지원해주는 기능이기 때문에 이런식으로 엔진수준에서 편의함수를 제공할 수 있다.
+	DebugRenderCamera = GameEngineCore::GetCurLevel()->GetUICamera();
 }
 
 void GameEngineCollision::ChangeOrder(int _Order)
@@ -104,24 +113,24 @@ void GameEngineCollision::DebugRender()
 	case CollisionType::CT_POINT2D:
 		break;
 	case CollisionType::CT_SPHERE2D:
-		GameEngineDebug::DrawSphere(GetTransform(), Color);
+		GameEngineDebug::DrawSphere(GetTransform(), DebugRenderCamera, Color);
 		break;
 	case CollisionType::CT_AABB2D:
-		GameEngineDebug::DrawBox(GetTransform(), Color);
+		GameEngineDebug::DrawBox(GetTransform(), DebugRenderCamera, Color);
 		break;
 	case CollisionType::CT_OBB2D:
-		GameEngineDebug::DrawBox(GetTransform(), Color);
+		GameEngineDebug::DrawBox(GetTransform(), DebugRenderCamera, Color);
 		break;
 	case CollisionType::CT_POINT:
 		break;
 	case CollisionType::CT_SPHERE:
-		GameEngineDebug::DrawSphere(GetTransform(), Color);
+		GameEngineDebug::DrawSphere(GetTransform(), DebugRenderCamera, Color);
 		break;
 	case CollisionType::CT_AABB:
-		GameEngineDebug::DrawBox(GetTransform(), Color);
+		GameEngineDebug::DrawBox(GetTransform(), DebugRenderCamera, Color);
 		break;
 	case CollisionType::CT_OBB:
-		GameEngineDebug::DrawBox(GetTransform(), Color);
+		GameEngineDebug::DrawBox(GetTransform(), DebugRenderCamera, Color);
 		break;
 	case CollisionType::CT_MAX:
 		break;

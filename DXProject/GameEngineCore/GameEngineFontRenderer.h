@@ -34,34 +34,39 @@ public:
 	GameEngineFontRenderer& operator=(const GameEngineFontRenderer& _Other) = delete;
 	GameEngineFontRenderer& operator=(GameEngineFontRenderer&& _Other) noexcept = delete;
 
-	void SetLeftAndRightSort(LeftAndRightSort _Value)
+	inline void SetLeftAndRightSort(LeftAndRightSort _Value)
 	{
 		LR = _Value;
 	}
 
-	void SetTopAndBotSort(TopAndBotSort _Value)
+	inline void SetTopAndBotSort(TopAndBotSort _Value)
 	{
 		TB = _Value;
 	}
 
 	void SetText(const std::string& _Text, const std::string& _Font = "µ¸¿ò");
 
-	std::string GetText()
+	inline std::string GetText()
 	{
 		return Text;
 	}
 
-	void SetScreenPostion(float4 _ScreenPostion)
+	inline void SetScreenPostion(float4 _ScreenPostion)
 	{
  		ScreenPostion = _ScreenPostion;
 	}
 
-	void SetColor(float4 _Color)
+	inline float4 GetScreenPostion()
+	{
+		return ScreenPostion;
+	}
+
+	inline void SetColor(float4 _Color)
 	{
 		Color = _Color;
 	}
 
-	void SetSize(float _Size)
+	inline void SetSize(float _Size)
 	{
 		FontSize = _Size;
 	}

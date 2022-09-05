@@ -52,9 +52,18 @@ public:
 
 	virtual void DebugRender();
 
+	void SetUIDebugCamera();
+
+	void SetDebugCamera(GameEngineCamera* _DebugRenderCamera)
+	{
+		DebugRenderCamera = _DebugRenderCamera;
+	}
+
 protected:
 
 private:
+	GameEngineCamera* DebugRenderCamera;
+
 	CollisionType DebugType;
 	float4 Color;
 
