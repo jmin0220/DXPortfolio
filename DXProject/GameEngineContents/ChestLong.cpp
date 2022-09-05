@@ -8,6 +8,7 @@
 ChestLong::ChestLong() 
 	: IsSelected_(false)
 {
+	ChestPrice_ = 17;
 }
 
 ChestLong::~ChestLong() 
@@ -95,12 +96,10 @@ void ChestLong::Initialize()
 		break;
 	}
 	ShowItemRenderer_->ScaleToTexture();
-
 }
 
 void ChestLong::ChangeOpenAnim()
 {
-	// TODO::플레이어의 골드가 금액에 맞아야만 Open으로 처리
 	IsSelected_ = true;		// 선택된 Chest에만 True로 변경
 
 	ChangeOpenAnimChestLong();

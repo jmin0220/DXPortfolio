@@ -1,6 +1,7 @@
 #include "PreCompile.h"
 #include "ChestParent.h"
 #include <GameEngineBase/GameEngineRandom.h>
+#include "Player.h"
 
 ChestParent::ChestParent()
 	: Renderer_(nullptr)
@@ -55,7 +56,15 @@ bool ChestParent::CollisionCheckPlayer(GameEngineCollision* _This, GameEngineCol
 
 	if (true == GameEngineInput::GetInst()->IsPress(Player_KEY_INTERACTIVE))
 	{
-		ChangeOpenAnim();
+		// 플레이어가 가진 골드가 충분할경우에만
+		if (ChestPrice_ <= Player::GetPlayerGold())
+		{
+			// 소지금을 줄이고
+			Player::AddGold(-ChestPrice_);
+
+			// 상자를 오픈
+			ChangeOpenAnim();
+		}
 	}
 
 	return true;
