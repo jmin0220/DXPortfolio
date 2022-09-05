@@ -27,11 +27,7 @@ void ItemManager::CreateItem(GameEngineLevel* _Level, float4 _Pos)
 {
 	// 아이템이 무작위로 생성됨
 	int ItemMaxNum = static_cast<int>(ItemList::End) - 1;
-	// CreateItem(_Level, static_cast<ItemList>(GameEngineRandom::MainRandom.RandomInt(0, ItemMaxNum)), _Pos);
-
-	// TODO::테스트코드
-	CreateItem(_Level, ItemList::MeatNugget, _Pos);
-	CreateItem(_Level, ItemList::BarbedWire, { _Pos.x + 100.0f, _Pos.y });
+	CreateItem(_Level, static_cast<ItemList>(GameEngineRandom::MainRandom.RandomInt(0, ItemMaxNum)), _Pos);
 }
 
 void ItemManager::CreateItem(GameEngineLevel* _Level, ItemList _ItemList, float4 _Pos)

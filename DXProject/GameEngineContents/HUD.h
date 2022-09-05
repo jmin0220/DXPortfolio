@@ -1,9 +1,10 @@
 #pragma once
 #include <GameEngineCore/GameEngineActor.h>
 #include "Option.h"
-#include "ContentsFont.h"
 
 // 설명 :
+class ContentsFont;
+class SingleColorRenderer;
 class HUD : public GameEngineActor
 {
 public:
@@ -57,6 +58,8 @@ private:
 	ContentsFont* GoldFontRenderer_;
 	// 플레이어 HP
 	ContentsFont* PlayerHpFontRenderer_;
+	SingleColorRenderer* HpRatingRenderer_;
+	SingleColorRenderer* ExpRatingRenderer_;
 
 	std::vector<GameEngineUIRenderer*> UIRendererVector_;
 

@@ -88,6 +88,12 @@
     <Filter Include="01_Actor\01_Play\Object\Items\BulletItem\MeatNugget">
       <UniqueIdentifier>{1876e055-2fbe-474c-8012-4212440f64f1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="01_Actor\01_Play\Object\Boxes\ChestLong">
+      <UniqueIdentifier>{3dc3aa52-f841-45a5-b75b-9618bcc233b6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="00_Level\Etc">
+      <UniqueIdentifier>{9fe21888-9df6-4e1b-b884-acbb8dde62d8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PreCompile.h">
@@ -189,9 +195,6 @@
     <ClInclude Include="ChestNormal.h">
       <Filter>01_Actor\01_Play\Object\Boxes</Filter>
     </ClInclude>
-    <ClInclude Include="ChestLong.h">
-      <Filter>01_Actor\01_Play\Object\Boxes</Filter>
-    </ClInclude>
     <ClInclude Include="ChestBig.h">
       <Filter>01_Actor\01_Play\Object\Boxes</Filter>
     </ClInclude>
@@ -222,14 +225,26 @@
     <ClInclude Include="HarvesterScythe.h">
       <Filter>01_Actor\01_Play\Object\Items\BuffItem</Filter>
     </ClInclude>
-    <ClInclude Include="ChestLongSet.h">
-      <Filter>01_Actor\01_Play\Object\Boxes</Filter>
-    </ClInclude>
     <ClInclude Include="MeatNugget.h">
       <Filter>01_Actor\01_Play\Object\Items\BulletItem\MeatNugget</Filter>
     </ClInclude>
     <ClInclude Include="MiniNugget.h">
       <Filter>01_Actor\01_Play\Object\Items\BulletItem\MeatNugget</Filter>
+    </ClInclude>
+    <ClInclude Include="ChestLong.h">
+      <Filter>01_Actor\01_Play\Object\Boxes\ChestLong</Filter>
+    </ClInclude>
+    <ClInclude Include="ChestLongSet.h">
+      <Filter>01_Actor\01_Play\Object\Boxes\ChestLong</Filter>
+    </ClInclude>
+    <ClInclude Include="SingleColorRenderer.h">
+      <Filter>02_Component\00_Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="TestLevel.h">
+      <Filter>00_Level\Etc</Filter>
+    </ClInclude>
+    <ClInclude Include="TestActor.h">
+      <Filter>00_Level\Etc</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -335,9 +350,6 @@
     <ClCompile Include="ChestNormal.cpp">
       <Filter>01_Actor\01_Play\Object\Boxes</Filter>
     </ClCompile>
-    <ClCompile Include="ChestLong.cpp">
-      <Filter>01_Actor\01_Play\Object\Boxes</Filter>
-    </ClCompile>
     <ClCompile Include="ChestBig.cpp">
       <Filter>01_Actor\01_Play\Object\Boxes</Filter>
     </ClCompile>
@@ -359,15 +371,27 @@
     <ClCompile Include="HarvesterScythe.cpp">
       <Filter>01_Actor\01_Play\Object\Items\BuffItem</Filter>
     </ClCompile>
-    <ClCompile Include="ChestLongSet.cpp">
-      <Filter>01_Actor\01_Play\Object\Boxes</Filter>
-    </ClCompile>
     <ClCompile Include="PlayerStatus.cpp" />
     <ClCompile Include="MeatNugget.cpp">
       <Filter>01_Actor\01_Play\Object\Items\BulletItem\MeatNugget</Filter>
     </ClCompile>
     <ClCompile Include="MiniNugget.cpp">
       <Filter>01_Actor\01_Play\Object\Items\BulletItem\MeatNugget</Filter>
+    </ClCompile>
+    <ClCompile Include="ChestLong.cpp">
+      <Filter>01_Actor\01_Play\Object\Boxes\ChestLong</Filter>
+    </ClCompile>
+    <ClCompile Include="ChestLongSet.cpp">
+      <Filter>01_Actor\01_Play\Object\Boxes\ChestLong</Filter>
+    </ClCompile>
+    <ClCompile Include="SingleColorRenderer.cpp">
+      <Filter>02_Component\00_Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="TestLevel.cpp">
+      <Filter>00_Level\Etc</Filter>
+    </ClCompile>
+    <ClCompile Include="TestActor.cpp">
+      <Filter>00_Level\Etc</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -3,6 +3,8 @@
 #include <GameEngineCore/GameEngineFontRenderer.h>
 #include "Player.h"
 #include "Item.h"
+#include "ContentsFont.h"
+#include "SingleColorRenderer.h"
 
 HUD::HUD() 
 	: HUDRenderer_(nullptr)
@@ -130,6 +132,20 @@ void HUD::Start()
 	PlayerHpFontRenderer_->CreateFontRenderer<GameEngineUIRenderer>(std::to_string(Player::GetPlayerHp()) + "/" + std::to_string(Player::GetPlayerMaxHp()), {0, 0}, TextType::Normal);
 	PlayerHpFontRenderer_->GetTransform().SetWorldPosition({ -GameEngineWindow::GetInst()->GetScale().x / 2 + 764
 															, GameEngineWindow::GetInst()->GetScale().y / 2 - 867, -110 });
+
+
+
+	HpRatingRenderer_ = CreateComponent<SingleColorRenderer>();
+	HpRatingRenderer_->SetColor({ 136.0f / 255.0f, 211.0f / 255.0f, 103.0f / 255.0f, 1.0f });
+	HpRatingRenderer_->GetTransform().SetWorldPosition({ -160 , -418, -109});
+	HpRatingRenderer_->GetTransform().SetWorldScale({320, 14});
+	HpRatingRenderer_->SetPivot(PIVOTMODE::LEFT);
+
+	ExpRatingRenderer_ = CreateComponent<SingleColorRenderer>();
+	ExpRatingRenderer_->SetColor({ 168.0f / 255.0f, 223.0f / 255.0f, 218.0f / 255.0f, 1.0f });
+	ExpRatingRenderer_->GetTransform().SetWorldPosition({ -160 , -438, -109 });
+	ExpRatingRenderer_->GetTransform().SetWorldScale({ 320, 4 });
+	ExpRatingRenderer_->SetPivot(PIVOTMODE::LEFT);
 }
 
 void HUD::Update(float _DeltaTime)
@@ -177,6 +193,13 @@ void HUD::Update(float _DeltaTime)
 		RecentHp_ = Player::GetPlayerHp();
 		PlayerHpFontRenderer_->ChangeFontRenderer<GameEngineUIRenderer>(std::to_string(Player::GetPlayerHp()) + "/" + std::to_string(Player::GetPlayerMaxHp()), { 0, 0 }, TextType::Normal);
 	}
+
+	// Player 상태관련-------------------------------------------------------------------------
+
+	// TODO:: 변화가 있을때만 갱신
+	// TODO:: 경험치바도 hp바와 동일한 처리를 할 수 있도록
+	HpRatingRenderer_->GetTransform().SetWorldScale({ static_cast<float>(Player::GetPlayerHp() / Player::GetPlayerMaxHp()) * 320.0f, 14});
+	ExpRatingRenderer_->GetTransform().SetWorldScale({ static_cast<float>(Player::GetPlayerExp()), 4});
 }
 
 // 하단의 아이템 획득 리스트

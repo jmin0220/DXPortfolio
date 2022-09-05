@@ -4,6 +4,7 @@
 #include "GameEngineContents/EndLevel.h"
 #include "GameEngineContents/CharacterSelect.h"
 #include "GameEngineContents/Stage1Level.h"
+#include "GameEngineContents/TestLevel.h"
 
 #pragma comment(lib, "GameEngineBase.lib")
 
@@ -209,9 +210,11 @@ void RiskOfRain::Start()
 	CreateLevel<EndLevel>(LEVEL_END);
 	CreateLevel<CharacterSelect>(LEVEL_SELECT);
 	CreateLevel<Stage1Level>(LEVEL_STAGE1);
+	CreateLevel<TestLevel>("TestLevel");
 
 	// 초기 레벨 이동
 	ChangeLevel(LEVEL_TITLE);
+	// ChangeLevel("TestLevel");
 
 	// IMGUI생성
 	GameEngineGUI::CreateGUIWindow<GameEngineStatusWindow>("EngineStatus", nullptr);

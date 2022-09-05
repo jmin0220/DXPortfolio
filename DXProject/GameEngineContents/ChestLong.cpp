@@ -54,7 +54,7 @@ void ChestLong::Initialize()
 	FontRenderer_->SetLeftAndRightSort(LeftAndRightSort::CENTER);
 	FontRenderer_->Off();
 
-	FontYPosWeighted = 30.0f; // 가중치 설정
+	FontYPosWeighted = -70.0f; // 가중치 설정
 
 
 	// 플레이어와 충돌할 콜리전

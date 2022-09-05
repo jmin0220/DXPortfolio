@@ -3,7 +3,7 @@
 enum class ItemList
 {
 	// FrameItems
-	BarbedWire,
+	BarbedWire = 0,
 	RedWhip,
 	// AtkItems
 	MeatNugget,

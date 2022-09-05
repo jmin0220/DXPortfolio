@@ -1,6 +1,8 @@
 #include "PreCompile.h"
 #include "ChestBig.h"
 #include "Drops.h"
+#include <GameEngineBase/GameEngineRandom.h>
+#include "ItemManager.h"
 
 ChestBig::ChestBig() 
 {
@@ -22,7 +24,14 @@ void ChestBig::Initialize()
 
 	Renderer_->AnimationBindEnd(TEX_OBJECT_CHEST_BIG_OPEN, [=](const FrameAnimation_DESC& _Info)
 		{
-			Drops::CreateCoinsAndExp(GoldValue_, ExpValue_, this->GetTransform().GetWorldPosition(), GetLevel());
+			if (10 >= GameEngineRandom::MainRandom.RandomInt(0, 99))
+			{
+				ItemManager::CreateItem(GetLevel(), this->GetTransform().GetWorldPosition());
+			}
+			else
+			{
+				Drops::CreateCoinsAndExp(GoldValue_, ExpValue_, this->GetTransform().GetWorldPosition(), GetLevel());
+			}
 		});
 
 	Renderer_->ChangeFrameAnimation(TEX_OBJECT_CHEST_BIG_IDLE);
