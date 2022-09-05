@@ -71,12 +71,12 @@ protected:
 	// 아이템 이름
 	std::string ItemName_;
 
+	// 중복된 아이템을 얼마나 먹었나
+	int OverlapCounter_;
 private:
 	// 습득된 아이템인가
 	bool ItemRootingFlg_;
 	bool RootingEffectEndFlg_;
-	// 중복된 아이템을 얼마나 먹었나
-	int OverlapCounter_;
 
 	float4 PlayerPos_;
 

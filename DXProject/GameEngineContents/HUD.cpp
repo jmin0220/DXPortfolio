@@ -186,7 +186,6 @@ void HUD::AddItemUpdate()
 
 	for (Item* item : Player::ItemVector_)
 	{
-
 		GameEngineUIRenderer* tmp = CreateComponent<GameEngineUIRenderer>();
 		tmp->SetTexture(item->GetRenderer()->GetCurTexture());
 		tmp->GetTransform().SetWorldPosition({ -(GameEngineWindow::GetInst()->GetScale().x / 2) + 50 + XMargin

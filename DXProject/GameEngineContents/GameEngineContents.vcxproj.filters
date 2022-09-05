@@ -219,6 +219,9 @@
     <ClInclude Include="HarvesterScythe.h">
       <Filter>01_Actor\01_Play\Object\Items\BuffItem</Filter>
     </ClInclude>
+    <ClInclude Include="ChestLongSet.h">
+      <Filter>01_Actor\01_Play\Object\Boxes</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PreCompile.cpp">
@@ -350,5 +353,9 @@
     <ClCompile Include="HarvesterScythe.cpp">
       <Filter>01_Actor\01_Play\Object\Items\BuffItem</Filter>
     </ClCompile>
+    <ClCompile Include="ChestLongSet.cpp">
+      <Filter>01_Actor\01_Play\Object\Boxes</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerStatus.cpp" />
   </ItemGroup>
 </Project>

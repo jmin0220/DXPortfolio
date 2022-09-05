@@ -3,6 +3,8 @@
 struct PlayerStatus
 {
 public:
+	static void ResetStatus();
+
 	// 최종적으로 적용될 스테이터스
 	static float Speed_;
 	static float Damage_;

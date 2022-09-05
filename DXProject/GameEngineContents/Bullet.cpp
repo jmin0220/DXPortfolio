@@ -83,7 +83,6 @@ bool Bullet::CollisionCheck(GameEngineCollision* _This, GameEngineCollision* _Ot
 
 void Bullet::CheckNegativeX()
 {
-
 	if (Direction_.CompareInt3D(float4::LEFT))
 	{
 		// ÁÂ¿ì¹ÝÀü
@@ -116,7 +115,6 @@ void Bullet::BulletDeath()
 	{
 		DamageFont_->Death();
 	}
-
 
 	CheckNegativeX();
 }

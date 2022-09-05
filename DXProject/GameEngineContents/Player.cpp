@@ -111,17 +111,13 @@ void Player::KeyInit()
 
 void Player::PlayerBuffStatusInit()
 {
-	PlayerStatus::Speed_ = this->Speed_;
-	PlayerStatus::AtkSpeed_ = this->AtkSpeed_;
-	PlayerStatus::Damage_ = this->Damage_;
-	PlayerStatus::Hp_ = this->Hp_;
-	PlayerStatus::CritChance_ = this->CritChance_;
-
 	PlayerStatus::BaseSpeed_ = this->Speed_;
 	PlayerStatus::BaseAtkSpeed_ = this->AtkSpeed_;
 	PlayerStatus::BaseDamage_ = this->Damage_;
 	PlayerStatus::BaseHp_ = this->Hp_;
 	PlayerStatus::BaseCritChance_ = this->CritChance_;
+
+	PlayerStatus::ResetStatus();
 }
 
 
@@ -765,6 +761,7 @@ void Player::AddItem(Item * _Item)
 	}
 
 	// 버프 아이템은 습득하자마자 업데이트를 진행함
+	PlayerStatus::ResetStatus();
 	for (Item* tmpItem : ItemVector_)
 	{
 		tmpItem->BuffItemUpdate();
