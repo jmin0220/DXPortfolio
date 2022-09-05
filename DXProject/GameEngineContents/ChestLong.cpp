@@ -3,8 +3,10 @@
 #include "Drops.h"
 #include <GameEngineBase/GameEngineRandom.h>
 #include <math.h>
+#include "ItemManager.h"
 
 ChestLong::ChestLong() 
+	: IsSelected_(false)
 {
 }
 
@@ -41,12 +43,6 @@ void ChestLong::Initialize()
 
 	Renderer_->CreateFrameAnimationFolder(TEX_OBJECT_CHEST_LONG_IDLE, FrameAnimation_DESC(TEX_OBJECT_CHEST_LONG_IDLE, ANIMATION_FRAME_DELAY, true));
 	Renderer_->CreateFrameAnimationFolder(TEX_OBJECT_CHEST_LONG_OPEN, FrameAnimation_DESC(TEX_OBJECT_CHEST_LONG_OPEN, ANIMATION_FRAME_DELAY, false));
-
-	Renderer_->AnimationBindEnd(TEX_OBJECT_CHEST_LONG_OPEN, [=](const FrameAnimation_DESC& _Info)
-		{
-			Drops::CreateCoinsAndExp(GoldValue_, ExpValue_, this->GetTransform().GetWorldPosition(), GetLevel());
-		});
-
 	Renderer_->ChangeFrameAnimation(TEX_OBJECT_CHEST_LONG_IDLE);
 	Renderer_->SetPivot(PIVOTMODE::BOT);
 
@@ -102,6 +98,14 @@ void ChestLong::Initialize()
 
 }
 
+void ChestLong::ChangeOpenAnim()
+{
+	// TODO::플레이어의 골드가 금액에 맞아야만 Open으로 처리
+	IsSelected_ = true;		// 선택된 Chest에만 True로 변경
+
+	ChangeOpenAnimChestLong();
+}
+
 void ChestLong::WaveAnimItemRenderer(float _DeltaTime)
 {
 	static float MovedYPos = 0.0f;
@@ -121,4 +125,25 @@ void ChestLong::WaveAnimItemRenderer(float _DeltaTime)
 bool ChestLong::CollisionFunc(GameEngineCollision* _This, GameEngineCollision* _Other)
 {
 	return CollisionCheckPlayer(_This, _Other);
+}
+
+void ChestLong::ChangeOpenAnimChestLong()
+{
+	// 이미 열려져있는 경우에는 무시
+	if (true == IsOpen_)
+	{
+		return;
+	}
+
+	// 선택받았을 경우에만 아이템을 생성
+	if (true == IsSelected_)
+	{
+		ItemManager::CreateItem(GetLevel(), ItemList_, this->GetTransform().GetWorldPosition());
+	}
+	
+	// 애니메이션은 선택 유무와 상관없이 열리도록
+	IsOpen_ = true;
+	Renderer_->ChangeFrameAnimation(TEX_OBJECT_CHEST_LONG_OPEN);
+	FontRenderer_->Off();
+	ShowItemRenderer_->Off();
 }

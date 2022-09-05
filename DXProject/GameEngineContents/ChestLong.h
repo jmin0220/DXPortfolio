@@ -21,24 +21,23 @@ public:
 		return ItemList_;
 	}
 
+	void ChangeOpenAnimChestLong();
+
 protected:
 	void Update(float _DeltaTime) override;
 
 	void Initialize() override;
 
-	inline void ChangeOpenAnim() override
-	{
-		// TODO::플레이어의 골드가 금액에 맞아야만 Open으로 처리
-		IsOpen_ = true;
-
-		Renderer_->ChangeFrameAnimation(TEX_OBJECT_CHEST_LONG_OPEN);
-	}
+	void ChangeOpenAnim() override;
 
 private:
 	void WaveAnimItemRenderer(float _DeltaTime);		// 아이템이 위아래로 일렁이는 애니메이션
 	bool CollisionFunc(GameEngineCollision* _This, GameEngineCollision* _Other);
 
+
 	GameEngineTextureRenderer* ShowItemRenderer_;
 	ItemList ItemList_;
+
+	bool IsSelected_;
 };
 

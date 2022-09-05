@@ -30,7 +30,16 @@ void ChestLongSet::Update(float _DeltaTime)
 		}
 	}
 
+	if (true == SomethingOpendFlg_)
+	{
+		for (int i = 0; i < 3; i++)
+		{
+			ChestLong_[i]->ChangeOpenAnimChestLong();
+		}
 
+		// Chest가 열렸으면 세트를 삭제
+		this->Death();
+	}
 }
 
 void ChestLongSet::CreateChestLongSet(float4 _Pos)
