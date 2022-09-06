@@ -94,6 +94,9 @@
     <Filter Include="00_Level\Etc">
       <UniqueIdentifier>{9fe21888-9df6-4e1b-b884-acbb8dde62d8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="01_Actor\01_Play\Object\Items\LevelUpItems\Warbanner">
+      <UniqueIdentifier>{3a129738-7544-4da9-aea5-74a3233042cb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PreCompile.h">
@@ -204,9 +207,6 @@
     <ClInclude Include="Item.h">
       <Filter>01_Actor\01_Play\Object\Items</Filter>
     </ClInclude>
-    <ClInclude Include="Warbanner.h">
-      <Filter>01_Actor\01_Play\Object\Items\LevelUpItems</Filter>
-    </ClInclude>
     <ClInclude Include="BarbedWire.h">
       <Filter>01_Actor\01_Play\Object\Items\FrameItems</Filter>
     </ClInclude>
@@ -245,6 +245,12 @@
     </ClInclude>
     <ClInclude Include="TestActor.h">
       <Filter>00_Level\Etc</Filter>
+    </ClInclude>
+    <ClInclude Include="Warbanner.h">
+      <Filter>01_Actor\01_Play\Object\Items\LevelUpItems\Warbanner</Filter>
+    </ClInclude>
+    <ClInclude Include="WarbannerFlg.h">
+      <Filter>01_Actor\01_Play\Object\Items\LevelUpItems\Warbanner</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -356,9 +362,6 @@
     <ClCompile Include="Item.cpp">
       <Filter>01_Actor\01_Play\Object\Items</Filter>
     </ClCompile>
-    <ClCompile Include="Warbanner.cpp">
-      <Filter>01_Actor\01_Play\Object\Items\LevelUpItems</Filter>
-    </ClCompile>
     <ClCompile Include="BarbedWire.cpp">
       <Filter>01_Actor\01_Play\Object\Items\FrameItems</Filter>
     </ClCompile>
@@ -392,6 +395,12 @@
     </ClCompile>
     <ClCompile Include="TestActor.cpp">
       <Filter>00_Level\Etc</Filter>
+    </ClCompile>
+    <ClCompile Include="Warbanner.cpp">
+      <Filter>01_Actor\01_Play\Object\Items\LevelUpItems\Warbanner</Filter>
+    </ClCompile>
+    <ClCompile Include="WarbannerFlg.cpp">
+      <Filter>01_Actor\01_Play\Object\Items\LevelUpItems\Warbanner</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

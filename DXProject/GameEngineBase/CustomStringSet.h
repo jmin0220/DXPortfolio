@@ -241,5 +241,6 @@
 // 아이템 애니메이션
 #define ITEM_ANIMATION_MEATNUGGET_IDLE "MeatNuggetIdle"
 #define ITEM_ANIMATION_MEATNUGGET_JUMP "MeatNuggetJump"
-#define ITEM_ANIMATION_WARBANNER_CREATE "WarbannerCreate"
+#define ITEM_ANIMATION_WARBANNER_FLAG "WarbannerFlag"
+#define ITEM_ANIMATION_WARBANNER_CIRCLE "WarbannerCircle"
 #define ITEM_ANIMATION_THORN_EFFECT "ThornEffect"

@@ -68,6 +68,11 @@ public:
 		return Exp_;
 	}
 
+	static inline int GetPlayerMaxExp()
+	{
+		return MaxExp_;
+	}
+
 	inline void SetJumpSpeedByBouncer()
 	{
 		JumpSpeed_ = BOUNCER_JUMP_SPEED;
@@ -133,6 +138,7 @@ protected:
 	bool GroundLeftCheck();
 
 	void PlayerJump();
+	void PlayerLevelUp();
 
 	// FSM 매니저
 	GameEngineStateManager StateManager_;
@@ -220,6 +226,7 @@ protected:
 	int Lv_;
 	static int Gold_;
 	static int Exp_;
+	static int MaxExp_;
 
 	// 크리티컬찬스 (MAX = 100)
 	int CritChance_;

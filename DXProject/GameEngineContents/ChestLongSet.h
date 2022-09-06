@@ -22,6 +22,7 @@ protected:
 	void Update(float _DeltaTime);
 
 	ChestLong* ChestLong_[3];
+	ItemList CreatedItem_[3];
 
 private:
 	bool SomethingOpendFlg_;

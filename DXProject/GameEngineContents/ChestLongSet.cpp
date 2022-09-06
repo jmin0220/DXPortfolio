@@ -17,6 +17,36 @@ void ChestLongSet::Start()
 	for (int i = 0; i < 3; i++)
 	{
 		ChestLong_[i] = GetLevel()->CreateActor<ChestLong>();
+		CreatedItem_[i] = ChestLong_[i]->GetItemList();
+	}
+
+	for (;;)
+	{
+		bool ItemRecreateFlg = false;
+
+		if (CreatedItem_[0] == CreatedItem_[1])
+		{
+			ChestLong_[1]->Death();
+			ChestLong_[1] = GetLevel()->CreateActor<ChestLong>();
+			CreatedItem_[1] = ChestLong_[1]->GetItemList();
+
+			ItemRecreateFlg = true;
+		}
+
+		if (CreatedItem_[0] == CreatedItem_[2] ||
+			CreatedItem_[1] == CreatedItem_[2])
+		{
+			ChestLong_[2]->Death();
+			ChestLong_[2] = GetLevel()->CreateActor<ChestLong>();
+			CreatedItem_[2] = ChestLong_[2]->GetItemList();
+
+			ItemRecreateFlg = true;
+		}
+
+		if (false == ItemRecreateFlg)
+		{
+			break;
+		}
 	}
 }
 

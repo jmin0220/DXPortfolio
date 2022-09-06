@@ -1,5 +1,6 @@
 #include "PreCompile.h"
 #include "Warbanner.h"
+#include "WarbannerFlg.h"
 
 Warbanner::Warbanner() 
 {
@@ -30,4 +31,10 @@ void Warbanner::Initialize()
 	PickUpRenderer_->SetLeftAndRightSort(LeftAndRightSort::CENTER);
 	PickUpRenderer_->SetSize(15.0f);
 	PickUpRenderer_->Off();
+}
+
+void Warbanner::LevelUpItemUpdate(float4 _PlayerPos)
+{
+	WarbannerFlg* tmpFlg = GetLevel()->CreateActor<WarbannerFlg>();
+	tmpFlg->GetTransform().SetWorldPosition({ _PlayerPos.x, _PlayerPos.y, _PlayerPos.z});	// 대충 땅에 박혀있게
 }

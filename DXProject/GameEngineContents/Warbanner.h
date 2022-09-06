@@ -17,6 +17,8 @@ public:
 
 	void Initialize() override;
 
+	void LevelUpItemUpdate(float4 _PlayerPos) override;
+
 protected:
 
 private:

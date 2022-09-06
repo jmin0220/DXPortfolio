@@ -23,6 +23,11 @@ public:
 
 	void ChangeOpenAnimChestLong();
 
+	ItemList GetItemList()
+	{
+		return ItemList_;
+	}
+
 protected:
 	void Update(float _DeltaTime) override;
 

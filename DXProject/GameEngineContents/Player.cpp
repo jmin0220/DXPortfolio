@@ -11,6 +11,7 @@ int Player::Hp_ = 0;
 int Player::MaxHp_ = 0;
 int Player::Gold_ = 25;
 int Player::Exp_ = 0;
+int Player::MaxExp_ = 50;
 std::vector<Item*> Player::ItemVector_ = {};
 bool Player::AddItemFlg_ = false;
 
@@ -81,6 +82,8 @@ void Player::Update(float _DeltaTime)
 		HUD_->AddItemUpdate();
 		AddItemFlg_ = false;
 	}
+
+	PlayerLevelUp();
 
 	// 카메라 업데이트
 	CameraUpdate();
@@ -462,6 +465,31 @@ void Player::PlayerJump()
 
 		IsGround_ = false;
 		JumpSpeed_ = Player_JUMP_SPEED;
+	}
+}
+
+void Player::PlayerLevelUp()
+{
+	// 레벨업
+	if (Exp_ >= MaxExp_)
+	{
+		Exp_ = 0;
+
+		PlayerStatus::BaseDamage_ += this->LvPerDamage_;
+		PlayerStatus::BaseHp_ = this->LvPerHp_;
+		PlayerStatus::ResetStatus();
+
+		// 레벨업된 스탯으로 버프아이템 재설정
+		for (Item* tmpItem : ItemVector_)
+		{
+			tmpItem->BuffItemUpdate();
+		}
+
+		// 레벨업이 있을때 발생할 아이템
+		for (Item* tmpItem : ItemVector_)
+		{
+			tmpItem->LevelUpItemUpdate(this->GetTransform().GetWorldPosition());
+		}
 	}
 }
 

@@ -196,10 +196,9 @@ void HUD::Update(float _DeltaTime)
 
 	// Player 상태관련-------------------------------------------------------------------------
 
-	// TODO:: 변화가 있을때만 갱신
 	// TODO:: 경험치바도 hp바와 동일한 처리를 할 수 있도록
-	HpRatingRenderer_->GetTransform().SetWorldScale({ static_cast<float>(Player::GetPlayerHp() / Player::GetPlayerMaxHp()) * 320.0f, 14});
-	ExpRatingRenderer_->GetTransform().SetWorldScale({ static_cast<float>(Player::GetPlayerExp()), 4});
+	HpRatingRenderer_->GetTransform().SetWorldScale({ static_cast<float>(Player::GetPlayerHp()) / static_cast<float>(Player::GetPlayerMaxHp()) * 320.0f, 14});
+	ExpRatingRenderer_->GetTransform().SetWorldScale({ static_cast<float>(Player::GetPlayerExp()) / static_cast<float>(Player::GetPlayerMaxExp()) * 320.0f, 4});
 }
 
 // 하단의 아이템 획득 리스트
