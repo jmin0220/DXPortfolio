@@ -36,5 +36,6 @@ void Warbanner::Initialize()
 void Warbanner::LevelUpItemUpdate(float4 _PlayerPos)
 {
 	WarbannerFlg* tmpFlg = GetLevel()->CreateActor<WarbannerFlg>();
-	tmpFlg->GetTransform().SetWorldPosition({ _PlayerPos.x, _PlayerPos.y, _PlayerPos.z});	// 대충 땅에 박혀있게
+	tmpFlg->GetTransform().SetWorldPosition({ _PlayerPos.x, _PlayerPos.y, _PlayerPos.z});
+	tmpFlg->GroundFall();	// 대충 땅에 박혀있게
 }

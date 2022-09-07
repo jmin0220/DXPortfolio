@@ -53,6 +53,8 @@ void Player::Start()
 
 void Player::Update(float _DeltaTime)
 {
+	PlayerStatus::AddFrameStatusToTrueStatus(); // -> 프레임스탯을 적용
+
 	ColorCheckPos_ = { this->GetTransform().GetWorldPosition().x
 			        , -this->GetTransform().GetWorldPosition().y };
 
@@ -87,6 +89,8 @@ void Player::Update(float _DeltaTime)
 
 	// 카메라 업데이트
 	CameraUpdate();
+
+	PlayerStatus::ResetFrameStatus(); // -> 프레임스탯을 초기화
 }
 
 void Player::KeyInit()

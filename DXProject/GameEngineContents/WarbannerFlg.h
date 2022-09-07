@@ -15,6 +15,8 @@ public:
 	WarbannerFlg& operator=(const WarbannerFlg& _Other) = delete;
 	WarbannerFlg& operator=(WarbannerFlg&& _Other) noexcept = delete;
 
+	void GroundFall();
+
 protected:
 	void Start() override;
 	void Update(float _DeltaTime) override;
@@ -23,6 +25,5 @@ private:
 	GameEngineTextureRenderer* Renderer_;
 	GameEngineTextureRenderer* CircleRenderer_;
 
-	void GroundFall();
 };
 

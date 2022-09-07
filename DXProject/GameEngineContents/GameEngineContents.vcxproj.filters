@@ -374,7 +374,6 @@
     <ClCompile Include="HarvesterScythe.cpp">
       <Filter>01_Actor\01_Play\Object\Items\BuffItem</Filter>
     </ClCompile>
-    <ClCompile Include="PlayerStatus.cpp" />
     <ClCompile Include="MeatNugget.cpp">
       <Filter>01_Actor\01_Play\Object\Items\BulletItem\MeatNugget</Filter>
     </ClCompile>
@@ -401,6 +400,9 @@
     </ClCompile>
     <ClCompile Include="WarbannerFlg.cpp">
       <Filter>01_Actor\01_Play\Object\Items\LevelUpItems\Warbanner</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerStatus.cpp">
+      <Filter>98_Global</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

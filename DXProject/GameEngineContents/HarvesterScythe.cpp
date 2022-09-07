@@ -36,5 +36,5 @@ void HarvesterScythe::BuffItemUpdate()
 {
 	// 5%의 추가 찬스를 얻음
 	// TODO::시연을 위해 값을 늘리는편이 좋을지도
-	PlayerStatus_.CritChance_ = PlayerStatus_.CritChance_ + 5 * OverlapCounter_;
+	PlayerStatus_.BuffedCritChance_ += PlayerStatus_.BaseCritChance_ + 5 * OverlapCounter_;
 }

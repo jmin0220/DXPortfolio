@@ -24,8 +24,6 @@ void WarbannerFlg::Start()
 	CircleRenderer_->ChangeFrameAnimation(ITEM_ANIMATION_WARBANNER_CIRCLE);
 	CircleRenderer_->SetSamplingModePoint();
 	CircleRenderer_->ScaleToTexture();
-
-	GroundFall();
 }
 
 void WarbannerFlg::Update(float _DeltaTime)
@@ -34,16 +32,13 @@ void WarbannerFlg::Update(float _DeltaTime)
 	float4 ToPlayerLength = thisPos - PlayerPos_;
 
 	// Warbanner의 원안에 캐릭터가 들어와있다면
-	if (CircleRenderer_->GetCurTexture()->GetScale().y >= ToPlayerLength.Length())
+	if (CircleRenderer_->GetCurTexture()->GetScale().hy() >= ToPlayerLength.Length())
 	{
-		// TODO::스탯 게산식 변경필요
-		PlayerStatus::Damage_ = PlayerStatus::Damage_ + PlayerStatus::BaseDamage_ + 4;
-		PlayerStatus::AtkSpeed_ = PlayerStatus::AtkSpeed_ + PlayerStatus::BaseAtkSpeed_ * 30.0f;
-		PlayerStatus::Speed_ = PlayerStatus::Speed_ + PlayerStatus::BaseSpeed_ * 30.0f;
+		PlayerStatus::FrameDamage_ += PlayerStatus::BaseDamage_ + 4;
+		PlayerStatus::FrameAtkSpeed_ += PlayerStatus::BaseAtkSpeed_ * 0.5f;
+		PlayerStatus::FrameSpeed_+= PlayerStatus::BaseSpeed_ * 2.0f;
 	}
 }
-
-
 
 void WarbannerFlg::GroundFall()
 {
@@ -63,7 +58,7 @@ void WarbannerFlg::GroundFall()
 
 		if (false == ColorDown.CompareInt4D({ 1.0f, 0.0f, 1.0f }))
 		{
-			GetTransform().SetWorldMove(GetTransform().GetDownVector() * 2.0f);
+ 			GetTransform().SetWorldMove(GetTransform().GetDownVector() * 2.0f);
 		}
 		else
 		{
@@ -88,5 +83,5 @@ void WarbannerFlg::GroundFall()
 		}
 	}
 
-	Renderer_->GetTransform().SetWorldMove(GetTransform().GetDownVector() * (Renderer_->GetCurTexture()->GetScale().hy() / 2));
+	//Renderer_->GetTransform().SetWorldMove(GetTransform().GetDownVector() * (Renderer_->GetCurTexture()->GetScale().hy() / 2));
 }

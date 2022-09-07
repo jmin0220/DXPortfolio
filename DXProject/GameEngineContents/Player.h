@@ -46,6 +46,11 @@ public:
 	static inline void AddNowHp(int _Hp)
 	{
 		Hp_ += _Hp;
+		
+		if (Hp_ >= MaxHp_)
+		{
+			Hp_ = MaxHp_;
+		}
 	}
 
 	static inline int GetPlayerHp()
