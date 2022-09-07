@@ -198,6 +198,7 @@ protected:
 	// 줄에 타고 있는지 판정
 	bool IsClimb_;
 
+	// 아이템이 추가되었다
 	static bool AddItemFlg_;
 
 	// 방향 관련

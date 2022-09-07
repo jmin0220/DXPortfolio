@@ -1,5 +1,6 @@
 #include "PreCompile.h"
 #include "HarvesterScythe.h"
+#include "Player.h"
 
 HarvesterScythe::HarvesterScythe() 
 {
@@ -37,4 +38,14 @@ void HarvesterScythe::BuffItemUpdate()
 	// 5%의 추가 찬스를 얻음
 	// TODO::시연을 위해 값을 늘리는편이 좋을지도
 	PlayerStatus_.BuffedCritChance_ += PlayerStatus_.BaseCritChance_ + 5 * OverlapCounter_;
+}
+
+
+void HarvesterScythe::BulletItemUpdate(float4 _Pos, bool _CritFlg)
+{	
+	if (true == _CritFlg)
+	{
+		// 크리티컬이면 힐을 함
+		Player::AddNowHp(10);
+	}
 }

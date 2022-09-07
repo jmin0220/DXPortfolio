@@ -18,6 +18,7 @@ public:
 	void Initialize() override;
 
 	void BuffItemUpdate() override;
+	void BulletItemUpdate(float4 _Pos, bool _CritFlg) override;
 protected:
 
 private:

@@ -48,7 +48,7 @@ bool PiercingBullet::CollisionCheck(GameEngineCollision* _This, GameEngineCollis
 	// 총알 아이템 업데이트
 	for (Item* tmpItem : Player::ItemVector_)
 	{
-		tmpItem->BulletItemUpdate(this->GetTransform().GetWorldPosition());
+		tmpItem->BulletItemUpdate(this->GetTransform().GetWorldPosition(), this->CirtFlg_);
 	}
 
 	// 데미지 폰트 출력

@@ -45,7 +45,7 @@ public:
 	// 내가 없는 업데이트라면 아무것도 하지 않고 종료
 	virtual void FrameItemUpdate(float4 _PlayerPos) { return; };		// 매 프레임마다 실행되어야할 아이템
 	virtual void AtkItemUpdate() { return; };		// 공격을 하는 순간에 실행
-	virtual void BulletItemUpdate(float4 _BulletPos) { return; };	// 총알이 몬스터에 부딪히는 순간에 실행
+	virtual void BulletItemUpdate(float4 _BulletPos, bool _CritFlg) { return; };	// 총알이 몬스터에 부딪히는 순간에 실행
 	virtual void LevelUpItemUpdate(float4 _PlayerPos) { return; };	// 레벨업하는 순간에 실행
 	virtual void BuffItemUpdate() { return; };		// 아이템을 습득하는 순간에 실행
 

@@ -34,7 +34,7 @@ void MeatNugget::Initialize()
 	PickUpRenderer_->Off();
 }
 
-void MeatNugget::BulletItemUpdate(float4 _BulletPos)
+void MeatNugget::BulletItemUpdate(float4 _BulletPos, bool _CritFlg)
 {
 	if (GameEngineRandom::MainRandom.RandomInt(0, 99) < 8)
 	{

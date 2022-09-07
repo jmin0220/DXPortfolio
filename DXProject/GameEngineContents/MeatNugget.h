@@ -18,7 +18,7 @@ public:
 	void Initialize() override;
 
 protected:
-	void BulletItemUpdate(float4 _BulletPos) override;
+	void BulletItemUpdate(float4 _BulletPos, bool _CritFlg) override;
 
 private:
 };
