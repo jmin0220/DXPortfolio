@@ -4,12 +4,14 @@
 #include "MonsterManager.h"
 #include "CharacterCreater.h"
 
+
 // Ό³Έν :
 class GameEngineActor;
 class Player;
 class StageGround;
 class HUD;
 class ItemManager;
+class GameEngineGUIWindow;
 class StageLevelParent : public GameEngineLevel
 {
 public:
@@ -37,6 +39,7 @@ protected:
 	ItemManager* ItemManager_;
 	CharacterCreater* CharacterCreater_;
 
+	static GameEnGameEngineGUIWindowgineGUI* DubugererGUI_;
 private:
 };
 

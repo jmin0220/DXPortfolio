@@ -91,6 +91,16 @@ void Player::Update(float _DeltaTime)
 	CameraUpdate();
 
 	PlayerStatus::ResetFrameStatus(); // -> 프레임스탯을 초기화
+
+	GameEngineGUI::::NewLine();
+	std::string playerX = "PlayerPositionX : " + std::to_string(this->GetTransform().GetWorldPosition().x);
+	ImGui::Text(playerX.c_str());
+	ImGui::NewLine();
+	std::string playerY = "PlayerPositionY : " + std::to_string(this->GetTransform().GetWorldPosition().y);
+	ImGui::Text(playerY.c_str());
+	ImGui::NewLine();
+	std::string playerZ = "PlayerPositionZ : " + std::to_string(this->GetTransform().GetWorldPosition().z);
+	ImGui::Text(playerZ.c_str());
 }
 
 void Player::KeyInit()
