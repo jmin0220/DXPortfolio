@@ -11,7 +11,7 @@ class Player;
 class StageGround;
 class HUD;
 class ItemManager;
-class GameEngineGUIWindow;
+class GameEnGameEngineGUIWindowgineGUI;
 class StageLevelParent : public GameEngineLevel
 {
 public:

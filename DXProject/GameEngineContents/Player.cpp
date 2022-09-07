@@ -92,15 +92,15 @@ void Player::Update(float _DeltaTime)
 
 	PlayerStatus::ResetFrameStatus(); // -> 프레임스탯을 초기화
 
-	GameEngineGUI::::NewLine();
-	std::string playerX = "PlayerPositionX : " + std::to_string(this->GetTransform().GetWorldPosition().x);
-	ImGui::Text(playerX.c_str());
-	ImGui::NewLine();
-	std::string playerY = "PlayerPositionY : " + std::to_string(this->GetTransform().GetWorldPosition().y);
-	ImGui::Text(playerY.c_str());
-	ImGui::NewLine();
-	std::string playerZ = "PlayerPositionZ : " + std::to_string(this->GetTransform().GetWorldPosition().z);
-	ImGui::Text(playerZ.c_str());
+	//GameEngineGUI::::NewLine();
+	//std::string playerX = "PlayerPositionX : " + std::to_string(this->GetTransform().GetWorldPosition().x);
+	//ImGui::Text(playerX.c_str());
+	//ImGui::NewLine();
+	//std::string playerY = "PlayerPositionY : " + std::to_string(this->GetTransform().GetWorldPosition().y);
+	//ImGui::Text(playerY.c_str());
+	//ImGui::NewLine();
+	//std::string playerZ = "PlayerPositionZ : " + std::to_string(this->GetTransform().GetWorldPosition().z);
+	//ImGui::Text(playerZ.c_str());
 }
 
 void Player::KeyInit()
@@ -144,15 +144,35 @@ void Player::PlayerCommonInit()
 
 	// 레벨업 이펙트
 	LevelUpEffectRenderer_ = CreateComponent<GameEngineTextureRenderer>();
-	LevelUpEffectRenderer_->CreateFrameAnimationFolder(TEX_INTERFACE_LEVELUP, FrameAnimation_DESC(TEX_INTERFACE_LEVELUP, 0.04, true));
-	LevelUpEffectRenderer_->AnimationBindEnd(TEX_INTERFACE_LEVELUP, [&](const FrameAnimation_DESC&) 
-		{ 
-		  LevelUpEffectRenderer_->Off();
+	LevelUpEffectRenderer_->CreateFrameAnimationFolder(TEX_INTERFACE_LEVELUP_START, FrameAnimation_DESC(TEX_INTERFACE_LEVELUP_START, 0.04, false));
+	LevelUpEffectRenderer_->CreateFrameAnimationFolder(TEX_INTERFACE_LEVELUP_END, FrameAnimation_DESC(TEX_INTERFACE_LEVELUP_END, 0.04, true));
+	
+	LevelUpEffectRenderer_->AnimationBindFrame(TEX_INTERFACE_LEVELUP_START, [&](const FrameAnimation_DESC& _Desc)
+		{
+			// 마지막프레임에서 대기
+			if (_Desc.CurFrame == 7)
+			{
+				LevelUpEffectRenderer_->AddAccTime(DeltaTime_);
+
+				if (LevelUpEffectRenderer_->GetAccTime() >= 3.0f)
+				{
+					LevelUpEffectRenderer_->ReSetAccTime();
+					LevelUpEffectRenderer_->CurAnimationReset();
+					LevelUpEffectRenderer_->ChangeFrameAnimation(TEX_INTERFACE_LEVELUP_END);
+				}
+			}
 		});
-	LevelUpEffectRenderer_->ChangeFrameAnimation(TEX_INTERFACE_LEVELUP);
+
+	LevelUpEffectRenderer_->AnimationBindEnd(TEX_INTERFACE_LEVELUP_END, [&](const FrameAnimation_DESC&)
+		{
+			LevelUpEffectRenderer_->ChangeFrameAnimation(TEX_INTERFACE_LEVELUP_START);
+			LevelUpEffectRenderer_->Off();
+		});
+
+	LevelUpEffectRenderer_->ChangeFrameAnimation(TEX_INTERFACE_LEVELUP_START);
 	LevelUpEffectRenderer_->SetSamplingModePoint();
 	LevelUpEffectRenderer_->SetScaleModeImage();
-	LevelUpEffectRenderer_->SetPivot(PIVOTMODE::CENTER); // -> TODO::???
+	LevelUpEffectRenderer_->SetPivot(PIVOTMODE::CENTER);
 
 	LevelUpEffectRenderer_->GetTransform().SetWorldMove(GetTransform().GetUpVector() * 40.0f);
 }

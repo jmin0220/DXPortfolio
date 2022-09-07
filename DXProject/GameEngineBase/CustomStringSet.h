@@ -150,7 +150,8 @@
 #define TEX_INTERFACE_DIFFUCULTY_ICON "DifficultyIcon"
 #define TEX_INTERFACE_TUTORIAL "Tutorial"
 #define TEX_INTERFACE_TUTORIAL_USE "TutorialUse"
-#define TEX_INTERFACE_LEVELUP "LevelUp"
+#define TEX_INTERFACE_LEVELUP_START "LevelUpStart"
+#define TEX_INTERFACE_LEVELUP_END "LevelUpEnd"
 #define TEX_INTERFACE_MONEY_INTERFACE "sMoney_0.png"
 
 // ÆùÆ®
