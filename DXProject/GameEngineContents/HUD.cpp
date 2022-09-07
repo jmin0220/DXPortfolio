@@ -26,12 +26,14 @@ void HUD::Start()
 	StageMainName_ = CreateComponent<GameEngineFontRenderer>();
 	StageSubName_ = CreateComponent<GameEngineFontRenderer>();
 
+	// TODO::스테이지마다 이름을 변경할 수 있도록
 	StageMainName_->SetText("Dried Lake", FONT_RISKOFRAIN);
 	StageMainName_->SetSize(25);
 	StageMainName_->SetColor({ 1.0, 1.0, 1.0 });
 	StageMainName_->SetScreenPostion({ 800, 400 });
 	StageMainName_->SetLeftAndRightSort(LeftAndRightSort::CENTER);
 
+	// TODO::스테이지마다 이름을 변경할 수 있도록
 	StageSubName_->SetText("Ground Zero", FONT_RISKOFRAIN);
 	StageSubName_->SetSize(15);
 	StageSubName_->SetColor({ 1.0, 1.0, 1.0 });
@@ -134,13 +136,14 @@ void HUD::Start()
 															, GameEngineWindow::GetInst()->GetScale().y / 2 - 867, -110 });
 
 
-
+	// HP바
 	HpRatingRenderer_ = CreateComponent<SingleColorRenderer>();
 	HpRatingRenderer_->SetColor({ 136.0f / 255.0f, 211.0f / 255.0f, 103.0f / 255.0f, 1.0f });
 	HpRatingRenderer_->GetTransform().SetWorldPosition({ -160 , -418, -109});
 	HpRatingRenderer_->GetTransform().SetWorldScale({320, 14});
 	HpRatingRenderer_->SetPivot(PIVOTMODE::LEFT);
 
+	// EXP바
 	ExpRatingRenderer_ = CreateComponent<SingleColorRenderer>();
 	ExpRatingRenderer_->SetColor({ 168.0f / 255.0f, 223.0f / 255.0f, 218.0f / 255.0f, 1.0f });
 	ExpRatingRenderer_->GetTransform().SetWorldPosition({ -160 , -438, -109 });

@@ -7,6 +7,7 @@
 #include "PiercingBullet.h"
 
 float Player::PlayTimeTimer_ = 0.0f;
+int Player::Lv_ = 1;
 int Player::Hp_ = 0;
 int Player::MaxHp_ = 0;
 int Player::Gold_ = 25;
@@ -27,7 +28,6 @@ Player::Player()
 	, MoveDir_(float4::RIGHT)
 	, FrameAnimDelay_(0.06f)
 	, ColorCheckPos_(float4::ZERO)
-	, Lv_(1)
 	, CritChance_(5)
 {
 }
@@ -46,9 +46,9 @@ void Player::Start()
 	StateInit();
 	// 최종적으로 적용될 스테이터스의 초기화
 	PlayerBuffStatusInit();
+	// 공통적으로 해야하는 초기화
+	PlayerCommonInit();
 
-	// 애니메이션 관련
-	HUD_ = GetLevel()->CreateActor<HUD>();
 }
 
 void Player::Update(float _DeltaTime)
@@ -125,6 +125,26 @@ void Player::PlayerBuffStatusInit()
 	PlayerStatus::BaseCritChance_ = this->CritChance_;
 
 	PlayerStatus::ResetStatus();
+}
+
+void Player::PlayerCommonInit()
+{
+	// UI 관련
+	HUD_ = GetLevel()->CreateActor<HUD>();
+
+	// 레벨업 이펙트
+	LevelUpEffectRenderer_ = CreateComponent<GameEngineTextureRenderer>();
+	LevelUpEffectRenderer_->CreateFrameAnimationFolder(TEX_INTERFACE_LEVELUP, FrameAnimation_DESC(TEX_INTERFACE_LEVELUP, 0.04, true));
+	LevelUpEffectRenderer_->AnimationBindEnd(TEX_INTERFACE_LEVELUP, [&](const FrameAnimation_DESC&) 
+		{ 
+		  LevelUpEffectRenderer_->Off();
+		});
+	LevelUpEffectRenderer_->ChangeFrameAnimation(TEX_INTERFACE_LEVELUP);
+	LevelUpEffectRenderer_->SetSamplingModePoint();
+	LevelUpEffectRenderer_->SetScaleModeImage();
+	LevelUpEffectRenderer_->SetPivot(PIVOTMODE::CENTER); // -> TODO::???
+
+	LevelUpEffectRenderer_->GetTransform().SetWorldMove(GetTransform().GetUpVector() * 40.0f);
 }
 
 
@@ -477,11 +497,16 @@ void Player::PlayerLevelUp()
 	// 레벨업
 	if (Exp_ >= MaxExp_)
 	{
+		Lv_++;
+
 		Exp_ = 0;
 
 		PlayerStatus::BaseDamage_ += this->LvPerDamage_;
 		PlayerStatus::BaseHp_ = this->LvPerHp_;
 		PlayerStatus::ResetStatus();
+
+		// 레벨업 이펙트
+		LevelUpEffectRenderer_->On();
 
 		// 레벨업된 스탯으로 버프아이템 재설정
 		for (Item* tmpItem : ItemVector_)

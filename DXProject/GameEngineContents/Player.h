@@ -53,6 +53,11 @@ public:
 		}
 	}
 
+	static inline int GetPlayerLv()
+	{
+		return Lv_;
+	}
+
 	static inline int GetPlayerHp()
 	{
 		return Hp_;
@@ -96,6 +101,7 @@ protected:
 	virtual void AnimationInit() {};
 	virtual void StateInit() {};
 	void PlayerBuffStatusInit();
+	void PlayerCommonInit();
 
 	// 키입력 관련 함수
 #pragma region KeyInput
@@ -187,6 +193,9 @@ protected:
 	GameEngineCollision* Collision_;
 	float DeltaTime_;
 
+	// 레벨업 이펙트
+	GameEngineTextureRenderer* LevelUpEffectRenderer_;
+
 	// 난이도 체크용 플레이타임 타이머
 	static float PlayTimeTimer_;
 
@@ -229,7 +238,7 @@ protected:
 	float AtkSpeed_;	// 공격속도
 	float AtkTimer_;	// 공격간의 딜레이 측정용 타이머
 
-	int Lv_;
+	static int Lv_;
 	static int Gold_;
 	static int Exp_;
 	static int MaxExp_;
