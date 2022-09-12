@@ -1,13 +1,13 @@
 #include "PreCompile.h"
 #include "StageLevelParent.h"
 #include <GameEngineCore/GameEngineStatusWindow.h>
+#include "DebuggerGUI.h"
 
-GameEnGameEngineGUIWindowgineGUI* StageLevelParent::DubugererGUI_ = nullptr;
+DebuggerGUI* StageLevelParent::DebuggerGUI_ = nullptr;
 
 StageLevelParent::StageLevelParent() 
 {
-	// TODO::Imgui만들어보기
-	//DubugererGUI_ = GameEngineGUI::CreateGUIWindow<GameEnGameEngineGUIWindowgineGUI>("CharacterStatus", nullptr);
+	DebuggerGUI_ = GameEngineGUI::CreateGUIWindow<DebuggerGUI>("CharacterStatus", nullptr);
 }
 
 StageLevelParent::~StageLevelParent() 

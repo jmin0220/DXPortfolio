@@ -5,13 +5,14 @@
 #include "CharacterCreater.h"
 
 
+
 // Ό³Έν :
 class GameEngineActor;
 class Player;
 class StageGround;
 class HUD;
 class ItemManager;
-class GameEnGameEngineGUIWindowgineGUI;
+class DebuggerGUI;
 class StageLevelParent : public GameEngineLevel
 {
 public:
@@ -25,8 +26,6 @@ public:
 	StageLevelParent& operator=(const StageLevelParent& _Other) = delete;
 	StageLevelParent& operator=(StageLevelParent&& _Other) noexcept = delete;
 
-
-
 protected:
 	void Start() override {};
 	void Update(float _DeltaTime) override {};
@@ -39,7 +38,7 @@ protected:
 	ItemManager* ItemManager_;
 	CharacterCreater* CharacterCreater_;
 
-	static GameEnGameEngineGUIWindowgineGUI* DubugererGUI_;
+	static DebuggerGUI* DebuggerGUI_;
 private:
 };
 

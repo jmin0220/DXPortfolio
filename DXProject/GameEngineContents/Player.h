@@ -83,6 +83,16 @@ public:
 		return MaxExp_;
 	}
 
+	inline bool GetIsGroundFlg()
+	{
+		return IsGround_;
+	}
+
+	inline std::string GetState()
+	{
+		return StateManager_.GetCurStateStateName();
+	}
+
 	inline void SetJumpSpeedByBouncer()
 	{
 		JumpSpeed_ = BOUNCER_JUMP_SPEED;

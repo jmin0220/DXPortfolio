@@ -15,6 +15,7 @@
 #include "ChestBig.h"
 #include "ChestLongSet.h"
 #include "ItemManager.h"
+#include "DebuggerGUI.h"
 
 Stage1Level::Stage1Level() 
 {
@@ -46,6 +47,10 @@ void Stage1Level::Update(float _DeltaTime)
 	// 골드와 경험치에 플레이어 위치를 갱신
 	Drops::SetPlayerPos(Player_->GetTransform().GetWorldPosition());
 	ItemManager::SetPlayerPos(Player_->GetTransform().GetWorldPosition());
+
+	DebuggerGUI_->SetPlayerPos(Player_->GetTransform().GetWorldPosition());
+	DebuggerGUI_->SetPlayerGroundFlg(Player_->GetIsGroundFlg());
+	DebuggerGUI_->SetPlayerFsmStateName(Player_->GetState());
 }
 
 void Stage1Level::End()

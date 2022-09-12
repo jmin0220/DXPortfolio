@@ -97,6 +97,9 @@
     <Filter Include="01_Actor\01_Play\Object\Items\LevelUpItems\Warbanner">
       <UniqueIdentifier>{3a129738-7544-4da9-aea5-74a3233042cb}</UniqueIdentifier>
     </Filter>
+    <Filter Include="98_Global\Imgui">
+      <UniqueIdentifier>{af798299-0f18-42d6-8d32-b26e4315d590}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PreCompile.h">
@@ -252,6 +255,9 @@
     <ClInclude Include="WarbannerFlg.h">
       <Filter>01_Actor\01_Play\Object\Items\LevelUpItems\Warbanner</Filter>
     </ClInclude>
+    <ClInclude Include="DebuggerGUI.h">
+      <Filter>98_Global\Imgui</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PreCompile.cpp">
@@ -403,6 +409,9 @@
     </ClCompile>
     <ClCompile Include="PlayerStatus.cpp">
       <Filter>98_Global</Filter>
+    </ClCompile>
+    <ClCompile Include="DebuggerGUI.cpp">
+      <Filter>98_Global\Imgui</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
