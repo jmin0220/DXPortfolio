@@ -46,6 +46,8 @@ protected:
 	void ClimbEnd(const StateInfo& _Info);
 	void DeathEnd(const StateInfo& _Info);
 
+	void SKill2();
+
 	// 애니메이션 종료시
 	void EndAnimation(const FrameAnimation_DESC& _Info);
 	// 프레임마다

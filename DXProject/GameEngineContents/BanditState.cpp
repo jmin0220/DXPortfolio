@@ -62,17 +62,17 @@ void Bandit::Skill1Start(const StateInfo& _Info)
 
 void Bandit::Skill2Start(const StateInfo& _Info)
 {
-
+	CommonSkill2Start();
 }
 
 void Bandit::Skill3Start(const StateInfo& _Info)
 {
-
+	CommonSkill3Start();
 }
 
 void Bandit::Skill4Start(const StateInfo& _Info)
 {
-
+	CommonSkill4Start();
 }
 
 void Bandit::ClimbStart(const StateInfo& _Info)
