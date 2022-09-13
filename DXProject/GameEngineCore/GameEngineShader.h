@@ -20,9 +20,10 @@ public:
 	ShaderType ShaderType;
 	int BindPoint;
 	std::function<void()> SettingFunction;
+	std::function<void()> ResetFunction;
 
 public:
-	ShaderResSetter() 
+	ShaderResSetter()
 		: ShaderType(ShaderType::MAX)
 		, BindPoint(-1)
 		, ParentShader(nullptr)
@@ -49,7 +50,7 @@ public:
 	void Setting() const;
 
 public:
-	GameEngineConstantBufferSetter() 
+	GameEngineConstantBufferSetter()
 		: Res(nullptr)
 		, SetData(nullptr)
 		, Size(-1)
@@ -65,6 +66,7 @@ class GameEngineTextureSetter : public ShaderResSetter
 
 public:
 	void Setting() const;
+	void Reset() const;
 
 public:
 	GameEngineTexture* Res;
@@ -90,9 +92,11 @@ public:
 	GameEngineStructuredBuffer* Res;
 };
 
+
+
 // Ό³Έν :
 class GameEngineShaderResourcesHelper;
-class GameEngineShader 
+class GameEngineShader
 {
 	friend GameEngineShaderResourcesHelper;
 

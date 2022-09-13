@@ -89,11 +89,6 @@ float4 TextureAtlas_PS(Output _Input) : SV_Target0
     {
         clip(-1);
     }
-    
-    if (Option00 == 1)
-    {
-        return PlusColor;
-    }
 
     
     return (Tex.Sample(Smp, _Input.Tex.xy) * MulColor) + PlusColor;
