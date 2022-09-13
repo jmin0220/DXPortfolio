@@ -2,6 +2,7 @@
 #include "Bandit.h"
 #include "Bullet.h"
 #include <GameEngineBase/GameEngineRandom.h>
+#include "BanditGrenade.h"
 
 Bandit::Bandit()
 {
@@ -10,13 +11,13 @@ Bandit::Bandit()
 	MaxHp_ = 115;
 	LvPerHp_ = 25;
 
-	HpRegen_ = 0.6;
-	LvPerHpRegen_ = 0.12;
+	HpRegen_ = 0.6f;
+	LvPerHpRegen_ = 0.12f;
 
 	Damage_ = 12;
 	LvPerDamage_ = 4;
 
-	AtkSpeed_ = 0.7;
+	AtkSpeed_ = 0.7f;
 }
 
 Bandit::~Bandit() 
@@ -40,27 +41,29 @@ void Bandit::AnimationInit()
 	Renderer_->CreateFrameAnimationFolder(PLAYER_ANIM_DEATH, FrameAnimation_DESC(TEX_PLAYER_ANIM_BANDIT_DEATH, FrameAnimDelay_, false));
 
 
-	// 프레임 시작할때 실행할 함수
-	Renderer_->AnimationBindStart(PLAYER_ANIM_SKILL2, [=](const FrameAnimation_DESC& _Info)
-		{
-			// 수류탄 생성
-			CreateBullet(0, 0, BulletType::PiercingBullet, 2.5f, 800.0f);
-		});
-		
+	// 프레임마다 실행할 함수
 	Renderer_->AnimationBindFrame(PLAYER_ANIM_SKILL1, [=](const FrameAnimation_DESC& _Info)
 		{
-			if (_Info.CurFrame == 1 || _Info.CurFrame == 3)
+			if (_Info.CurFrame == 1)
 			{
-				CreateBullet(_Info.CurFrame, 3, BulletType::Bullet, 0.6f);
+				CreateBullet(_Info.CurFrame, 1, BulletType::Bullet, 1.0f);
+			}
+		});
+
+	Renderer_->AnimationBindFrame(PLAYER_ANIM_SKILL2, [=](const FrameAnimation_DESC& _Info)
+		{
+			if (_Info.CurFrame == 3)
+			{
+				// 수류탄 생성
+				BanditGrenade* tmpGrenade = GetLevel()->CreateActor<BanditGrenade>();
+				tmpGrenade->SetColMap(ColMap_);
+				tmpGrenade->SetDir(MoveDir_);
 			}
 		});
 
 	Renderer_->AnimationBindFrame(PLAYER_ANIM_SKILL4, [=](const FrameAnimation_DESC& _Info)
 		{
-			if (_Info.CurFrame == 1 || _Info.CurFrame == 3)
-			{
-				CreateBullet(_Info.CurFrame, 3, BulletType::Bullet, 0.6f);
-			}
+			CreateBullet(0, 0, BulletType::PiercingBullet, 2.5f, 400.0f);
 		});
 
 	Renderer_->AnimationBindFrame(PLAYER_ANIM_IDLE, std::bind(&Bandit::FrameAnimation, this, std::placeholders::_1));

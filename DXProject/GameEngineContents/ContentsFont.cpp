@@ -30,7 +30,6 @@ void ContentsFont::Update(float _DeltaTime)
 
 	if (true == IsBulletDmg_)
 	{
-
 		this->GetTransform().SetWorldMove(GetTransform().GetUpVector() * UpperMoveSpeed_ * _DeltaTime);
 
 		// Death까지 남은 시간이 
@@ -40,6 +39,12 @@ void ContentsFont::Update(float _DeltaTime)
 			for (auto& Renderer : FontRendererVector_)
 			{
 				Invisible_ -= _DeltaTime * 2;
+				
+				if (Invisible_ <= 0.0f)
+				{
+					Invisible_ = 0.0f;
+				}
+
 				Renderer->GetPixelData().MulColor.a = Invisible_;
 			}
 		}

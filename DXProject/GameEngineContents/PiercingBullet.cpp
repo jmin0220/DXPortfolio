@@ -78,9 +78,13 @@ void PiercingBullet::ChangeCollisionPivot()
 	{
 		Collision_->GetTransform().SetWorldPosition({ thisPos.x - PiercingLength_ / 2, thisPos.y, thisPos.z });
 	}
-	else
+	else if (Direction_.CompareInt3D(float4::RIGHT))
 	{
 		Collision_->GetTransform().SetWorldPosition({ thisPos.x + PiercingLength_ / 2, thisPos.y, thisPos.z });
+	}
+	else if (Direction_.CompareInt3D(float4::ZERO))
+	{
+		Collision_->GetTransform().SetWorldPosition({ thisPos.x, thisPos.y, thisPos.z });
 	}
 }
 

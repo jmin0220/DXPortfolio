@@ -1,5 +1,4 @@
 #pragma once
-#include <GameEngineCore/GameEngineActor.h>
 #include "Item.h"
 
 enum class BulletType

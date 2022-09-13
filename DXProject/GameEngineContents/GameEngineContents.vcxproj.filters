@@ -100,6 +100,12 @@
     <Filter Include="98_Global\Imgui">
       <UniqueIdentifier>{af798299-0f18-42d6-8d32-b26e4315d590}</UniqueIdentifier>
     </Filter>
+    <Filter Include="01_Actor\01_Play\Characters\Players\00_Commando">
+      <UniqueIdentifier>{84b90061-e8fe-45ec-a6da-e2468d4330e6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01_Actor\01_Play\Characters\Players\01_Bandit">
+      <UniqueIdentifier>{397b121f-a6c2-401c-b291-0e59443cd2d4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PreCompile.h">
@@ -183,12 +189,6 @@
     <ClInclude Include="Player.h">
       <Filter>01_Actor\01_Play\Characters</Filter>
     </ClInclude>
-    <ClInclude Include="Bandit.h">
-      <Filter>01_Actor\01_Play\Characters\Players</Filter>
-    </ClInclude>
-    <ClInclude Include="Commando.h">
-      <Filter>01_Actor\01_Play\Characters\Players</Filter>
-    </ClInclude>
     <ClInclude Include="Bouncer.h">
       <Filter>01_Actor\01_Play\Object</Filter>
     </ClInclude>
@@ -257,6 +257,15 @@
     </ClInclude>
     <ClInclude Include="DebuggerGUI.h">
       <Filter>98_Global\Imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="Commando.h">
+      <Filter>01_Actor\01_Play\Characters\Players\00_Commando</Filter>
+    </ClInclude>
+    <ClInclude Include="Bandit.h">
+      <Filter>01_Actor\01_Play\Characters\Players\01_Bandit</Filter>
+    </ClInclude>
+    <ClInclude Include="BanditGrenade.h">
+      <Filter>01_Actor\01_Play\Characters\Players\01_Bandit</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -338,18 +347,6 @@
     <ClCompile Include="PlayerState.cpp">
       <Filter>01_Actor\01_Play\Characters</Filter>
     </ClCompile>
-    <ClCompile Include="Bandit.cpp">
-      <Filter>01_Actor\01_Play\Characters\Players</Filter>
-    </ClCompile>
-    <ClCompile Include="BanditState.cpp">
-      <Filter>01_Actor\01_Play\Characters\Players</Filter>
-    </ClCompile>
-    <ClCompile Include="Commando.cpp">
-      <Filter>01_Actor\01_Play\Characters\Players</Filter>
-    </ClCompile>
-    <ClCompile Include="CommandoState.cpp">
-      <Filter>01_Actor\01_Play\Characters\Players</Filter>
-    </ClCompile>
     <ClCompile Include="Bouncer.cpp">
       <Filter>01_Actor\01_Play\Object</Filter>
     </ClCompile>
@@ -412,6 +409,21 @@
     </ClCompile>
     <ClCompile Include="DebuggerGUI.cpp">
       <Filter>98_Global\Imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="Commando.cpp">
+      <Filter>01_Actor\01_Play\Characters\Players\00_Commando</Filter>
+    </ClCompile>
+    <ClCompile Include="CommandoState.cpp">
+      <Filter>01_Actor\01_Play\Characters\Players\00_Commando</Filter>
+    </ClCompile>
+    <ClCompile Include="Bandit.cpp">
+      <Filter>01_Actor\01_Play\Characters\Players\01_Bandit</Filter>
+    </ClCompile>
+    <ClCompile Include="BanditState.cpp">
+      <Filter>01_Actor\01_Play\Characters\Players\01_Bandit</Filter>
+    </ClCompile>
+    <ClCompile Include="BanditGrenade.cpp">
+      <Filter>01_Actor\01_Play\Characters\Players\01_Bandit</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

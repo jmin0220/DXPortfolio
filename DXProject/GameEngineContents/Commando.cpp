@@ -10,13 +10,13 @@ Commando::Commando()
 	MaxHp_ = 110;
 	LvPerHp_ = 32;
 
-	HpRegen_ = 0.6;
-	LvPerHpRegen_ = 0.12;
+	HpRegen_ = 0.6f;
+	LvPerHpRegen_ = 0.12f;
 
 	Damage_ = 12;
 	LvPerDamage_ = 3;
 
-	AtkSpeed_ = 0.5;
+	AtkSpeed_ = 0.5f;
 }
 
 Commando::~Commando() 

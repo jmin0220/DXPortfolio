@@ -174,7 +174,7 @@ void HUD::Update(float _DeltaTime)
 	// 10초에 1번씩
 	int tmp = static_cast<int>(Player::GetPlayTimeTimer());
 	float PlayTimer = tmp / 100;
-	float SliceY = 1.0 - Player::GetPlayTimeTimer() / 1000;
+	float SliceY = 1.0f - Player::GetPlayTimeTimer() / 1000;
 
 	if (SliceY < 0.0f)
 	{

@@ -71,6 +71,7 @@
 #define PLAYER_ANIM_COMMANDO_SKILL4_1 "CommandoSkill4_1"
 #define PLAYER_ANIM_COMMANDO_SKILL4_2 "CommandoSkill4_2"
 
+#define PLAYER_ANIM_BANDIT_SKILL2_GRENADE "BanditSkill2Grenade"
 #define PLAYER_ANIM_BANDIT_SKILL2_EXPLOSION "BanditSkill2Explosion"
 
 // 이펙트 애니메이션
