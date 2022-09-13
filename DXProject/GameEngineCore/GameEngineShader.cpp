@@ -3,6 +3,7 @@
 #include "GameEngineVertexShader.h"
 #include "GameEnginePixelShader.h"
 #include "GameEngineConstantBuffer.h"
+#include "GameEngineStructuredBuffer.h"
 #include "GameEngineTexture.h"
 #include "GameEngineSampler.h"
 
@@ -61,13 +62,13 @@ void GameEngineShader::AutoCompile(const std::string& _Path)
 
 }
 
-GameEngineShader::GameEngineShader() 
+GameEngineShader::GameEngineShader()
 	: Version("")
 	, BinaryPtr(nullptr)
 {
 }
 
-GameEngineShader::~GameEngineShader() 
+GameEngineShader::~GameEngineShader()
 {
 	if (nullptr != BinaryPtr)
 	{
@@ -103,10 +104,10 @@ void GameEngineShader::ShaderResCheck()
 	ID3D11ShaderReflection* CompileInfo = nullptr;
 
 	if (S_OK != D3DReflect(
-		BinaryPtr->GetBufferPointer(), 
+		BinaryPtr->GetBufferPointer(),
 		BinaryPtr->GetBufferSize(),
 		IID_ID3D11ShaderReflection,
-		reinterpret_cast<void**>( & CompileInfo)
+		reinterpret_cast<void**>(&CompileInfo)
 	))
 	{
 		MsgBoxAssert("쉐이더 쉐이더 리플렉션이 잘못 돼었습니다.");
@@ -134,7 +135,6 @@ void GameEngineShader::ShaderResCheck()
 		{
 		case D3D_SIT_CBUFFER:
 		{
-
 			// 리소스가 상수버퍼라면
 			ID3D11ShaderReflectionConstantBuffer* CBufferPtr = CompileInfo->GetConstantBufferByName(ResInfo.Name);
 
@@ -151,7 +151,7 @@ void GameEngineShader::ShaderResCheck()
 			NewSetter.ParentShader = this;
 			NewSetter.SetName(Name);
 			NewSetter.ShaderType = ShaderSettingType;
-			NewSetter.Res = GameEngineConstantBuffer::CreateAndFind(Name, BufferDesc, CBufferPtr);
+			NewSetter.Res = GameEngineConstantBuffer::CreateAndFind(Name, BufferDesc);
 			NewSetter.BindPoint = ResInfo.BindPoint;
 			ConstantBufferMap.insert(std::make_pair(Name, NewSetter));
 
@@ -181,6 +181,8 @@ void GameEngineShader::ShaderResCheck()
 		}
 		case D3D_SIT_STRUCTURED:
 		{
+			// 구조적인 특성상 대용량 메모리를 사용하는것이 기본이기 때문에.
+			// 미리 만들수도 없어.
 			// 스트럭처드 버퍼를 만든다.
 			ID3D11ShaderReflectionConstantBuffer* CBufferPtr = CompileInfo->GetConstantBufferByName(ResInfo.Name);
 			D3D11_SHADER_BUFFER_DESC BufferDesc;
@@ -190,7 +192,8 @@ void GameEngineShader::ShaderResCheck()
 			NewSetter.ParentShader = this;
 			NewSetter.SetName(Name);
 			NewSetter.ShaderType = ShaderSettingType;
-			// NewSetter.Res = GameEngineStructuredBuffer::Create(Name, BufferDesc, CBufferPtr);
+			// 아직은 데이터의 사이즈는 알수있어도 이걸로 몇개짜리 버퍼를 만들지는 알수가 없다.
+			NewSetter.Res = GameEngineStructuredBuffer::CreateAndFind(Name, BufferDesc, 0);
 			NewSetter.BindPoint = ResInfo.BindPoint;
 
 			StructuredBufferMap.insert(std::make_pair(Name, NewSetter));
