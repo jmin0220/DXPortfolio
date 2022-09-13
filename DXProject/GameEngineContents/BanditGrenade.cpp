@@ -4,6 +4,8 @@
 #include <GameEngineBase/GameEngineRandom.h>
 
 BanditGrenade::BanditGrenade()
+	: IsExplosion_(false)
+	, JumpSpeed_(300.0f)
 {
 }
 
@@ -17,11 +19,11 @@ void BanditGrenade::Start()
 	// 수류탄의 몸체
 	Renderer_ = CreateComponent<GameEngineTextureRenderer>();
 
-	Renderer_->CreateFrameAnimationFolder(PLAYER_ANIM_BANDIT_SKILL2_GRENADE, FrameAnimation_DESC(PLAYER_ANIM_BANDIT_SKILL2_EXPLOSION, ANIMATION_FRAME_DELAY, true));
+	Renderer_->CreateFrameAnimationFolder(PLAYER_ANIM_BANDIT_SKILL2_GRENADE, FrameAnimation_DESC(PLAYER_ANIM_BANDIT_SKILL2_GRENADE, ANIMATION_FRAME_DELAY, true));
 	Renderer_->AnimationBindFrame(PLAYER_ANIM_BANDIT_SKILL2_GRENADE, [=](const FrameAnimation_DESC& _Info)
 		{
 			// 매 프레임마다 회전
-			Renderer_->GetTransform().SetAddWorldRotation(60.0f);
+			Renderer_->GetTransform().SetAddWorldRotation({ 0.0f, 0.0f, 60.0f, 0.0f });
 		}
 	);
 
@@ -34,10 +36,16 @@ void BanditGrenade::Start()
 	EffectRenderer_->CreateFrameAnimationFolder(PLAYER_ANIM_BANDIT_SKILL2_EXPLOSION, FrameAnimation_DESC(PLAYER_ANIM_BANDIT_SKILL2_EXPLOSION, ANIMATION_FRAME_DELAY, false));
 	EffectRenderer_->AnimationBindFrame(PLAYER_ANIM_BANDIT_SKILL2_EXPLOSION, [=](const FrameAnimation_DESC& _Info)
 		{
-			if (_Info.CurFrame == 1)
+			if (1 == _Info.CurFrame && false == IsExplosion_)
 			{
 				CreateExplosion();
 			}
+		}
+	);	
+	
+	EffectRenderer_->AnimationBindEnd(PLAYER_ANIM_BANDIT_SKILL2_EXPLOSION, [=](const FrameAnimation_DESC& _Info)
+		{
+			this->Death();
 		}
 	);
 
@@ -54,10 +62,13 @@ void BanditGrenade::Start()
 
 void BanditGrenade::Update(float _DeltaTime)
 {
-	GroundFall(_DeltaTime);
+	if (false == IsExplosion_)
+	{
+		GroundFall(_DeltaTime);
 
-	Collision_->IsCollision(CollisionType::CT_SPHERE2D, ObjectGroup::Monster, CollisionType::CT_SPHERE2D
-		, std::bind(&BanditGrenade::CollisionCheck, this, std::placeholders::_1, std::placeholders::_2));
+		Collision_->IsCollision(CollisionType::CT_SPHERE2D, ObjectGroup::Monster, CollisionType::CT_SPHERE2D
+			, std::bind(&BanditGrenade::CollisionCheck, this, std::placeholders::_1, std::placeholders::_2));
+	}
 };
 
 void BanditGrenade::GroundFall(float _DeltaTime)
@@ -75,19 +86,30 @@ void BanditGrenade::GroundFall(float _DeltaTime)
 	// 바닥이 닿지 않으면 낙하
 	if (false == ColorDown.CompareInt4D({ 1.0f, 0.0f, 1.0f }))
 	{
-		GetTransform().SetWorldMove(CreatedDir_ * 150.0f * _DeltaTime);
-		GetTransform().SetWorldMove(GetTransform().GetDownVector() * 30.0f * _DeltaTime);
+		GetTransform().SetWorldMove(CreatedDir_ * 300.0f * _DeltaTime);
+		GetTransform().SetWorldMove((GetTransform().GetDownVector() * 120.0f + JumpSpeed_) * _DeltaTime);
+
+		JumpSpeed_ -= 10.0f;
+
+		if (JumpSpeed_ <= 0.0f)
+		{
+			JumpSpeed_ = 0.0f;
+		}
 	}
 	else
 	{
 		CreateExplosion();
-		this->Death();
 	}
 }
 
 void BanditGrenade::CreateExplosion()
 {
 	PiercingBullet* piercingbullet = GetLevel()->CreateActor<PiercingBullet>();
+
+	// 폭발 이펙트 On
+	Renderer_->Off();
+	EffectRenderer_->On();
+	IsExplosion_ = true;
 
 	// 크리티컬 찬스
 	if (PlayerStatus::CritChance_ >= GameEngineRandom::MainRandom.RandomInt(0, 100))
@@ -106,8 +128,7 @@ void BanditGrenade::CreateExplosion()
 
 bool BanditGrenade::CollisionCheck(GameEngineCollision* _This, GameEngineCollision* _Other)
 {
-	Renderer_->Off();
-	EffectRenderer_->On();
+	CreateExplosion();
 
 	return true;
 }

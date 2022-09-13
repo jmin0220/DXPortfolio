@@ -56,8 +56,14 @@ void Bandit::AnimationInit()
 			{
 				// ¼ö·ùÅº »ý¼º
 				BanditGrenade* tmpGrenade = GetLevel()->CreateActor<BanditGrenade>();
+				tmpGrenade->GetTransform().SetWorldPosition({ this->GetTransform().GetWorldPosition().x
+															, this->GetTransform().GetWorldPosition().y + 10.0f
+															, this->GetTransform().GetWorldPosition().z
+				});
+
 				tmpGrenade->SetColMap(ColMap_);
 				tmpGrenade->SetDir(MoveDir_);
+				tmpGrenade->SetDamage(Damage_);
 			}
 		});
 
@@ -67,10 +73,7 @@ void Bandit::AnimationInit()
 		});
 
 	Renderer_->AnimationBindFrame(PLAYER_ANIM_IDLE, std::bind(&Bandit::FrameAnimation, this, std::placeholders::_1));
-	Renderer_->AnimationBindFrame(PLAYER_ANIM_SKILL1, std::bind(&Bandit::FrameAnimation, this, std::placeholders::_1));
-	Renderer_->AnimationBindFrame(PLAYER_ANIM_SKILL2, std::bind(&Bandit::FrameAnimation, this, std::placeholders::_1));
 	Renderer_->AnimationBindFrame(PLAYER_ANIM_SKILL3, std::bind(&Bandit::FrameAnimation, this, std::placeholders::_1));
-	Renderer_->AnimationBindFrame(PLAYER_ANIM_SKILL4, std::bind(&Bandit::FrameAnimation, this, std::placeholders::_1));
 	Renderer_->AnimationBindFrame(PLAYER_ANIM_WALK, std::bind(&Bandit::FrameAnimation, this, std::placeholders::_1));
 	Renderer_->AnimationBindFrame(PLAYER_ANIM_JUMP, std::bind(&Bandit::FrameAnimation, this, std::placeholders::_1));
 	Renderer_->AnimationBindFrame(PLAYER_ANIM_CLIMB, std::bind(&Bandit::FrameAnimation, this, std::placeholders::_1));

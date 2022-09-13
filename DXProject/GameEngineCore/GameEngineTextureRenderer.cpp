@@ -52,7 +52,7 @@ void FrameAnimation::Update(float _Delta)
 			++Info.CurFrame;
 			if (nullptr != Frame)
 			{
-z				Frame(Info);
+				Frame(Info);
 			}
 
 			if (Info.CurFrame >= Info.Frames.size())

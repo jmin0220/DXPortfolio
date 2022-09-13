@@ -25,6 +25,11 @@ public:
 		CreatedDir_ = _Dir;
 	}
 
+	inline void SetDamage(float _Damage)
+	{
+		Damage_ = _Damage;
+	}
+
 protected:
 	void Start() override;
 	void Update(float _DeltaTime) override;
@@ -39,6 +44,9 @@ private:
 	// 날아갈 방향
 	float4 CreatedDir_;
 	float Damage_;
+	float JumpSpeed_;
+
+	bool IsExplosion_;
 
 	void GroundFall(float _DeltaTime);
 	void CreateExplosion();
