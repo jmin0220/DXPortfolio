@@ -300,6 +300,14 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="Sawmerang.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="SawmerangEffect.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="SingleColorRenderer.h">
       <SubType>
       </SubType>
@@ -487,6 +495,14 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="RiskOfRain.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Sawmerang.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="SawmerangEffect.cpp">
       <SubType>
       </SubType>
     </ClCompile>

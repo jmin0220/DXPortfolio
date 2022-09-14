@@ -85,22 +85,17 @@ void Player::Update(float _DeltaTime)
 		AddItemFlg_ = false;
 	}
 
+	// 레벨업 체크
 	PlayerLevelUp();
+
+	// 아이템 사용체크
+	PlayerUseItem();
 
 	// 카메라 업데이트
 	CameraUpdate();
 
 	PlayerStatus::ResetFrameStatus(); // -> 프레임스탯을 초기화
 
-	//GameEngineGUI::::NewLine();
-	//std::string playerX = "PlayerPositionX : " + std::to_string(this->GetTransform().GetWorldPosition().x);
-	//ImGui::Text(playerX.c_str());
-	//ImGui::NewLine();
-	//std::string playerY = "PlayerPositionY : " + std::to_string(this->GetTransform().GetWorldPosition().y);
-	//ImGui::Text(playerY.c_str());
-	//ImGui::NewLine();
-	//std::string playerZ = "PlayerPositionZ : " + std::to_string(this->GetTransform().GetWorldPosition().z);
-	//ImGui::Text(playerZ.c_str());
 }
 
 void Player::KeyInit()
@@ -119,6 +114,8 @@ void Player::KeyInit()
 		GameEngineInput::GetInst()->CreateKey(Player_KEY_SKILL4, 'V');
 
 		GameEngineInput::GetInst()->CreateKey(Player_KEY_INTERACTIVE, 'A');
+
+		GameEngineInput::GetInst()->CreateKey(Player_KEY_USE_ITEMS, 'G');
 
 		// TODO::디버그용 상하이동
 		GameEngineInput::GetInst()->CreateKey(PLAYER_KEY_DEBUG_UP, 'W');
@@ -548,6 +545,17 @@ void Player::PlayerLevelUp()
 		for (Item* tmpItem : ItemVector_)
 		{
 			tmpItem->LevelUpItemUpdate(this->GetTransform().GetWorldPosition());
+		}
+	}
+}
+
+void Player::PlayerUseItem()
+{
+	if(GameEngineInput::GetInst()->IsDown(Player_KEY_USE_ITEMS))
+	{
+		for (Item* tmpItem : ItemVector_)
+		{
+			tmpItem->UseItemUpdate(this->GetTransform().GetWorldPosition(), MoveDir_);
 		}
 	}
 }

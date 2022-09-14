@@ -92,6 +92,9 @@ void ChestLong::Initialize()
 	case ItemList::HarvesterScythe:
 		ShowItemRenderer_->SetTexture(ITEM_NAME_HARVESTERSCYTHE);
 		break;
+	case ItemList::Sawmerang:
+		ShowItemRenderer_->SetTexture(ITEM_NAME_SAWMERANG);
+		break;
 	default:
 		break;
 	}

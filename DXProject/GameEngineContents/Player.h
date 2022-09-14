@@ -159,6 +159,7 @@ protected:
 
 	void PlayerJump();
 	void PlayerLevelUp();
+	void PlayerUseItem();
 
 	// FSM ¸Å´ÏÀú
 	GameEngineStateManager StateManager_;

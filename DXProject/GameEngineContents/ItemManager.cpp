@@ -10,6 +10,7 @@
 #include "Warbanner.h"
 #include "RedWhip.h"
 #include "HarvesterScythe.h"
+#include "Sawmerang.h"
 #pragma endregion
 
 std::vector<Item*> ItemManager::ItemVector_ = {};
@@ -52,6 +53,8 @@ void ItemManager::CreateItem(GameEngineLevel* _Level, ItemList _ItemList, float4
 	case ItemList::HarvesterScythe:
 		tmpItem = _Level->CreateActor<HarvesterScythe>();
 		break;
+	case ItemList::Sawmerang:
+		tmpItem = _Level->CreateActor<Sawmerang>();
 	case ItemList::End:
 		break;
 	default:

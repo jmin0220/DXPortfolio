@@ -11,6 +11,8 @@ enum class ItemList
 	Warbanner,
 	// BuffItems
 	HarvesterScythe,
+	// UseItems
+	Sawmerang,
 
 	End,
 };

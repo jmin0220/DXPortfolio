@@ -19,6 +19,8 @@
 #define Player_KEY_SKILL3 "PlayerSkill3"
 #define Player_KEY_SKILL4 "PlayerSkill4"
 
+#define Player_KEY_USE_ITEMS "UseItems"
+
 // 플레이어 수치값
 #define Player_MOVE_SPEED 150.0f
 #define Player_JUMP_SPEED -210.0f
@@ -240,6 +242,7 @@
 #define ITEM_NAME_WARBANNER "Warbanner.png"
 #define ITEM_NAME_REDWHIP "RedWhip.png"
 #define ITEM_NAME_HARVESTERSCYTHE "HarvesterScythe.png"
+#define ITEM_NAME_SAWMERANG "sSawmerang_0.png"
 
 // 아이템 애니메이션
 #define ITEM_ANIMATION_MEATNUGGET_IDLE "MeatNuggetIdle"
@@ -247,3 +250,4 @@
 #define ITEM_ANIMATION_WARBANNER_FLAG "WarbannerFlag"
 #define ITEM_ANIMATION_WARBANNER_CIRCLE "WarbannerCircle"
 #define ITEM_ANIMATION_THORN_EFFECT "ThornEffect"
+#define ITEM_ANIMATION_SAWMERANG_EFFECT "SawmerangEffect"

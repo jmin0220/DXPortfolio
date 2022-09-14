@@ -68,7 +68,7 @@ bool PiercingBullet::CollisionCheck(GameEngineCollision* _This, GameEngineCollis
 	DamageFont_->SetDeathTimer(1.0f);
 
 
-	return false;
+	return true;
 }
 
 void PiercingBullet::ChangeCollisionPivot()

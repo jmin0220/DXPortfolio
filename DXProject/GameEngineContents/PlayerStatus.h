@@ -7,6 +7,11 @@ public:
 	static void ResetFrameStatus();
 	static void AddFrameStatusToTrueStatus();
 
+	static int GetiDamage()
+	{
+		return static_cast<int>(Damage_);
+	}
+
 	// 최종적으로 적용될 스테이터스(TrueStatus)
 	static float Speed_;
 	static float Damage_;
