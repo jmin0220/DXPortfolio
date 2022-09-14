@@ -11,7 +11,7 @@
 #include "GameEngineBlend.h"
 
 
-GameEngineRenderingPipeLine::GameEngineRenderingPipeLine() 
+GameEngineRenderingPipeLine::GameEngineRenderingPipeLine()
 	: InputLayOut(nullptr)
 	, VertexBuffer(nullptr)
 	, VertexShader(nullptr)
@@ -29,7 +29,7 @@ GameEngineRenderingPipeLine::GameEngineRenderingPipeLine()
 	DepthStencil = GameEngineDepthStencil::Find("EngineBaseDepth");
 }
 
-GameEngineRenderingPipeLine::~GameEngineRenderingPipeLine() 
+GameEngineRenderingPipeLine::~GameEngineRenderingPipeLine()
 {
 }
 
@@ -64,7 +64,7 @@ GameEngineRenderingPipeLine* GameEngineRenderingPipeLine::Create(const std::stri
 	return CreateResName(_Name);
 }
 
-void GameEngineRenderingPipeLine::SetInputAssembler1VertexBuffer(const std::string& _Name) 
+void GameEngineRenderingPipeLine::SetInputAssembler1VertexBuffer(const std::string& _Name)
 {
 	VertexBuffer = GameEngineVertexBuffer::Find(_Name);
 
@@ -98,7 +98,7 @@ void GameEngineRenderingPipeLine::SetVertexShader(const std::string& _Name)
 	}
 }
 
-void GameEngineRenderingPipeLine::SetInputAssembler2IndexBuffer(const std::string& _Name) 
+void GameEngineRenderingPipeLine::SetInputAssembler2IndexBuffer(const std::string& _Name)
 {
 	IndexBuffer = GameEngineIndexBuffer::Find(_Name);
 
@@ -160,8 +160,15 @@ void GameEngineRenderingPipeLine::SetOutputMergerBlend(const std::string& _Name)
 	}
 }
 
-void GameEngineRenderingPipeLine::Rendering()
+void GameEngineRenderingPipeLine::Rendering(bool IsInstancing /*= false*/)
 {
+	if (true == IsInstancing)
+	{
+		// 데이터 수집을 한다.
+		InstancingDataCollect();
+		return;
+	}
+
 	InputAssembler1VertexBufferSetting();
 
 	VertexShaderSetting();
@@ -180,6 +187,11 @@ void GameEngineRenderingPipeLine::Rendering()
 
 }
 
+void GameEngineRenderingPipeLine::InstancingDataCollect()
+{
+	// InstancingDraw();
+}
+
 // 실직적으로 세팅의 순서는 그다지 중요하지 않다.
 
 void GameEngineRenderingPipeLine::InputAssembler1VertexBufferSetting()
@@ -191,36 +203,36 @@ void GameEngineRenderingPipeLine::InputAssembler1VertexBufferSetting()
 	VertexBuffer->Setting();
 }
 
-void GameEngineRenderingPipeLine::VertexShaderSetting() 
+void GameEngineRenderingPipeLine::VertexShaderSetting()
 {
 	VertexShader->Setting();
 	// 위치 
 	// D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST;
 }
 
-void GameEngineRenderingPipeLine::InputAssembler2IndexBufferSetting() 
+void GameEngineRenderingPipeLine::InputAssembler2IndexBufferSetting()
 {
 	GameEngineDevice::GetContext()->IASetPrimitiveTopology(Topology);
 
 	IndexBuffer->Setting();
 }
 
-void GameEngineRenderingPipeLine::RasterizerSetting() 
+void GameEngineRenderingPipeLine::RasterizerSetting()
 {
 	Rasterizer->Setting();
 }
 
-void GameEngineRenderingPipeLine::PixelShaderSetting() 
+void GameEngineRenderingPipeLine::PixelShaderSetting()
 {
 	PixelShader->Setting();
 }
 
-void GameEngineRenderingPipeLine::OutputMergerBlendSetting() 
+void GameEngineRenderingPipeLine::OutputMergerBlendSetting()
 {
 	Blend->Setting();
 }
 
-void GameEngineRenderingPipeLine::OutputMergerDepthStencilSetting() 
+void GameEngineRenderingPipeLine::OutputMergerDepthStencilSetting()
 {
 	DepthStencil->Setting();
 }
@@ -228,20 +240,40 @@ void GameEngineRenderingPipeLine::OutputMergerDepthStencilSetting()
 
 void GameEngineRenderingPipeLine::Draw()
 {
-
 	GameEngineDevice::GetContext()->DrawIndexed(IndexBuffer->GetIndexCount(), 0, 0);
+}
+
+void GameEngineRenderingPipeLine::InstancingDraw()
+{
+	//[in] IndexCountPerInstance 유형 : UINT
+	//각 인스턴스에 대해 인덱스 버퍼에서 읽은 인덱스 수입니다.
+	//
+
+	//[in] InstanceCount 유형 : UINT
+	//그릴 인스턴스 수입니다.
+
+	//[in] StartIndexLocation
+	//유형 : UINT GPU가 인덱스 버퍼에서 읽은 첫 번째 인덱스의 위치입니다.
+
+	//[in] BaseVertexLocation 유형 : 지능
+	//정점 버퍼에서 정점을 읽기 전에 각 인덱스에 추가된 값입니다.
+
+	//[in] StartInstanceLocation 유형 : UINT
+	//정점 버퍼에서 인스턴스별 데이터를 읽기 전에 각 인덱스에 추가된 값입니다.
+
+	// 그냥 4가 들어간다.
+	GameEngineDevice::GetContext()->DrawIndexedInstanced(IndexBuffer->GetIndexCount(), 100, 0, 0, 0);
 }
 
 void GameEngineRenderingPipeLine::Copy(GameEngineRenderingPipeLine* _Original)
 {
-	InputLayOut			= _Original->InputLayOut;
-	VertexBuffer			= _Original->VertexBuffer;
-	VertexShader			= _Original->VertexShader;
-	IndexBuffer			= _Original->IndexBuffer;
-	Topology				= _Original->Topology;
-	Rasterizer				= _Original->Rasterizer;
-	PixelShader			= _Original->PixelShader;
-	DepthStencil			= _Original->DepthStencil;
-	Blend					= _Original->Blend;
-
+	InputLayOut = _Original->InputLayOut;
+	VertexBuffer = _Original->VertexBuffer;
+	VertexShader = _Original->VertexShader;
+	IndexBuffer = _Original->IndexBuffer;
+	Topology = _Original->Topology;
+	Rasterizer = _Original->Rasterizer;
+	PixelShader = _Original->PixelShader;
+	DepthStencil = _Original->DepthStencil;
+	Blend = _Original->Blend;
 }
