@@ -266,5 +266,7 @@ protected:
 	int CritChance_;
 
 	void CreateBullet(int _CurFrame, int _LastFrame, BulletType _BulletType, float _DmgRatio = 1.0f, float _PiercingLength = 1.0f);
+
+	virtual void CharacterUpdate(float _DeltaTime) {};
 };
 

@@ -33,6 +33,8 @@ public:
 		RespawnPos_ = _Pos;
 	}
 
+	void AllMonsterStateChangeToIdle();
+
 protected:
 	void Start() override;
 	void Update(float _DeltaTime) override;

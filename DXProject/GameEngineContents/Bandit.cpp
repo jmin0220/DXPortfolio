@@ -5,6 +5,7 @@
 #include "BanditGrenade.h"
 
 Bandit::Bandit()
+	: InvisibleTimer_(3.0f)
 {
 	// https://riskofrain.fandom.com/wiki/Bandit
 	Hp_ = 115;
@@ -46,7 +47,7 @@ void Bandit::AnimationInit()
 		{
 			if (_Info.CurFrame == 1)
 			{
-				CreateBullet(_Info.CurFrame, 1, BulletType::Bullet, 1.0f);
+				CreateBullet(_Info.CurFrame, 1, BulletType::Bullet, 1.5f);
 			}
 		});
 
@@ -63,13 +64,16 @@ void Bandit::AnimationInit()
 
 				tmpGrenade->SetColMap(ColMap_);
 				tmpGrenade->SetDir(MoveDir_);
-				tmpGrenade->SetDamage(Damage_);
+				tmpGrenade->SetDamage(Damage_ * 2.3f);
 			}
 		});
 
 	Renderer_->AnimationBindFrame(PLAYER_ANIM_SKILL4, [=](const FrameAnimation_DESC& _Info)
 		{
-			CreateBullet(0, 0, BulletType::PiercingBullet, 2.5f, 400.0f);
+			if (_Info.CurFrame == 5)
+			{
+				CreateBullet(0, 0, BulletType::PiercingBullet, 2.5f, 600.0f);
+			}
 		});
 
 	Renderer_->AnimationBindFrame(PLAYER_ANIM_IDLE, std::bind(&Bandit::FrameAnimation, this, std::placeholders::_1));
@@ -138,4 +142,17 @@ void Bandit::EndAnimation(const FrameAnimation_DESC& _Info)
 
 void Bandit::FrameAnimation(const FrameAnimation_DESC& _Info)
 {
+}
+
+void Bandit::CharacterUpdate(float _DeltaTime)
+{
+	// Skill3를 썼을때 캐릭터 투명화 + 추적 상태인 적들을 Idle로 변경
+	if (InvisibleTimer_ > 0.0f)
+	{
+		Renderer_->GetPixelData().MulColor.a = 0.5f;
+	}
+	else
+	{
+		Renderer_->GetPixelData().MulColor.a = 1.0f;
+	}
 }

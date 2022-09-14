@@ -72,3 +72,9 @@ void MonsterManager::Update(float _DeltaTime)
 		}
 	}
 }
+
+// TODO::Chase상태인 모든 몬스터의 상태를 Idle로 강제로 변경
+void MonsterManager::AllMonsterStateChangeToIdle()
+{
+
+}

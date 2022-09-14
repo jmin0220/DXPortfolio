@@ -53,6 +53,9 @@ protected:
 	// 프레임마다
 	void FrameAnimation(const FrameAnimation_DESC& _Info);
 
+	void CharacterUpdate(float _DeltaTime) override;
+
 private:
+	float InvisibleTimer_;
 };
 

@@ -102,8 +102,10 @@ void Player::Update(float _DeltaTime)
 	// 카메라 업데이트
 	CameraUpdate();
 
-	PlayerStatus::ResetFrameStatus(); // -> 프레임스탯을 초기화
+	// 각 캐릭터가 가지고 있는 업데이트 수치
+	CharacterUpdate(DeltaTime_);
 
+	PlayerStatus::ResetFrameStatus(); // -> 프레임스탯을 초기화
 }
 
 void Player::KeyInit()

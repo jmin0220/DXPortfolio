@@ -9,7 +9,7 @@ Bullet::Bullet()
 	, Renderer_(nullptr)
 	, BulletDeathFlg_(false)
 	, BulletYPositionLevel_(0)
-	, BulletSpeed_(3000)
+	, BulletSpeed_(2500)
 {
 }
 
