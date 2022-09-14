@@ -12,6 +12,7 @@ Sawmerang::~Sawmerang()
 
 void Sawmerang::Initialize()
 {
+	IsUseItem_ = true;
 	ItemName_ = "Sawmerang";
 
 	Renderer_ = CreateComponent<GameEngineTextureRenderer>();
@@ -19,6 +20,13 @@ void Sawmerang::Initialize()
 	Renderer_->SetTexture(ITEM_NAME_SAWMERANG);
 	Renderer_->SetPivot(PIVOTMODE::CENTER);
 	Renderer_->ScaleToTexture();
+
+	InventoryRenderer_ = CreateComponent<GameEngineTextureRenderer>();
+	InventoryRenderer_->SetSamplingModePoint();
+	InventoryRenderer_->SetTexture(ITEM_NAME_SAWMERAN_INVENTORY);
+	InventoryRenderer_->SetPivot(PIVOTMODE::CENTER);
+	InventoryRenderer_->ScaleToTexture();
+	InventoryRenderer_->Off();
 
 	ItemNameRenderer_ = CreateComponent<GameEngineFontRenderer>();
 	ItemNameRenderer_->SetText("Sawmerang", FONT_RISKOFRAIN);

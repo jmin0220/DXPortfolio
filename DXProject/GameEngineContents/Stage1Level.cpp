@@ -98,5 +98,5 @@ void Stage1Level::LevelStartEvent()
 	//TmpChestBig->GetTransform().SetWorldPosition({ 50.0f, -864.0f, static_cast<float>(ZOrder::Chest) });
 	ChestLongSet* TmpChestLongSet = CreateActor<ChestLongSet>();
 	TmpChestLongSet->CreateChestLongSet({ 350.0f, -864.0f, static_cast<float>(ZOrder::Chest) });
-	ItemManager_->CreateItem(this, { 156.0f, -804.0f });
+	ItemManager_->CreateItem(this, ItemList::Sawmerang ,{ 156.0f, -804.0f });
 }

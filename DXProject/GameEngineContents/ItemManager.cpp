@@ -84,17 +84,45 @@ void ItemManager::Update(float _DeltaTime)
 		// 오브젝트가 충분히 근접함
 		if (ToPlayerLength_.Length() <= 30)
 		{
-			// 플레이어에 골드 추가
-			Player* tmpPlayer = nullptr;
-			tmpPlayer->AddItem(tmpItem);
+			if (false == tmpItem->GetIsUseItem())
+			{
+				// 플레이어에 아이템 추가
+				Player* tmpPlayer = nullptr;
+				tmpPlayer->AddItem(tmpItem);
 
-			// RootingFlag가 True인 아이템은 효과만을 업데이트 해줌
-			tmpItem->SetPlayerPos(PlayerPos_);
-			tmpItem->SetItemRootingFlgTrue();
+				// RootingFlag가 True인 아이템은(이미 가지고 있는 아이템은) 효과만을 업데이트 해줌
+				tmpItem->SetPlayerPos(PlayerPos_);
+				tmpItem->SetItemRootingFlgTrue();
 
-			ItemVector_.erase(ItemVector_.begin() + i);
+				ItemVector_.erase(ItemVector_.begin() + i);
 
-			return;
+				return;
+			}
+			else
+			{
+				Player* tmpPlayer = nullptr;
+
+				// UseItem이 없다면 바로 획득
+				if (tmpPlayer->UseItem_ == nullptr)
+				{
+					tmpPlayer->UseItem_ = tmpItem;
+
+					// RootingFlag가 True인 아이템은(이미 가지고 있는 아이템은) 효과만을 업데이트 해줌
+					tmpItem->SetPlayerPos(PlayerPos_);
+					tmpItem->SetItemRootingFlgTrue();
+					tmpPlayer->AddUseItem();
+
+					ItemVector_.erase(ItemVector_.begin() + i);
+
+					return;
+				}
+				// 이미 있다면 가지고 있던 선택해서 
+				else
+				{
+					// TODO::아이템을 교체할거냐는 안내문
+
+				}
+			}
 		}
 
 		i++;

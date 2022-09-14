@@ -199,7 +199,7 @@ void HUD::Update(float _DeltaTime)
 
 	// Player 상태관련-------------------------------------------------------------------------
 
-	// TODO:: 경험치바도 hp바와 동일한 처리를 할 수 있도록
+	// Hp와 Exp를 상태에 따라서 Bar의 수준을 조정
 	HpRatingRenderer_->GetTransform().SetWorldScale({ static_cast<float>(Player::GetPlayerHp()) / static_cast<float>(Player::GetPlayerMaxHp()) * 320.0f, 14});
 	ExpRatingRenderer_->GetTransform().SetWorldScale({ static_cast<float>(Player::GetPlayerExp()) / static_cast<float>(Player::GetPlayerMaxExp()) * 320.0f, 4});
 }
@@ -216,9 +216,24 @@ void HUD::AddItemUpdate()
 		tmp->GetTransform().SetWorldPosition({ -(GameEngineWindow::GetInst()->GetScale().x / 2) + 50 + XMargin
 			                                 , -(GameEngineWindow::GetInst()->GetScale().y / 2) + 100, -101 });
 		tmp->ScaleToTexture();
-
-		UIRendererVector_.push_back(tmp);
+		tmp->GetPixelData().MulColor.a = 0.5f;
 
 		XMargin += 68.0f;
 	}
+}
+
+void HUD::AddUseItemUpdate()
+{
+	// 원래 있던 렌더러를 없애고
+	if (UseItemRenderer_ != nullptr)
+	{
+		UseItemRenderer_->Off();
+		UseItemRenderer_->Death();
+	}
+
+	UseItemRenderer_ = CreateComponent<GameEngineUIRenderer>();
+	UseItemRenderer_->SetTexture(Player::UseItem_->GetInventoryRenderer()->GetCurTexture());
+	UseItemRenderer_->GetTransform().SetWorldPosition({ 123.0f
+										 , -(GameEngineWindow::GetInst()->GetScale().y / 2) + 85, -101 });
+	UseItemRenderer_->ScaleToTexture();
 }

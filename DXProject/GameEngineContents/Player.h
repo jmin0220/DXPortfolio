@@ -99,7 +99,14 @@ public:
 
 	static std::vector<Item*> ItemVector_;
 
+	static Item* UseItem_;
+
 	void AddItem(Item* _Item);
+
+	inline void AddUseItem()
+	{
+		AddUseItemFlg_ = true;
+	}
 
 protected:
 	void Start() override;
@@ -218,7 +225,9 @@ protected:
 	bool IsClimb_;
 
 	// 아이템이 추가되었다
+	// AddItem함수에서 사용해야 해서 static으로 선언됨.
 	static bool AddItemFlg_;
+	static bool AddUseItemFlg_;
 
 	// 방향 관련
 	float4 MoveDir_;

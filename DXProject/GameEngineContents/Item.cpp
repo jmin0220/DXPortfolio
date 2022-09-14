@@ -7,6 +7,7 @@ Item::Item()
 	, RootingEffectEndFlg_(false)
 	, PosYTimer_(0.0f)
 	, PosY_(0.0f)
+	, IsUseItem_(false)
 {
 }
 

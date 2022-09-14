@@ -36,6 +36,16 @@ public:
 		return Renderer_;
 	}
 
+	inline GameEngineTextureRenderer* GetInventoryRenderer()
+	{
+		return InventoryRenderer_;
+	}
+
+	inline bool GetIsUseItem() const
+	{
+		return IsUseItem_;
+	}
+
 	virtual void Initialize() {};
 
 	
@@ -55,6 +65,7 @@ protected:
 	void Update(float _DeltaTime) override;
 
 	GameEngineTextureRenderer* Renderer_;
+	GameEngineTextureRenderer* InventoryRenderer_;
 	GameEngineFontRenderer* ItemNameRenderer_;
 	GameEngineFontRenderer* PickUpRenderer_;
 
@@ -65,6 +76,9 @@ protected:
 
 	// 중복된 아이템을 얼마나 먹었나
 	int OverlapCounter_;
+
+	// 사용아이템여부(사용아이템은 1개만 가질 수 있으므로)
+	bool IsUseItem_;
 private:
 	// 습득된 아이템인가
 	bool ItemRootingFlg_;

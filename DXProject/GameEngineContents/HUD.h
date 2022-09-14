@@ -21,6 +21,9 @@ public:
 	// 하단에 습득한 아이템을 반투명으로 표시
 	void AddItemUpdate();
 
+	// 사용 아이템을 표시
+	void AddUseItemUpdate();
+
 protected:
 	void Start() override;
 	void Update(float _DeltaTime);
@@ -61,7 +64,8 @@ private:
 	SingleColorRenderer* HpRatingRenderer_;
 	SingleColorRenderer* ExpRatingRenderer_;
 
-	std::vector<GameEngineUIRenderer*> UIRendererVector_;
+	// 사용 아이템 칸에 그려질 아이템 렌더러
+	GameEngineUIRenderer* UseItemRenderer_;
 
 	int RecentGold_;
 	int RecentHp_;

@@ -140,7 +140,8 @@ void ChestLong::ChangeOpenAnimChestLong()
 	// 선택받았을 경우에만 아이템을 생성
 	if (true == IsSelected_)
 	{
-		ItemManager::CreateItem(GetLevel(), ItemList_, this->GetTransform().GetWorldPosition());
+		float4 tmpPos = this->GetTransform().GetWorldPosition();
+		ItemManager::CreateItem(GetLevel(), ItemList_, { tmpPos.x, tmpPos.y - 20.0f, tmpPos.z});
 	}
 	
 	// 애니메이션은 선택 유무와 상관없이 열리도록

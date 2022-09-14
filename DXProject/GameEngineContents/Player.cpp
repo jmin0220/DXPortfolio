@@ -14,7 +14,9 @@ int Player::Gold_ = 25;
 int Player::Exp_ = 0;
 int Player::MaxExp_ = 50;
 std::vector<Item*> Player::ItemVector_ = {};
+Item* Player::UseItem_ = nullptr;
 bool Player::AddItemFlg_ = false;
+bool Player::AddUseItemFlg_ = false;
 
 Player::Player() 
 	:Renderer_(nullptr)
@@ -83,6 +85,12 @@ void Player::Update(float _DeltaTime)
 	{
 		HUD_->AddItemUpdate();
 		AddItemFlg_ = false;
+	}
+
+	if (true == AddUseItemFlg_)
+	{
+		HUD_->AddUseItemUpdate();
+		AddUseItemFlg_ = false;
 	}
 
 	// 레벨업 체크
@@ -553,10 +561,7 @@ void Player::PlayerUseItem()
 {
 	if(GameEngineInput::GetInst()->IsDown(Player_KEY_USE_ITEMS))
 	{
-		for (Item* tmpItem : ItemVector_)
-		{
-			tmpItem->UseItemUpdate(this->GetTransform().GetWorldPosition(), MoveDir_);
-		}
+		UseItem_->UseItemUpdate(this->GetTransform().GetWorldPosition(), MoveDir_);
 	}
 }
 
