@@ -43,6 +43,7 @@ void Item::Update(float _DeltaTime)
 
 		if (PosY_ <= -50.0f)
 		{
+			PosY_ = 0.0f;
 			ItemNameRenderer_->Off();
 			PickUpRenderer_->Off();
 
@@ -59,4 +60,19 @@ void Item::SetItemRootingFlgTrue()
 	Renderer_->Off();
 	ItemNameRenderer_->On();
 	PickUpRenderer_->On();
+}
+
+void Item::ReturnItemOnField()
+{
+	ItemRootingFlg_ = false;
+	RootingEffectEndFlg_ = false;
+
+	Renderer_->On();
+	ItemNameRenderer_->Off();
+	PickUpRenderer_->Off();
+
+	// È¹µæ ÀÌÆåÆ® ÃÊ±âÈ­
+	PosY_ = 0.0f;
+	ItemNameRenderer_->SetScreenPostion(this->GetTransform().GetWorldPosition());
+	PickUpRenderer_->SetScreenPostion(this->GetTransform().GetWorldPosition());
 }

@@ -121,6 +121,23 @@ void ItemManager::Update(float _DeltaTime)
 				{
 					// TODO::아이템을 교체할거냐는 안내문
 
+					if (true == GameEngineInput::GetInst()->IsDown(Player_KEY_INTERACTIVE))
+					{
+						tmpPlayer->UseItem_->GetTransform().SetWorldPosition({ PlayerPos_.x, PlayerPos_.y + 25.0f ,PlayerPos_.z });
+						tmpPlayer->UseItem_->ReturnItemOnField();
+						// 아이템을 다시 매니저에 추가
+						ItemVector_.push_back(tmpPlayer->UseItem_);
+
+
+						tmpPlayer->UseItem_ = tmpItem;
+
+						// RootingFlag가 True인 아이템은(이미 가지고 있는 아이템은) 효과만을 업데이트 해줌
+						tmpItem->SetPlayerPos(PlayerPos_);
+						tmpItem->SetItemRootingFlgTrue();
+						tmpPlayer->AddUseItem();
+
+						ItemVector_.erase(ItemVector_.begin() + i);
+					}
 				}
 			}
 		}

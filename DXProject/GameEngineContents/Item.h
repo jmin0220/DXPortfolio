@@ -16,6 +16,8 @@ public:
 
 	void SetItemRootingFlgTrue();
 
+	void ReturnItemOnField();
+
 	inline void AddOverlapCounter()
 	{
 		OverlapCounter_ ++;

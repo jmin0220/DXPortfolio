@@ -141,7 +141,7 @@ void ChestLong::ChangeOpenAnimChestLong()
 	if (true == IsSelected_)
 	{
 		float4 tmpPos = this->GetTransform().GetWorldPosition();
-		ItemManager::CreateItem(GetLevel(), ItemList_, { tmpPos.x, tmpPos.y - 20.0f, tmpPos.z});
+		ItemManager::CreateItem(GetLevel(), ItemList_, { tmpPos.x, tmpPos.y + 25.0f, tmpPos.z});
 	}
 	
 	// 애니메이션은 선택 유무와 상관없이 열리도록
