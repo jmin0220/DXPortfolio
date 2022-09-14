@@ -2,6 +2,20 @@
 #include <GameEngineCore/GameEngineActor.h>
 #include "Option.h"
 
+enum class DifficultyText
+{
+	VeryEasy,
+	Easy,
+	Medium,
+	Hard,
+	VeryHard,
+	Insane,
+	Impossible,
+	ISEEYOU,
+	IMCOMINGFORYOU,
+	HAHAHAHA,
+};
+
 // 설명 :
 class ContentsFont;
 class SingleColorRenderer;
@@ -43,6 +57,13 @@ private:
 	GameEngineUIRenderer* DifficultyHUDRenderer_;
 	GameEngineUIRenderer* DifficultyTimerRenderer_;
 	GameEngineUIRenderer* DifficultyIcon_;
+
+	// 난이도 표시 텍스트
+	GameEngineFontRenderer* DifficultyText_;
+	// 난이도표시 수준을 위한 카운터
+	int DifficultyTextCounter_;
+
+	void DifficultyTextUpdate();
 
 	// 폰트파일 렌더러
 	GameEngineFontRenderer* TargetFontRenderer_;

@@ -10,6 +10,7 @@ HUD::HUD()
 	: HUDRenderer_(nullptr)
 	, RecentGold_(0)
 	, RecentHp_(0)
+	, DifficultyTextCounter_(0)
 {
 	SkillPos_[0] = { -74, -370, -100 };
 	SkillPos_[1] = { -28, -370, -100 };
@@ -45,6 +46,7 @@ void HUD::Start()
 	DifficultyHUDRenderer_ = CreateComponent<GameEngineUIRenderer>();
 	DifficultyTimerRenderer_ = CreateComponent<GameEngineUIRenderer>();
 	DifficultyIcon_ = CreateComponent<GameEngineUIRenderer>();
+	DifficultyText_ = CreateComponent<GameEngineFontRenderer>();
 
 	for (int i = 0; i < 4; i++)
 	{
@@ -73,6 +75,11 @@ void HUD::Start()
 	DifficultyIcon_->SetSamplingModePoint();
 	DifficultyIcon_->GetTransform().SetWorldPosition({ GameEngineWindow::GetInst()->GetScale().x / 2 - 170
 													 , GameEngineWindow::GetInst()->GetScale().y / 2 - 50, -100 });
+
+	DifficultyText_->SetText("VERY EASY", FONT_RISKOFRAIN); 
+	DifficultyText_->SetScreenPostion({ 1424, 83 });
+	DifficultyText_->SetColor({ 192.0f / 255.0f, 192.0f / 255.0f, 192.0f / 255.0f, 1.0f });
+	DifficultyText_->SetSize(14);
 
 
 	// 생성되는 플레이어의 종류에 따라 HUD 스킬 아이콘 생성
@@ -181,6 +188,10 @@ void HUD::Update(float _DeltaTime)
 		SliceY = 0.0f;
 	}
 
+	DifficultyTextCounter_ = 9 - static_cast<int>(SliceY / 0.1f);
+
+	DifficultyTextUpdate();
+
 	DifficultyTimerRenderer_->GetPixelData().Slice = {0, SliceY, 0, 0};
 
 	// HUD 텍스트 관련----------------------------------------------------------------------------
@@ -236,4 +247,53 @@ void HUD::AddUseItemUpdate()
 	UseItemRenderer_->GetTransform().SetWorldPosition({ 123.0f
 										 , -(GameEngineWindow::GetInst()->GetScale().y / 2) + 85, -101 });
 	UseItemRenderer_->ScaleToTexture();
+}
+
+void HUD::DifficultyTextUpdate()
+{
+	static int CurCounter = 0;
+
+	// 카운터가 변함이 없으면 종료
+	if (CurCounter == DifficultyTextCounter_)
+	{
+		return;
+	}
+
+	CurCounter = DifficultyTextCounter_;
+
+	switch (static_cast<DifficultyText>(DifficultyTextCounter_))
+	{
+	case DifficultyText::VeryEasy:
+		DifficultyText_->SetText("VERY EASY", FONT_RISKOFRAIN);
+		break;
+	case DifficultyText::Easy:
+		DifficultyText_->SetText("EASY", FONT_RISKOFRAIN);
+		break;
+	case DifficultyText::Medium:
+		DifficultyText_->SetText("MEDIUM", FONT_RISKOFRAIN);
+		break;
+	case DifficultyText::Hard:
+		DifficultyText_->SetText("HARD", FONT_RISKOFRAIN);
+		break;
+	case DifficultyText::VeryHard:
+		DifficultyText_->SetText("VERY HARD", FONT_RISKOFRAIN);
+		break;
+	case DifficultyText::Insane:
+		DifficultyText_->SetText("INSANE", FONT_RISKOFRAIN);
+		break;
+	case DifficultyText::Impossible:
+		DifficultyText_->SetText("IMPOSSIBLE", FONT_RISKOFRAIN);
+		break;
+	case DifficultyText::ISEEYOU:
+		DifficultyText_->SetText("I SEE YOU", FONT_RISKOFRAIN);
+		break;
+	case DifficultyText::IMCOMINGFORYOU:
+		DifficultyText_->SetText("I'M COMING FOR YOU", FONT_RISKOFRAIN);
+		break;
+	case DifficultyText::HAHAHAHA:
+		DifficultyText_->SetText("HAHAHAHAHA", FONT_RISKOFRAIN);
+		break;
+	default:
+		break;
+	}
 }
