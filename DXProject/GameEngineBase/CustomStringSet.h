@@ -2,6 +2,7 @@
 
 #define ANIMATION_FRAME_DELAY 0.08f
 #define BOUNCER_JUMP_SPEED -400.0f
+#define BOSS_HP_MAX_SCALE 1576.0f
 
 // 플레이어 조작키
 #define PLAYER_KEY_LEFT "PlayerLeft"
@@ -156,6 +157,7 @@
 #define TEX_INTERFACE_LEVELUP_START "LevelUpStart"
 #define TEX_INTERFACE_LEVELUP_END "LevelUpEnd"
 #define TEX_INTERFACE_MONEY_INTERFACE "sMoney_0.png"
+#define TEX_INTERFACE_BOSS_HPBAR "BossHpBar.png"
 
 // 폰트
 #define FontName "sDamage"

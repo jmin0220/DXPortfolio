@@ -563,7 +563,10 @@ void Player::PlayerUseItem()
 {
 	if(GameEngineInput::GetInst()->IsDown(Player_KEY_USE_ITEMS))
 	{
-		UseItem_->UseItemUpdate(this->GetTransform().GetWorldPosition(), MoveDir_);
+		if (nullptr != UseItem_)
+		{
+			UseItem_->UseItemUpdate(this->GetTransform().GetWorldPosition(), MoveDir_);
+		}
 	}
 }
 

@@ -16,6 +16,7 @@
 #include "ChestLongSet.h"
 #include "ItemManager.h"
 #include "DebuggerGUI.h"
+#include "BossHUD.h"
 
 Stage1Level::Stage1Level() 
 {
@@ -34,6 +35,8 @@ void Stage1Level::Start()
 	CharacterCreater_ = CreateActor<CharacterCreater>();
 	StageActor_ = CreateActor<StageGround>();
 	ItemManager_ = CreateActor<ItemManager>();
+
+	CreateActor<BossHUD>();
 }
 
 void Stage1Level::Update(float _DeltaTime)

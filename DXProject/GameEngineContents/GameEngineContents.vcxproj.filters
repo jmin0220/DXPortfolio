@@ -279,6 +279,9 @@
     <ClInclude Include="SawmerangEffect.h">
       <Filter>01_Actor\01_Play\Object\Items\UseItems\Sawmerang</Filter>
     </ClInclude>
+    <ClInclude Include="BossHUD.h">
+      <Filter>01_Actor\01_Play\Interface</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PreCompile.cpp">
@@ -442,6 +445,9 @@
     </ClCompile>
     <ClCompile Include="SawmerangEffect.cpp">
       <Filter>01_Actor\01_Play\Object\Items\UseItems\Sawmerang</Filter>
+    </ClCompile>
+    <ClCompile Include="BossHUD.cpp">
+      <Filter>01_Actor\01_Play\Interface</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

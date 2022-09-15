@@ -294,6 +294,7 @@ void HUD::DifficultyTextUpdate()
 		DifficultyText_->SetText("HAHAHAHAHA", FONT_RISKOFRAIN);
 		break;
 	default:
+		DifficultyText_->SetText("HAHAHAHAHA", FONT_RISKOFRAIN);
 		break;
 	}
 }
