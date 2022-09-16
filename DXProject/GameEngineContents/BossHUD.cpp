@@ -33,19 +33,20 @@ void BossHUD::Start()
 
 
 	BossHp_ = GetLevel()->CreateActor<ContentsFont>();
-	BossHp_->CreateFontRenderer<GameEngineUIRenderer>("1400/1400", float4::ZERO);
+	BossHp_->CreateFontRenderer<GameEngineUIRenderer>("0/0", float4::ZERO);
 	BossHp_->GetTransform().SetWorldPosition({ 0.0f, GameEngineWindow::GetInst()->GetScale().hy() - 17.0f, -101.0f });
+	BossHp_->Off();
 
 	// TODO::Text를 생성하는 보스에 따라서 변경
 	BossName_ = CreateComponent<GameEngineFontRenderer>();
-	BossName_->SetText("Colossus", FONT_RISKOFRAIN);
+	BossName_->SetText("Boss Name", FONT_RISKOFRAIN);
 	BossName_->SetColor({ 1.0f, 1.0f, 179.0f / 255.0f });
 	BossName_->SetSize(35);
 	BossName_->SetLeftAndRightSort(LeftAndRightSort::CENTER);
 	BossName_->SetScreenPostion({ GameEngineWindow::GetInst()->GetScale().hx(), 30.0f, 0.0f});
 
 	BossSubName_ = CreateComponent<GameEngineFontRenderer>();
-	BossSubName_->SetText("Giant Stone Guardian", FONT_RISKOFRAIN);
+	BossSubName_->SetText("Boss Sub Name", FONT_RISKOFRAIN);
 	BossSubName_->SetColor({ 192.0f / 255.0f, 192.0f / 255.0f, 192.0f / 255.0f });
 	BossSubName_->SetSize(17);
 	BossSubName_->SetLeftAndRightSort(LeftAndRightSort::CENTER);
@@ -58,5 +59,7 @@ void BossHUD::Update(float _DeltaTime)
 
 	// TODO::보스의 체력에 연동해서 Renderer의 크기를 조절
 	// TODO::보스의 현재체력 / 최대체력 텍스트 출력
+	std::string HpString = std::to_string(BossHpNum_) + "/" + std::to_string(BossMaxHpNum_);
+	BossHp_->ChangeFontRenderer<GameEngineUIRenderer>(HpString, float4::ZERO);
 }
 

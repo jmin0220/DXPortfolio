@@ -282,6 +282,12 @@
     <ClInclude Include="BossHUD.h">
       <Filter>01_Actor\01_Play\Interface</Filter>
     </ClInclude>
+    <ClInclude Include="Colossus.h">
+      <Filter>01_Actor\01_Play\Monsters</Filter>
+    </ClInclude>
+    <ClInclude Include="BossMonster.h">
+      <Filter>01_Actor\01_Play\Monsters</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PreCompile.cpp">
@@ -448,6 +454,12 @@
     </ClCompile>
     <ClCompile Include="BossHUD.cpp">
       <Filter>01_Actor\01_Play\Interface</Filter>
+    </ClCompile>
+    <ClCompile Include="Colossus.cpp">
+      <Filter>01_Actor\01_Play\Monsters</Filter>
+    </ClCompile>
+    <ClCompile Include="BossMonster.cpp">
+      <Filter>01_Actor\01_Play\Monsters</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

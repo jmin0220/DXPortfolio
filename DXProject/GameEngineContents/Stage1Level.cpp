@@ -16,7 +16,7 @@
 #include "ChestLongSet.h"
 #include "ItemManager.h"
 #include "DebuggerGUI.h"
-#include "BossHUD.h"
+#include "Colossus.h"
 
 Stage1Level::Stage1Level() 
 {
@@ -35,8 +35,6 @@ void Stage1Level::Start()
 	CharacterCreater_ = CreateActor<CharacterCreater>();
 	StageActor_ = CreateActor<StageGround>();
 	ItemManager_ = CreateActor<ItemManager>();
-
-	CreateActor<BossHUD>();
 }
 
 void Stage1Level::Update(float _DeltaTime)
@@ -54,6 +52,12 @@ void Stage1Level::Update(float _DeltaTime)
 	DebuggerGUI_->SetPlayerPos(Player_->GetTransform().GetWorldPosition());
 	DebuggerGUI_->SetPlayerGroundFlg(Player_->GetIsGroundFlg());
 	DebuggerGUI_->SetPlayerFsmStateName(Player_->GetState());
+
+	// 보스 생성
+	if (true == DebuggerGUI_->GetCreateBossTrigger())
+	{
+		MonsterManager_->CreateBossFlgOn();
+	}
 }
 
 void Stage1Level::End()
@@ -102,4 +106,12 @@ void Stage1Level::LevelStartEvent()
 	ChestLongSet* TmpChestLongSet = CreateActor<ChestLongSet>();
 	TmpChestLongSet->CreateChestLongSet({ 350.0f, -864.0f, static_cast<float>(ZOrder::Chest) });
 	ItemManager_->CreateItem(this, ItemList::Sawmerang ,{ 156.0f, -804.0f });
+
+
+	// TODO::임시코드 = 보스몬스터 생성 플래그 on
+	//MonsterManager_->CreateBossFlgOn();
+
+	//Colossus* tmpColossus = CreateActor<Colossus>();
+	//tmpColossus->GetTransform().SetWorldPosition({ 1500.0f, -400.0f });
+	//tmpColossus->SetColMapInfo(StageActor_->GetColStage()->GetCurTexture());
 }

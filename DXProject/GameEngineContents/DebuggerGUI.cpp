@@ -1,7 +1,8 @@
 #include "PreCompile.h"
 #include "DebuggerGUI.h"
 
-DebuggerGUI::DebuggerGUI() 
+DebuggerGUI::DebuggerGUI()
+	: CreateBossTrigger_(false)
 {
 }
 
@@ -51,4 +52,9 @@ void DebuggerGUI::OnGUI(GameEngineLevel* _Level, float _DeltaTime)
 	ImGui::NewLine();
 	ImGui::Text(PlayerJumpFlg.c_str());
 	ImGui::NewLine();
+
+	if (true == ImGui::Button("CreateBoss"))
+	{
+		CreateBossTrigger_ = true;
+	}
 }

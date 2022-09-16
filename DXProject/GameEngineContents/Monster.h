@@ -37,7 +37,7 @@ public:
 
 	inline void ChangeStateToHitted()
 	{
-		StateManager_.ChangeState(MONSTER_FSM_HITTED);
+		//StateManager_.ChangeState(MONSTER_FSM_HITTED);
 	}
 
 	inline int GetMonsterGold() const
@@ -50,9 +50,24 @@ public:
 		return Exp_;
 	}
 
+	inline int GetMonsterHp() const
+	{
+		return MonsterHp_;
+	}
+
 	inline void SetJumpSpeedByBouncer()
 	{
 		JumpSpeed_ = BOUNCER_JUMP_SPEED;
+	}
+
+	inline std::string GetCurState()
+	{
+		return StateManager_.GetCurStateStateName();
+	}
+
+	inline void ForcedSetStateIdle()
+	{
+		StateManager_.ChangeState(MONSTER_FSM_IDLE);
 	}
 
 protected:
@@ -88,7 +103,7 @@ protected:
 
 	void CommonIdleUpdate();
 	void CommonMoveUpdate();
-	void CommonChaseUpdate();
+	void CommonChaseUpdate(float _ChaseLength = 0.0f);
 #pragma endregion
 
 	GameEngineTextureRenderer* Renderer_;

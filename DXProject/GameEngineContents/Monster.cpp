@@ -1,6 +1,7 @@
 #include "PreCompile.h"
 #include "Monster.h"
 #include <GameEngineBase/GameEngineRandom.h>
+#include <math.h>
 
 Monster::Monster() 
 	: Renderer_(nullptr)
@@ -390,7 +391,7 @@ void Monster::CommonMoveUpdate()
 	}
 }
 
-void Monster::CommonChaseUpdate()
+void Monster::CommonChaseUpdate(float _ChaseLength /* = 0.0f*/)
 {
 	AtkTimer_ += DeltaTime_;
 
@@ -403,7 +404,7 @@ void Monster::CommonChaseUpdate()
 	float4 Length = MonsterLength - PlayerLength;
 
 	// 거리가 몬스터와 가까워졌을경우 공격으로 전환
-	if (Length.Length() <= Renderer_->GetCurTexture()->GetScale().ix() && AtkTimer_ >= AtkSpeed_)
+	if (Length.Length() <= abs(Renderer_->GetCurTexture()->GetScale().ix() + _ChaseLength) && AtkTimer_ >= AtkSpeed_)
 	{
 		AtkTimer_ = 0.0f;
 		StateManager_.ChangeState(MONSTER_FSM_ATTACK);

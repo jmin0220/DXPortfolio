@@ -16,6 +16,30 @@ public:
 	BossHUD& operator=(const BossHUD& _Other) = delete;
 	BossHUD& operator=(BossHUD&& _Other) noexcept = delete;
 
+	inline void SetBossHp(int _BossHp)
+	{
+		BossHpNum_ = _BossHp;
+	}
+
+	inline void SetBossMaxHp(int _BossHp)
+	{
+		BossMaxHpNum_ = _BossHp;
+	}
+
+	inline void SetBossNames(std::string _BossName, std::string _BossSubName)
+	{
+		BossNameStr_ = _BossName;
+		BossName_->SetText(BossNameStr_, FONT_RISKOFRAIN);
+
+		BossSubNameStr_ = _BossSubName;
+		BossSubName_->SetText(BossSubNameStr_, FONT_RISKOFRAIN);
+	}
+
+	inline void BossHpFontOn()
+	{
+		BossHp_->On();
+	}
+
 protected:
 	void Start() override;
 	void Update(float _DeltaTime) override;
@@ -28,5 +52,10 @@ private:
 	ContentsFont* BossHp_;
 	GameEngineFontRenderer* BossName_;
 	GameEngineFontRenderer* BossSubName_;
+
+	int BossHpNum_;	// 수치화된 BossHp
+	int BossMaxHpNum_;
+	std::string BossNameStr_;
+	std::string BossSubNameStr_;
 };
 

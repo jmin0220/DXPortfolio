@@ -31,6 +31,11 @@ public:
 		PlayerFSMState_ = _StateName;
 	}
 
+	bool GetCreateBossTrigger() const
+	{
+		return CreateBossTrigger_;
+	}
+
 protected:
 
 private:
@@ -41,5 +46,6 @@ private:
 	bool PlayerGroundFlg_;
 	std::string PlayerFSMState_;
 
+	bool CreateBossTrigger_;
 };
 

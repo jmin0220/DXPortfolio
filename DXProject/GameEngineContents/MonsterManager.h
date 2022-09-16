@@ -2,8 +2,10 @@
 #include <GameEngineCore/GameEngineActor.h>
 #include <GameEngineCore/CoreMinimal.h>
 #include "Monster.h"
+#include "BossMonster.h"
 
 // 설명 :
+class BossHUD;
 class CharacterCreater;
 class MonsterManager : public GameEngineActor
 {
@@ -33,6 +35,12 @@ public:
 		RespawnPos_ = _Pos;
 	}
 
+	inline void CreateBossFlgOn()
+	{
+		CreateBoss();
+		CreateBossFlg_ = true;
+	}
+
 	void AllMonsterStateChangeToIdle();
 
 protected:
@@ -60,4 +68,18 @@ private:
 	GameEngineTexture* ColMap_;
 
 	CharacterCreater* CharacterCreater_;
+
+	// TODO::보스몬스터 생성 플래그 true -> HUD->On(), BossMonster생성
+	// Boss가 생성되는 위치는 n초전의 플레이어의 위치 -> 플레이어 바로 근처의 지면을 확실하게 알기 위해서
+
+	
+	// 보스몬스터 생성 플래그
+	bool CreateBossFlg_;
+	// Boss관련 인터페이스
+	BossHUD* BossHUD_;
+
+	// 따로 관리될 보스 몬스터
+	BossMonster* BossMonster_;
+
+	void CreateBoss();
 };

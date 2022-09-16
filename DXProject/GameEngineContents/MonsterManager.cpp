@@ -1,15 +1,18 @@
 #include "PreCompile.h"
 #include "MonsterManager.h"
+#include <GameEngineBase/GameEngineRandom.h>
 #include "CharacterCreater.h"
-#include "Lemurian.h"
 #include "Exp.h"
 #include "Gold.h"
-#include <GameEngineBase/GameEngineRandom.h>
+#include "BossHUD.h"
+#include "Lemurian.h"
+#include "Colossus.h"
 
 MonsterManager::MonsterManager() 
 	: SingleMonsterRespawnTimer_(0.0f)
 	, GroupMonsterRespawnTimer_(0.0f)
 	, RespawnPos_(float4::ZERO)
+	, CreateBossFlg_(false)
 {
 }
 
@@ -22,12 +25,15 @@ MonsterManager::~MonsterManager()
 void MonsterManager::Start()
 {
 	CharacterCreater_ = GetLevel()->CreateActor<CharacterCreater>();
+
+	BossHUD_ = GetLevel()->CreateActor<BossHUD>();
+	BossHUD_->Off();
 }
 
 void MonsterManager::Update(float _DeltaTime)
 {
 	// 리스폰 간격 타이머
-	SingleMonsterRespawnTimer_ += _DeltaTime;
+	//SingleMonsterRespawnTimer_ += _DeltaTime;
 	GroupMonsterRespawnTimer_ += _DeltaTime;
 
 	// 몬스터 생성타이머
@@ -71,10 +77,46 @@ void MonsterManager::Update(float _DeltaTime)
 			++MonsteriterStart;
 		}
 	}
+
+	if (true == CreateBossFlg_ && BossMonster_ != nullptr)
+	{
+		BossMonster_->SetPlayerPos(PlayerPos_);
+
+		BossHUD_->SetBossHp(BossMonster_->GetMonsterHp());
+	}
 }
 
-// TODO::Chase상태인 모든 몬스터의 상태를 Idle로 강제로 변경
+
 void MonsterManager::AllMonsterStateChangeToIdle()
 {
+	for (Monster* tmpMonster : Monster_)
+	{
+		if ( MONSTER_FSM_CHASE == tmpMonster->GetCurState())
+		{
+			tmpMonster->ForcedSetStateIdle();
+		}
+	}
+}
 
+void MonsterManager::CreateBoss()
+{
+	// 이미 생성되어있다면 종료
+	if (true == CreateBossFlg_)
+	{
+		return;
+	}
+
+	BossHUD_->On();
+
+	// TODO::무작위 보스몬스터가 생성
+	BossMonster_ = GetLevel()->CreateActor<Colossus>();
+	// 일단 플레이어 위치에 보스를 생성하고, Spawn->Idle로 변경되면서 RendererOn, 위치 조정 등등...
+	BossMonster_->GetTransform().SetWorldPosition(PlayerPos_);
+	BossMonster_->SetColMapInfo(ColMap_);
+
+	// 생성초기의 Hp가 최대체력
+	BossHUD_->BossHpFontOn();
+	BossHUD_->SetBossMaxHp(BossMonster_->GetMonsterHp());
+	// HUD에 표시될 이름과 별명
+	BossHUD_->SetBossNames(BossMonster_->GetBossName(), BossMonster_->GetBossSubName());
 }

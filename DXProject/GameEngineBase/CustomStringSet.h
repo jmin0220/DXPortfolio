@@ -42,6 +42,7 @@
 #define MONSTER_FSM_MOVE "MonsterMove"
 #define MONSTER_FSM_CHASE "MonsterChase"
 #define MONSTER_FSM_ATTACK "MonsterAttack"
+#define MONSTER_FSM_ATTACK2 "MonsterAttack2"
 #define MONSTER_FSM_DEATH "MonsterDeath"
 #define MONSTER_FSM_HITTED "MonsterHitted"
 
@@ -69,6 +70,12 @@
 #define LEMURIAN_ANIM_DEATH "LemurianDeath"
 #define LEMURIAN_ANIM_HITTED "LemurianHitted"
 
+// Colossus
+#define COLOSSUS_ANIM_IDLE "ColossusIdle"
+#define COLOSSUS_ANIM_DEATH "ColossusDeath"
+#define COLOSSUS_ANIM_SHOOT1 "ColossusShoot1"
+#define COLOSSUS_ANIM_SHOOT2 "ColossusShoot2"
+#define COLOSSUS_ANIM_WALK "ColossusWalk"
 
 // 캐릭터별 특수 애니메이션
 #define PLAYER_ANIM_COMMANDO_SKILL4_1 "CommandoSkill4_1"
