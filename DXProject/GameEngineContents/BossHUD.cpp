@@ -59,7 +59,13 @@ void BossHUD::Update(float _DeltaTime)
 
 	// TODO::보스의 체력에 연동해서 Renderer의 크기를 조절
 	// TODO::보스의 현재체력 / 최대체력 텍스트 출력
-	std::string HpString = std::to_string(BossHpNum_) + "/" + std::to_string(BossMaxHpNum_);
-	BossHp_->ChangeFontRenderer<GameEngineUIRenderer>(HpString, float4::ZERO);
+	static int CurHp = 0;
+	// 체력에 변화가 있을때만 업데이트
+	if (CurHp != BossHpNum_)
+	{
+		CurHp = BossHpNum_;
+		std::string HpString = std::to_string(BossHpNum_) + "/" + std::to_string(BossMaxHpNum_);
+		BossHp_->ChangeFontRenderer<GameEngineUIRenderer>(HpString, float4::ZERO);
+	}
 }
 
