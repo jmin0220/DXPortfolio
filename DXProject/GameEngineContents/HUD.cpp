@@ -176,6 +176,12 @@ void HUD::Update(float _DeltaTime)
 		AlphaValue = 3.0f - StageNameTimer;
 	}
 
+	if (AlphaValue <= 0.0f)
+	{
+		StageMainName_->Off();
+		StageSubName_->Off();
+	}
+
 
 	// 난이도 타이머 UI----------------------------------------------------------------------------
 	// 10초에 1번씩

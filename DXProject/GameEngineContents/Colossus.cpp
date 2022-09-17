@@ -29,7 +29,7 @@ void Colossus::AnimationInit()
 	// 애니메이션 동작이 변경되는 사이에 1초의 딜레이가 존재 -> 이 부분이 Idle로 설정
 	// 애니메이션 생성
 	Renderer_->CreateFrameAnimationFolder(COLOSSUS_ANIM_IDLE, FrameAnimation_DESC(COLOSSUS_ANIM_IDLE, FrameAnimDelay_, true));
-	Renderer_->CreateFrameAnimationFolder(COLOSSUS_ANIM_DEATH, FrameAnimation_DESC(COLOSSUS_ANIM_DEATH, FrameAnimDelay_, true));
+	Renderer_->CreateFrameAnimationFolder(COLOSSUS_ANIM_DEATH, FrameAnimation_DESC(COLOSSUS_ANIM_DEATH, FrameAnimDelay_, false));
 	Renderer_->CreateFrameAnimationFolder(COLOSSUS_ANIM_SHOOT1, FrameAnimation_DESC(COLOSSUS_ANIM_SHOOT1, FrameAnimDelay_, false));
 	Renderer_->CreateFrameAnimationFolder(COLOSSUS_ANIM_SHOOT2, FrameAnimation_DESC(COLOSSUS_ANIM_SHOOT2, FrameAnimDelay_, false));
 	Renderer_->CreateFrameAnimationFolder(COLOSSUS_ANIM_WALK, FrameAnimation_DESC(COLOSSUS_ANIM_WALK, FrameAnimDelay_, true));

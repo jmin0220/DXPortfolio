@@ -5,7 +5,7 @@
 
 BanditGrenade::BanditGrenade()
 	: IsExplosion_(false)
-	, JumpSpeed_(300.0f)
+	, JumpSpeed_(500.0f)
 {
 }
 
@@ -86,8 +86,8 @@ void BanditGrenade::GroundFall(float _DeltaTime)
 	// ¹Ù´ÚÀÌ ´êÁö ¾ÊÀ¸¸é ³«ÇÏ
 	if (false == ColorDown.CompareInt4D({ 1.0f, 0.0f, 1.0f }))
 	{
-		GetTransform().SetWorldMove(CreatedDir_ * 300.0f * _DeltaTime);
-		GetTransform().SetWorldMove((GetTransform().GetDownVector() * 120.0f + JumpSpeed_) * _DeltaTime);
+		GetTransform().SetWorldMove(CreatedDir_ * 500.0f * _DeltaTime);
+		GetTransform().SetWorldMove((GetTransform().GetDownVector() * 240.0f + JumpSpeed_) * _DeltaTime);
 
 		JumpSpeed_ -= 10.0f;
 

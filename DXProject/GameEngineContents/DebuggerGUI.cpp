@@ -37,19 +37,13 @@ void DebuggerGUI::OnGUI(GameEngineLevel* _Level, float _DeltaTime)
 
 
 	ImGui::Text("Player Position ==================");
-	ImGui::NewLine();
 	ImGui::Text(PlayerPositionX.c_str());
-	ImGui::NewLine();
 	ImGui::Text(PlayerPositionY.c_str());
-	ImGui::NewLine();
 	ImGui::Text(PlayerPositionZ.c_str());
-	ImGui::NewLine();
 	ImGui::NewLine();
 
 	ImGui::Text("Player State & Flag ==============");
-	ImGui::NewLine();
 	ImGui::Text(PlayerState.c_str());
-	ImGui::NewLine();
 	ImGui::Text(PlayerJumpFlg.c_str());
 	ImGui::NewLine();
 
