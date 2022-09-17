@@ -17,6 +17,12 @@ enum class TopAndBotSort
 	BOTTOM = 0x8,
 };
 
+enum class FontPositionMode
+{
+	WORLD = 0x4,
+	SCREEN = 0x8,
+};
+
 // Ό³Έν :
 class GameEngineDevice;
 class GameEngineFontRenderer : public GameEngineDefaultRenderer
@@ -34,39 +40,39 @@ public:
 	GameEngineFontRenderer& operator=(const GameEngineFontRenderer& _Other) = delete;
 	GameEngineFontRenderer& operator=(GameEngineFontRenderer&& _Other) noexcept = delete;
 
-	inline void SetLeftAndRightSort(LeftAndRightSort _Value)
+	void SetLeftAndRightSort(LeftAndRightSort _Value)
 	{
 		LR = _Value;
 	}
 
-	inline void SetTopAndBotSort(TopAndBotSort _Value)
+	void SetTopAndBotSort(TopAndBotSort _Value)
 	{
 		TB = _Value;
 	}
 
 	void SetText(const std::string& _Text, const std::string& _Font = "µΈΏς");
 
-	inline std::string GetText()
+	std::string GetText()
 	{
 		return Text;
 	}
 
-	inline void SetScreenPostion(float4 _ScreenPostion)
+	void SetPositionMode(FontPositionMode _Mode)
 	{
- 		ScreenPostion = _ScreenPostion;
+		Mode = _Mode;
 	}
 
-	inline float4 GetScreenPostion()
+	void SetScreenPostion(float4 _ScreenPostion)
 	{
-		return ScreenPostion;
+		ScreenPostion = _ScreenPostion;
 	}
 
-	inline void SetColor(float4 _Color)
+	void SetColor(float4 _Color)
 	{
 		Color = _Color;
 	}
 
-	inline void SetSize(float _Size)
+	void SetSize(float _Size)
 	{
 		FontSize = _Size;
 	}
@@ -84,6 +90,7 @@ protected:
 	float4 Color;
 	float4 ScreenPostion;
 
+	FontPositionMode Mode;
 	LeftAndRightSort LR;
 	TopAndBotSort TB;
 };
