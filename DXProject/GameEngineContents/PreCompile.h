@@ -46,3 +46,4 @@
 #include "ZOrder.h"
 #include "ItemList.h"
 #include "PlayerStatus.h"
+#include "CommonFunction.h"

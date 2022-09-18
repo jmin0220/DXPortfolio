@@ -40,6 +40,8 @@ void Stage1Level::Start()
 
 void Stage1Level::Update(float _DeltaTime)
 {
+	StageLevelParent::Update(_DeltaTime);
+
 	// 캐릭터 크리에이터에 플레이어 위치를 갱신
 	CharacterCreater_->SetCurPlayerPos(Player_->GetTransform().GetWorldPosition());
 

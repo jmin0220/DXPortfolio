@@ -15,5 +15,13 @@ StageLevelParent::~StageLevelParent()
 
 void StageLevelParent::LevelStartEvent()
 {
-	DebuggerGUI_ = GameEngineGUI::CreateGUIWindow<DebuggerGUI>("CharacterStatus", nullptr);
+	if (nullptr == DebuggerGUI_)
+	{
+		DebuggerGUI_ = GameEngineGUI::CreateGUIWindow<DebuggerGUI>("CharacterStatus", nullptr);
+	}
+}
+
+void StageLevelParent::Update(float _DeltaTime)
+{
+	CommonFunction::CommonFunction_->Update(_DeltaTime);
 }

@@ -288,6 +288,9 @@
     <ClInclude Include="BossMonster.h">
       <Filter>01_Actor\01_Play\Monsters</Filter>
     </ClInclude>
+    <ClInclude Include="CommonFunction.h">
+      <Filter>98_Global</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PreCompile.cpp">
@@ -460,6 +463,9 @@
     </ClCompile>
     <ClCompile Include="BossMonster.cpp">
       <Filter>01_Actor\01_Play\Monsters</Filter>
+    </ClCompile>
+    <ClCompile Include="CommonFunction.cpp">
+      <Filter>98_Global</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
