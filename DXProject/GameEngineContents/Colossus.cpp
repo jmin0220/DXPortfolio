@@ -3,7 +3,7 @@
 
 Colossus::Colossus() 
 {
-	Speed_ = 50.0f;
+	Speed_ = 600.0f;
 	AtkSpeed_ = 1.0f;
 	MonsterHp_ = 1400;
 	Damage_ = 30;
@@ -26,6 +26,8 @@ void Colossus::AnimationInit()
 	Renderer_ = CreateComponent<GameEngineTextureRenderer>();
 	Renderer_->SetSamplingModePoint();
 
+	//FrameAnimDelay_ = 0.3f;
+
 	// 애니메이션 동작이 변경되는 사이에 1초의 딜레이가 존재 -> 이 부분이 Idle로 설정
 	// 애니메이션 생성
 	Renderer_->CreateFrameAnimationFolder(COLOSSUS_ANIM_IDLE, FrameAnimation_DESC(COLOSSUS_ANIM_IDLE, FrameAnimDelay_, true));
@@ -33,6 +35,25 @@ void Colossus::AnimationInit()
 	Renderer_->CreateFrameAnimationFolder(COLOSSUS_ANIM_SHOOT1, FrameAnimation_DESC(COLOSSUS_ANIM_SHOOT1, FrameAnimDelay_, false));
 	Renderer_->CreateFrameAnimationFolder(COLOSSUS_ANIM_SHOOT2, FrameAnimation_DESC(COLOSSUS_ANIM_SHOOT2, FrameAnimDelay_, false));
 	Renderer_->CreateFrameAnimationFolder(COLOSSUS_ANIM_WALK, FrameAnimation_DESC(COLOSSUS_ANIM_WALK, FrameAnimDelay_, true));
+
+
+	Renderer_->AnimationBindFrame(COLOSSUS_ANIM_WALK, [=](const FrameAnimation_DESC& _Info) 
+		{
+			// 특정 프레임에만 앞으로 움직임
+			if (_Info.CurFrame == 1 || _Info.CurFrame == 2 || _Info.CurFrame == 3  
+				|| _Info.CurFrame == 12 || _Info.CurFrame == 13 || _Info.CurFrame == 14)
+			{
+				if (true == MoveDir_.CompareInt2D(float4::LEFT))
+				{
+					GetTransform().SetWorldMove(GetTransform().GetLeftVector() * Speed_ * DeltaTime_);
+
+				}
+				else
+				{
+					GetTransform().SetWorldMove(GetTransform().GetRightVector() * Speed_ * DeltaTime_);
+				}
+			}
+		});
 
 	// 프레임이 종료되었을 때
 	//Renderer_->AnimationBindEnd(LEMURIAN_ANIM_SPAWN, [=](const FrameAnimation_DESC& _Info) { StateManager_.ChangeState(MONSTER_FSM_IDLE); Collision_->On(); });
@@ -109,7 +130,36 @@ void Colossus::IdleUpdate(float _DeltaTime, const StateInfo& _Info)
 
 void Colossus::ChaseUpdate(float _DeltaTime, const StateInfo& _Info)
 {
-	CommonChaseUpdate();
+	AtkTimer_ += DeltaTime_;
+
+	float4 MonsterPos = this->GetTransform().GetWorldPosition();
+
+	// 몬스터와 플레이어 사이의 거리를 취득
+	float4 MonsterLength = { this->GetTransform().GetWorldPosition().x
+						   , this->GetTransform().GetWorldPosition().y, 0.0f };
+	float4 PlayerLength = { PlayerPos_.x, PlayerPos_.y, 0.0f };
+	float4 Length = MonsterLength - PlayerLength;
+
+	// 거리가 몬스터와 가까워졌을경우 공격으로 전환
+	if (Length.Length() <= 160.0f && AtkTimer_ >= AtkSpeed_)
+	{
+		AtkTimer_ = 0.0f;
+		StateManager_.ChangeState(MONSTER_FSM_ATTACK);
+		return;
+	}
+
+	// FSM에서는 방향만 지정.
+	// 실제로 움직이는것은 Animation에서 특정 프레임마다 이동처리
+	// 오른쪽으로 
+	if (MonsterPos.x <= PlayerPos_.x)
+	{
+		MoveDir_ = float4::RIGHT;
+	}
+	// 왼쪽으로
+	else if (MonsterPos.x >= PlayerPos_.x)
+	{
+		MoveDir_ = float4::LEFT;
+	}
 }
 
 void Colossus::AttackUpdate(float _DeltaTime, const StateInfo& _Info)
