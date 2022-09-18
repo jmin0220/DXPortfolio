@@ -7,9 +7,13 @@ DebuggerGUI* StageLevelParent::DebuggerGUI_ = nullptr;
 
 StageLevelParent::StageLevelParent() 
 {
-	DebuggerGUI_ = GameEngineGUI::CreateGUIWindow<DebuggerGUI>("CharacterStatus", nullptr);
 }
 
 StageLevelParent::~StageLevelParent() 
 {
+}
+
+void StageLevelParent::LevelStartEvent()
+{
+	DebuggerGUI_ = GameEngineGUI::CreateGUIWindow<DebuggerGUI>("CharacterStatus", nullptr);
 }

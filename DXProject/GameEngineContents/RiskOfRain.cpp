@@ -209,7 +209,7 @@ void RiskOfRain::Start()
 	CreateLevel<StartLevel>(LEVEL_TITLE);
 	CreateLevel<EndLevel>(LEVEL_END);
 	CreateLevel<CharacterSelect>(LEVEL_SELECT);
-	CreateLevel<Stage1Level>(LEVEL_STAGE1);
+	stage1Level_ = CreateLevel<Stage1Level>(LEVEL_STAGE1);
 	CreateLevel<TestLevel>("TestLevel");
 
 	// 초기 레벨 이동
@@ -229,6 +229,11 @@ void RiskOfRain::Start()
 
 void RiskOfRain::Update(float _DeltaTime)
 {
+	if (stage1Level_ == nullptr)
+	{
+		stage1Level_ = CreateLevel<Stage1Level>(LEVEL_STAGE1);
+	}
+
 	// TODO::테스트용
 	int a = 0;
 }

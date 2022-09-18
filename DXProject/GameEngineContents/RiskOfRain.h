@@ -28,6 +28,6 @@ protected:
 	void End() override;
 
 private:
-
+	GameEngineLevel* stage1Level_;
 };
 

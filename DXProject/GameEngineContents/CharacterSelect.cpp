@@ -4,6 +4,7 @@
 #include <GameEngineCore/GEngine.h>
 #include <GameEngineCore/GameEngineCameraActor.h>
 #include <GameEngineBase/GameEngineInput.h>
+#include "Stage1Level.h"
 
 CharacterSelect::CharacterSelect() 
 {
@@ -35,4 +36,8 @@ void CharacterSelect::Update(float _DeltaTime)
 void CharacterSelect::End()
 {
 
+}
+
+void CharacterSelect::LevelEndEvent()
+{
 }

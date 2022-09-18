@@ -28,6 +28,7 @@ Stage1Level::~Stage1Level()
 
 void Stage1Level::Start()
 {
+	StageLevelParent::LevelStartEvent();
 	GetMainCamera()->SetProjectionMode(CAMERAPROJECTIONMODE::PersPective);
 
 	// TODO::스테이지 레벨에 따라 다른 맵을 생성
@@ -114,4 +115,8 @@ void Stage1Level::LevelStartEvent()
 	//Colossus* tmpColossus = CreateActor<Colossus>();
 	//tmpColossus->GetTransform().SetWorldPosition({ 1500.0f, -400.0f });
 	//tmpColossus->SetColMapInfo(StageActor_->GetColStage()->GetCurTexture());
+}
+
+void Stage1Level::LevelEndEvent()
+{
 }

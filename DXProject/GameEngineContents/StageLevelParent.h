@@ -26,6 +26,9 @@ public:
 	StageLevelParent& operator=(const StageLevelParent& _Other) = delete;
 	StageLevelParent& operator=(StageLevelParent&& _Other) noexcept = delete;
 
+
+	void LevelStartEvent() override;
+
 protected:
 	void Start() override {};
 	void Update(float _DeltaTime) override {};

@@ -44,6 +44,7 @@ void Monster::Update(float _DeltaTime)
 	DeathSwitch();
 
 	DeltaTime_ = _DeltaTime;
+	AtkTimer_ += DeltaTime_;
 
 	// 픽셀맵과의 충돌처리
 	GroundFallCheck();
@@ -294,9 +295,21 @@ void Monster::CommonAttackStart(std::string _AnimName)
 
 void Monster::CommonChaseStart(std::string _AnimName)
 {
-	// 애니메이션 전환
-	Renderer_->ChangeFrameAnimation(_AnimName);
-	Renderer_->ScaleToTexture();
+	float4 MonsterPos = this->GetTransform().GetWorldPosition();
+
+	// 몬스터와 플레이어 사이의 거리를 취득
+	float4 MonsterLength = { this->GetTransform().GetWorldPosition().x
+						   , this->GetTransform().GetWorldPosition().y, 0.0f };
+	float4 PlayerLength = { PlayerPos_.x, PlayerPos_.y, 0.0f };
+	float4 Length = MonsterLength - PlayerLength;
+
+	// 몬스터가 충분히 멀리 있을경우에만 이동 애니메이션으로 변경
+	if (Length.Length() > 160.0f)
+	{
+		// 애니메이션 전환
+		Renderer_->ChangeFrameAnimation(_AnimName);
+		Renderer_->ScaleToTexture();
+	}
 }
 
 void Monster::CommonDeathStart(std::string _AnimName)
@@ -393,8 +406,6 @@ void Monster::CommonMoveUpdate()
 
 void Monster::CommonChaseUpdate(float _ChaseLength /* = 0.0f*/)
 {
-	AtkTimer_ += DeltaTime_;
-
 	float4 MonsterPos = this->GetTransform().GetWorldPosition();
 
 	// 몬스터와 플레이어 사이의 거리를 취득
@@ -403,11 +414,16 @@ void Monster::CommonChaseUpdate(float _ChaseLength /* = 0.0f*/)
 	float4 PlayerLength = { PlayerPos_.x, PlayerPos_.y, 0.0f };
 	float4 Length = MonsterLength - PlayerLength;
 
-	// 거리가 몬스터와 가까워졌을경우 공격으로 전환
-	if (Length.Length() <= abs(Renderer_->GetCurTexture()->GetScale().ix() + _ChaseLength) && AtkTimer_ >= AtkSpeed_)
+	// 거리가 몬스터와 가까워졌을경우 이동 중지
+	if (Length.Length() <= abs(Renderer_->GetCurTexture()->GetScale().ix() + _ChaseLength) )
 	{
-		AtkTimer_ = 0.0f;
-		StateManager_.ChangeState(MONSTER_FSM_ATTACK);
+		//공격으로 전환
+		if (AtkTimer_ >= AtkSpeed_)
+		{
+			AtkTimer_ = 0.0f;
+			StateManager_.ChangeState(MONSTER_FSM_ATTACK);
+		}
+
 		return;
 	}
 
