@@ -7,4 +7,5 @@ enum class ObjectGroup
 	PlayerBullet,
 	Bouncer,
 	Chest,
+	Portal,
 };

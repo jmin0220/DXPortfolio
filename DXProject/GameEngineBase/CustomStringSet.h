@@ -229,6 +229,7 @@
 
 // 오브젝트
 #define TEX_OBJECT_BOUNCER "Bouncer"
+#define TEX_OBJECT_TELEPORTAL "TelePortal"
 
 // 상자
 #define TEX_OBJECT_CHEST_NORMAL_IDLE "CheckNormalIdle"

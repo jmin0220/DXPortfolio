@@ -307,6 +307,10 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="PlayerStatus.h" />
+    <ClInclude Include="Portal.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="PreCompile.h" />
     <ClInclude Include="RedWhip.h">
       <SubType>
@@ -518,6 +522,10 @@
     </ClCompile>
     <ClCompile Include="PlayerState.cpp" />
     <ClCompile Include="PlayerStatus.cpp" />
+    <ClCompile Include="Portal.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="PreCompile.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>

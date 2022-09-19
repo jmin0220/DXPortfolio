@@ -291,6 +291,9 @@
     <ClInclude Include="CommonFunction.h">
       <Filter>98_Global</Filter>
     </ClInclude>
+    <ClInclude Include="Portal.h">
+      <Filter>01_Actor\01_Play\Object</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PreCompile.cpp">
@@ -466,6 +469,9 @@
     </ClCompile>
     <ClCompile Include="CommonFunction.cpp">
       <Filter>98_Global</Filter>
+    </ClCompile>
+    <ClCompile Include="Portal.cpp">
+      <Filter>01_Actor\01_Play\Object</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
