@@ -33,7 +33,7 @@ void CommonFunction::CameraShakeEffect(GameEngineCameraActor* _CameraActor)
 
 	float4 MainCameraBeginPosition = _CameraActor->GetTransform().GetWorldPosition();
 
-	// TODO::Random함수로 흔들기
+	// Random함수로 흔들기
 	MainCameraBeginPosition = { MainCameraBeginPosition.x + GameEngineRandom::MainRandom.RandomInt(-3, 3),
 								MainCameraBeginPosition.y + GameEngineRandom::MainRandom.RandomInt(-3, 3),
 								MainCameraBeginPosition.z,

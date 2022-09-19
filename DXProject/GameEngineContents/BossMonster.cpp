@@ -1,5 +1,6 @@
 #include "PreCompile.h"
 #include "BossMonster.h"
+#include "CommonFunction.h"
 
 BossMonster::BossMonster() 
 {
@@ -15,11 +16,33 @@ void BossMonster::BossSpawnState(float _DeltaTime)
 
 	SpawnTimer += _DeltaTime;
 
-	if (SpawnTimer >= 10.0f)
+	if (SpawnTimer >= 14.0f)
+	{
+		Collision_->On();
+
+		SpawnTimer = 0.0f;
+
+		StateManager_.ChangeState(MONSTER_FSM_IDLE);
+
+		Renderer_->GetPixelData().MulColor = { 1.0f, 1.0f, 1.0f, 1.0f };
+	}
+	else if (SpawnTimer >= 10.1f && SpawnTimer <= 12.0f)
+	{
+		//Renderer_->GetPixelData().MulColor = { 2.0f, 2.0f, 2.0f, 2.0f };
+
+		Renderer_->GetPixelData().MulColor.r -= 40.0f * _DeltaTime;
+		Renderer_->GetPixelData().MulColor.g -= 40.0f * _DeltaTime;
+		Renderer_->GetPixelData().MulColor.b -= 40.0f * _DeltaTime;
+
+		if (Renderer_->GetPixelData().MulColor.r <= 1.0f)
+		{
+			Renderer_->GetPixelData().MulColor = { 1.0f, 1.0f, 1.0f, 1.0f };
+		}
+	}
+	else if (SpawnTimer >= 10.0f && SpawnTimer <= 10.1f)
 	{
 		// 렌더러, 콜리전 On
 		Renderer_->On();
-		Collision_->On();
 
 		// 몬스터를 적절한 위치에 이동
 		// 하단 중앙
@@ -60,7 +83,8 @@ void BossMonster::BossSpawnState(float _DeltaTime)
 			}
 		}
 
-		StateManager_.ChangeState(MONSTER_FSM_IDLE);
+		Renderer_->GetPixelData().MulColor = { 40.0f, 40.0f, 40.0f, 1.0f };
+		CommonFunction::CommonFunction_->CameraShakeEffectOn(1.0f);
 	}
 }
 

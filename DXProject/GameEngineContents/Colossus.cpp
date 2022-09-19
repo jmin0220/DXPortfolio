@@ -147,6 +147,7 @@ void Colossus::IdleUpdate(float _DeltaTime, const StateInfo& _Info)
 
 	if (this->GetAccTime() >= 1.0f)
 	{
+
 		StateManager_.ChangeState(MONSTER_FSM_CHASE);
 		this->ReSetAccTime();
 	}

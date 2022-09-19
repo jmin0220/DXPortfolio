@@ -50,7 +50,7 @@ void Bullet::Update(float _DeltaTime)
 	}
 	else
 	{
-		Collision_->IsCollision(CollisionType::CT_SPHERE2D, ObjectGroup::Monster, CollisionType::CT_SPHERE2D
+		Collision_->IsCollision(CollisionType::CT_AABB2D, ObjectGroup::Monster, CollisionType::CT_AABB2D
 			, std::bind(&Bullet::CollisionCheck, this, std::placeholders::_1, std::placeholders::_2));
 	}
 }
