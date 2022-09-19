@@ -23,5 +23,4 @@ void StageLevelParent::LevelStartEvent()
 
 void StageLevelParent::Update(float _DeltaTime)
 {
-	CommonFunction::CommonFunction_->Update(_DeltaTime);
 }

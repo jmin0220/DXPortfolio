@@ -1,4 +1,5 @@
 #pragma once
+#include <GameEngineCore/GameEngineCameraActor.h>
 
 // 설명 : 공통적으로 반복되어 사용되는 함수들을 모아놓는 클래스
 class CommonFunction
@@ -28,8 +29,9 @@ public:
 		CameraShakeEffectTimer_ = _Time;
 	}
 
+	void CameraShakeEffect(GameEngineCameraActor* _CameraActor);
+
 protected:
-	void CameraShakeEffect();
 
 private:
 	bool CameraShakeEffectFlg_;

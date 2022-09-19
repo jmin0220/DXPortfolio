@@ -1,6 +1,7 @@
 #include "PreCompile.h"
 #include "Colossus.h"
 #include <GameEngineBase/GameEngineRandom.h>
+#include "CommonFunction.h"
 
 Colossus::Colossus() 
 {
@@ -55,6 +56,24 @@ void Colossus::AnimationInit()
 				}
 			}
 		});
+
+	Renderer_->AnimationBindFrame(COLOSSUS_ANIM_SHOOT1, [=](const FrameAnimation_DESC& _Info)
+		{
+			if (_Info.CurFrame == 5)
+			{
+				CommonFunction::CommonFunction_->CameraShakeEffectOn(0.5f);
+			}
+		});
+
+	Renderer_->AnimationBindFrame(COLOSSUS_ANIM_SHOOT2, [=](const FrameAnimation_DESC& _Info)
+		{
+			if (_Info.CurFrame == 8)
+			{
+				CommonFunction::CommonFunction_->CameraShakeEffectOn(0.5f);
+			}
+		});
+
+
 
 	// 프레임이 종료되었을 때
 	Renderer_->AnimationBindEnd(COLOSSUS_ANIM_SHOOT1, [=](const FrameAnimation_DESC& _Info) { StateManager_.ChangeState(MONSTER_FSM_IDLE); });

@@ -5,6 +5,7 @@
 #include "HUD.h"
 #include "Bullet.h"
 #include "PiercingBullet.h"
+#include "CommonFunction.h"
 
 float Player::PlayTimeTimer_ = 0.0f;
 int Player::Lv_ = 1;
@@ -101,6 +102,9 @@ void Player::Update(float _DeltaTime)
 
 	// 카메라 업데이트
 	CameraUpdate();
+
+	// 카메라 흔들기 이펙트
+	CommonFunction::CommonFunction_->CameraShakeEffect(GetLevel()->GetMainCameraActor());
 
 	// 각 캐릭터가 가지고 있는 업데이트 수치
 	CharacterUpdate(DeltaTime_);

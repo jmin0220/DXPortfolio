@@ -2,6 +2,7 @@
 #include "CommonFunction.h"
 #include <GameEngineCore/GameEngineLevel.h>
 #include <GameEngineBase/GameEngineRandom.h>
+#include <GameEngineBase/GameEngineTime.h>
 
 CommonFunction* CommonFunction::CommonFunction_ = new CommonFunction();
 
@@ -21,21 +22,32 @@ CommonFunction::~CommonFunction()
 
 void CommonFunction::Update(float _DeltaTime)
 {
-	CameraShakeEffect();
 }
 
-void CommonFunction::CameraShakeEffect()
+void CommonFunction::CameraShakeEffect(GameEngineCameraActor* _CameraActor)
 {
 	if (false == CameraShakeEffectFlg_)
 	{
 		return;
 	}
 
-	GameEngineLevel* tmpLevel = nullptr;
-
-	float4 MainCameraBeginPosition = tmpLevel->GetMainCameraActorTransform().GetWorldPosition();
+	float4 MainCameraBeginPosition = _CameraActor->GetTransform().GetWorldPosition();
 
 	// TODO::Random함수로 흔들기
-	tmpLevel->GetMainCameraActorTransform().SetWorldPosition(MainCameraBeginPosition);
+	MainCameraBeginPosition = { MainCameraBeginPosition.x + GameEngineRandom::MainRandom.RandomInt(-3, 3),
+								MainCameraBeginPosition.y + GameEngineRandom::MainRandom.RandomInt(-3, 3),
+								MainCameraBeginPosition.z,
+								MainCameraBeginPosition.w };
+
+	_CameraActor->GetTransform().SetWorldPosition(MainCameraBeginPosition);
+
+	// 타이머 감소
+	CameraShakeEffectTimer_ -= GameEngineTime::GetDeltaTime();
+
+	// 이펙트 종료
+	if (CameraShakeEffectTimer_ <= 0.0f)
+	{
+		CameraShakeEffectFlg_ = false;
+	}
 }
 
