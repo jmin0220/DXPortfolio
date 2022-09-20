@@ -25,6 +25,8 @@ public:
 		return ColRenderer_;
 	}
 
+	void SetStage1Map();
+
 protected:
 	void Start() override;
 	void Update(float _DeltaTime) override;

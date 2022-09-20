@@ -21,6 +21,11 @@ public:
 	Portal& operator=(const Portal& _Other) = delete;
 	Portal& operator=(Portal&& _Other) noexcept = delete;
 
+	PortalState GetPortalState()
+	{
+		return PortalState_;
+	}
+
 protected:
 	void Start() override;
 	void Update(float _DeltatTime) override;
