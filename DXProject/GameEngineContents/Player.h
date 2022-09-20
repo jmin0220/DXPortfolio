@@ -108,6 +108,13 @@ public:
 		AddUseItemFlg_ = true;
 	}
 
+	inline HUD* GetHUD()
+	{
+		return HUD_;
+	}
+
+	void LevelEndEvent() override;
+
 protected:
 	void Start() override;
 	void Update(float _DeltaTime) override;

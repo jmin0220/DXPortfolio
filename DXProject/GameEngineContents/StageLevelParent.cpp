@@ -3,14 +3,16 @@
 #include <GameEngineCore/GameEngineStatusWindow.h>
 #include "DebuggerGUI.h"
 #include "StageGround.h"
-#include "Bandit.h"
-#include "Commando.h"
 #include "Gold.h"
 #include "Drops.h"
 #include "ItemManager.h"
-#include "DebuggerGUI.h"
+#include "Bandit.h"
+#include "Commando.h"
+#include "Portal.h"
+#include "HUD.h"
 
 DebuggerGUI* StageLevelParent::DebuggerGUI_ = nullptr;
+Player* StageLevelParent::Player_ = nullptr;
 
 StageLevelParent::StageLevelParent() 
 {
@@ -33,6 +35,7 @@ void StageLevelParent::Start()
 	CharacterCreater_ = CreateActor<CharacterCreater>();
 	StageActor_ = CreateActor<StageGround>();
 	ItemManager_ = CreateActor<ItemManager>();
+	Portal_ = CreateActor<Portal>();
 }
 
 void StageLevelParent::Update(float _DeltaTime)
@@ -51,7 +54,55 @@ void StageLevelParent::Update(float _DeltaTime)
 	DebuggerGUI_->SetPlayerGroundFlg(Player_->GetIsGroundFlg());
 	DebuggerGUI_->SetPlayerFsmStateName(Player_->GetState());
 
-	// 보스 생성
+	switch (LevelProcess_)
+	{
+	case LevelProcess::NonActivePortal:
+		Player_->GetHUD()->SetTargetFontStringNonAct();
+		Portal_->SetPortalState(PortalState::NonActivate);
+
+		// 플레이어가 포탈을 동작시키면
+		if (true == Portal_->GetRespawnBossFlg())
+		{
+			LevelProcess_ = LevelProcess::ActivePortal;
+		}
+
+		break;
+	case LevelProcess::ActivePortal:
+		Player_->GetHUD()->SetTargetFontStringAct();
+		Portal_->SetPortalState(PortalState::Activate);
+
+		// 보스 생성대기 타이머가 종료되었으면
+		if (true == Portal_->IsCreateBoss())
+		{
+			// 보스 생성
+			MonsterManager_->CreateBossFlgOn();
+			LevelProcess_ = LevelProcess::CreatedBoss;
+		}
+
+		break;
+	case LevelProcess::CreatedBoss:
+		Player_->GetHUD()->SetTargetFontStringBoss();
+
+		// 보스를 죽였으면
+		if (true == MonsterManager_->GetBossKilledFlg())
+		{
+			LevelProcess_ = LevelProcess::KIllBoss;
+		}
+
+		break;
+	case LevelProcess::KIllBoss:
+		Player_->GetHUD()->SetTargetFontStringNextLevel();
+		Portal_->SetPortalState(PortalState::KillBoss);
+		Portal_->PortalNextLevelOnRenderer();
+		
+		// Portal에서 LevelChange
+		break;
+	default:
+		MsgBoxAssert("잘못된 레벨 진행단계");
+		break;
+	}
+
+	// 디버그용 보스 생성
 	if (true == DebuggerGUI_->GetCreateBossTrigger())
 	{
 		MonsterManager_->CreateBossFlgOn();
@@ -60,20 +111,6 @@ void StageLevelParent::Update(float _DeltaTime)
 
 void StageLevelParent::LevelStartEvent()
 {
-	// 플레이어 액터 생성
-	switch (Option_.CharacterSelect_)
-	{
-	case CharacterSelectEnum::Commando:
-		Player_ = CreateActor<Commando>();
-		break;
-	case CharacterSelectEnum::Bandit:
-		Player_ = CreateActor<Bandit>();
-		break;
-	case CharacterSelectEnum::None:
-		break;
-	default:
-		break;
-	}
 
 	CharacterCreater_->SetColMapInfo(StageActor_->GetColStage()->GetCurTexture());
 	CharacterCreater_->MakePlayerPosition();

@@ -13,6 +13,7 @@ MonsterManager::MonsterManager()
 	, GroupMonsterRespawnTimer_(0.0f)
 	, RespawnPos_(float4::ZERO)
 	, CreateBossFlg_(false)
+	, BossKilledFlg_(false)
 {
 }
 
@@ -83,6 +84,11 @@ void MonsterManager::Update(float _DeltaTime)
 		BossMonster_->SetPlayerPos(PlayerPos_);
 
 		BossHUD_->SetBossHp(BossMonster_->GetMonsterHp());
+
+		if (true == BossMonster_->GetMonsterDeath())
+		{
+			BossKilledFlg_ = true;
+		}
 	}
 }
 

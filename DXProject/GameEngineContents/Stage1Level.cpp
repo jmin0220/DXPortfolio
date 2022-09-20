@@ -4,18 +4,15 @@
 #include <GameEngineCore/GameEngineCameraActor.h>
 #include <GameEngineBase/GameEngineInput.h>
 #include "StageGround.h"
-#include "CharacterSelectEnum.h"
 #include "Bandit.h"
 #include "Commando.h"
-#include "Gold.h"
-#include "Drops.h"
 #include "Bouncer.h"
 #include "Tutorial.h"
 #include "ChestNormal.h"
 #include "ChestBig.h"
 #include "ChestLongSet.h"
 #include "ItemManager.h"
-#include "DebuggerGUI.h"
+#include "Portal.h"
 
 Stage1Level::Stage1Level() 
 {
@@ -44,6 +41,21 @@ void Stage1Level::End()
 
 void Stage1Level::LevelStartEvent()
 {
+	// 플레이어 액터 생성
+	switch (Option_.CharacterSelect_)
+	{
+	case CharacterSelectEnum::Commando:
+		Player_ = CreateActor<Commando>();
+		break;
+	case CharacterSelectEnum::Bandit:
+		Player_ = CreateActor<Bandit>();
+		break;
+	case CharacterSelectEnum::None:
+		break;
+	default:
+		break;
+	}
+
 	StageLevelParent::LevelStartEvent();
 	// 키 튜토리얼 생성
 	Tutorial_ = CreateActor<Tutorial>();
@@ -56,9 +68,11 @@ void Stage1Level::LevelStartEvent()
 	//TmpChestNormal->GetTransform().SetWorldPosition({ 106.0f, -864.0f, static_cast<float>(ZOrder::Chest) });
 	//ChestBig* TmpChestBig = CreateActor<ChestBig>();
 	//TmpChestBig->GetTransform().SetWorldPosition({ 50.0f, -864.0f, static_cast<float>(ZOrder::Chest) });
-	ChestLongSet* TmpChestLongSet = CreateActor<ChestLongSet>();
-	TmpChestLongSet->CreateChestLongSet({ 350.0f, -864.0f, static_cast<float>(ZOrder::Chest) });
+	//ChestLongSet* TmpChestLongSet = CreateActor<ChestLongSet>();
+	//TmpChestLongSet->CreateChestLongSet({ 350.0f, -864.0f, static_cast<float>(ZOrder::Chest) });
 	ItemManager_->CreateItem(this, ItemList::Sawmerang ,{ 156.0f, -804.0f });
+
+	Portal_->GetTransform().SetWorldPosition({ 350.0f, -864.0f, static_cast<float>(ZOrder::Teleportal) });
 }
 
 void Stage1Level::LevelEndEvent()

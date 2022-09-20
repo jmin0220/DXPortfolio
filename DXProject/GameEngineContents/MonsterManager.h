@@ -41,6 +41,11 @@ public:
 		CreateBossFlg_ = true;
 	}
 
+	inline bool GetBossKilledFlg()
+	{
+		return BossKilledFlg_;
+	}
+
 	void AllMonsterStateChangeToIdle();
 
 protected:
@@ -75,6 +80,8 @@ private:
 	
 	// 보스몬스터 생성 플래그
 	bool CreateBossFlg_;
+	// 보스가 Kill당함 플래그
+	bool BossKilledFlg_;
 	// Boss관련 인터페이스
 	BossHUD* BossHUD_;
 

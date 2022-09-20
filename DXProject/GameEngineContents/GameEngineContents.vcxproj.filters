@@ -294,6 +294,9 @@
     <ClInclude Include="Portal.h">
       <Filter>01_Actor\01_Play\Object</Filter>
     </ClInclude>
+    <ClInclude Include="Stage2Level.h">
+      <Filter>00_Level\01_Play</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PreCompile.cpp">
@@ -472,6 +475,9 @@
     </ClCompile>
     <ClCompile Include="Portal.cpp">
       <Filter>01_Actor\01_Play\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Stage2Level.cpp">
+      <Filter>00_Level\01_Play</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

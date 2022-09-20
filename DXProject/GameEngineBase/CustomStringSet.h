@@ -107,6 +107,7 @@
 #define LEVEL_END "End"
 #define LEVEL_SELECT "CharacterSelect"
 #define LEVEL_STAGE1 "Stage1"
+#define LEVEL_STAGE2 "Stage2"
 
 // 텍스쳐
 // 배경

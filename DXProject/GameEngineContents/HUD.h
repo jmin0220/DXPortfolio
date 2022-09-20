@@ -38,6 +38,32 @@ public:
 	// 사용 아이템을 표시
 	void AddUseItemUpdate();
 
+	// 포탈이 작동되기 전
+	inline void SetTargetFontStringNonAct()
+	{
+		TartgetFontString_ = "Find the Teleporter.";
+	}
+
+	// 포탈이 작동된 후  / 보스가 나오기 전
+	inline void SetTargetFontStringAct()
+	{
+		TartgetFontString_ = "Stay alive!";
+	}
+
+	// 포탈이 작동된 후  / 보스가 나온 후
+	inline void SetTargetFontStringBoss()
+	{
+		TartgetFontString_ = "Kill remaining enemies";
+	}
+
+	// 포탈이 작동된 후 / 보스를 쓰러뜨린 후
+	inline void SetTargetFontStringNextLevel()
+	{
+		TartgetFontString_ = "Go to the teleporter to advance to the next level!";
+	}
+
+	void ActorAllOverLevel();
+
 protected:
 	void Start() override;
 	void Update(float _DeltaTime);
@@ -67,6 +93,8 @@ private:
 
 	// 폰트파일 렌더러
 	GameEngineFontRenderer* TargetFontRenderer_;
+	std::string TartgetFontString_;
+	std::string CurTartgetString_;
 
 	// TODO::하단 인터페이스 위에 레벨을 표시할 수 있도록 업데이트
 	GameEngineFontRenderer* LevelFontRenderer_;

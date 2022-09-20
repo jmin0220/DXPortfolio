@@ -11,6 +11,8 @@ HUD::HUD()
 	, RecentGold_(0)
 	, RecentHp_(0)
 	, DifficultyTextCounter_(0)
+	, TartgetFontString_("Find the Teleporter.")
+	, CurTartgetString_("")
 {
 	SkillPos_[0] = { -74, -370, -100 };
 	SkillPos_[1] = { -28, -370, -100 };
@@ -20,6 +22,12 @@ HUD::HUD()
 
 HUD::~HUD() 
 {
+}
+
+void HUD::ActorAllOverLevel()
+{
+	GoldFontRenderer_->SetLevelOverOn();
+	PlayerHpFontRenderer_->SetLevelOverOn();
 }
 
 void HUD::Start()
@@ -213,6 +221,14 @@ void HUD::Update(float _DeltaTime)
 		RecentHp_ = Player::GetPlayerHp();
 		PlayerHpFontRenderer_->ChangeFontRenderer<GameEngineUIRenderer>(std::to_string(Player::GetPlayerHp()) + "/" + std::to_string(Player::GetPlayerMaxHp()), { 0, 0 }, TextType::Normal);
 	}
+
+	// 문자열에 변경이 있을때만 적용
+	if (CurTartgetString_ != TartgetFontString_)
+	{
+		TargetFontRenderer_->SetText(TartgetFontString_, FONT_RISKOFRAIN);
+	}
+
+	CurTartgetString_ = TartgetFontString_;
 
 	// Player 상태관련-------------------------------------------------------------------------
 

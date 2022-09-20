@@ -1,8 +1,11 @@
 #include "PreCompile.h"
 #include "Portal.h"
+#include <GameEngineCore/GEngine.h>
+#include <GameEngineBase/GameEngineInput.h>
 
 Portal::Portal() 
-	: PortalState_(PortalState::Activate)
+	: RespawnBossTimer_(0.0f)
+	, RespawnBossFlg_(false)
 {
 }
 
@@ -21,49 +24,49 @@ void Portal::Start()
 	Renderer_->SetFolderTextureToIndex(TEX_OBJECT_TELEPORTAL, 0);
 	Renderer_->SetSamplingModePoint();
 	Renderer_->ScaleToTexture();
+	Renderer_->SetPivot(PIVOTMODE::BOT);
 
 	Collision_ = CreateComponent<GameEngineCollision>();
 	Collision_->ChangeOrder(ObjectGroup::Portal);
 	Collision_->GetTransform().SetWorldScale({96.0f, 50.0f});
+	Collision_->GetTransform().SetWorldPosition({ this->GetTransform().GetWorldPosition().x
+												, this->GetTransform().GetWorldPosition().y + 25.0f
+												, this->GetTransform().GetWorldPosition().z });
 }
 
 void Portal::Update(float _DeltatTime)
 {
-	switch (PortalState_)
+	if (true == RespawnBossFlg_)
 	{
-	case PortalState::NonActivate:
-		Renderer_->SetFolderTextureToIndex(TEX_OBJECT_TELEPORTAL, 0);
-		break;
-	case PortalState::Activate:
-		Renderer_->SetFolderTextureToIndex(TEX_OBJECT_TELEPORTAL, 1);
-		break;
-	case PortalState::Sleep:
-		Renderer_->SetFolderTextureToIndex(TEX_OBJECT_TELEPORTAL, 2);
-		break;
-	default:
-		break;
+		RespawnBossTimer_ -= _DeltatTime;
 	}
 
-	Collision_->IsCollision(CollisionType::CT_AABB2D, ObjectGroup::Monster, CollisionType::CT_AABB2D
+	Collision_->IsCollision(CollisionType::CT_AABB2D, ObjectGroup::Player, CollisionType::CT_AABB2D
 		, std::bind(&Portal::CollisionCheck, this, std::placeholders::_1, std::placeholders::_2));
 }
 
 bool Portal::CollisionCheck(GameEngineCollision* _This, GameEngineCollision* _Other)
 {
-	switch (PortalState_)
+	if (GameEngineInput::GetInst()->IsDown(Player_KEY_INTERACTIVE))
 	{
-	case PortalState::NonActivate:
-		// TODO::화면 흔들림 이펙트
-		// TODO::보스 생성 플래그 On
-		break;
-	case PortalState::Activate:
-		// TODO::LevelChange
-		break;
-	case PortalState::Sleep:
-			return true;
-		break;
-	default:
-		break;
+		switch (PortalState_)
+		{
+		case PortalState::NonActivate:
+			// 포탈의 스테이트를 Activate로 변경하고 보스 출현 타이머 스타트
+			RespawnBossFlg_ = true;
+			RespawnBossTimer_ = 20.0f;
+			CommonFunction::CommonFunction_->CameraShakeEffectOn(20.0f, 1.0f);
+			break;
+		case PortalState::Activate:
+			// 동작하지 않음
+			break;
+		case PortalState::KillBoss:
+			// 다음레벨로 이동
+			GEngine::ChangeLevel(LEVEL_STAGE2);
+			break;
+		default:
+			break;
+		}
 	}
 
 	return true;

@@ -39,6 +39,19 @@ Player::~Player()
 {
 }
 
+void Player::LevelEndEvent()
+{
+	this->SetLevelOverOn();
+	HUD_->SetLevelOverOn();
+	HUD_->ActorAllOverLevel();
+	UseItem_->SetLevelOverOn();
+
+	for (Item* tmp : ItemVector_)
+	{
+		tmp->SetLevelOverOn();
+	}
+}
+
 void Player::Start()
 {
 	// 키조작 초기화

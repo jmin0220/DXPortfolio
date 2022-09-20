@@ -23,10 +23,11 @@ public:
 
 	void Update(float _DeltaTime);
 
-	inline void CameraShakeEffectOn(float _Time = 1.0f)
+	inline void CameraShakeEffectOn(float _Time = 1.0f, float _ShakePower = 3.0f)
 	{
 		CameraShakeEffectFlg_ = true;
 		CameraShakeEffectTimer_ = _Time;
+		CameraShakePower_ = _ShakePower;
 	}
 
 	void CameraShakeEffect(GameEngineCameraActor* _CameraActor);
@@ -36,5 +37,6 @@ protected:
 private:
 	bool CameraShakeEffectFlg_;
 	float CameraShakeEffectTimer_;
+	float CameraShakePower_;
 };
 

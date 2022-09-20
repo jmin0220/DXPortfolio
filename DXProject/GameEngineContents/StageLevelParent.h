@@ -4,7 +4,14 @@
 #include "MonsterManager.h"
 #include "CharacterCreater.h"
 
-
+// 레벨의 진행단계
+enum class LevelProcess
+{
+	NonActivePortal,
+	ActivePortal,
+	CreatedBoss,
+	KIllBoss,
+};
 
 // 설명 :
 class GameEngineActor;
@@ -13,6 +20,7 @@ class StageGround;
 class HUD;
 class ItemManager;
 class DebuggerGUI;
+class Portal;
 class StageLevelParent : public GameEngineLevel
 {
 public:
@@ -34,12 +42,16 @@ protected:
 	void Update(float _DeltaTime) override;
 	void End() override {};
 
-	Player* Player_;
+	static Player* Player_;
 	StageGround* StageActor_;
 	Option Option_;
 	MonsterManager* MonsterManager_;
 	ItemManager* ItemManager_;
 	CharacterCreater* CharacterCreater_;
+	Portal* Portal_;
+
+	// 레벨 진행수준
+	LevelProcess LevelProcess_;
 
 	static DebuggerGUI* DebuggerGUI_;
 private:

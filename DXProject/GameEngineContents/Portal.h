@@ -2,9 +2,9 @@
 
 enum class PortalState
 {
-	NonActivate,	// Index 0
-	Activate,		//		 1
-	Sleep,			//		 2
+	NonActivate,	// Index 0 -> 
+	Activate,		//		 0
+	KillBoss,		//		 1
 };
 
 // 설명 :
@@ -26,6 +26,26 @@ public:
 		return PortalState_;
 	}
 
+	void SetPortalState(PortalState _State)
+	{
+		PortalState_ = _State;
+	}
+
+	inline bool IsCreateBoss()
+	{
+		return RespawnBossTimer_ < 0.0f && RespawnBossFlg_ == true;
+	}
+
+	inline bool GetRespawnBossFlg()
+	{
+		return RespawnBossFlg_;
+	}
+
+	inline void PortalNextLevelOnRenderer()
+	{
+		Renderer_->SetFolderTextureToIndex(TEX_OBJECT_TELEPORTAL, 1);
+	}
+
 protected:
 	void Start() override;
 	void Update(float _DeltatTime) override;
@@ -37,6 +57,7 @@ private:
 
 	bool CollisionCheck(GameEngineCollision* _This, GameEngineCollision* _Other);
 
-	// TODO::외부에서 Portal의 상태를 변경
+	float RespawnBossTimer_;
+	bool RespawnBossFlg_;
 };
 

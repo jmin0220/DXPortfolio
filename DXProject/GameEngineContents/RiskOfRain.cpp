@@ -4,6 +4,7 @@
 #include "GameEngineContents/EndLevel.h"
 #include "GameEngineContents/CharacterSelect.h"
 #include "GameEngineContents/Stage1Level.h"
+#include "GameEngineContents/Stage2Level.h"
 #include "GameEngineContents/TestLevel.h"
 
 #pragma comment(lib, "GameEngineBase.lib")
@@ -210,6 +211,7 @@ void RiskOfRain::Start()
 	CreateLevel<EndLevel>(LEVEL_END);
 	CreateLevel<CharacterSelect>(LEVEL_SELECT);
 	stage1Level_ = CreateLevel<Stage1Level>(LEVEL_STAGE1);
+	CreateLevel<Stage2Level>(LEVEL_STAGE2);
 	CreateLevel<TestLevel>("TestLevel");
 
 	// 초기 레벨 이동

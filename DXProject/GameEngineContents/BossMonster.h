@@ -26,6 +26,7 @@ public:
 	}
 
 protected:
+
 	void BossSpawnState(float _DeltaTime);
 
 	std::string BossName_;
