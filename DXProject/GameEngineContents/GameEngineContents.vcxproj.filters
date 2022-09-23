@@ -112,6 +112,12 @@
     <Filter Include="01_Actor\01_Play\Object\Items\UseItems\Sawmerang">
       <UniqueIdentifier>{de506de2-eff8-4509-aaec-ee4920d3d9b8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="01_Actor\01_Play\Monsters\Boss">
+      <UniqueIdentifier>{43542ffc-9e33-4b67-9ca1-5ad17e78540c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01_Actor\01_Play\Monsters\Boss\MagmaWorm">
+      <UniqueIdentifier>{0ec3f7dd-1ce8-458b-9c40-70581c57fe47}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PreCompile.h">
@@ -282,12 +288,6 @@
     <ClInclude Include="BossHUD.h">
       <Filter>01_Actor\01_Play\Interface</Filter>
     </ClInclude>
-    <ClInclude Include="Colossus.h">
-      <Filter>01_Actor\01_Play\Monsters</Filter>
-    </ClInclude>
-    <ClInclude Include="BossMonster.h">
-      <Filter>01_Actor\01_Play\Monsters</Filter>
-    </ClInclude>
     <ClInclude Include="CommonFunction.h">
       <Filter>98_Global</Filter>
     </ClInclude>
@@ -296,6 +296,18 @@
     </ClInclude>
     <ClInclude Include="Stage2Level.h">
       <Filter>00_Level\01_Play</Filter>
+    </ClInclude>
+    <ClInclude Include="Colossus.h">
+      <Filter>01_Actor\01_Play\Monsters\Boss</Filter>
+    </ClInclude>
+    <ClInclude Include="BossMonster.h">
+      <Filter>01_Actor\01_Play\Monsters\Boss</Filter>
+    </ClInclude>
+    <ClInclude Include="MagmaWorm.h">
+      <Filter>01_Actor\01_Play\Monsters\Boss\MagmaWorm</Filter>
+    </ClInclude>
+    <ClInclude Include="MagmaWormBody.h">
+      <Filter>01_Actor\01_Play\Monsters\Boss\MagmaWorm</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -464,12 +476,6 @@
     <ClCompile Include="BossHUD.cpp">
       <Filter>01_Actor\01_Play\Interface</Filter>
     </ClCompile>
-    <ClCompile Include="Colossus.cpp">
-      <Filter>01_Actor\01_Play\Monsters</Filter>
-    </ClCompile>
-    <ClCompile Include="BossMonster.cpp">
-      <Filter>01_Actor\01_Play\Monsters</Filter>
-    </ClCompile>
     <ClCompile Include="CommonFunction.cpp">
       <Filter>98_Global</Filter>
     </ClCompile>
@@ -478,6 +484,18 @@
     </ClCompile>
     <ClCompile Include="Stage2Level.cpp">
       <Filter>00_Level\01_Play</Filter>
+    </ClCompile>
+    <ClCompile Include="BossMonster.cpp">
+      <Filter>01_Actor\01_Play\Monsters\Boss</Filter>
+    </ClCompile>
+    <ClCompile Include="Colossus.cpp">
+      <Filter>01_Actor\01_Play\Monsters\Boss</Filter>
+    </ClCompile>
+    <ClCompile Include="MagmaWorm.cpp">
+      <Filter>01_Actor\01_Play\Monsters\Boss\MagmaWorm</Filter>
+    </ClCompile>
+    <ClCompile Include="MagmaWormBody.cpp">
+      <Filter>01_Actor\01_Play\Monsters\Boss\MagmaWorm</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

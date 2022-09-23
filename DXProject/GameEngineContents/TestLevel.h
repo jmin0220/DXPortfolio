@@ -2,7 +2,6 @@
 #include <GameEngineCore/GameEngineLevel.h>
 
 // Ό³Έν :
-class TestActor;
 class TestLevel : public GameEngineLevel
 {
 public:
@@ -22,6 +21,5 @@ protected:
 	void End() override {};
 
 private:
-	TestActor* TestActor_;
 };
 

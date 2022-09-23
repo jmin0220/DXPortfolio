@@ -1,6 +1,7 @@
 #include "PreCompile.h"
 #include "TestLevel.h"
 #include "TestActor.h"
+#include "MagmaWorm.h"
 
 TestLevel::TestLevel() 
 {
@@ -19,12 +20,10 @@ void TestLevel::Start()
 	/*GetMainCamera()->SetProjectionMode(CAMERAPROJECTIONMODE::PersPective);
 	GetMainCamera()->*/
 
-	TestActor_ = CreateActor<TestActor>();
-	
+	CreateActor<MagmaWorm>();
 }
 
 void TestLevel::Update(float _DeltaTime)
 {
-	TestActor_;
 }
 

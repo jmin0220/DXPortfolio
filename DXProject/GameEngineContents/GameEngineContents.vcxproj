@@ -284,6 +284,14 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="MagmaWormBody.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="MagmaWorm.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="MeatNugget.h">
       <SubType>
       </SubType>
@@ -500,6 +508,14 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="Lemurian.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="MagmaWormBody.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="MagmaWorm.cpp">
       <SubType>
       </SubType>
     </ClCompile>

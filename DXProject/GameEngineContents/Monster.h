@@ -25,7 +25,7 @@ public:
 		PlayerPos_ = _Pos;
 	}
 
-	inline void HitFunction(int _Damage)
+	virtual inline void HitFunction(int _Damage)
 	{
 		MonsterHp_ -= _Damage;
 	}

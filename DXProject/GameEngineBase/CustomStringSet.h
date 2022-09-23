@@ -77,6 +77,13 @@
 #define COLOSSUS_ANIM_SHOOT2 "ColossusShoot2"
 #define COLOSSUS_ANIM_WALK "ColossusWalk"
 
+// MagmaWorm
+#define MAGMAWORM_ANIM_HEAD "WormHead"
+#define MAGMAWORM_ANIM_HEAD_DEAD "WormHeadDead"
+#define MAGMAWORM_ANIM_BODY "WormBody"
+#define MAGMAWORM_ANIM_BODY_DEAD "WormBodyDead"
+#define MAGMAWORM_ANIM_WARNING "WormWarning"
+
 // 캐릭터별 특수 애니메이션
 #define PLAYER_ANIM_COMMANDO_SKILL4_1 "CommandoSkill4_1"
 #define PLAYER_ANIM_COMMANDO_SKILL4_2 "CommandoSkill4_2"
