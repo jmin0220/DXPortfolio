@@ -44,7 +44,7 @@ private:
 
 	void CheckNegativeX();
 
-	bool CollisionCheck(GameEngineCollision* _This, GameEngineCollision* _Other);
+	CollisionReturn CollisionCheck(GameEngineCollision* _This, GameEngineCollision* _Other);
 	void BulletDeath();
 
 	GameEngineCollision* Collision_;

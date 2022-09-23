@@ -136,8 +136,8 @@ unsigned int FormatToByteScale(DXGI_FORMAT _Format)
 	case DXGI_FORMAT_SAMPLER_FEEDBACK_MIN_MIP_OPAQUE:
 	case DXGI_FORMAT_SAMPLER_FEEDBACK_MIP_REGION_USED_OPAQUE:
 	case DXGI_FORMAT_FORCE_UINT:
-	MsgBoxAssert("크기를 아직 책정하지 않은 포맷을 받았습니다.");
-	return -1;
+		MsgBoxAssert("크기를 아직 책정하지 않은 포맷을 받았습니다.");
+		return -1;
 	default:
 		break;
 	}
@@ -154,9 +154,9 @@ void GameEngineLayOutDesc::AddInputLayOut(
 	D3D11_INPUT_CLASSIFICATION _inputClass,
 	unsigned int _InstanceDataStepRate,
 	unsigned int _Index
-) 
+)
 {
-	D3D11_INPUT_ELEMENT_DESC LayOutDesc = {0};
+	D3D11_INPUT_ELEMENT_DESC LayOutDesc = { 0 };
 
 	int Index = _Index;
 
@@ -169,7 +169,7 @@ void GameEngineLayOutDesc::AddInputLayOut(
 
 		Index = ++SemanticIndexData[_SemanticName];
 	}
-	
+
 
 	LayOutDesc.SemanticName = _SemanticName; // "POSITION" "COLOR" "TANGENT" "NORMAL"
 	LayOutDesc.SemanticIndex = Index; // "POSITION0" , "POSITION1" ,
@@ -179,8 +179,15 @@ void GameEngineLayOutDesc::AddInputLayOut(
 
 	// 인스턴스 버퍼용
 	LayOutDesc.InputSlot = _InputSlot;
-	LayOutDesc.InstanceDataStepRate = _InstanceDataStepRate; 
-	LayOutOffset += FormatToByteScale(LayOutDesc.Format);
+	LayOutDesc.InstanceDataStepRate = _InstanceDataStepRate;
+
+	unsigned int FormatSize = FormatToByteScale(LayOutDesc.Format);
+	LayOutOffset += FormatSize;
+
+	if (_inputClass == D3D11_INPUT_CLASSIFICATION::D3D11_INPUT_PER_INSTANCE_DATA)
+	{
+		InstancingSize += FormatSize;
+	}
 
 	InputLayOutDesc.push_back(LayOutDesc);
 }

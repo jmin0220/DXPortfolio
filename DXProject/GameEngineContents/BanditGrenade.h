@@ -50,6 +50,6 @@ private:
 
 	void GroundFall(float _DeltaTime);
 	void CreateExplosion();
-	bool CollisionCheck(GameEngineCollision* _This, GameEngineCollision* _Other);
+	CollisionReturn CollisionCheck(GameEngineCollision* _This, GameEngineCollision* _Other);
 };
 

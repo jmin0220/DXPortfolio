@@ -54,7 +54,7 @@ private:
 
 	void ChangeCollisionPivot();
 
-	bool CollisionCheck(GameEngineCollision* _This, GameEngineCollision* _Other);
+	CollisionReturn CollisionCheck(GameEngineCollision* _This, GameEngineCollision* _Other);
 	void CreateHitEffect();
 
 	GameEngineCollision* Collision_;

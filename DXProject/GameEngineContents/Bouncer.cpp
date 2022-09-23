@@ -41,18 +41,18 @@ void Bouncer::Update(float _DeltaTime)
 		, std::bind(&Bouncer::CollisionCheckPlayer, this, std::placeholders::_1, std::placeholders::_2));
 }
 
-bool Bouncer::CollisionCheckPlayer(GameEngineCollision* _This, GameEngineCollision* _Other)
+CollisionReturn Bouncer::CollisionCheckPlayer(GameEngineCollision* _This, GameEngineCollision* _Other)
 {
 	Player* TmpPlayer = dynamic_cast<Player*>(_Other->GetActor());
 	TmpPlayer->SetJumpSpeedByBouncer();
 
-	return true;
+	return CollisionReturn::Break;
 }
 
-bool Bouncer::CollisionCheckMonster(GameEngineCollision* _This, GameEngineCollision* _Other)
+CollisionReturn Bouncer::CollisionCheckMonster(GameEngineCollision* _This, GameEngineCollision* _Other)
 {
 	Monster* TmpMonster = dynamic_cast<Monster*>(_Other->GetActor());
 	TmpMonster->SetJumpSpeedByBouncer();
 
-	return true;
+	return CollisionReturn::Break;
 }

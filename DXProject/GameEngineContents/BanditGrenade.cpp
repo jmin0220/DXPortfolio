@@ -126,9 +126,9 @@ void BanditGrenade::CreateExplosion()
 	piercingbullet->SetBulletYPositionLevel(0);
 }
 
-bool BanditGrenade::CollisionCheck(GameEngineCollision* _This, GameEngineCollision* _Other)
+CollisionReturn BanditGrenade::CollisionCheck(GameEngineCollision* _This, GameEngineCollision* _Other)
 {
 	CreateExplosion();
 
-	return true;
+	return CollisionReturn::Break;
 }

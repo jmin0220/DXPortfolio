@@ -45,7 +45,7 @@ void Portal::Update(float _DeltatTime)
 		, std::bind(&Portal::CollisionCheck, this, std::placeholders::_1, std::placeholders::_2));
 }
 
-bool Portal::CollisionCheck(GameEngineCollision* _This, GameEngineCollision* _Other)
+CollisionReturn Portal::CollisionCheck(GameEngineCollision* _This, GameEngineCollision* _Other)
 {
 	if (GameEngineInput::GetInst()->IsDown(Player_KEY_INTERACTIVE))
 	{
@@ -69,6 +69,6 @@ bool Portal::CollisionCheck(GameEngineCollision* _This, GameEngineCollision* _Ot
 		}
 	}
 
-	return true;
+	return CollisionReturn::Break;
 }
 

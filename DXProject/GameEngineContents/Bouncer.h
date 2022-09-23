@@ -19,8 +19,8 @@ protected:
 	void Update(float _DeltaTime) override;
 
 private:
-	bool CollisionCheckPlayer(GameEngineCollision* _This, GameEngineCollision* _Other);
-	bool CollisionCheckMonster(GameEngineCollision* _This, GameEngineCollision* _Other);
+	CollisionReturn CollisionCheckPlayer(GameEngineCollision* _This, GameEngineCollision* _Other);
+	CollisionReturn CollisionCheckMonster(GameEngineCollision* _This, GameEngineCollision* _Other);
 
 	GameEngineTextureRenderer* Renderer_;
 	GameEngineCollision* Collision_;

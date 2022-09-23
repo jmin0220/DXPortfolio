@@ -55,7 +55,7 @@ void Bullet::Update(float _DeltaTime)
 	}
 }
 
-bool Bullet::CollisionCheck(GameEngineCollision* _This, GameEngineCollision* _Other)
+CollisionReturn Bullet::CollisionCheck(GameEngineCollision* _This, GameEngineCollision* _Other)
 {
 	Monster* TmpMonster = dynamic_cast<Monster*>(_Other->GetActor());
 	TmpMonster->HitFunction(Damage_);
@@ -85,7 +85,7 @@ bool Bullet::CollisionCheck(GameEngineCollision* _This, GameEngineCollision* _Ot
 
 	BulletDeath();
 
-	return false;
+	return CollisionReturn::Break;
 }
 
 void Bullet::CheckNegativeX()

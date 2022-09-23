@@ -40,7 +40,7 @@ void ChestParent::Update(float _DeltaTime)
 	}
 }
 
-bool ChestParent::CollisionCheckPlayer(GameEngineCollision* _This, GameEngineCollision* _Other)
+CollisionReturn ChestParent::CollisionCheckPlayer(GameEngineCollision* _This, GameEngineCollision* _Other)
 {
 	if (false == IsOpen_)
 	{
@@ -67,5 +67,5 @@ bool ChestParent::CollisionCheckPlayer(GameEngineCollision* _This, GameEngineCol
 		}
 	}
 
-	return true;
+	return CollisionReturn::Break;
 }

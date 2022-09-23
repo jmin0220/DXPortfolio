@@ -1,10 +1,10 @@
 #include "PreCompile.h"
 #include "GameEngineDefaultRenderer.h"
 #include "GameEngineRenderingPipeLine.h"
+#include "GameEngineVertexShader.h"
 
 GameEngineDefaultRenderer::GameEngineDefaultRenderer()
-	:PipeLine(nullptr),
-	IsInstancing(false)
+	:PipeLine(nullptr)
 {
 }
 
@@ -50,28 +50,48 @@ void GameEngineDefaultRenderer::Render(float _DeltaTime)
 		MsgBoxAssert("랜더링 파이프라인이 세팅되지 않으면 랜더링을 할수 없습니다.");
 	}
 
-	// 준비된 모든 리소스들을 다 세팅해준다.
-	ShaderResources.AllResourcesSetting();
-	PipeLine->Rendering();
-	ShaderResources.AllResourcesReset();
+	if (false == IsInstancing(GetPipeLine()))
+	{
+		// 준비된 모든 리소스들을 다 세팅해준다.
+		ShaderResources.AllResourcesSetting();
+		PipeLine->Rendering();
+		ShaderResources.AllResourcesReset();
+	}
+	else
+	{
+		InstancingDataSetting();
+		// 여러분들이 새로운 랜더러를 만들고 인스턴싱을 하면
+		// 이 부분이 달라져야 합니다.
+		// 유저가 몇바이트짜리 인스턴
+		// Camera->PushInstancingIndex(PipeLine);
+	}
+}
+
+void GameEngineDefaultRenderer::InstancingDataSetting()
+{
+	MsgBoxAssert("인스턴싱 데이터처리를 InstancingDataSetting 재정의하지 않았습니다.");
 }
 
 
-
 GameEngineRenderingPipeLine* GameEngineDefaultRenderer::GetPipeLine()
+{
+	return PipeLine;
+}
+
+GameEngineRenderingPipeLine* GameEngineDefaultRenderer::GetClonePipeLine()
 {
 	if (false == PipeLine->IsOriginal())
 	{
 		return PipeLine;
 	}
 
-	PipeLine = GetClonePipeLine(PipeLine);
+	PipeLine = ClonePipeLine(PipeLine);
 	return PipeLine;
 }
 
-void GameEngineDefaultRenderer::InstanceOn()
+void GameEngineDefaultRenderer::InstancingOn()
 {
-	IsInstancing = true;
+	GameEngineRenderer::InstancingOn();
 
-	InstanceSetting();
+	Camera->PushInstancing(PipeLine, 1);
 }

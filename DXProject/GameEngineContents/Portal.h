@@ -55,7 +55,7 @@ private:
 	GameEngineCollision* Collision_;
 	PortalState PortalState_;
 
-	bool CollisionCheck(GameEngineCollision* _This, GameEngineCollision* _Other);
+	CollisionReturn CollisionCheck(GameEngineCollision* _This, GameEngineCollision* _Other);
 
 	float RespawnBossTimer_;
 	bool RespawnBossFlg_;

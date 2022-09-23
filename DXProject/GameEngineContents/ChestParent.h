@@ -55,7 +55,7 @@ protected:
 
 	bool IsOpen_;
 
-	bool CollisionCheckPlayer(GameEngineCollision* _This, GameEngineCollision* _Other);
+	CollisionReturn CollisionCheckPlayer(GameEngineCollision* _This, GameEngineCollision* _Other);
 private:
 };
 

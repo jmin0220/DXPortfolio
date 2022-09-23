@@ -124,7 +124,7 @@ void ChestLong::WaveAnimItemRenderer(float _DeltaTime)
 	}
 }
 
-bool ChestLong::CollisionFunc(GameEngineCollision* _This, GameEngineCollision* _Other)
+CollisionReturn ChestLong::CollisionFunc(GameEngineCollision* _This, GameEngineCollision* _Other)
 {
 	return CollisionCheckPlayer(_This, _Other);
 }

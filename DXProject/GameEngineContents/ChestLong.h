@@ -37,7 +37,7 @@ protected:
 
 private:
 	void WaveAnimItemRenderer(float _DeltaTime);		// 아이템이 위아래로 일렁이는 애니메이션
-	bool CollisionFunc(GameEngineCollision* _This, GameEngineCollision* _Other);
+	CollisionReturn CollisionFunc(GameEngineCollision* _This, GameEngineCollision* _Other);
 
 
 	GameEngineTextureRenderer* ShowItemRenderer_;

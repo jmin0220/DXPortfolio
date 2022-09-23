@@ -64,6 +64,14 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="GameEngineInputLayOut.h" />
+    <ClInclude Include="GameEngineInstancing.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="GameEngineInstancingBuffer.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="GameEngineLevel.h" />
     <ClInclude Include="GameEnginePixelShader.h" />
     <ClInclude Include="GameEngineRasterizer.h" />
@@ -175,6 +183,14 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="GameEngineInputLayOut.cpp" />
+    <ClCompile Include="GameEngineInstancing.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="GameEngineInstancingBuffer.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="GameEngineLevel.cpp" />
     <ClCompile Include="GameEnginePixelShader.cpp" />
     <ClCompile Include="GameEngineRasterizer.cpp" />

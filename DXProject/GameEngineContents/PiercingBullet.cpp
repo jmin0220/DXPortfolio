@@ -29,12 +29,12 @@ void PiercingBullet::Update(float _DeltaTime)
 }
 
 
-bool PiercingBullet::CollisionCheck(GameEngineCollision* _This, GameEngineCollision* _Other)
+CollisionReturn PiercingBullet::CollisionCheck(GameEngineCollision* _This, GameEngineCollision* _Other)
 {
 	// 이미 충돌한적이 있으면 무시
 	if (find(CheckedMonster_.begin(), CheckedMonster_.end(), _Other) != CheckedMonster_.end())
 	{
-		return false;
+		return CollisionReturn::Break;
 	}
 
 	CheckedMonster_.push_back(_Other);
@@ -68,7 +68,7 @@ bool PiercingBullet::CollisionCheck(GameEngineCollision* _This, GameEngineCollis
 	DamageFont_->SetDeathTimer(1.0f);
 
 
-	return true;
+	return CollisionReturn::Break;
 }
 
 void PiercingBullet::ChangeCollisionPivot()

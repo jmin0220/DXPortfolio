@@ -39,6 +39,6 @@ private:
 	float4 FlyDirection_;
 
 	std::list<GameEngineCollision*> CheckedMonster_;
-	bool CollisionCheck(GameEngineCollision* _This, GameEngineCollision* _Other);
+	CollisionReturn CollisionCheck(GameEngineCollision* _This, GameEngineCollision* _Other);
 };
 

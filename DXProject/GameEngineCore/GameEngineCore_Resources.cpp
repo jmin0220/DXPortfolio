@@ -13,6 +13,7 @@
 // Resources Header
 #include "GameEngineVertexBuffer.h"
 #include "GameEngineIndexBuffer.h"
+#include "GameEngineInstancingBuffer.h"
 #include "GameEngineTexture.h"
 #include "GameEngineFolderTexture.h"
 #include "GameEngineSampler.h"
@@ -212,7 +213,14 @@ void EngineRenderingPipeLine()
 		GameEngineRenderingPipeLine* NewPipe = GameEngineRenderingPipeLine::Create("TextureAtlas");
 		NewPipe->SetVertexShader("TextureAtlas.hlsl");
 		NewPipe->SetPixelShader("TextureAtlas.hlsl");
+		// NewPipe->InstancingSetting();
 	}
+
+	//{
+	//	GameEngineRenderingPipeLine* NewPipe = GameEngineRenderingPipeLine::Create("TextureAtlas_Inst");
+	//	NewPipe->SetVertexShader("TextureAtlas_Inst.hlsl");
+	//	NewPipe->SetPixelShader("TextureAtlas_Inst.hlsl");
+	//}
 
 	{
 		GameEngineRenderingPipeLine* NewPipe = GameEngineRenderingPipeLine::Create("3DDebug");
@@ -411,6 +419,7 @@ void GameEngineCore::EngineResourcesDestroy()
 	GameEngineBlend::ResourcesDestroy();
 	GameEngineConstantBuffer::ResourcesDestroy();
 	GameEngineStructuredBuffer::ResourcesDestroy();
+	GameEngineInstancingBuffer::ResourcesDestroy();
 	GameEngineSound::ResourcesDestroy();
 	GameEngineFont::ResourcesDestroy();
 
