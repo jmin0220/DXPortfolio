@@ -11,6 +11,17 @@ MagmaWorm::~MagmaWorm()
 {
 }
 
+void MagmaWorm::SetMoveDirection(float4 _Direction)
+{
+	Direction_ = _Direction;
+	Direction_.Normalize();
+
+	for (int i = 0; i < 20; i++)
+	{
+		MagmaWormBody_[i]->SetRotateDir(Direction_);
+	}
+}
+
 void MagmaWorm::Start()
 {
 	Speed_ = 500.0f;
