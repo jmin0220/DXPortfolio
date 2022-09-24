@@ -1,7 +1,9 @@
 #pragma once
 #include <GameEngineCore/GameEngineLevel.h>
 
+
 // Ό³Έν :
+class MagmaWorm;
 class TestLevel : public GameEngineLevel
 {
 public:
@@ -21,5 +23,6 @@ protected:
 	void End() override {};
 
 private:
+	MagmaWorm* MagmaWorm_;
 };
 

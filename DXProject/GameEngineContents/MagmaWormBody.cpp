@@ -17,19 +17,26 @@ void MagmaWormBody::MovetoDestination(float4 _DestPos)
 	MoveDestinationTimer_ += DeltaTime_;
 
 	// 0.1초마다 목적지를 갱신
-	if (MoveDestinationTimer_ >= 0.1)
+	// or 너무 멀면 갱신함.
+	if (MoveDestinationTimer_ >= 0.01f &&
+		(_DestPos - this->GetTransform().GetWorldPosition()).Length() >= Renderer_->GetCurTexture()->GetScale().x * RenderScale_ - 15.0f * RenderScale_)
 	{
 		DestPos_ = _DestPos;
 		MoveDestinationTimer_ = 0.0f;
 	}
-	else
-	{
-		MoveDir_ = DestPos_ - this->GetTransform().GetWorldPosition();
-		MoveDir_.Normalize();
 
-		this->GetTransform().SetWorldMove(MoveDir_ * 100.0f * DeltaTime_);
-	}
+	MoveDir_ = DestPos_ - this->GetTransform().GetWorldPosition();
+	this->GetTransform().SetWorldMove(MoveDir_.NormalizeReturn() * Speed_ * DeltaTime_);
+}
 
+void MagmaWormBody::SetWormBodyScale(int _ScaleLevel)
+{
+	RenderScale_ = 1.0f - (static_cast<float>(_ScaleLevel) * 0.02f);
+
+	// ScaleLevel이 높을수록 점점 작아짐.
+	// 제일 큰 크기는 RendererScale * 1.0f, 제일 작은 크기는 RendererScale * 0.n
+	Renderer_->GetTransform().SetWorldScale(Renderer_->GetTransform().GetWorldScale() * RenderScale_);
+	Collision_->GetTransform().SetWorldScale(Renderer_->GetTransform().GetWorldScale() * RenderScale_);
 }
 
 void MagmaWormBody::Start()
@@ -41,10 +48,8 @@ void MagmaWormBody::Start()
 	Renderer_->CreateFrameAnimationFolder(MAGMAWORM_ANIM_BODY, FrameAnimation_DESC(MAGMAWORM_ANIM_BODY, ANIMATION_FRAME_DELAY, true));
 	Renderer_->CreateFrameAnimationFolder(MAGMAWORM_ANIM_BODY_DEAD, FrameAnimation_DESC(MAGMAWORM_ANIM_BODY_DEAD, ANIMATION_FRAME_DELAY, true));
 
-
 	Renderer_->ChangeFrameAnimation(MAGMAWORM_ANIM_BODY);
 	Renderer_->ScaleToTexture();
-	Renderer_->SetScaleModeImage();
 
 	Collision_ = CreateComponent<GameEngineCollision>();
 	Collision_->ChangeOrder(ObjectGroup::Monster);
@@ -59,6 +64,8 @@ void MagmaWormBody::Update(float _DeltaTime)
 void MagmaWormBody::SetHead()
 {
 	Renderer_->ChangeFrameAnimation(MAGMAWORM_ANIM_HEAD);
+	Renderer_->ScaleToTexture();
+
 	IsHead_ = true;
 }
 

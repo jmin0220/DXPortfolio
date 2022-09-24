@@ -16,12 +16,19 @@ public:
 	MagmaWorm& operator=(const MagmaWorm& _Other) = delete;
 	MagmaWorm& operator=(MagmaWorm&& _Other) noexcept = delete;
 
+	inline void SetMoveDirection(float4 _Direction)
+	{
+		Direction_ = _Direction;
+		Direction_.Normalize();
+	}
+
 protected:
 	void Start() override;
 	void Update(float _DeltaTime) override;
 
 
 private:
-	MagmaWormBody* MagmaWormBody_[10];
+	MagmaWormBody* MagmaWormBody_[20];
+	float4 Direction_;
 };
 
