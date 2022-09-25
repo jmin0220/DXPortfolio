@@ -43,12 +43,8 @@ public:
 		HittedDamage_ = 0;
 	}
 
-	void SetRotateDir(float4 _Dir)
-	{
-		RotateDir_ = _Dir;
-	}
-
 	void MovetoDestination(float4 _DestPos);
+	void MoveToDestinationHead(float4 _Direction, float4 _DestPos);
 
 	void SetWormBodyScale(int _ScaleLevel);
 
@@ -66,8 +62,8 @@ private:
 
 	// 목적지
 	float4 DestPos_;
+	float4 DestPosHead_;
 	// 렌더러, 콜리전이 회전할 방향
-	float4 RotateDir_; // 제거
 	// 목적지까지 체크할 타이머
 	float MoveDestinationTimer_;
 	// ScaleLevel에 따라서 크기가 조정될 렌더러비율

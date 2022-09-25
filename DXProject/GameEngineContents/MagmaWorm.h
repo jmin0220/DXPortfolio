@@ -1,8 +1,8 @@
 #pragma once
 #include "BossMonster.h"
+#include "MagmaWormBody.h"
 
 // Ό³Έν :
-class MagmaWormBody;
 class MagmaWorm : public BossMonster
 {
 public:
@@ -18,6 +18,10 @@ public:
 
 	void SetMoveDirection(float4 _Direction);
 
+	inline float4 GetMagmaWormPosition()
+	{
+		return MagmaWormBody_[0]->GetTransform().GetWorldPosition();
+	}
 protected:
 	void Start() override;
 	void Update(float _DeltaTime) override;
@@ -26,5 +30,6 @@ protected:
 private:
 	MagmaWormBody* MagmaWormBody_[20];
 	float4 Direction_;
+	float4 DestPos_;
 };
 

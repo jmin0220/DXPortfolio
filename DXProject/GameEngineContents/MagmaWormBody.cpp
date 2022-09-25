@@ -5,7 +5,6 @@ MagmaWormBody::MagmaWormBody()
 	: IsHead_(false)
 	, DeltaTime_(0.0f)
 	, MoveDestinationTimer_(0.0f)
-	, RotateDir_(float4::ZERO)
 	, CurDegree_(0.0f)
 {
 }
@@ -26,15 +25,35 @@ void MagmaWormBody::MovetoDestination(float4 _DestPos)
 		DestPos_ = _DestPos;
 		MoveDestinationTimer_ = 0.0f;
 
+		// 회전
 		NowDegree_ = float4::VectorXYtoDegree(this->GetTransform().GetWorldPosition(), _DestPos);
 
 		float RealRotateDegree = NowDegree_ - CurDegree_;
 		CurDegree_ = NowDegree_;
-		Renderer_->GetTransform().SetAddWorldRotation({0.0f, 0.0f, RealRotateDegree, 0.f });
+		this->GetTransform().SetAddWorldRotation({0.0f, 0.0f, RealRotateDegree, 0.0f });
 	}
 
+	// 이동
 	float4 MoveDir = DestPos_ - this->GetTransform().GetWorldPosition();
 	this->GetTransform().SetWorldMove(MoveDir.NormalizeReturn() * Speed_ * DeltaTime_);
+}
+
+void MagmaWormBody::MoveToDestinationHead(float4 _Direction, float4 _DestPos)
+{
+	if (false == DestPosHead_.CompareInt2D(_DestPos))
+	{
+		DestPosHead_ = _DestPos;
+
+		// 회전
+		NowDegree_ = float4::VectorXYtoDegree(this->GetTransform().GetWorldPosition(), _DestPos);
+
+		float RealRotateDegree = NowDegree_ - CurDegree_;
+		CurDegree_ = NowDegree_;
+		Renderer_->GetTransform().SetAddWorldRotation({ 0.0f, 0.0f, RealRotateDegree, 0.0f });
+	}
+
+	// 이동
+	this->GetTransform().SetWorldMove(_Direction * Speed_ * DeltaTime_);
 }
 
 void MagmaWormBody::SetWormBodyScale(int _ScaleLevel)
