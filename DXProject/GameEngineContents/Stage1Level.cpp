@@ -27,6 +27,7 @@ void Stage1Level::Start()
 	StageLevelParent::Start();
 
 	StageActor_->SetStage1Map();
+	BossCreateOption_ = 0;
 }
 
 void Stage1Level::Update(float _DeltaTime)

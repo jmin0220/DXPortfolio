@@ -9,4 +9,5 @@ enum class ZOrder
 	Item,
 	Chest,
 	StageBackGround,
+	MagmaWorm,	// 특수처리
 };

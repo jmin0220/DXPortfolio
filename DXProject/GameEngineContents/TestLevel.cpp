@@ -18,7 +18,7 @@ void TestLevel::Start()
 	//GetMainCamera()->SetProjectionMode(CAMERAPROJECTIONMODE::PersPective);
 	//GetMainCamera()->GetTransform().SetWorldPosition({ 0.0f,0.0f,-5000.0f });
 
-	MagmaWorm_ = CreateActor<MagmaWorm>();
+	//MagmaWorm_ = CreateActor<MagmaWorm>();
 
 	GameEngineInput::GetInst()->CreateKey("TestLeft", 'A');
 	GameEngineInput::GetInst()->CreateKey("TestDown", 'S');

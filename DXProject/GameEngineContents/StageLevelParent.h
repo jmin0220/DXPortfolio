@@ -54,6 +54,8 @@ protected:
 	LevelProcess LevelProcess_;
 
 	static DebuggerGUI* DebuggerGUI_;
+
+	int BossCreateOption_;
 private:
 };
 

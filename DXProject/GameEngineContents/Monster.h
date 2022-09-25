@@ -28,6 +28,11 @@ public:
 	virtual inline void HitFunction(int _Damage)
 	{
 		MonsterHp_ -= _Damage;
+
+		if (MonsterHp_ < 0)
+		{
+			MonsterHp_ = 0;
+		}
 	}
 
 	inline bool GetMonsterDeath() const
@@ -90,6 +95,8 @@ protected:
 	void MonsterJump();
 	
 	void DeathSwitch();
+
+	bool IsFallCheck_;
 
 	// FSM ¸Å´ÏÀú
 	GameEngineStateManager StateManager_;

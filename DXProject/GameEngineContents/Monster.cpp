@@ -12,6 +12,7 @@ Monster::Monster()
 	, ChaseFlg_(false)
 	, ChaseRange_(120.0f)
 	, IsMonsterDeath_(false)
+	, IsFallCheck_(true)
 {
 }
 
@@ -62,6 +63,11 @@ void Monster::Update(float _DeltaTime)
 
 void Monster::CheckNegativeX()
 {
+	if (Renderer_ == nullptr)
+	{
+		return;
+	}
+
 	if (MoveDir_.CompareInt3D(float4::LEFT))
 	{
 		// 좌우반전
@@ -137,6 +143,11 @@ void Monster::DeathSwitch()
 
 void Monster::GroundFallCheck()
 {
+	if (false == IsFallCheck_)
+	{
+		return;
+	}
+
 	if (nullptr == ColMap_)
 	{
 		MsgBoxAssert("충돌맵이 존재하지 않습니다.");

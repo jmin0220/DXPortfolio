@@ -15,6 +15,7 @@ DebuggerGUI* StageLevelParent::DebuggerGUI_ = nullptr;
 Player* StageLevelParent::Player_ = nullptr;
 
 StageLevelParent::StageLevelParent() 
+	: BossCreateOption_(0)
 {
 }
 
@@ -75,7 +76,7 @@ void StageLevelParent::Update(float _DeltaTime)
 		if (true == Portal_->IsCreateBoss())
 		{
 			// 보스 생성
-			MonsterManager_->CreateBossFlgOn();
+			MonsterManager_->CreateBossFlgOn(BossCreateOption_);
 			LevelProcess_ = LevelProcess::CreatedBoss;
 		}
 
@@ -105,7 +106,7 @@ void StageLevelParent::Update(float _DeltaTime)
 	// 디버그용 보스 생성
 	if (true == DebuggerGUI_->GetCreateBossTrigger())
 	{
-		MonsterManager_->CreateBossFlgOn();
+		MonsterManager_->CreateBossFlgOn(1);
 	}
 }
 

@@ -69,6 +69,8 @@ private:
 	// ScaleLevel에 따라서 크기가 조정될 렌더러비율
 	float RenderScale_;
 
+	float4 HeadDirection_;
+
 	// 회전을 위한 변수
 	// 직전의 각도
 	float CurDegree_;

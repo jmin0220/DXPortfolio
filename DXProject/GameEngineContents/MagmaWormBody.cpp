@@ -20,7 +20,7 @@ void MagmaWormBody::MovetoDestination(float4 _DestPos)
 	// 0.1초마다 목적지를 갱신
 	// or 너무 멀면 갱신함.
 	if (MoveDestinationTimer_ >= 0.01f &&
-		(_DestPos - this->GetTransform().GetWorldPosition()).Length() >= Renderer_->GetCurTexture()->GetScale().x * RenderScale_ - 15.0f * RenderScale_)
+		(_DestPos - this->GetTransform().GetWorldPosition()).Length() >= Renderer_->GetCurTexture()->GetScale().x * RenderScale_ - 18.0f * RenderScale_)
 	{
 		DestPos_ = _DestPos;
 		MoveDestinationTimer_ = 0.0f;
@@ -50,10 +50,9 @@ void MagmaWormBody::MoveToDestinationHead(float4 _Direction, float4 _DestPos)
 		float RealRotateDegree = NowDegree_ - CurDegree_;
 		CurDegree_ = NowDegree_;
 		Renderer_->GetTransform().SetAddWorldRotation({ 0.0f, 0.0f, RealRotateDegree, 0.0f });
-	}
 
-	// 이동
-	this->GetTransform().SetWorldMove(_Direction * Speed_ * DeltaTime_);
+		HeadDirection_ = _Direction;
+	}
 }
 
 void MagmaWormBody::SetWormBodyScale(int _ScaleLevel)
@@ -86,6 +85,12 @@ void MagmaWormBody::Start()
 void MagmaWormBody::Update(float _DeltaTime)
 {
 	DeltaTime_ = _DeltaTime;
+
+	if (true == IsHead_)
+	{
+		// 이동
+		this->GetTransform().SetWorldMove(HeadDirection_ * Speed_ * DeltaTime_);
+	}
 }
 
 void MagmaWormBody::SetHead()

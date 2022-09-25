@@ -7,6 +7,7 @@
 #include "BossHUD.h"
 #include "Lemurian.h"
 #include "Colossus.h"
+#include "MagmaWorm.h"
 
 MonsterManager::MonsterManager() 
 	: SingleMonsterRespawnTimer_(0.0f)
@@ -104,7 +105,7 @@ void MonsterManager::AllMonsterStateChangeToIdle()
 	}
 }
 
-void MonsterManager::CreateBoss()
+void MonsterManager::CreateBoss(int bossOption)
 {
 	// 이미 생성되어있다면 종료
 	if (true == CreateBossFlg_)
@@ -114,8 +115,15 @@ void MonsterManager::CreateBoss()
 
 	BossHUD_->On();
 
-	// TODO::무작위 보스몬스터가 생성
-	BossMonster_ = GetLevel()->CreateActor<Colossus>();
+	if (bossOption == 0)
+	{
+		BossMonster_ = GetLevel()->CreateActor<Colossus>();
+	}
+	else if (bossOption == 1)
+	{
+		BossMonster_ = GetLevel()->CreateActor<MagmaWorm>();
+	}
+
 	// 일단 플레이어 위치에 보스를 생성하고, Spawn->Idle로 변경되면서 RendererOn, 위치 조정 등등...
 	BossMonster_->GetTransform().SetWorldPosition(PlayerPos_);
 	BossMonster_->SetColMapInfo(ColMap_);

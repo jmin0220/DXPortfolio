@@ -16,6 +16,7 @@ void Stage2Level::Start()
 
 	// TODO::다른 맵 이미지로 변경
 	StageActor_->SetStage1Map();
+	BossCreateOption_ = 1;
 }
 
 void Stage2Level::Update(float _DeltaTime)

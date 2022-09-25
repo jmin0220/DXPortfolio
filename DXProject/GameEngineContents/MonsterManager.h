@@ -35,9 +35,9 @@ public:
 		RespawnPos_ = _Pos;
 	}
 
-	inline void CreateBossFlgOn()
+	inline void CreateBossFlgOn(int bossOption = 0)
 	{
-		CreateBoss();
+		CreateBoss(bossOption);
 		CreateBossFlg_ = true;
 	}
 
@@ -88,5 +88,5 @@ private:
 	// 따로 관리될 보스 몬스터
 	BossMonster* BossMonster_;
 
-	void CreateBoss();
+	void CreateBoss(int bossOption);
 };
