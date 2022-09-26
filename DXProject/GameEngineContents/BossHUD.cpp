@@ -67,5 +67,9 @@ void BossHUD::Update(float _DeltaTime)
 		std::string HpString = std::to_string(BossHpNum_) + "/" + std::to_string(BossMaxHpNum_);
 		BossHp_->ChangeFontRenderer<GameEngineUIRenderer>(HpString, float4::ZERO);
 	}
+
+	// Hp와 Exp를 상태에 따라서 Bar의 수준을 조정
+	HpRenderer_->GetTransform().SetWorldScale({ static_cast<float>(BossHpNum_) / static_cast<float>(BossMaxHpNum_) * BOSS_HP_MAX_SCALE, 18.0f });
+	HpGlossRenderer_->GetTransform().SetWorldScale({ static_cast<float>(BossHpNum_) / static_cast<float>(BossMaxHpNum_) * BOSS_HP_MAX_SCALE, 7.0f });
 }
 

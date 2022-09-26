@@ -40,19 +40,14 @@ void MagmaWormBody::MovetoDestination(float4 _DestPos)
 
 void MagmaWormBody::MoveToDestinationHead(float4 _Direction, float4 _DestPos)
 {
-	if (false == DestPosHead_.CompareInt2D(_DestPos))
-	{
-		DestPosHead_ = _DestPos;
+	// 회전
+	NowDegree_ = float4::VectorXYtoDegree(this->GetTransform().GetWorldPosition(), _DestPos);
 
-		// 회전
-		NowDegree_ = float4::VectorXYtoDegree(this->GetTransform().GetWorldPosition(), _DestPos);
+	float RealRotateDegree = NowDegree_ - CurDegree_;
+	CurDegree_ = NowDegree_;
+	Renderer_->GetTransform().SetAddWorldRotation({ 0.0f, 0.0f, RealRotateDegree, 0.0f });
 
-		float RealRotateDegree = NowDegree_ - CurDegree_;
-		CurDegree_ = NowDegree_;
-		Renderer_->GetTransform().SetAddWorldRotation({ 0.0f, 0.0f, RealRotateDegree, 0.0f });
-
-		HeadDirection_ = _Direction;
-	}
+	HeadDirection_ = _Direction;
 }
 
 void MagmaWormBody::SetWormBodyScale(int _ScaleLevel)
@@ -63,6 +58,7 @@ void MagmaWormBody::SetWormBodyScale(int _ScaleLevel)
 	// 제일 큰 크기는 RendererScale * 1.0f, 제일 작은 크기는 RendererScale * 0.n
 	Renderer_->GetTransform().SetWorldScale(Renderer_->GetTransform().GetWorldScale() * RenderScale_);
 	Collision_->GetTransform().SetWorldScale(Renderer_->GetTransform().GetWorldScale() * RenderScale_);
+	
 }
 
 void MagmaWormBody::Start()

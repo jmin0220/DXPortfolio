@@ -1,9 +1,11 @@
 #include "PreCompile.h"
 #include "MagmaWorm.h"
 #include "MagmaWormBody.h"
+#include <GameEngineBase/GameEngineRandom.h>
 
 MagmaWorm::MagmaWorm() 
 	: Direction_(GetTransform().GetRightVector())
+	, ChaseUpFlg_(true)
 {
 	Speed_ = 1000.0f;
 	AtkSpeed_ = 1.0f;
@@ -52,6 +54,26 @@ void MagmaWorm::Start()
 	Monster::Start();
 }
 
+void MagmaWorm::Update(float _DeltaTime)
+{
+	Monster::Update(_DeltaTime);
+
+	// 데미지 처리
+	for (MagmaWormBody* tmp : MagmaWormBody_)
+	{
+		HitFunction(tmp->OutputHittedDamage());
+		tmp->ResetHittedDamageZero();
+	}
+
+	if (MonsterHp_ <= 0)
+	{
+		for (MagmaWormBody* tmp : MagmaWormBody_)
+		{
+			tmp->SetDeath();
+		}
+	}
+}
+
 void MagmaWorm::AnimationInit()
 {
 	WarningRenderer_ = CreateComponent<GameEngineTextureRenderer>();
@@ -61,6 +83,10 @@ void MagmaWorm::AnimationInit()
 	WarningRenderer_->ScaleToTexture();
 
 	WarningRenderer_->Off();
+
+	// 사용하진 않지만 구조상 존재해야하므로..
+	Collision_ = CreateComponent<GameEngineCollision>();
+	Collision_->Off();
 }
 
 void MagmaWorm::StateInit()
@@ -90,23 +116,18 @@ void MagmaWorm::AttackStart(const StateInfo& _Info)
 
 void MagmaWorm::SpawnStart(const StateInfo& _Info)
 {
-	for (int i = 0; i < 20; i++)
-	{
-		MagmaWormBody_[i]->GetTransform().SetWorldPosition({ PlayerPos_.x, PlayerPos_.y - 1000.0f, static_cast<float>(ZOrder::MagmaWorm) });
-	}
 }
 
 void MagmaWorm::DeathStart(const StateInfo& _Info)
 {
+
 }
 
 void MagmaWorm::AttackUpdate(float _DeltaTime, const StateInfo& _Info)
 {
-	// MagmaWorm이 상승중인가 하강중인가를 판단
-	static bool ChaseUpFlg = true;
 
 	// 상승중이라면
-	if (true == ChaseUpFlg)
+	if (true == ChaseUpFlg_)
 	{
 		// 플레이어에게 근접하면 카메라 떨림 효과
 		if (MagmaWormBody_[0]->GetTransform().GetWorldPosition().y >= PlayerPos_.y - 300.0f
@@ -117,27 +138,43 @@ void MagmaWorm::AttackUpdate(float _DeltaTime, const StateInfo& _Info)
 	}
 
 	// MagmaWorm이 최대상승 or 최대하강을 했다면 
-	if ((MagmaWormBody_[0]->GetTransform().GetWorldPosition().y >= PlayerPos_.y + 1000.0f && ChaseUpFlg == true)
-		|| (MagmaWormBody_[0]->GetTransform().GetWorldPosition().y <= PlayerPos_.y - 1000.0f && ChaseUpFlg == false))
+	if ((MagmaWormBody_[0]->GetTransform().GetWorldPosition().y >= PlayerPos_.y + 1300.0f && ChaseUpFlg_ == true)
+		|| (MagmaWormBody_[0]->GetTransform().GetWorldPosition().y <= PlayerPos_.y - 2000.0f && ChaseUpFlg_ == false))
 	{
-		// 플래그 반전
-		ChaseUpFlg = !ChaseUpFlg;
-
-		if (true == ChaseUpFlg)
-		{
-			// 경고 표시
-			WarningRenderer_->On();
-			WarningRenderer_->GetTransform().SetWorldPosition(PlayerPos_);
-		}
-		else
+		// true였으면 이제 내려올 차례
+		if (true == ChaseUpFlg_)
 		{
 			WarningRenderer_->Off();
 		}
+		// false였으면 이제 올라올 차례
+		else
+		{
+			if (MonsterHp_ <= 0)
+			{
+				StateManager_.ChangeState(MONSTER_FSM_DEATH);
+			}
+
+			// 경고 표시
+			WarningRenderer_->On();
+			WarningRenderer_->GetTransform().SetWorldPosition(PlayerPos_);
+
+			float tmpRandom = GameEngineRandom::MainRandom.RandomFloat(-400.0f, 400.0f);
+
+			// 너무 어색해보여서 위치를 재조정
+			for (int i = 0; i < 20; i++)
+			{
+				MagmaWormBody_[i]->GetTransform().SetWorldPosition({ PlayerPos_.x + tmpRandom
+																   , MagmaWormBody_[i]->GetTransform().GetWorldPosition().y
+																   , static_cast<float>(ZOrder::MagmaWorm) });
+			}
+		}
+
+		// 플래그 반전
+		ChaseUpFlg_ = !ChaseUpFlg_;
 
 		// 머리에게 방향과 위치를 재설정
 		this->SetMoveDirection(PlayerPos_);
 		MagmaWormBody_[0]->MoveToDestinationHead(Direction_, PlayerPos_);
-
 	}
 
 	// 몸의 포지션들을 결정
@@ -149,6 +186,37 @@ void MagmaWorm::AttackUpdate(float _DeltaTime, const StateInfo& _Info)
 
 void MagmaWorm::DeathUpdate(float _DeltaTime, const StateInfo& _Info)
 {
+
+	// MagmaWorm이 최대상승 or 최대하강을 했다면 
+	if ((MagmaWormBody_[0]->GetTransform().GetWorldPosition().y >= PlayerPos_.y + 1300.0f && ChaseUpFlg_ == true)
+		|| (MagmaWormBody_[0]->GetTransform().GetWorldPosition().y <= PlayerPos_.y - 2000.0f && ChaseUpFlg_ == false))
+	{
+		// true였으면 이제 내려올 차례
+		if (true == ChaseUpFlg_)
+		{
+			WarningRenderer_->Off();
+		}
+		// false였으면 이제 올라올 차례
+		else
+		{
+			// 밑에서 사라짐 처리
+			this->Off();
+			return;
+		}
+
+		// 플래그 반전
+		ChaseUpFlg_ = !ChaseUpFlg_;
+
+		// 머리에게 방향과 위치를 재설정
+		this->SetMoveDirection(PlayerPos_);
+		MagmaWormBody_[0]->MoveToDestinationHead(Direction_, PlayerPos_);
+	}
+
+	// 몸의 포지션들을 결정
+	for (int i = 0; i < 19; i++)
+	{
+		MagmaWormBody_[i + 1]->MovetoDestination(MagmaWormBody_[i]->GetTransform().GetWorldPosition());
+	}
 }
 
 void MagmaWorm::SpawnUpdate(float _DeltaTime, const StateInfo& _Info)
@@ -160,6 +228,11 @@ void MagmaWorm::SpawnUpdate(float _DeltaTime, const StateInfo& _Info)
 	// n초가 지난다음에 활동을 시작
 	if (SpawnTimer >= 5.0f)
 	{
+		for (int i = 0; i < 20; i++)
+		{
+			MagmaWormBody_[i]->GetTransform().SetWorldPosition({ PlayerPos_.x, PlayerPos_.y - 1000.0f, static_cast<float>(ZOrder::MagmaWorm) });
+		}
+
 		StateManager_.ChangeState(MONSTER_FSM_ATTACK);
 	}
 }

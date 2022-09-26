@@ -36,6 +36,7 @@ public:
 
 protected:
 	void Start() override;
+	void Update(float _DeltaTime) override;
 
 	void AnimationInit() override;
 	void StateInit() override;
@@ -56,5 +57,8 @@ private:
 	float4 DestPos_;
 
 	GameEngineTextureRenderer* WarningRenderer_;
+
+	// MagmaWorm이 상승중인가 하강중인가를 판단
+	bool ChaseUpFlg_;
 };
 

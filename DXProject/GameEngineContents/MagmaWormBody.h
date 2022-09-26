@@ -62,7 +62,6 @@ private:
 
 	// 목적지
 	float4 DestPos_;
-	float4 DestPosHead_;
 	// 렌더러, 콜리전이 회전할 방향
 	// 목적지까지 체크할 타이머
 	float MoveDestinationTimer_;
