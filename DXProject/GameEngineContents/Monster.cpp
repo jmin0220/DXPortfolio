@@ -13,6 +13,7 @@ Monster::Monster()
 	, ChaseRange_(120.0f)
 	, IsMonsterDeath_(false)
 	, IsFallCheck_(true)
+	, IsHitted_(true)
 {
 }
 
@@ -426,7 +427,7 @@ void Monster::CommonChaseUpdate(float _ChaseLength /* = 0.0f*/)
 	float4 Length = MonsterLength - PlayerLength;
 
 	// 거리가 몬스터와 가까워졌을경우 이동 중지
-	if (Length.Length() <= abs(Renderer_->GetCurTexture()->GetScale().ix() + _ChaseLength) )
+	if (Length.Length() <= abs(Renderer_->GetCurTexture()->GetScale().hix() + _ChaseLength) )
 	{
 		//공격으로 전환
 		if (AtkTimer_ >= AtkSpeed_)
@@ -476,6 +477,43 @@ void Monster::CommonChaseUpdate(float _ChaseLength /* = 0.0f*/)
 		{
 			GetTransform().SetWorldMove(GetTransform().GetLeftVector() * Speed_ * DeltaTime_);
 		}
+	}
+}
+
+void Monster::CommonHitted()
+{
+	float4 MonsterPos = this->GetTransform().GetWorldPosition();
+
+	// 몬스터와 플레이어 사이의 거리를 취득
+	float4 MonsterLength = { this->GetTransform().GetWorldPosition().x
+							, this->GetTransform().GetWorldPosition().y, 0.0f };
+	float4 PlayerLength = { PlayerPos_.x, PlayerPos_.y, 0.0f };
+	float4 Length = MonsterLength - PlayerLength;
+
+	// 오른쪽으로 
+	if (MonsterPos.x <= PlayerPos_.x)
+	{
+		MoveDir_ = float4::RIGHT;
+
+		if (true == GroundLeftCheck())
+		{
+			return;
+		}
+
+		GetTransform().SetWorldMove(GetTransform().GetLeftVector() * Speed_ / 2 * DeltaTime_);
+
+	}
+	// 왼쪽으로
+	else if (MonsterPos.x >= PlayerPos_.x)
+	{
+		MoveDir_ = float4::LEFT;
+
+		if (true == GroundRightCheck())
+		{
+			return;
+		}
+
+		GetTransform().SetWorldMove(GetTransform().GetRightVector() * Speed_ / 2 * DeltaTime_);
 	}
 }
 

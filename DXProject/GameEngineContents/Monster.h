@@ -42,7 +42,10 @@ public:
 
 	inline void ChangeStateToHitted()
 	{
-		//StateManager_.ChangeState(MONSTER_FSM_HITTED);
+		if (true == IsHitted_)
+		{
+			StateManager_.ChangeState(MONSTER_FSM_HITTED);
+		}
 	}
 
 	inline int GetMonsterGold() const
@@ -111,6 +114,8 @@ protected:
 	void CommonIdleUpdate();
 	void CommonMoveUpdate();
 	void CommonChaseUpdate(float _ChaseLength = 0.0f);
+
+	void CommonHitted();
 #pragma endregion
 
 	GameEngineTextureRenderer* Renderer_;
@@ -134,6 +139,8 @@ protected:
 	bool IsJump_;
 	// 죽음처리(시체남음)
 	bool IsMonsterDeath_;
+	// 맞는 FSM을 가질것인가
+	bool IsHitted_;
 
 	// 방향 관련
 	float4 MoveDir_;

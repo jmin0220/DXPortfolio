@@ -6,6 +6,7 @@
 #include "Gold.h"
 #include "BossHUD.h"
 #include "Lemurian.h"
+#include "Child.h"
 #include "Colossus.h"
 #include "MagmaWorm.h"
 
@@ -35,12 +36,15 @@ void MonsterManager::Start()
 void MonsterManager::Update(float _DeltaTime)
 {
 	// 리스폰 간격 타이머
-	//SingleMonsterRespawnTimer_ += _DeltaTime;
+	SingleMonsterRespawnTimer_ += _DeltaTime;
 	GroupMonsterRespawnTimer_ += _DeltaTime;
 
 	// 몬스터 생성타이머
-	if (SingleMonsterRespawnTimer_ >= 5.0f)
+	//if (SingleMonsterRespawnTimer_ >= 5.0f)
+	static int i = 0;
+	if(i == 0)
 	{
+		i++;
 		// 몬스터는 플레이어 주위에 생성 가능한 위치에 무작위로 생성됨
 		// 캐릭터Creater에서 플레이어 위치를 받아서, 다음에 생성할 몬스터의 위치를 조정
 		CharacterCreater_->MakeMonsterPosition();
@@ -48,6 +52,7 @@ void MonsterManager::Update(float _DeltaTime)
 		// 적이 생성될 포지션 입력
 		RespawnPos_ = CharacterCreater_->OutputMonsterCreatePos();
 
+		//Monster* NewMonster_ = GetLevel()->CreateActor<Child>();
 		Monster* NewMonster_ = GetLevel()->CreateActor<Lemurian>();
 		NewMonster_->GetTransform().SetWorldPosition(RespawnPos_);
 		NewMonster_->SetColMapInfo(ColMap_);

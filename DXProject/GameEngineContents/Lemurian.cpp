@@ -24,7 +24,7 @@ void Lemurian::AnimationInit()
 	// 애니메이션 생성
 	Renderer_->CreateFrameAnimationFolder(LEMURIAN_ANIM_IDLE, FrameAnimation_DESC(TEX_MONSTER_ANIM_LEMURIAN_IDLE, FrameAnimDelay_, true));
 	Renderer_->CreateFrameAnimationFolder(LEMURIAN_ANIM_JUMP, FrameAnimation_DESC(TEX_MONSTER_ANIM_LEMURIAN_JUMP, FrameAnimDelay_, true));
-	Renderer_->CreateFrameAnimationFolder(LEMURIAN_ANIM_SHOOT, FrameAnimation_DESC(TEX_MONSTER_ANIM_LEMURIAN_SHOOT, FrameAnimDelay_, false));
+	Renderer_->CreateFrameAnimationFolder(LEMURIAN_ANIM_SHOOT, FrameAnimation_DESC(TEX_MONSTER_ANIM_LEMURIAN_SHOOT, FrameAnimDelay_, true));
 	Renderer_->CreateFrameAnimationFolder(LEMURIAN_ANIM_SPAWN, FrameAnimation_DESC(TEX_MONSTER_ANIM_LEMURIAN_SPAWN, FrameAnimDelay_, false));
 	Renderer_->CreateFrameAnimationFolder(LEMURIAN_ANIM_WALK, FrameAnimation_DESC(TEX_MONSTER_ANIM_LEMURIAN_WALK, FrameAnimDelay_, true));
 	Renderer_->CreateFrameAnimationFolder(LEMURIAN_ANIM_DEATH, FrameAnimation_DESC(TEX_MONSTER_ANIM_LEMURIAN_DEATH, FrameAnimDelay_, false));
@@ -32,8 +32,14 @@ void Lemurian::AnimationInit()
 
 	// 프레임이 종료되었을 때
 	Renderer_->AnimationBindEnd(LEMURIAN_ANIM_SPAWN, [=](const FrameAnimation_DESC& _Info) { StateManager_.ChangeState(MONSTER_FSM_IDLE); Collision_->On(); });
-	Renderer_->AnimationBindEnd(LEMURIAN_ANIM_SHOOT, [=](const FrameAnimation_DESC& _Info) { StateManager_.ChangeState(MONSTER_FSM_CHASE); });
-	Renderer_->AnimationBindEnd(LEMURIAN_ANIM_HITTED, [=](const FrameAnimation_DESC& _Info) { StateManager_.ChangeState(MONSTER_FSM_CHASE); });
+	Renderer_->AnimationBindEnd(LEMURIAN_ANIM_SHOOT, [=](const FrameAnimation_DESC& _Info) 
+		{ 
+			StateManager_.ChangeState(MONSTER_FSM_CHASE); 
+		});
+	Renderer_->AnimationBindEnd(LEMURIAN_ANIM_HITTED, [=](const FrameAnimation_DESC& _Info) 
+		{
+			StateManager_.ChangeState(MONSTER_FSM_CHASE); 
+		});
 
 	// 초기 애니메이션 전환
 	Renderer_->ChangeFrameAnimation(LEMURIAN_ANIM_SPAWN);
@@ -106,7 +112,7 @@ void Lemurian::StateInit()
 			GetTransform().SetWorldMove(GetTransform().GetRightVector() * Speed_ / 2 * DeltaTime_);
 		}
 	}
-	, [=](const StateInfo& _Info_) { /*Start*/ Renderer_->ChangeFrameAnimation(LEMURIAN_ANIM_HITTED); });
+													  , [=](const StateInfo& _Info_) { /*Start*/ Renderer_->ChangeFrameAnimation(LEMURIAN_ANIM_HITTED); });
 
 	// 초기 스테이트전환
 	StateManager_.ChangeState(MONSTER_FSM_SPAWN);

@@ -19,6 +19,8 @@ MagmaWorm::MagmaWorm()
 
 	BossName_ = "Magma Worm";
 	BossSubName_ = "Ancient Lava Swimmer";
+
+	IsHitted_ = false;
 }
 
 MagmaWorm::~MagmaWorm() 

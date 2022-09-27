@@ -84,6 +84,15 @@
 #define MAGMAWORM_ANIM_BODY_DEAD "WormBodyDead"
 #define MAGMAWORM_ANIM_WARNING "WormWarning"
 
+// Child
+#define CHILD_ANIM_IDLE   "ChildIdle"
+#define CHILD_ANIM_SHOOT  "ChildShoot"
+#define CHILD_ANIM_SPAWN  "ChildSpawn"
+#define CHILD_ANIM_WALK   "ChildWalk"
+#define CHILD_ANIM_DEATH  "ChildDeath"
+#define CHILD_ANIM_HITTED "ChildHitted"
+
+
 // 캐릭터별 특수 애니메이션
 #define PLAYER_ANIM_COMMANDO_SKILL4_1 "CommandoSkill4_1"
 #define PLAYER_ANIM_COMMANDO_SKILL4_2 "CommandoSkill4_2"

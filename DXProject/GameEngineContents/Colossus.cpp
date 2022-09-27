@@ -17,6 +17,8 @@ Colossus::Colossus()
 
 	BossName_ = "Colossus";
 	BossSubName_ = "Giant Stone Guardian";
+
+	IsHitted_ = false;
 }
 
 Colossus::~Colossus() 

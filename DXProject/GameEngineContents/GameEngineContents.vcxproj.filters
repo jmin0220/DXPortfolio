@@ -309,6 +309,9 @@
     <ClInclude Include="MagmaWormBody.h">
       <Filter>01_Actor\01_Play\Monsters\Boss\MagmaWorm</Filter>
     </ClInclude>
+    <ClInclude Include="Child.h">
+      <Filter>01_Actor\01_Play\Monsters</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PreCompile.cpp">
@@ -496,6 +499,9 @@
     </ClCompile>
     <ClCompile Include="MagmaWormBody.cpp">
       <Filter>01_Actor\01_Play\Monsters\Boss\MagmaWorm</Filter>
+    </ClCompile>
+    <ClCompile Include="Child.cpp">
+      <Filter>01_Actor\01_Play\Monsters</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
