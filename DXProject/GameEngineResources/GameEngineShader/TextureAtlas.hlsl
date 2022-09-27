@@ -101,17 +101,29 @@ float4 TextureAtlas_PS(Output _Input) : SV_Target0
     
     float4 Result = (Tex.Sample(Smp, _Input.Tex.xy) * MulColor) + PlusColor;
     
+    if (1 <= Result.a)
+    {
+        Result.a = 1.0f;
+
+    }
+    
     // Result.a = 1.0f;
     
     return Result;
 }
 
+
 Output TextureAtlas_VSINST(Input _Input)
 {
+    // _Input.Index => 인스턴싱 버퍼를 통해서 전달.
+    // 인스턴싱 버퍼를 통해서 행렬을 전달하지 않은 이유는 인스턴싱 버퍼를 매번 새롭게 정의해야 하기 때문다.
+    // 
+    
     // -0.5, 0.5,     0.5 0.5
     // 0.5, 0.5,     0.5 0.5
     Output NewOutPut = (Output) 0;
     NewOutPut.Pos = _Input.Pos;
+    NewOutPut.Pos = mul(_Input.Pos, AllInstancingTransformData[_Input.Index].WorldViewProjection);
     NewOutPut.Tex = _Input.Tex;
     return NewOutPut;
 }

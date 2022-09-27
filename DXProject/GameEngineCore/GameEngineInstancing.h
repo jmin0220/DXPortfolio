@@ -6,8 +6,8 @@
 class GameEngineInstancing
 {
 public:
-	static int MinInstancingCount;
-	static int StartInstancingCount;
+	static unsigned int MinInstancingCount;
+	static unsigned int StartInstancingCount;
 
 public:
 	// constrcuter destructer
@@ -22,22 +22,16 @@ public:
 
 
 public:
-	//RenderingInstancing()
-	//	: Buffer(nullptr)
-	//	, Count(0)
-	//	, DataInsert(0)
-	//{
-	//}
-
-
-public:
 	int DataInsert;
 	std::vector<char> DataBuffer;
 	GameEngineShaderResourcesHelper ShaderResources;
 	GameEngineRenderingPipeLine* InstancingPipeLine;
 	int Size;
-	int Count;
+	unsigned int Count;
+	int MaxDataCount;
 	GameEngineInstancingBuffer* Buffer;
+
+	void InstancingBufferChangeData();
 
 protected:
 

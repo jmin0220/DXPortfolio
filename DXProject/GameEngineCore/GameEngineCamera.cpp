@@ -7,6 +7,7 @@
 #include "GameEngineVertexBuffer.h"
 #include "GameEngineVertexShader.h"
 #include "GameEngineInstancing.h"
+#include "GameEngineStructuredBuffer.h"
 #include <GameEngineBase/GameEngineWindow.h>
 
 
@@ -127,11 +128,8 @@ void GameEngineCamera::Render(float _DeltaTime)
 			GameEngineRenderingPipeLine* Pipe = StartIter->first;
 			GameEngineInstancing& Instancing = StartIter->second;
 
+			Instancing.InstancingBufferChangeData();
 			Instancing.ShaderResources.AllResourcesSetting();
-			// Instancing.InstancingPipeLine->Rendering();
-
-			// Instancing.DataBuffer
-
 			Instancing.InstancingPipeLine->RenderingInstancing(Instancing.DataInsert, Instancing.Buffer);
 		}
 	}
@@ -178,12 +176,31 @@ GameEngineInstancing* GameEngineCamera::GetInstancing(GameEngineRenderingPipeLin
 		Instancing.InstancingPipeLine = GameEngineRenderingPipeLine::Create();
 		Instancing.InstancingPipeLine->Copy(_Pipe);
 		Instancing.InstancingPipeLine->SetVertexShader(_Pipe->GetVertexShader()->GetInstancingShader());
+
 		Instancing.ShaderResources.ResourcesCheck(Instancing.InstancingPipeLine);
 		Instancing.ShaderResources.AllConstantBufferNew();
 
 		Instancing.Size = Buffer->GetLayOutDesc()->InstancingSize;
 		Instancing.Buffer = GameEngineInstancingBuffer::Create(GameEngineInstancing::StartInstancingCount, Buffer->GetLayOutDesc()->InstancingSize);
 		Instancing.DataBuffer.resize(GameEngineInstancing::StartInstancingCount * Instancing.Size);
+		Instancing.MaxDataCount = GameEngineInstancing::StartInstancingCount;
+
+		// 엔진에서 책임진다.
+		if (Instancing.ShaderResources.IsStructuredBuffer("AllInstancingTransformData"))
+		{
+			GameEngineStructuredBufferSetter* Setter = Instancing.ShaderResources.GetStructuredBuffer("AllInstancingTransformData");
+
+			if (nullptr != Setter->Res)
+			{
+				Setter->Resize(Instancing.MaxDataCount);
+			}
+			else
+			{
+				MsgBoxAssert("인스턴싱용 구조화 버퍼가 만들어지지 않았습니다.");
+			}
+		}
+
+
 
 		FindIter = InstancingMap.find(_Pipe);
 	}
@@ -215,12 +232,13 @@ void GameEngineCamera::PushInstancing(GameEngineRenderingPipeLine* _Pipe, int Co
 		Instancing.InstancingPipeLine->Copy(_Pipe);
 		Instancing.InstancingPipeLine->SetVertexShader(_Pipe->GetVertexShader()->GetInstancingShader());
 
+		// 스트럭처드 버퍼가 만들어졌을뿐
 		Instancing.ShaderResources.ResourcesCheck(Instancing.InstancingPipeLine);
 		Instancing.ShaderResources.AllConstantBufferNew();
+
+
 		// 이 단계 다음에 어떤 상수버퍼를 가지고있고 그걸 세팅해야한다는 정보가 만들어진다.
 		// 세팅을 해줘야.
-
-
 
 		Instancing.Size = Buffer->GetLayOutDesc()->InstancingSize;
 		Instancing.Buffer = GameEngineInstancingBuffer::Create(GameEngineInstancing::StartInstancingCount, Buffer->GetLayOutDesc()->InstancingSize);
@@ -234,10 +252,32 @@ void GameEngineCamera::PushInstancing(GameEngineRenderingPipeLine* _Pipe, int Co
 		int NextBufferSize = static_cast<int>(Instancing.Count * 1.5);
 		Instancing.Buffer->BufferCreate(NextBufferSize, Buffer->GetLayOutDesc()->InstancingSize);
 		Instancing.DataBuffer.resize(NextBufferSize * Instancing.Size);
+
+		if (Instancing.ShaderResources.IsStructuredBuffer("AllInstancingTransformData"))
+		{
+			GameEngineStructuredBufferSetter* Setter = Instancing.ShaderResources.GetStructuredBuffer("AllInstancingTransformData");
+
+			if (nullptr != Setter->Res)
+			{
+				Setter->Resize(Instancing.MaxDataCount);
+			}
+			else
+			{
+				MsgBoxAssert("인스턴싱용 구조화 버퍼가 만들어지지 않았습니다.");
+			}
+		}
+
 	}
 }
 
-void GameEngineCamera::PushInstancingData(GameEngineRenderingPipeLine* _Pipe, void* _DataPtr, int _Size)
+int GameEngineCamera::PushInstancingIndex(GameEngineRenderingPipeLine* _Pipe)
+{
+	int InsertCount = InstancingMap[_Pipe].DataInsert;
+	return PushInstancingData(_Pipe, &InsertCount, sizeof(int));
+}
+
+
+int GameEngineCamera::PushInstancingData(GameEngineRenderingPipeLine* _Pipe, void* _DataPtr, int _Size)
 {
 	int DataOffset = InstancingMap[_Pipe].DataInsert * _Size;
 
@@ -248,15 +288,14 @@ void GameEngineCamera::PushInstancingData(GameEngineRenderingPipeLine* _Pipe, vo
 	char* DataPtr = &InstancingMap[_Pipe].DataBuffer[DataOffset];
 	memcpy_s(DataPtr, InstancingMap[_Pipe].DataBuffer.size() - DataOffset, _DataPtr, _Size);
 	DataOffset += _Size;
+
+	int ResultIndex = InstancingMap[_Pipe].DataInsert;
+
 	++InstancingMap[_Pipe].DataInsert;
 
+	return ResultIndex;
 }
 
-void GameEngineCamera::PushInstancingIndex(GameEngineRenderingPipeLine* _Pipe)
-{
-	int InsertCount = InstancingMap[_Pipe].DataInsert;
-	PushInstancingData(_Pipe, &InsertCount, sizeof(int));
-}
 
 void GameEngineCamera::Release(float _DelataTime)
 {
