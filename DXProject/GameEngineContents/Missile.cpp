@@ -108,7 +108,14 @@ void Missile::Update(float _DeltaTime)
 			}
 
 			CurDegree_ = NowDegree_;
-			this->GetTransform().SetAddWorldRotation({ 0.0f, 0.0f, RealRotateDegree, 0.0f });
+
+			DegreeX_ += 20.0 * 0.01f;
+			if (DegreeX_ >= 360.0f)
+			{
+				DegreeX_ = 0.0f;
+			}
+
+			this->GetTransform().SetAddWorldRotation({ 0.0f, 0.0f, RealRotateDegree + cosf(DegreeX_) * 3, 0.0f });
 		}
 
 		this->GetTransform().SetWorldMove(GetTransform().GetRightVector() * Speed_ * _DeltaTime);

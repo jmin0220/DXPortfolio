@@ -305,7 +305,7 @@ void Monster::CommonAttackStart(std::string _AnimName)
 	Renderer_->ScaleToTexture();
 }
 
-void Monster::CommonChaseStart(std::string _AnimName)
+void Monster::CommonChaseStart(std::string _AnimName, float _ChaseLength)
 {
 	float4 MonsterPos = this->GetTransform().GetWorldPosition();
 
@@ -316,12 +316,12 @@ void Monster::CommonChaseStart(std::string _AnimName)
 	float4 Length = MonsterLength - PlayerLength;
 
 	// 몬스터가 충분히 멀리 있을경우에만 이동 애니메이션으로 변경
-	if (Length.Length() > 160.0f)
+	if (Length.Length() > abs(Renderer_->GetCurTexture()->GetScale().hix() + _ChaseLength))
 	{
 		// 애니메이션 전환
 		Renderer_->ChangeFrameAnimation(_AnimName);
 		Renderer_->ScaleToTexture();
-	}
+	} 
 }
 
 void Monster::CommonDeathStart(std::string _AnimName)

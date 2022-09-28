@@ -87,7 +87,7 @@ void Child::MoveStart(const StateInfo& _Info)
 
 void Child::ChaseStart(const StateInfo& _Info)
 {
-	CommonMoveStart(CHILD_ANIM_WALK);
+	CommonChaseStart(CHILD_ANIM_WALK);
 }
 
 void Child::AttackStart(const StateInfo& _Info)
