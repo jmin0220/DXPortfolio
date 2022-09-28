@@ -112,6 +112,9 @@
     <Filter Include="01_Actor\01_Play\Object\Items\UseItems\Sawmerang">
       <UniqueIdentifier>{de506de2-eff8-4509-aaec-ee4920d3d9b8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="01_Actor\01_Play\Effect\Missile">
+      <UniqueIdentifier>{6a9ce874-465f-4ac9-aeb7-13775ddf594f}</UniqueIdentifier>
+    </Filter>
     <Filter Include="01_Actor\01_Play\Monsters\Boss">
       <UniqueIdentifier>{43542ffc-9e33-4b67-9ca1-5ad17e78540c}</UniqueIdentifier>
     </Filter>
@@ -296,6 +299,12 @@
     </ClInclude>
     <ClInclude Include="Stage2Level.h">
       <Filter>00_Level\01_Play</Filter>
+    </ClInclude>
+    <ClInclude Include="Missile.h">
+      <Filter>01_Actor\01_Play\Effect\Missile</Filter>
+    </ClInclude>
+    <ClInclude Include="MissileExplosion.h">
+      <Filter>01_Actor\01_Play\Effect\Missile</Filter>
     </ClInclude>
     <ClInclude Include="Colossus.h">
       <Filter>01_Actor\01_Play\Monsters\Boss</Filter>
@@ -487,6 +496,12 @@
     </ClCompile>
     <ClCompile Include="Stage2Level.cpp">
       <Filter>00_Level\01_Play</Filter>
+    </ClCompile>
+    <ClCompile Include="Missile.cpp">
+      <Filter>01_Actor\01_Play\Effect\Missile</Filter>
+    </ClCompile>
+    <ClCompile Include="MissileExplosion.cpp">
+      <Filter>01_Actor\01_Play\Effect\Missile</Filter>
     </ClCompile>
     <ClCompile Include="BossMonster.cpp">
       <Filter>01_Actor\01_Play\Monsters\Boss</Filter>

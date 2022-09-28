@@ -1,9 +1,7 @@
 #include "PreCompile.h"
 #include "TestLevel.h"
 #include "TestActor.h"
-#include "MagmaWorm.h"
-#include <GameEngineBase/GameEngineInput.h>
-#include <GameEngineBase/GameEngineInput.h>
+#include "Missile.h"
 
 TestLevel::TestLevel() 
 {
@@ -29,28 +27,6 @@ void TestLevel::Start()
 
 void TestLevel::Update(float _DeltaTime)
 {
-	if (GameEngineInput::GetInst()->IsPress("TestLeft"))
-	{
-		GetMainCameraActorTransform().SetWorldMove(GetMainCameraActorTransform().GetLeftVector() * 2000.0f * _DeltaTime);
-		MagmaWorm_->SetMoveDirection({-1000.0f, 0.0f, 0.0f, 0.0f});
-	}
-	if (GameEngineInput::GetInst()->IsPress("TestDown"))
-	{
-		GetMainCameraActorTransform().SetWorldMove(GetMainCameraActorTransform().GetDownVector() * 2000.0f * _DeltaTime);
-		MagmaWorm_->SetMoveDirection(MagmaWorm_->GetMagmaWormPosition() + GetMainCameraActorTransform().GetDownVector());
-	}
-	if (GameEngineInput::GetInst()->IsPress("TestRight"))
-	{
-		GetMainCameraActorTransform().SetWorldMove(GetMainCameraActorTransform().GetRightVector() * 2000.0f * _DeltaTime);
-		MagmaWorm_->SetMoveDirection(MagmaWorm_->GetMagmaWormPosition() + GetMainCameraActorTransform().GetRightVector());
-	}
-	if (GameEngineInput::GetInst()->IsPress("TestUp"))
-	{
-		GetMainCameraActorTransform().SetWorldMove(GetMainCameraActorTransform().GetUpVector() * 2000.0f * _DeltaTime);
-		MagmaWorm_->SetMoveDirection(MagmaWorm_->GetMagmaWormPosition() + GetMainCameraActorTransform().GetUpVector());
-	}
-
-
-	//MagmaWorm_->SetMoveDirection(GetMainCamera()->GetMouseWorldPosition());
+	TestActor_;
 }
 

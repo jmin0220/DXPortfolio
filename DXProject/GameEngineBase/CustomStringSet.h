@@ -236,6 +236,8 @@
 
 // 이펙트
 #define TEX_EFFECT_NORMAL_SPARK "NormalSpark"
+#define TEX_EFFECT_MISSILE "Missile"
+#define TEX_EFFECT_MISSILE_EXPLOSION "MissileExplosion"
 // 경험치
 #define TEX_EFFECT_NORMAL_EXP "ExpNormal"
 #define TEX_EFFECT_SMALL_EXP "ExpSmall"
