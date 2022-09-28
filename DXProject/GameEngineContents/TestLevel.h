@@ -4,6 +4,7 @@
 
 // Ό³Έν :
 class MagmaWorm;
+class Missile;
 class TestLevel : public GameEngineLevel
 {
 public:
@@ -24,5 +25,6 @@ protected:
 
 private:
 	MagmaWorm* MagmaWorm_;
+	Missile* Missile_;
 };
 

@@ -76,6 +76,8 @@ void MagmaWormBody::Start()
 	Collision_ = CreateComponent<GameEngineCollision>();
 	Collision_->ChangeOrder(ObjectGroup::Monster);
 	Collision_->GetTransform().SetWorldScale({ Renderer_->GetCurTexture()->GetScale().x, Renderer_->GetCurTexture()->GetScale().y, 1.0f});
+
+	IsHitted_ = false;
 }
 
 void MagmaWormBody::Update(float _DeltaTime)

@@ -321,6 +321,9 @@
     <ClInclude Include="Child.h">
       <Filter>01_Actor\01_Play\Monsters</Filter>
     </ClInclude>
+    <ClInclude Include="MissileSmokeRenderer.h">
+      <Filter>02_Component\00_Renderer</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PreCompile.cpp">
@@ -517,6 +520,9 @@
     </ClCompile>
     <ClCompile Include="Child.cpp">
       <Filter>01_Actor\01_Play\Monsters</Filter>
+    </ClCompile>
+    <ClCompile Include="MissileSmokeRenderer.cpp">
+      <Filter>02_Component\00_Renderer</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
