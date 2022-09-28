@@ -42,7 +42,7 @@ void Missile::Start()
 	ExplosionCollision_ = CreateComponent<GameEngineCollision>();
 	ExplosionCollision_->GetTransform().SetWorldScale({ 60.0f, 62.0f, 1.0f });
 	ExplosionCollision_->ChangeOrder(ObjectGroup::PlayerBullet);
-	ExplosionCollision_->SetCollisionMode(CollisionMode::Ex);
+	//ExplosionCollision_->SetCollisionMode(CollisionMode::Ex);
 	ExplosionCollision_->Off();
 }
 
