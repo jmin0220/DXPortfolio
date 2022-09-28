@@ -136,6 +136,7 @@ void MonsterManager::CreateBoss(int bossOption)
 	else if (bossOption == 1)
 	{
 		BossMonster_ = GetLevel()->CreateActor<MagmaWorm>();
+		PlayerPos_.z = static_cast<float>(ZOrder::MagmaWorm);
 	}
 
 	// 일단 플레이어 위치에 보스를 생성하고, Spawn->Idle로 변경되면서 RendererOn, 위치 조정 등등...

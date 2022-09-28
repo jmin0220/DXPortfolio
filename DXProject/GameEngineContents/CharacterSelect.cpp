@@ -19,9 +19,9 @@ void CharacterSelect::Start()
 	CharacterSelecter_ = CreateActor<CharacterSelecter>();	
 
 
-	if (false == GameEngineInput::GetInst()->IsKey(CHANGE_LECEL_STAGE1))
+	if (false == GameEngineInput::GetInst()->IsKey(CHANGE_LEVEL_STAGE1))
 	{
-		GameEngineInput::GetInst()->CreateKey(CHANGE_LECEL_STAGE1, VK_RETURN);
+		GameEngineInput::GetInst()->CreateKey(CHANGE_LEVEL_STAGE1, VK_RETURN);
 	}
 }
 

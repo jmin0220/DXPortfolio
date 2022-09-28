@@ -32,23 +32,23 @@ void TestLevel::Update(float _DeltaTime)
 
 	if (GameEngineInput::GetInst()->IsPress("TestLeft"))
 	{
-		GetMainCameraActorTransform().SetWorldMove(GetMainCameraActorTransform().GetLeftVector() * 2000.0f * _DeltaTime);
-		Missile_->GetTransform().SetWorldMove({ -10.0f, 0.0f, 0.0f, 0.0f });
+		GetMainCameraActorTransform().SetWorldMove(GetMainCameraActorTransform().GetLeftVector() * 500.0f * _DeltaTime);
+		Missile_->SetTargetPos({ -1000.0f, 0.0f });
 	}
 	if (GameEngineInput::GetInst()->IsPress("TestDown"))
 	{
-		GetMainCameraActorTransform().SetWorldMove(GetMainCameraActorTransform().GetDownVector() * 2000.0f * _DeltaTime);
-		Missile_->GetTransform().SetWorldMove({ 0.0f, -10.0f, 0.0f, 0.0f });
+		GetMainCameraActorTransform().SetWorldMove(GetMainCameraActorTransform().GetDownVector() * 500.0f * _DeltaTime);
+		Missile_->SetTargetPos({ 0.0f, -1000.0f });
 	}
 	if (GameEngineInput::GetInst()->IsPress("TestRight"))
 	{
-		GetMainCameraActorTransform().SetWorldMove(GetMainCameraActorTransform().GetRightVector() * 2000.0f * _DeltaTime);
-		Missile_->GetTransform().SetWorldMove({ 10.0f, 0.0f, 0.0f, 0.0f });
+		GetMainCameraActorTransform().SetWorldMove(GetMainCameraActorTransform().GetRightVector() * 500.0f * _DeltaTime);
+		Missile_->SetTargetPos({ 1000.0f, 0.0f });
 	}
 	if (GameEngineInput::GetInst()->IsPress("TestUp"))
 	{
-		GetMainCameraActorTransform().SetWorldMove(GetMainCameraActorTransform().GetUpVector() * 2000.0f * _DeltaTime);
-		Missile_->GetTransform().SetWorldMove({ 0.0f, 10.0f, 0.0f, 0.0f });
+		GetMainCameraActorTransform().SetWorldMove(GetMainCameraActorTransform().GetUpVector() * 500.0f * _DeltaTime);
+		Missile_->SetTargetPos({ 0.0f, 1000.0f });
 	}
 }
 

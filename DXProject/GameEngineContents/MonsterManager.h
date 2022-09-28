@@ -46,6 +46,11 @@ public:
 		return BossKilledFlg_;
 	}
 
+	std::list<Monster*> GetAllMonsterList()
+	{
+		return Monster_;
+	}
+
 	void AllMonsterStateChangeToIdle();
 
 protected:

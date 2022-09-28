@@ -4,8 +4,9 @@ enum class ZOrder
 {
 	Drops,
 	Player,
-	Teleportal,
 	Monsters,
+	MissileSmoke,
+	Teleportal,
 	Item,
 	Chest,
 	StageBackGround,

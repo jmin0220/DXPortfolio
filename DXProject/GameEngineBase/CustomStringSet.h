@@ -260,7 +260,7 @@
 
 // 레벨 조작키
 #define CHANGE_LEVEL_CHRACTER_SELECT "ChangeLevelToCharacterSelect"
-#define CHANGE_LECEL_STAGE1 "ChangeLevelToStage1"
+#define CHANGE_LEVEL_STAGE1 "ChangeLevelToStage1"
 
 // 폰트
 #define FONT_RISKOFRAIN "riskofrainfont"

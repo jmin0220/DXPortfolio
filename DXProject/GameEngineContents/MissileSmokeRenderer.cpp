@@ -19,6 +19,8 @@ void MissileSmokeRenderer::Start()
 	ShaderResources.SetTexture("Tex", "Empty.png");
 
 	RenderPos_ = this->GetTransform().GetWorldPosition();
+	RenderPos_.z = static_cast<float>(ZOrder::MissileSmoke);
+
 	this->GetTransform().SetWorldScale({ 6.0f, 6.0f, 1.0f });
 }
 

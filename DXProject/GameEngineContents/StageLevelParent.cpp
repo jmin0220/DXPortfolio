@@ -10,6 +10,7 @@
 #include "Commando.h"
 #include "Portal.h"
 #include "HUD.h"
+#include "Missile.h"
 
 DebuggerGUI* StageLevelParent::DebuggerGUI_ = nullptr;
 Player* StageLevelParent::Player_ = nullptr;
@@ -50,6 +51,7 @@ void StageLevelParent::Update(float _DeltaTime)
 	// 골드와 경험치에 플레이어 위치를 갱신
 	Drops::SetPlayerPos(Player_->GetTransform().GetWorldPosition());
 	ItemManager::SetPlayerPos(Player_->GetTransform().GetWorldPosition());
+	Missile::SetMonsterList(MonsterManager_->GetAllMonsterList());
 
 	DebuggerGUI_->SetPlayerPos(Player_->GetTransform().GetWorldPosition());
 	DebuggerGUI_->SetPlayerGroundFlg(Player_->GetIsGroundFlg());
