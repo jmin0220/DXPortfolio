@@ -206,6 +206,23 @@ void RiskOfRain::Start()
 	}
 
 
+	// 드론 로딩
+	{
+		GameEngineDirectory Dir;
+
+		Dir.MoveParentToExitsChildDirectory(DIR_RESOURCE);
+		Dir.Move(DIR_RESOURCE);
+		Dir.Move(DIR_TEXTURE);
+		Dir.Move(DIR_DRONE);
+
+		std::vector<GameEngineDirectory> RecursiveDir = Dir.GetRecursiveAllDirectory();
+
+		for (auto& TmpDir : RecursiveDir)
+		{
+			GameEngineFolderTexture::Load(TmpDir.GetFullPath());
+		}
+	}
+
 	// 레벨 생성
 	CreateLevel<StartLevel>(LEVEL_TITLE);
 	CreateLevel<EndLevel>(LEVEL_END);

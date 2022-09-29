@@ -121,6 +121,9 @@
     <Filter Include="01_Actor\01_Play\Monsters\Boss\MagmaWorm">
       <UniqueIdentifier>{0ec3f7dd-1ce8-458b-9c40-70581c57fe47}</UniqueIdentifier>
     </Filter>
+    <Filter Include="01_Actor\01_Play\Object\Drone">
+      <UniqueIdentifier>{9de084b4-9a88-4de1-a2aa-d5432e08fb49}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PreCompile.h">
@@ -324,6 +327,12 @@
     <ClInclude Include="MissileSmokeRenderer.h">
       <Filter>02_Component\00_Renderer</Filter>
     </ClInclude>
+    <ClInclude Include="Drone.h">
+      <Filter>01_Actor\01_Play\Object\Drone</Filter>
+    </ClInclude>
+    <ClInclude Include="AttackDrone.h">
+      <Filter>01_Actor\01_Play\Object\Drone</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PreCompile.cpp">
@@ -523,6 +532,12 @@
     </ClCompile>
     <ClCompile Include="MissileSmokeRenderer.cpp">
       <Filter>02_Component\00_Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="Drone.cpp">
+      <Filter>01_Actor\01_Play\Object\Drone</Filter>
+    </ClCompile>
+    <ClCompile Include="AttackDrone.cpp">
+      <Filter>01_Actor\01_Play\Object\Drone</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

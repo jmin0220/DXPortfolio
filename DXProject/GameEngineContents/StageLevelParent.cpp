@@ -11,6 +11,8 @@
 #include "Portal.h"
 #include "HUD.h"
 #include "Missile.h"
+#include "Drone.h"
+#include "AttackDrone.h"
 
 DebuggerGUI* StageLevelParent::DebuggerGUI_ = nullptr;
 Player* StageLevelParent::Player_ = nullptr;
@@ -38,6 +40,8 @@ void StageLevelParent::Start()
 	StageActor_ = CreateActor<StageGround>();
 	ItemManager_ = CreateActor<ItemManager>();
 	Portal_ = CreateActor<Portal>();
+
+	CreateActor<AttackDrone>();
 }
 
 void StageLevelParent::Update(float _DeltaTime)
@@ -52,6 +56,7 @@ void StageLevelParent::Update(float _DeltaTime)
 	Drops::SetPlayerPos(Player_->GetTransform().GetWorldPosition());
 	ItemManager::SetPlayerPos(Player_->GetTransform().GetWorldPosition());
 	Missile::SetMonsterList(MonsterManager_->GetAllMonsterList());
+	Drone::SetPlayerPosDir(Player_->GetTransform().GetWorldPosition(), Player_->GetPlayerDir());
 
 	DebuggerGUI_->SetPlayerPos(Player_->GetTransform().GetWorldPosition());
 	DebuggerGUI_->SetPlayerGroundFlg(Player_->GetIsGroundFlg());

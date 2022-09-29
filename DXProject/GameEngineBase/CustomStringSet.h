@@ -110,6 +110,7 @@
 #define DIR_MONSTER "Monster"
 #define DIR_STAGE "Stage"
 #define DIR_INTERFACE "Interface"
+#define DIR_DRONE "Drone"
 #define DIR_EFFECT "Effect"
 #define DIR_OBJECT "Object"
 #define DIR_FONT "Font"
@@ -170,6 +171,16 @@
 #define TEX_MONSTER_ANIM_LEMURIAN_WALK "LemurianWalk"
 #define TEX_MONSTER_ANIM_LEMURIAN_DEATH "LumurianDeath"
 #define TEX_MONSTER_ANIM_LEMURIAN_HITTED "LemurianHitted"
+
+// Drone
+#define DRONE_ATTACK_IDLE  "AttackDroneIdle"
+#define DRONE_ATTACK_ITEM  "AttackDroneItem"
+#define DRONE_ATTACK_SHOOT "AttackDroneShoot"
+
+#define DRONE_MISSILE_IDLE  "MissileDroneIdle"
+#define DRONE_MISSILE_ITEM  "MissileDroneItem"
+#define DRONE_MISSILE_SHOOT "MissileDroneShoot"
+
 
 // 인터페이스
 #define TEX_INTERFACE_HUD "HUD.png"

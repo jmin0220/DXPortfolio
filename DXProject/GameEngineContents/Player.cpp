@@ -18,6 +18,7 @@ std::vector<Item*> Player::ItemVector_ = {};
 Item* Player::UseItem_ = nullptr;
 bool Player::AddItemFlg_ = false;
 bool Player::AddUseItemFlg_ = false;
+float4 Player::MoveDir_ = float4::RIGHT;
 
 Player::Player() 
 	:Renderer_(nullptr)
@@ -28,7 +29,6 @@ Player::Player()
 	, ColMap_(nullptr)
 	, IsGround_(false)
 	, IsClimb_(false)
-	, MoveDir_(float4::RIGHT)
 	, FrameAnimDelay_(0.06f)
 	, ColorCheckPos_(float4::ZERO)
 	, CritChance_(5)
@@ -480,7 +480,6 @@ void Player::CheckNegativeX()
 		Renderer_->GetTransform().PixLocalPositiveX();
 	}
 
-	// TODO::애니메이션의 프레임에 따라서 피봇값을 조절할 필요 있음.
 	Renderer_->SetPivot(PIVOTMODE::CENTER);
 }
 
@@ -491,6 +490,27 @@ void Player::CameraUpdate()
 
 	// 카메라 추적
 	GetLevel()->GetMainCameraActorTransform().SetWorldPosition({ PlayerPos.x, PlayerPos.y, -1700 });
+
+
+	// 카메라가 맵 범위를 벗어났을경우 재위치
+	if (GetLevel()->GetMainCameraActorTransform().GetWorldPosition().x <= GameEngineWindow::GetInst()->GetScale().hx() + 14.0f)
+	{
+		GetLevel()->GetMainCameraActorTransform().SetWorldPosition({ GameEngineWindow::GetInst()->GetScale().hx() + 14.0f
+			, GetLevel()->GetMainCameraActorTransform().GetWorldPosition().y
+			, GetLevel()->GetMainCameraActorTransform().GetWorldPosition().z });
+	}
+	if (GetLevel()->GetMainCameraActorTransform().GetWorldPosition().x >= ColMap_->GetScale().x - GameEngineWindow::GetInst()->GetScale().hx())
+	{
+		GetLevel()->GetMainCameraActorTransform().SetWorldPosition({ ColMap_->GetScale().x - GameEngineWindow::GetInst()->GetScale().hx()
+			, GetLevel()->GetMainCameraActorTransform().GetWorldPosition().y
+			, GetLevel()->GetMainCameraActorTransform().GetWorldPosition().z });
+	}
+	if (GetLevel()->GetMainCameraActorTransform().GetWorldPosition().y <= -(ColMap_->GetScale().y + GameEngineWindow::GetInst()->GetScale().hy()))
+	{
+		GetLevel()->GetMainCameraActorTransform().SetWorldPosition({ GetLevel()->GetMainCameraActorTransform().GetWorldPosition().x
+			, ColMap_->GetScale().y - GameEngineWindow::GetInst()->GetScale().hy()
+			, GetLevel()->GetMainCameraActorTransform().GetWorldPosition().z });
+	}
 }
 
 // 시간에 따른 점프 스피드 값 조정

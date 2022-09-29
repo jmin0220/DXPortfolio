@@ -52,6 +52,8 @@ public:
 		}
 	}
 
+	
+
 	static inline int GetPlayerLv()
 	{
 		return Lv_;
@@ -95,6 +97,11 @@ public:
 	inline void SetJumpSpeedByBouncer()
 	{
 		JumpSpeed_ = BOUNCER_JUMP_SPEED;
+	}
+
+	static inline float4 GetPlayerDir()
+	{
+		return MoveDir_;
 	}
 
 	static std::vector<Item*> ItemVector_;
@@ -237,7 +244,7 @@ protected:
 	static bool AddUseItemFlg_;
 
 	// 방향 관련
-	float4 MoveDir_;
+	static float4 MoveDir_;
 	// 색깔 체크용 공통 포지션
 	float4 ColorCheckPos_;
 

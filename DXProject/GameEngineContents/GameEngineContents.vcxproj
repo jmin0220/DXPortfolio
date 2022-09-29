@@ -165,6 +165,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="AttackDrone.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="Bandit.h" />
     <ClInclude Include="BanditGrenade.h">
       <SubType>
@@ -248,6 +252,10 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="DebuggerGUI.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Drone.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -408,6 +416,10 @@
     <ClInclude Include="ZOrder.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="AttackDrone.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="Bandit.cpp" />
     <ClCompile Include="BanditGrenade.cpp">
       <SubType>
@@ -492,6 +504,10 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="DebuggerGUI.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Drone.cpp">
       <SubType>
       </SubType>
     </ClCompile>
