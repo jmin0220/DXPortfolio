@@ -57,7 +57,7 @@ void Missile::Update(float _DeltaTime)
 		// 목표가 없을경우
 		if (TargetPos_.CompareInt3D(float4::ZERO))
 		{
-			DegreeX_ += 20.0 * 0.01f;
+			DegreeX_ += 20.0f * _DeltaTime;
 
 			if (DegreeX_ >= 360.0f)
 			{
@@ -65,7 +65,7 @@ void Missile::Update(float _DeltaTime)
 			}
 
 			// sin곡선으로 회전
-			this->GetTransform().SetAddWorldRotation({ 0.0f, 0.0f, cosf(DegreeX_) * 3 });
+			this->GetTransform().SetAddWorldRotation({ 0.0f, 0.0f, cosf(DegreeX_) * 2 });
 
 			if (ChaseTimer_ >= 0.5f)
 			{
@@ -109,13 +109,14 @@ void Missile::Update(float _DeltaTime)
 
 			CurDegree_ = NowDegree_;
 
-			DegreeX_ += 20.0 * 0.01f;
+			DegreeX_ += 20.0f * _DeltaTime;
+
 			if (DegreeX_ >= 360.0f)
 			{
 				DegreeX_ = 0.0f;
 			}
 
-			this->GetTransform().SetAddWorldRotation({ 0.0f, 0.0f, RealRotateDegree + cosf(DegreeX_) * 3, 0.0f });
+			this->GetTransform().SetAddWorldRotation({ 0.0f, 0.0f, RealRotateDegree + cosf(DegreeX_), 0.0f });
 		}
 
 		this->GetTransform().SetWorldMove(GetTransform().GetRightVector() * Speed_ * _DeltaTime);
