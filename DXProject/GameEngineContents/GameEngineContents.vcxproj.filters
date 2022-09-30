@@ -127,6 +127,9 @@
     <Filter Include="01_Actor\01_Play\Object\AutoAtkObject\Drone">
       <UniqueIdentifier>{9de084b4-9a88-4de1-a2aa-d5432e08fb49}</UniqueIdentifier>
     </Filter>
+    <Filter Include="01_Actor\01_Play\Object\AutoAtkObject\Drone\Item">
+      <UniqueIdentifier>{acf35785-1bee-43ad-b7b2-d7f2adb8b94a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PreCompile.h">
@@ -342,6 +345,12 @@
     <ClInclude Include="MissileDrone.h">
       <Filter>01_Actor\01_Play\Object\AutoAtkObject\Drone</Filter>
     </ClInclude>
+    <ClInclude Include="DroneItem.h">
+      <Filter>01_Actor\01_Play\Object\AutoAtkObject\Drone\Item</Filter>
+    </ClInclude>
+    <ClInclude Include="AttackDroneItem.h">
+      <Filter>01_Actor\01_Play\Object\AutoAtkObject\Drone\Item</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PreCompile.cpp">
@@ -553,6 +562,12 @@
     </ClCompile>
     <ClCompile Include="MissileDrone.cpp">
       <Filter>01_Actor\01_Play\Object\AutoAtkObject\Drone</Filter>
+    </ClCompile>
+    <ClCompile Include="DroneItem.cpp">
+      <Filter>01_Actor\01_Play\Object\AutoAtkObject\Drone\Item</Filter>
+    </ClCompile>
+    <ClCompile Include="AttackDroneItem.cpp">
+      <Filter>01_Actor\01_Play\Object\AutoAtkObject\Drone\Item</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -44,7 +44,7 @@ void StageLevelParent::Start()
 	Portal_ = CreateActor<Portal>();
 
 	//CreateActor<AttackDrone>();
-	CreateActor<MissileDrone>();
+	//CreateActor<MissileDrone>();
 }
 
 void StageLevelParent::Update(float _DeltaTime)

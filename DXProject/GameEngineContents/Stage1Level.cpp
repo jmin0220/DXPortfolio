@@ -13,6 +13,7 @@
 #include "ChestLongSet.h"
 #include "ItemManager.h"
 #include "Portal.h"
+#include "AttackDroneItem.h"
 
 Stage1Level::Stage1Level() 
 {
@@ -72,6 +73,8 @@ void Stage1Level::LevelStartEvent()
 	//ChestLongSet* TmpChestLongSet = CreateActor<ChestLongSet>();
 	//TmpChestLongSet->CreateChestLongSet({ 350.0f, -864.0f, static_cast<float>(ZOrder::Chest) });
 	ItemManager_->CreateItem(this, ItemList::Sawmerang ,{ 156.0f, -804.0f });
+	AttackDroneItem* tmp = CreateActor<AttackDroneItem>();
+	tmp->GetTransform().SetWorldPosition({ 556.0f, -854.0f });
 
 	Portal_->GetTransform().SetWorldPosition({ 350.0f, -864.0f, static_cast<float>(ZOrder::Teleportal) });
 }

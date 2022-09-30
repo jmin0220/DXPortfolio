@@ -22,8 +22,8 @@ public:
 	}
 
 protected:
-	void Start() override;
-	void Update(float _DeltaTime) override;
+	virtual void Start() override;
+	virtual void Update(float _DeltaTime) override;
 
 	virtual void AnimInit() {}
 	virtual void StateInit() {};

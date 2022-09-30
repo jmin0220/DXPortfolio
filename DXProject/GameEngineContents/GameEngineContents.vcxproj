@@ -169,6 +169,10 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="AttackDroneItem.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="AutoAtkObject.h">
       <SubType>
       </SubType>
@@ -260,6 +264,10 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="Drone.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="DroneItem.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -428,6 +436,10 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="AttackDroneItem.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="AutoAtkObject.cpp">
       <SubType>
       </SubType>
@@ -520,6 +532,10 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="Drone.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="DroneItem.cpp">
       <SubType>
       </SubType>
     </ClCompile>
