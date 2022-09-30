@@ -16,6 +16,7 @@ MagmaWormBody::~MagmaWormBody()
 void MagmaWormBody::MovetoDestination(float4 _DestPos)
 {
 	MoveDestinationTimer_ += DeltaTime_;
+	_DestPos.z = 0.0f;
 
 	// 0.1초마다 목적지를 갱신
 	// or 너무 멀면 갱신함.
@@ -35,11 +36,15 @@ void MagmaWormBody::MovetoDestination(float4 _DestPos)
 
 	// 이동
 	float4 MoveDir = DestPos_ - this->GetTransform().GetWorldPosition();
+	MoveDir.z = 0.0f;
 	this->GetTransform().SetWorldMove(MoveDir.NormalizeReturn() * Speed_ * DeltaTime_);
 }
 
 void MagmaWormBody::MoveToDestinationHead(float4 _Direction, float4 _DestPos)
 {
+	_DestPos.z = 0.0f;;
+	_Direction.z = 0.0f;;
+
 	// 회전
 	NowDegree_ = float4::VectorXYtoDegree(this->GetTransform().GetWorldPosition(), _DestPos);
 

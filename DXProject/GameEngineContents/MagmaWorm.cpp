@@ -7,7 +7,7 @@ MagmaWorm::MagmaWorm()
 	: Direction_(GetTransform().GetRightVector())
 	, ChaseUpFlg_(true)
 {
-	Speed_ = 1000.0f;
+	Speed_ = 1200.0f;
 	AtkSpeed_ = 1.0f;
 	MonsterHp_ = 1400;
 	Damage_ = 30;
