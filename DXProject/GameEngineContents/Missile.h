@@ -26,11 +26,7 @@ protected:
 	void Update(float _DeltaTime) override;
 
 private:
-	bool FindChaseMonster();
 	void Explosion();
-
-	float ToEnemyLength_;
-	float4 ToEnemyPos_;
 
 	int Damage_;
 	bool IsExplosion_;
@@ -44,8 +40,6 @@ private:
 	float NowDegree_;
 	float CurDegree_;
 
-	// 날아갈 목표지점
-	float4 TargetPos_;
 	GameEngineTextureRenderer* Renderer_;
 	GameEngineCollision* Collision_;
 	GameEngineCollision* ExplosionCollision_;

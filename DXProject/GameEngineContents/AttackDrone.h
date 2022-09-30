@@ -17,7 +17,19 @@ public:
 
 protected:
 	void AnimInit() override;
-private:
+	void StateInit() override;
 
+private:
+	void IdleStart(const StateInfo& _Info);
+	void ActionStart(const StateInfo& _Info);
+
+	void IdleUpdate(float _DeltaTime, const StateInfo& _Info);
+	void ActionUpdate(float _DeltaTime, const StateInfo& _Info);
+
+	void IdleEnd(const StateInfo& _Info);
+	void ActionEnd(const StateInfo& _Info);
+
+	void CreateBullet(int _CurFrame, int _LastFrame);
+	int YPosLevel_;
 };
 

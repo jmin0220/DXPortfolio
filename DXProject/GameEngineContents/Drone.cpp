@@ -18,11 +18,16 @@ Drone::~Drone()
 void Drone::Start()
 {
 	AnimInit();
+
+	StateInit();
 }
 
 void Drone::Update(float _DeltaTime)
 {
 	Move(_DeltaTime);
+
+	// 스테이트 업데이트
+	StateManager_.Update(_DeltaTime);
 }
 
 void Drone::Move(float _DeltaTime)

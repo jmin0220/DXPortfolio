@@ -21,9 +21,16 @@ public:
 	}
 
 protected:
-
 	void Start() override {};
 	void Update(float _DeltaTime) override {};
+
+	bool FindChaseMonster(float _FindLength = 1000.0f);
+
+	float ToEnemyLength_;
+	float4 ToEnemyPos_;
+
+	// 날아갈 목표지점
+	float4 TargetPos_;
 
 	// 생성될 몬스터
 	static std::list<Monster*> Monster_;

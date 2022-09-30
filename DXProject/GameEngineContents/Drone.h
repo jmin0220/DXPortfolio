@@ -26,8 +26,10 @@ protected:
 	void Update(float _DeltaTime) override;
 
 	virtual void AnimInit() {}
+	virtual void StateInit() {};
 
 	GameEngineTextureRenderer* Renderer_;
+	GameEngineStateManager StateManager_;
 
 	// 플레이어의 위치정보
 	static float4 PlayerPos_;

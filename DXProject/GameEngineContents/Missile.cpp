@@ -4,13 +4,10 @@
 #include "Monster.h"
 
 Missile::Missile() 
-	: TargetPos_(float4::ZERO)
-	, Speed_(300.0f)
+	: Speed_(300.0f)
 	, DegreeX_(0.0f)
 	, Damage_(45)
 	, IsExplosion_(false)
-	, ToEnemyLength_(FLT_MAX)
-	, ToEnemyPos_(float4::ZERO)
 	, CurDegree_(0.0f)
 	, SuicideTimer_(0.0f)
 	, SetPositionFlg_(false)
@@ -77,32 +74,19 @@ void Missile::Update(float _DeltaTime)
 		// 목표가 있을경우
 		else
 		{
-			//float4 Cross = float4::Cross(GetTransform().GetRightVector(), TargetPos_);
-
-			//// 왼쪽 
-			//if (Cross.z > 0)
-			//{
-			//	this->GetTransform().SetAddWorldRotation(float4(0.0f, 0.0f, 720 * _DeltaTime));
-			//}
-			//// 오른쪽
-			//else
-			//{
-			//	this->GetTransform().SetAddWorldRotation(float4(0.0f, 0.0f, -720 * _DeltaTime));
-			//}
-
 			// 회전
 			NowDegree_ = float4::VectorXYtoDegree(this->GetTransform().GetWorldPosition(), TargetPos_);
 
-			float RealRotateDegree = 0.0f;
+			float TrueRotateDegree = 0.0f;
 
 			if (false == SetPositionFlg_)
 			{
 				SetPositionFlg_ = true;
-				RealRotateDegree = NowDegree_ - CurDegree_ - this->GetTransform().GetLocalRotation().z;
+				TrueRotateDegree = NowDegree_ - CurDegree_ - this->GetTransform().GetLocalRotation().z;
 			}
 			else
 			{
-				RealRotateDegree = NowDegree_ - CurDegree_;
+				TrueRotateDegree = NowDegree_ - CurDegree_;
 			}
 
 			CurDegree_ = NowDegree_;
@@ -114,7 +98,7 @@ void Missile::Update(float _DeltaTime)
 				DegreeX_ = 0.0f;
 			}
 
-			this->GetTransform().SetAddWorldRotation({ 0.0f, 0.0f, RealRotateDegree + cosf(DegreeX_), 0.0f });
+			this->GetTransform().SetAddWorldRotation({ 0.0f, 0.0f, TrueRotateDegree + cosf(DegreeX_), 0.0f });
 		}
 
 		this->GetTransform().SetWorldMove(GetTransform().GetRightVector() * Speed_ * _DeltaTime);
@@ -161,28 +145,6 @@ void Missile::Update(float _DeltaTime)
 	}
 }
 
-bool Missile::FindChaseMonster()
-{
-	for (Monster* tmpMonster : Monster_)
-	{
-		float tmpLength = (this->GetTransform().GetWorldPosition() - tmpMonster->GetTransform().GetWorldPosition()).Length();
-
-		if (tmpLength < ToEnemyLength_)
-		{
-			ToEnemyLength_ = tmpLength;
-			ToEnemyPos_ = tmpMonster->GetTransform().GetWorldPosition();
-		}
-	}
-
-	if (ToEnemyPos_.CompareInt2D(float4::ZERO))
-	{
-		return false;
-	}
-
-	TargetPos_ = ToEnemyPos_;
-
-	return true;
-}
 
 void Missile::Explosion()
 {

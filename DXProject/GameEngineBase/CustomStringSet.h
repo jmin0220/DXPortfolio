@@ -46,6 +46,10 @@
 #define MONSTER_FSM_DEATH "MonsterDeath"
 #define MONSTER_FSM_HITTED "MonsterHitted"
 
+// 드론 FSM
+#define DRONE_FSM_IDLE "DroneIdle"
+#define DRONE_FSM_ACTION "DroneAction"
+
 // 플레이어 애니메이션
 #define PLAYER_ANIM_IDLE "PlayerIdle"
 #define PLAYER_ANIM_SKILL1 "PlayerSkill1"
