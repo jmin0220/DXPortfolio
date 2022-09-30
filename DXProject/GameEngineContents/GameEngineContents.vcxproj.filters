@@ -339,6 +339,9 @@
     <ClInclude Include="AutoAtkObject.h">
       <Filter>01_Actor\01_Play\Object\AutoAtkObject</Filter>
     </ClInclude>
+    <ClInclude Include="MissileDrone.h">
+      <Filter>01_Actor\01_Play\Object\AutoAtkObject\Drone</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PreCompile.cpp">
@@ -547,6 +550,9 @@
     </ClCompile>
     <ClCompile Include="AutoAtkObject.cpp">
       <Filter>01_Actor\01_Play\Object\AutoAtkObject</Filter>
+    </ClCompile>
+    <ClCompile Include="MissileDrone.cpp">
+      <Filter>01_Actor\01_Play\Object\AutoAtkObject\Drone</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

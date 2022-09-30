@@ -24,7 +24,7 @@ void AttackDrone::AnimInit()
 
 	Renderer_->AnimationBindFrame(DRONE_ATTACK_SHOOT, [=](const FrameAnimation_DESC& _Info)
 		{
-			if (_Info.CurFrame == 0 || _Info.CurFrame == 3 || _Info.CurFrame == 6)
+			if (_Info.CurFrame == 1)
 			{
 				CreateBullet(_Info.CurFrame, 6);
 			}

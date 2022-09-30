@@ -17,6 +17,10 @@ AutoAtkObject::~AutoAtkObject()
 
 bool AutoAtkObject::FindChaseMonster(float _FindLength)
 {
+	ToEnemyLength_ = FLT_MAX;
+	ToEnemyPos_ = float4::ZERO;
+	TargetPos_ = float4::ZERO;
+
 	for (Monster* tmpMonster : Monster_)
 	{
 		float tmpLength = (this->GetTransform().GetWorldPosition() - tmpMonster->GetTransform().GetWorldPosition()).Length();

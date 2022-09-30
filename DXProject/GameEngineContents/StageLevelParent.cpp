@@ -14,6 +14,7 @@
 #include "Missile.h"
 #include "Drone.h"
 #include "AttackDrone.h"
+#include "MissileDrone.h"
 
 DebuggerGUI* StageLevelParent::DebuggerGUI_ = nullptr;
 Player* StageLevelParent::Player_ = nullptr;
@@ -42,7 +43,8 @@ void StageLevelParent::Start()
 	ItemManager_ = CreateActor<ItemManager>();
 	Portal_ = CreateActor<Portal>();
 
-	CreateActor<AttackDrone>();
+	//CreateActor<AttackDrone>();
+	CreateActor<MissileDrone>();
 }
 
 void StageLevelParent::Update(float _DeltaTime)
