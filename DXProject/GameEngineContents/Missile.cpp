@@ -3,8 +3,6 @@
 #include "MissileSmokeRenderer.h"
 #include "Monster.h"
 
-std::list<Monster*> Missile::Monster_ = {};
-
 Missile::Missile() 
 	: TargetPos_(float4::ZERO)
 	, Speed_(300.0f)

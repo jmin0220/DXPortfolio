@@ -1,7 +1,8 @@
 #pragma once
+#include "AutoAtkObject.h"
 
 // Ό³Έν :
-class Drone : public GameEngineActor
+class Drone : public AutoAtkObject
 {
 public:
 	// constrcuter destructer

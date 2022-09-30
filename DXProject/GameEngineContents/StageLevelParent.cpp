@@ -10,6 +10,7 @@
 #include "Commando.h"
 #include "Portal.h"
 #include "HUD.h"
+#include "AutoAtkObject.h"
 #include "Missile.h"
 #include "Drone.h"
 #include "AttackDrone.h"
@@ -55,7 +56,7 @@ void StageLevelParent::Update(float _DeltaTime)
 	// 골드와 경험치에 플레이어 위치를 갱신
 	Drops::SetPlayerPos(Player_->GetTransform().GetWorldPosition());
 	ItemManager::SetPlayerPos(Player_->GetTransform().GetWorldPosition());
-	Missile::SetMonsterList(MonsterManager_->GetAllMonsterList());
+	AutoAtkObject::SetMonsterList(MonsterManager_->GetAllMonsterList());
 	Drone::SetPlayerPosDir(Player_->GetTransform().GetWorldPosition(), Player_->GetPlayerDir());
 
 	DebuggerGUI_->SetPlayerPos(Player_->GetTransform().GetWorldPosition());

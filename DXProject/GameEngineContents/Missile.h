@@ -1,9 +1,9 @@
 #pragma once
+#include "AutoAtkObject.h"
 
 // 설명 :
-class Monster;
 class MissileSmokeRenderer;
-class Missile : public GameEngineActor
+class Missile : public AutoAtkObject
 {
 public:
 	// constrcuter destructer
@@ -19,11 +19,6 @@ public:
 	void SetTargetPos(float4 _Pos)
 	{
 		TargetPos_ = _Pos;
-	}
-	
-	static void SetMonsterList(std::list<Monster*> _Monster)
-	{
-		Monster_ = _Monster;
 	}
 
 protected:
@@ -58,7 +53,5 @@ private:
 	CollisionReturn CollisionCheck(GameEngineCollision* _This, GameEngineCollision* _Other);
 	CollisionReturn ExplosionCollisionCheck(GameEngineCollision* _This, GameEngineCollision* _Other);
 
-	// 생성될 몬스터
-	static std::list<Monster*> Monster_;
 };
 

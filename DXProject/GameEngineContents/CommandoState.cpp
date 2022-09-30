@@ -84,6 +84,7 @@ void Commando::Skill1Start(const StateInfo& _Info)
 {
 	Missile* tmp = GetLevel()->CreateActor<Missile>();
 	tmp->GetTransform().SetWorldPosition(this->GetTransform().GetWorldPosition());
+	tmp->GetTransform().SetWorldMove({0.0f, 25.0f, 0.0f});
 	tmp->GetTransform().SetAddWorldRotation({ 0.0f, 0.0f, 90.0f, 0.0f });
 
 	CommonSkill1Start();
