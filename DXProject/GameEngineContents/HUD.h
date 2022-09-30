@@ -64,6 +64,11 @@ public:
 
 	void ActorAllOverLevel();
 
+	inline void SetLevelFont(int _Level)
+	{
+		LevelFontRenderer_->SetText(std::to_string(_Level), FONT_RISKOFRAIN);
+	}
+
 protected:
 	void Start() override;
 	void Update(float _DeltaTime);
@@ -112,6 +117,8 @@ private:
 	ContentsFont* PlayerHpFontRenderer_;
 	SingleColorRenderer* HpRatingRenderer_;
 	SingleColorRenderer* ExpRatingRenderer_;
+
+	
 
 	// 사용 아이템 칸에 그려질 아이템 렌더러
 	GameEngineUIRenderer* UseItemRenderer_;

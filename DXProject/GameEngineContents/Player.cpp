@@ -11,7 +11,7 @@ float Player::PlayTimeTimer_ = 0.0f;
 int Player::Lv_ = 1;
 int Player::Hp_ = 0;
 int Player::MaxHp_ = 0;
-int Player::Gold_ = 25;
+int Player::Gold_ = 999;
 int Player::Exp_ = 0;
 int Player::MaxExp_ = 50;
 std::vector<Item*> Player::ItemVector_ = {};
@@ -197,6 +197,7 @@ void Player::PlayerCommonInit()
 	LevelUpEffectRenderer_->SetSamplingModePoint();
 	LevelUpEffectRenderer_->SetScaleModeImage();
 	LevelUpEffectRenderer_->SetPivot(PIVOTMODE::CENTER);
+	LevelUpEffectRenderer_->Off();
 
 	LevelUpEffectRenderer_->GetTransform().SetWorldMove(GetTransform().GetUpVector() * 40.0f);
 }
@@ -581,6 +582,8 @@ void Player::PlayerLevelUp()
 
 		// 레벨업 이펙트
 		LevelUpEffectRenderer_->On();
+
+		HUD_->SetLevelFont(Lv_);
 
 		// 레벨업된 스탯으로 버프아이템 재설정
 		for (Item* tmpItem : ItemVector_)

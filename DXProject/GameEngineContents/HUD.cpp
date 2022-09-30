@@ -133,6 +133,16 @@ void HUD::Start()
 	TargetFontRenderer_->SetLeftAndRightSort(LeftAndRightSort::CENTER);
 	TargetFontRenderer_->SetScreenPostion({ 800, 760});
 
+	LevelFontRenderer_ = CreateComponent<GameEngineFontRenderer>();
+	LevelFontRenderer_->SetText("1", FONT_RISKOFRAIN);
+	LevelFontRenderer_->SetSize(32);
+	LevelFontRenderer_->SetColor({ 1.0f, 1.0f, 1.0f });
+	LevelFontRenderer_->SetLeftAndRightSort(LeftAndRightSort::CENTER);
+	LevelFontRenderer_->SetScreenPostion({ 670.0f, 790.0f});
+	LevelFontRenderer_->GetTransform().SetWorldPosition({ 0.0f, 0.0f, -101.0f });
+
+	LevelFontRenderer_->ChangeCamera(CAMERAORDER::UICAMERA);
+
 	// 소지금 아이콘
 	GoldIconRenderer_ = CreateComponent<GameEngineUIRenderer>();
 	GoldIconRenderer_->SetTexture(TEX_INTERFACE_MONEY_INTERFACE);
