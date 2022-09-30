@@ -332,6 +332,10 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="MissileDroneItem.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="MissileExplosion.h">
       <SubType>
       </SubType>
@@ -596,6 +600,10 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="MissileDrone.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="MissileDroneItem.cpp">
       <SubType>
       </SubType>
     </ClCompile>

@@ -13,7 +13,9 @@
 #include "ChestLongSet.h"
 #include "ItemManager.h"
 #include "Portal.h"
+#include "AttackDrone.h"
 #include "AttackDroneItem.h"
+#include "MissileDroneItem.h"
 
 Stage1Level::Stage1Level() 
 {
@@ -75,6 +77,18 @@ void Stage1Level::LevelStartEvent()
 	ItemManager_->CreateItem(this, ItemList::Sawmerang ,{ 156.0f, -804.0f });
 	AttackDroneItem* tmp = CreateActor<AttackDroneItem>();
 	tmp->GetTransform().SetWorldPosition({ 556.0f, -854.0f });
+	MissileDroneItem* tmp2 = CreateActor<MissileDroneItem>();
+	tmp2->GetTransform().SetWorldPosition({ 596.0f, -854.0f });
+	CreateActor<AttackDrone>();
+	CreateActor<AttackDrone>();
+	CreateActor<AttackDrone>();
+	CreateActor<AttackDrone>();
+	CreateActor<AttackDrone>();
+	CreateActor<AttackDrone>();
+	CreateActor<AttackDrone>();
+	CreateActor<AttackDrone>();
+	CreateActor<AttackDrone>();
+	CreateActor<AttackDrone>();
 
 	Portal_->GetTransform().SetWorldPosition({ 350.0f, -864.0f, static_cast<float>(ZOrder::Teleportal) });
 }

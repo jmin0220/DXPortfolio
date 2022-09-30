@@ -61,11 +61,14 @@ void Drone::Move(float _DeltaTime)
 		ReSetAccTime();
 	}
 
-	PlayerPos_.x += DroneDir;
-	PlayerPos_.y += 10.0f;
+
+	float4 tmpPlayerPos = { PlayerPos_.x + DroneDir, PlayerPos_.y + 10.0f, PlayerPos_.z};
+	tmpPlayerPos.x += 5.0f;
+	tmpPlayerPos.y += 5.0f;
+
 
 	// 이동할 X값 결정
-	DestPos = float4::Lerp(this->GetTransform().GetWorldPosition(), PlayerPos_, GetAccTime());
+	DestPos = float4::Lerp(this->GetTransform().GetWorldPosition(), tmpPlayerPos, GetAccTime());
 
 	// 최종이동
 	this->GetTransform().SetWorldPosition({ DestPos.x, DestPos.y, static_cast<float>(ZOrder::Player) });

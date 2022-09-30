@@ -351,6 +351,9 @@
     <ClInclude Include="AttackDroneItem.h">
       <Filter>01_Actor\01_Play\Object\AutoAtkObject\Drone\Item</Filter>
     </ClInclude>
+    <ClInclude Include="MissileDroneItem.h">
+      <Filter>01_Actor\01_Play\Object\AutoAtkObject\Drone\Item</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PreCompile.cpp">
@@ -567,6 +570,9 @@
       <Filter>01_Actor\01_Play\Object\AutoAtkObject\Drone\Item</Filter>
     </ClCompile>
     <ClCompile Include="AttackDroneItem.cpp">
+      <Filter>01_Actor\01_Play\Object\AutoAtkObject\Drone\Item</Filter>
+    </ClCompile>
+    <ClCompile Include="MissileDroneItem.cpp">
       <Filter>01_Actor\01_Play\Object\AutoAtkObject\Drone\Item</Filter>
     </ClCompile>
   </ItemGroup>
