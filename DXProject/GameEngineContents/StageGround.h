@@ -26,6 +26,7 @@ public:
 	}
 
 	void SetStage1Map();
+	void SetStage2Map();
 
 protected:
 	void Start() override;

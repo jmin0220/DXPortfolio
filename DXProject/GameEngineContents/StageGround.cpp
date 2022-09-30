@@ -51,3 +51,30 @@ void StageGround::SetStage1Map()
 	BackGroundRenderer_->SetPivot(PIVOTMODE::CENTER);
 	BackGroundRenderer_->GetTransform().SetWorldPosition({ Renderer_->GetCurTexture()->GetScale().hx(), Renderer_->GetCurTexture()->GetScale().hy(), 10000 });
 }
+
+
+void StageGround::SetStage2Map()
+{
+	// È­¸é¿¡ Ç¥½ÃµÇ´Â ¸Ê
+	Renderer_->SetSamplingModePoint();
+	Renderer_->SetTexture(TEX_STAGE_TWO);
+	Renderer_->GetTransform().SetWorldPosition({ 0, 0, static_cast<float>(ZOrder::StageBackGround) });
+	Renderer_->ScaleToTexture();
+	Renderer_->SetPivot(PIVOTMODE::LEFTTOP);
+
+	// Ä³¸¯ÅÍ Ãæµ¹¿ë ¸Ê
+	ColRenderer_->SetTexture(TEX_STAGE_TWO_COLLISION);
+	ColRenderer_->GetTransform().SetWorldPosition(float4::ZERO);
+	ColRenderer_->ScaleToTexture();
+	ColRenderer_->SetPivot(PIVOTMODE::LEFTTOP);
+
+	// ÇÈ¼¿¸Ê ¼û±â±â
+	ColRenderer_->OnOffSwitch();
+
+	// ¹è°æ
+	BackGroundRenderer_->SetSamplingModePoint();
+	BackGroundRenderer_->SetTexture(TEX_BG_BLUE_STARTS);
+	BackGroundRenderer_->GetTransform().SetLocalScale({ 51200, 29000 });
+	BackGroundRenderer_->SetPivot(PIVOTMODE::CENTER);
+	BackGroundRenderer_->GetTransform().SetWorldPosition({ Renderer_->GetCurTexture()->GetScale().hx(), Renderer_->GetCurTexture()->GetScale().hy(), 10000 });
+}

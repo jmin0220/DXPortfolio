@@ -135,6 +135,8 @@
 #define TEX_TITLE_BG "Title.png"
 #define TEX_STAGE_ONE "stage1.png"
 #define TEX_STAGE_ONE_COLLISION "stage1Collision.png"
+#define TEX_STAGE_TWO "stage2.png"
+#define TEX_STAGE_TWO_COLLISION "stage2Collision.png"
 #define TEX_BG_PURPLE_STARS "PurpleStars1.png"
 #define TEX_BG_BLUE_STARTS "bStars1_2_0.png"
 // º±≈√√¢
