@@ -46,6 +46,10 @@ public:
 		{
 			StateManager_.ChangeState(MONSTER_FSM_HITTED);
 		}
+		else
+		{
+			StateManager_.ChangeState(MONSTER_FSM_CHASE);
+		}
 	}
 
 	inline int GetMonsterGold() const
