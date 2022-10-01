@@ -108,6 +108,7 @@ protected:
 	void CommonIdleStart(std::string _AnimName);
 	void CommonMoveStart(std::string _AnimName);
 	void CommonAttackStart(std::string _AnimName);
+	void CommonBulletAttackStart(std::string _AnimName);
 	void CommonChaseStart(std::string _AnimName, float _ChaseLength = 0.0f);
 	void CommonDeathStart(std::string _AnimName);
 

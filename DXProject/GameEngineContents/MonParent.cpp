@@ -95,7 +95,7 @@ void MonParent::MoveStart(const StateInfo& _Info)
 
 void MonParent::ChaseStart(const StateInfo& _Info)
 {
-	CommonMoveStart(PARENT_ANIM_WALK);
+	CommonChaseStart(PARENT_ANIM_WALK);
 }
 
 void MonParent::AttackStart(const StateInfo& _Info)

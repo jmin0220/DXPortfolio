@@ -117,6 +117,13 @@
 #define CRAB_ANIM_WALK   "CrabWalk"
 #define CRAB_ANIM_DEATH  "CrabDeath"
 
+// Wisp
+#define WISP_ANIM_IDLE   "WispIdle"
+#define WISP_ANIM_SHOOT  "WispShoot"
+#define WISP_ANIM_SPAWN  "WispSpawn"
+#define WISP_ANIM_DEATH  "WispDeath"
+#define WISP_ANIM_SPARK  "WispSpark"
+
 
 // 캐릭터별 특수 애니메이션
 #define PLAYER_ANIM_COMMANDO_SKILL4_1 "CommandoSkill4_1"

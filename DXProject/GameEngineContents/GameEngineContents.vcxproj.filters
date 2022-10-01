@@ -133,6 +133,9 @@
     <Filter Include="01_Actor\01_Play\Monsters\MileeMonster">
       <UniqueIdentifier>{b3ed6398-23b3-4b7b-89f3-3f7aa1eff332}</UniqueIdentifier>
     </Filter>
+    <Filter Include="01_Actor\01_Play\Monsters\RangeMonster">
+      <UniqueIdentifier>{b7a51853-d9d3-4613-b63d-ec67d3f09510}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PreCompile.h">
@@ -366,6 +369,12 @@
     <ClInclude Include="Crab.h">
       <Filter>01_Actor\01_Play\Monsters\MileeMonster</Filter>
     </ClInclude>
+    <ClInclude Include="MonsterBullet.h">
+      <Filter>01_Actor\01_Play\Effect\Bullet</Filter>
+    </ClInclude>
+    <ClInclude Include="Wisp.h">
+      <Filter>01_Actor\01_Play\Monsters\RangeMonster</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PreCompile.cpp">
@@ -595,6 +604,12 @@
     </ClCompile>
     <ClCompile Include="Crab.cpp">
       <Filter>01_Actor\01_Play\Monsters\MileeMonster</Filter>
+    </ClCompile>
+    <ClCompile Include="MonsterBullet.cpp">
+      <Filter>01_Actor\01_Play\Effect\Bullet</Filter>
+    </ClCompile>
+    <ClCompile Include="Wisp.cpp">
+      <Filter>01_Actor\01_Play\Monsters\RangeMonster</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

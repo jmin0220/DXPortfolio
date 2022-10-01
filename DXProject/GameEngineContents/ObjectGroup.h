@@ -3,6 +3,7 @@
 enum class ObjectGroup
 {
 	Monster,
+	MonsterBullet,
 	Player,
 	PlayerBullet,
 	Bouncer,

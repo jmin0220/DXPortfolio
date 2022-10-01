@@ -50,6 +50,10 @@ public:
 		{
 			Hp_ = MaxHp_;
 		}
+		else if (Hp_ <= 0)
+		{
+			Hp_ = 0;
+		}
 	}
 
 	

@@ -2,6 +2,7 @@
 #include "Monster.h"
 #include <GameEngineBase/GameEngineRandom.h>
 #include <math.h>
+#include "MonsterBullet.h"
 
 Monster::Monster() 
 	: Renderer_(nullptr)
@@ -305,6 +306,17 @@ void Monster::CommonAttackStart(std::string _AnimName)
 	Renderer_->ScaleToTexture();
 }
 
+void Monster::CommonBulletAttackStart(std::string _AnimName)
+{
+	MonsterBullet* bullet = GetLevel()->CreateActor<MonsterBullet>();
+
+	bullet->SetBulletAnim(_AnimName);
+	bullet->GetTransform().SetWorldPosition(this->GetTransform().GetWorldPosition());
+	bullet->SetDamage(Damage_);
+	bullet->SetDirection(MoveDir_);
+	bullet->SetBulletYPositionLevel(0);
+}
+
 void Monster::CommonChaseStart(std::string _AnimName, float _ChaseLength)
 {
 	float4 MonsterPos = this->GetTransform().GetWorldPosition();
@@ -427,8 +439,10 @@ void Monster::CommonChaseUpdate(float _ChaseLength /* = 0.0f*/)
 	float4 Length = MonsterLength - PlayerLength;
 
 	// 거리가 몬스터와 가까워졌을경우 이동 중지
-	if (Length.Length() <= abs(Renderer_->GetCurTexture()->GetScale().hix() + _ChaseLength) )
+	if ((Length.Length() <= abs(Renderer_->GetCurTexture()->GetScale().hix() + _ChaseLength) && 
+		(MoveDir_.CompareInt2D(float4::RIGHT) && this->GetTransform().GetWorldPosition().x < PlayerPos_.x) || (MoveDir_.CompareInt2D(float4::LEFT) && this->GetTransform().GetWorldPosition().x > PlayerPos_.x)))
 	{
+
 		//공격으로 전환
 		if (AtkTimer_ >= AtkSpeed_)
 		{
