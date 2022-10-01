@@ -184,7 +184,7 @@ void Monster::GroundFallCheck()
 		for (;;)
 		{
 			// 위로 한칸 올림
-			this->GetTransform().SetWorldUpMove(1.0f, DeltaTime_);
+			this->GetTransform().SetWorldUpMove(2.0f, DeltaTime_);
 
 			// 올린뒤의 픽셀 취득
 			// 하단 중앙

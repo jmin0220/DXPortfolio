@@ -103,6 +103,14 @@
 #define PARENT_ANIM_WALK   "ParentWalk"
 #define PARENT_ANIM_DEATH  "ParentDeath"
 
+// RockGolem
+#define ROCKGOLEM_ANIM_IDLE   "RockGolemIdle"
+#define ROCKGOLEM_ANIM_SHOOT  "RockGolemShoot"
+#define ROCKGOLEM_ANIM_SPAWN  "RockGolemSpawn"
+#define ROCKGOLEM_ANIM_WALK   "RockGolemWalk"
+#define ROCKGOLEM_ANIM_DEATH  "RockGolemDeath"
+
+
 // 캐릭터별 특수 애니메이션
 #define PLAYER_ANIM_COMMANDO_SKILL4_1 "CommandoSkill4_1"
 #define PLAYER_ANIM_COMMANDO_SKILL4_2 "CommandoSkill4_2"

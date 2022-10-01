@@ -1,10 +1,11 @@
 #include "PreCompile.h"
 #include "MonParent.h"
+#include "CommonFunction.h"
 
 MonParent::MonParent()
 {
 	Speed_ = Player_MOVE_SPEED - 30.0f;
-	AtkSpeed_ = 0.7f;
+	AtkSpeed_ = 1.3f;
 	MonsterHp_ = 200;
 	Damage_ = 14;
 	Lv_ = 1;
@@ -34,6 +35,14 @@ void MonParent::AnimationInit()
 	Renderer_->AnimationBindEnd(PARENT_ANIM_SHOOT, [=](const FrameAnimation_DESC& _Info)
 		{
 			StateManager_.ChangeState(MONSTER_FSM_CHASE);
+		});
+
+	Renderer_->AnimationBindFrame(PARENT_ANIM_SHOOT, [=](const FrameAnimation_DESC& _Info)
+		{
+			if (_Info.CurFrame == 5)
+			{
+				CommonFunction::CommonFunction_->CameraShakeEffectOn(0.3f, 1.0f);
+			}
 		});
 
 	// 초기 애니메이션 전환

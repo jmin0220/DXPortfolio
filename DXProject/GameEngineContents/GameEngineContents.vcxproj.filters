@@ -357,6 +357,9 @@
     <ClInclude Include="MonParent.h">
       <Filter>01_Actor\01_Play\Monsters</Filter>
     </ClInclude>
+    <ClInclude Include="RockGolem.h">
+      <Filter>01_Actor\01_Play\Monsters</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PreCompile.cpp">
@@ -579,6 +582,9 @@
       <Filter>01_Actor\01_Play\Object\AutoAtkObject\Drone\Item</Filter>
     </ClCompile>
     <ClCompile Include="MonParent.cpp">
+      <Filter>01_Actor\01_Play\Monsters</Filter>
+    </ClCompile>
+    <ClCompile Include="RockGolem.cpp">
       <Filter>01_Actor\01_Play\Monsters</Filter>
     </ClCompile>
   </ItemGroup>
