@@ -130,6 +130,9 @@
     <Filter Include="01_Actor\01_Play\Object\AutoAtkObject\Drone\Item">
       <UniqueIdentifier>{acf35785-1bee-43ad-b7b2-d7f2adb8b94a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="01_Actor\01_Play\Monsters\MileeMonster">
+      <UniqueIdentifier>{b3ed6398-23b3-4b7b-89f3-3f7aa1eff332}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PreCompile.h">
@@ -169,9 +172,6 @@
       <Filter>01_Actor\01_Play\Interface</Filter>
     </ClInclude>
     <ClInclude Include="Monster.h">
-      <Filter>01_Actor\01_Play\Monsters</Filter>
-    </ClInclude>
-    <ClInclude Include="Lemurian.h">
       <Filter>01_Actor\01_Play\Monsters</Filter>
     </ClInclude>
     <ClInclude Include="MonsterManager.h">
@@ -327,9 +327,6 @@
     <ClInclude Include="MagmaWormBody.h">
       <Filter>01_Actor\01_Play\Monsters\Boss\MagmaWorm</Filter>
     </ClInclude>
-    <ClInclude Include="Child.h">
-      <Filter>01_Actor\01_Play\Monsters</Filter>
-    </ClInclude>
     <ClInclude Include="MissileSmokeRenderer.h">
       <Filter>02_Component\00_Renderer</Filter>
     </ClInclude>
@@ -354,11 +351,20 @@
     <ClInclude Include="MissileDroneItem.h">
       <Filter>01_Actor\01_Play\Object\AutoAtkObject\Drone\Item</Filter>
     </ClInclude>
+    <ClInclude Include="Child.h">
+      <Filter>01_Actor\01_Play\Monsters\MileeMonster</Filter>
+    </ClInclude>
+    <ClInclude Include="Lemurian.h">
+      <Filter>01_Actor\01_Play\Monsters\MileeMonster</Filter>
+    </ClInclude>
     <ClInclude Include="MonParent.h">
-      <Filter>01_Actor\01_Play\Monsters</Filter>
+      <Filter>01_Actor\01_Play\Monsters\MileeMonster</Filter>
     </ClInclude>
     <ClInclude Include="RockGolem.h">
-      <Filter>01_Actor\01_Play\Monsters</Filter>
+      <Filter>01_Actor\01_Play\Monsters\MileeMonster</Filter>
+    </ClInclude>
+    <ClInclude Include="Crab.h">
+      <Filter>01_Actor\01_Play\Monsters\MileeMonster</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -399,9 +405,6 @@
       <Filter>01_Actor\01_Play\Interface</Filter>
     </ClCompile>
     <ClCompile Include="Monster.cpp">
-      <Filter>01_Actor\01_Play\Monsters</Filter>
-    </ClCompile>
-    <ClCompile Include="Lemurian.cpp">
       <Filter>01_Actor\01_Play\Monsters</Filter>
     </ClCompile>
     <ClCompile Include="MonsterManager.cpp">
@@ -554,9 +557,6 @@
     <ClCompile Include="MagmaWormBody.cpp">
       <Filter>01_Actor\01_Play\Monsters\Boss\MagmaWorm</Filter>
     </ClCompile>
-    <ClCompile Include="Child.cpp">
-      <Filter>01_Actor\01_Play\Monsters</Filter>
-    </ClCompile>
     <ClCompile Include="MissileSmokeRenderer.cpp">
       <Filter>02_Component\00_Renderer</Filter>
     </ClCompile>
@@ -581,11 +581,20 @@
     <ClCompile Include="MissileDroneItem.cpp">
       <Filter>01_Actor\01_Play\Object\AutoAtkObject\Drone\Item</Filter>
     </ClCompile>
+    <ClCompile Include="Child.cpp">
+      <Filter>01_Actor\01_Play\Monsters\MileeMonster</Filter>
+    </ClCompile>
+    <ClCompile Include="Lemurian.cpp">
+      <Filter>01_Actor\01_Play\Monsters\MileeMonster</Filter>
+    </ClCompile>
     <ClCompile Include="MonParent.cpp">
-      <Filter>01_Actor\01_Play\Monsters</Filter>
+      <Filter>01_Actor\01_Play\Monsters\MileeMonster</Filter>
     </ClCompile>
     <ClCompile Include="RockGolem.cpp">
-      <Filter>01_Actor\01_Play\Monsters</Filter>
+      <Filter>01_Actor\01_Play\Monsters\MileeMonster</Filter>
+    </ClCompile>
+    <ClCompile Include="Crab.cpp">
+      <Filter>01_Actor\01_Play\Monsters\MileeMonster</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

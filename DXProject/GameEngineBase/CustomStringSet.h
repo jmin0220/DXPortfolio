@@ -110,6 +110,13 @@
 #define ROCKGOLEM_ANIM_WALK   "RockGolemWalk"
 #define ROCKGOLEM_ANIM_DEATH  "RockGolemDeath"
 
+// Crab
+#define CRAB_ANIM_IDLE   "CrabIdle"
+#define CRAB_ANIM_SHOOT  "CrabShoot"
+#define CRAB_ANIM_SPAWN  "CrabSpawn"
+#define CRAB_ANIM_WALK   "CrabWalk"
+#define CRAB_ANIM_DEATH  "CrabDeath"
+
 
 // 캐릭터별 특수 애니메이션
 #define PLAYER_ANIM_COMMANDO_SKILL4_1 "CommandoSkill4_1"

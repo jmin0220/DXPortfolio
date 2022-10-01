@@ -12,6 +12,7 @@
 #include "Child.h"
 #include "MonParent.h"
 #include "RockGolem.h"
+#include "Crab.h"
 
 #pragma endregion
 
@@ -63,7 +64,7 @@ void MonsterManager::Update(float _DeltaTime)
 		RespawnPos_ = CharacterCreater_->OutputMonsterCreatePos();
 
 		// TODO::시간별로 등장하는 몬스터를 추가해야함
-		Monster* NewMonster_ = GetLevel()->CreateActor<RockGolem>();
+		Monster* NewMonster_ = GetLevel()->CreateActor<Crab>();
 		//Monster* NewMonster_ = GetLevel()->CreateActor<Lemurian>();
 		NewMonster_->GetTransform().SetWorldPosition(RespawnPos_);
 		NewMonster_->SetColMapInfo(ColMap_);
