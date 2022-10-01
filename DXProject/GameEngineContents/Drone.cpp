@@ -30,6 +30,11 @@ void Drone::Update(float _DeltaTime)
 	StateManager_.Update(_DeltaTime);
 }
 
+void Drone::LevelEndEvent()
+{
+	this->SetLevelOverOn();
+}
+
 void Drone::Move(float _DeltaTime)
 {
 	// 상하 이동

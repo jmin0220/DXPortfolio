@@ -350,6 +350,10 @@
     </ClInclude>
     <ClInclude Include="MonsterManager.h" />
     <ClInclude Include="ObjectGroup.h" />
+    <ClInclude Include="MonParent.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="PiercingBullet.h">
       <SubType>
       </SubType>
@@ -620,6 +624,10 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="MonsterManager.cpp" />
+    <ClCompile Include="MonParent.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="PiercingBullet.cpp">
       <SubType>
       </SubType>

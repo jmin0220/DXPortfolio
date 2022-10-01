@@ -354,6 +354,9 @@
     <ClInclude Include="MissileDroneItem.h">
       <Filter>01_Actor\01_Play\Object\AutoAtkObject\Drone\Item</Filter>
     </ClInclude>
+    <ClInclude Include="MonParent.h">
+      <Filter>01_Actor\01_Play\Monsters</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PreCompile.cpp">
@@ -574,6 +577,9 @@
     </ClCompile>
     <ClCompile Include="MissileDroneItem.cpp">
       <Filter>01_Actor\01_Play\Object\AutoAtkObject\Drone\Item</Filter>
+    </ClCompile>
+    <ClCompile Include="MonParent.cpp">
+      <Filter>01_Actor\01_Play\Monsters</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

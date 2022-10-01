@@ -23,7 +23,7 @@ void Child::AnimationInit()
 
 	// 애니메이션 생성
 	Renderer_->CreateFrameAnimationFolder(CHILD_ANIM_IDLE, FrameAnimation_DESC(CHILD_ANIM_IDLE, FrameAnimDelay_, true));
-	Renderer_->CreateFrameAnimationFolder(CHILD_ANIM_SHOOT, FrameAnimation_DESC(CHILD_ANIM_SHOOT, FrameAnimDelay_, false));
+	Renderer_->CreateFrameAnimationFolder(CHILD_ANIM_SHOOT, FrameAnimation_DESC(CHILD_ANIM_SHOOT, FrameAnimDelay_, true));
 	Renderer_->CreateFrameAnimationFolder(CHILD_ANIM_SPAWN, FrameAnimation_DESC(CHILD_ANIM_SPAWN, FrameAnimDelay_, false));
 	Renderer_->CreateFrameAnimationFolder(CHILD_ANIM_WALK, FrameAnimation_DESC(CHILD_ANIM_WALK, FrameAnimDelay_, true));
 	Renderer_->CreateFrameAnimationFolder(CHILD_ANIM_DEATH, FrameAnimation_DESC(CHILD_ANIM_DEATH, FrameAnimDelay_, false));
@@ -69,7 +69,7 @@ void Child::StateInit()
 													 , std::bind(&Child::DeathStart, this, std::placeholders::_1)
 													 , std::bind(&Child::DeathEnd, this, std::placeholders::_1));
 	StateManager_.CreateStateMember(MONSTER_FSM_HITTED, [=](float _DeltaTime, const StateInfo& _Info_) {CommonHitted(); }
-													  , [=](const StateInfo& _Info_) { /*Start*/ Renderer_->ChangeFrameAnimation(LEMURIAN_ANIM_HITTED); });
+													  , [=](const StateInfo& _Info_) { /*Start*/ Renderer_->ChangeFrameAnimation(CHILD_ANIM_HITTED); });
 
 	// 초기 스테이트전환
 	StateManager_.ChangeState(MONSTER_FSM_SPAWN);
@@ -112,7 +112,7 @@ void Child::MoveUpdate(float _DeltaTime, const StateInfo& _Info)
 
 void Child::ChaseUpdate(float _DeltaTime, const StateInfo& _Info)
 {
-	CommonChaseUpdate();
+	CommonChaseUpdate(15.0f);
 }
 
 void Child::AttackUpdate(float _DeltaTime, const StateInfo& _Info)

@@ -96,6 +96,12 @@
 #define CHILD_ANIM_DEATH  "ChildDeath"
 #define CHILD_ANIM_HITTED "ChildHitted"
 
+// Parent
+#define PARENT_ANIM_IDLE   "ParentIdle"
+#define PARENT_ANIM_SHOOT  "ParentShoot"
+#define PARENT_ANIM_SPAWN  "ParentSpawn"
+#define PARENT_ANIM_WALK   "ParentWalk"
+#define PARENT_ANIM_DEATH  "ParentDeath"
 
 // 캐릭터별 특수 애니메이션
 #define PLAYER_ANIM_COMMANDO_SKILL4_1 "CommandoSkill4_1"

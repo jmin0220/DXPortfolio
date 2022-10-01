@@ -46,9 +46,12 @@ void Player::LevelEndEvent()
 	HUD_->ActorAllOverLevel();
 	UseItem_->SetLevelOverOn();
 
-	for (Item* tmp : ItemVector_)
+	if (ItemVector_.size() != 0)
 	{
-		tmp->SetLevelOverOn();
+		for (Item* tmp : ItemVector_)
+		{
+			tmp->SetLevelOverOn();
+		}
 	}
 }
 

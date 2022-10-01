@@ -153,7 +153,7 @@ void Lemurian::MoveUpdate(float _DeltaTime, const StateInfo& _Info)
 
 void Lemurian::ChaseUpdate(float _DeltaTime, const StateInfo& _Info)
 {
-	CommonChaseUpdate();
+	CommonChaseUpdate(15.0f);
 }
 
 void Lemurian::AttackUpdate(float _DeltaTime, const StateInfo& _Info)
