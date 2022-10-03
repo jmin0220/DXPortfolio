@@ -95,9 +95,15 @@ void ChestLong::Initialize()
 	case ItemList::Sawmerang:
 		ShowItemRenderer_->SetTexture(ITEM_NAME_SAWMERANG);
 		break;
+	case ItemList::AtGMissileMk1:
+		ShowItemRenderer_->SetTexture(ITEM_NAME_AtGMISSILE_MK1);
+		break;
 	default:
+		std::string tmp = "아이템 생성에 실패했습니다.\nItemList ID : " + std::to_string(static_cast<int>(ItemList_));
+		MsgBoxAssert(tmp.c_str());
 		break;
 	}
+
 	ShowItemRenderer_->ScaleToTexture();
 }
 

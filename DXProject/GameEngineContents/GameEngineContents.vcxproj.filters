@@ -375,6 +375,9 @@
     <ClInclude Include="Wisp.h">
       <Filter>01_Actor\01_Play\Monsters\RangeMonster</Filter>
     </ClInclude>
+    <ClInclude Include="AtGMissileMk1.h">
+      <Filter>01_Actor\01_Play\Object\Items\AtkItems</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PreCompile.cpp">
@@ -610,6 +613,9 @@
     </ClCompile>
     <ClCompile Include="Wisp.cpp">
       <Filter>01_Actor\01_Play\Monsters\RangeMonster</Filter>
+    </ClCompile>
+    <ClCompile Include="AtGMissileMk1.cpp">
+      <Filter>01_Actor\01_Play\Object\Items\AtkItems</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

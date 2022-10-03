@@ -11,6 +11,7 @@
 #include "RedWhip.h"
 #include "HarvesterScythe.h"
 #include "Sawmerang.h"
+#include "AtGMissileMk1.h"
 #pragma endregion
 
 std::vector<Item*> ItemManager::ItemVector_ = {};
@@ -55,9 +56,15 @@ void ItemManager::CreateItem(GameEngineLevel* _Level, ItemList _ItemList, float4
 		break;
 	case ItemList::Sawmerang:
 		tmpItem = _Level->CreateActor<Sawmerang>();
+		break;
+	case ItemList::AtGMissileMk1:  
+		tmpItem = _Level->CreateActor<AtGMissileMk1>();
+		break;
 	case ItemList::End:
 		break;
 	default:
+		std::string tmp = "아이템 생성에 실패했습니다.\nItemList ID : " + std::to_string(static_cast<int>(_ItemList));
+		MsgBoxAssert(tmp.c_str());
 		break;
 	}
 		

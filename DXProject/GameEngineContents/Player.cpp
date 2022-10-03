@@ -834,6 +834,12 @@ bool Player::CanClimb(int _CheckPosFlg)
 
 void Player::CreateBullet(int _CurFrame, int _LastFrame, BulletType _BulletType, float _DmgRatio, float _PiercingLength)
 {
+	// 총알이 생성되는 순간 실행
+	for (Item* tmp : ItemVector_)
+	{
+		tmp->AtkItemUpdate(this->GetTransform().GetWorldPosition());
+	}
+
 	static int YposLevel = 0;
 
 	int tmp = GameEngineRandom::MainRandom.RandomInt(Lv_ * 0, Lv_ * 3);

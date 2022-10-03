@@ -5,7 +5,7 @@ enum class ItemList
 	// FrameItems
 	BarbedWire = 0,
 	RedWhip,
-	// AtkItems
+	// BulletItems
 	MeatNugget,
 	// LevelUpItems
 	Warbanner,
@@ -13,6 +13,7 @@ enum class ItemList
 	HarvesterScythe,
 	// UseItems
 	Sawmerang,
-
+	// AtkItems
+	AtGMissileMk1,
 	End,
 };
