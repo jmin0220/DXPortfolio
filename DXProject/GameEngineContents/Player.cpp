@@ -110,6 +110,11 @@ void Player::Update(float _DeltaTime)
 		AddUseItemFlg_ = false;
 	}
 
+	for (Item* tmp : ItemVector_)
+	{
+		tmp->FrameItemUpdate(this->GetTransform().GetWorldPosition());
+	}
+
 	// 레벨업 체크
 	PlayerLevelUp();
 

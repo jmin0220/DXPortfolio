@@ -18,8 +18,14 @@ public:
 	void Initialize() override;
 
 protected:
+	void FrameItemUpdate(float4 _PlayerPos) override;
 
 private:
+	std::list<GameEngineCollision*> CheckedMonster_;
 
+	GameEngineCollision* Collision_;
+	GameEngineTextureRenderer* EffectRenderer_;
+
+	CollisionReturn CollisionCheck(GameEngineCollision* _This, GameEngineCollision* _Other);
 };
 
