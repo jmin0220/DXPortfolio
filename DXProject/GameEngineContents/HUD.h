@@ -1,6 +1,7 @@
 #pragma once
 #include <GameEngineCore/GameEngineActor.h>
 #include "Option.h"
+#include "ContentsFont.h"
 
 enum class DifficultyText
 {
@@ -17,7 +18,6 @@ enum class DifficultyText
 };
 
 // Ό³Έν :
-class ContentsFont;
 class SingleColorRenderer;
 class HUD : public GameEngineActor
 {
@@ -63,6 +63,12 @@ public:
 	}
 
 	void ActorAllOverLevel();
+
+	inline void OffActors()
+	{
+		GoldFontRenderer_->Off();
+		PlayerHpFontRenderer_->Off();
+	}
 
 	inline void SetLevelFont(int _Level)
 	{

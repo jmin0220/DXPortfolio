@@ -2,6 +2,7 @@
 #include <GameEngineCore/GameEngineLevel.h>
 
 // Ό³Έν :
+class EndBG;
 class EndLevel : public GameEngineLevel
 {
 public:
@@ -21,6 +22,6 @@ protected:
 	void End() override;
 
 private:
-
+	EndBG* EndBG_;
 };
 

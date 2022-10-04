@@ -381,6 +381,9 @@
     <ClInclude Include="ObjectCreater.h">
       <Filter>01_Actor\01_Play\Manager</Filter>
     </ClInclude>
+    <ClInclude Include="EndBG.h">
+      <Filter>01_Actor\00_StartEnd</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PreCompile.cpp">
@@ -622,6 +625,9 @@
     </ClCompile>
     <ClCompile Include="ObjectCreater.cpp">
       <Filter>01_Actor\01_Play\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="EndBG.cpp">
+      <Filter>01_Actor\00_StartEnd</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

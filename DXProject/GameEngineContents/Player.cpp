@@ -41,10 +41,21 @@ Player::~Player()
 
 void Player::LevelEndEvent()
 {
+	if ("STAGE2" == this->GetLevel()->GetNameCopy())
+	{
+		HUD_->OffActors();
+		HUD_->Off();
+		this->Off();
+	}
+
 	this->SetLevelOverOn();
 	HUD_->SetLevelOverOn();
 	HUD_->ActorAllOverLevel();
-	UseItem_->SetLevelOverOn();
+
+	if (UseItem_ != nullptr)
+	{
+		UseItem_->SetLevelOverOn();
+	}
 
 	if (ItemVector_.size() != 0)
 	{
