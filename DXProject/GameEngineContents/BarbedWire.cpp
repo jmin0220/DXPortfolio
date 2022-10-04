@@ -39,6 +39,7 @@ void BarbedWire::Initialize()
 	EffectRenderer_->ChangeFrameAnimation(TEX_EFFECT_BARBEDWIRE_THORN);
 	EffectRenderer_->SetPivot(PIVOTMODE::CENTER);
 	EffectRenderer_->ScaleToTexture();
+	EffectRenderer_->GetPixelData().MulColor.a = 0.7f;
 	EffectRenderer_->Off();
 
 	Collision_ = CreateComponent<GameEngineCollision>();

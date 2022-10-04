@@ -3,6 +3,7 @@
 #include "Option.h"
 #include "MonsterManager.h"
 #include "CharacterCreater.h"
+#include "ObjectCreater.h"
 
 // 레벨의 진행단계
 enum class LevelProcess
@@ -46,6 +47,7 @@ protected:
 	StageGround* StageActor_;
 	Option Option_;
 	MonsterManager* MonsterManager_;
+	ObjectCreater* ObjectCreater_;
 	ItemManager* ItemManager_;
 	CharacterCreater* CharacterCreater_;
 	Portal* Portal_;

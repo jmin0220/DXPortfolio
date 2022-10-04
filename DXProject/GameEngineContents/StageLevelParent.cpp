@@ -3,6 +3,7 @@
 #include <GameEngineCore/GameEngineStatusWindow.h>
 #include "DebuggerGUI.h"
 #include "StageGround.h"
+#include "ObjectCreater.h"
 #include "Gold.h"
 #include "Drops.h"
 #include "ItemManager.h"
@@ -39,9 +40,9 @@ void StageLevelParent::Start()
 
 	MonsterManager_ = CreateActor<MonsterManager>();
 	CharacterCreater_ = CreateActor<CharacterCreater>();
+	ObjectCreater_ = CreateActor<ObjectCreater>();
 	StageActor_ = CreateActor<StageGround>();
 	ItemManager_ = CreateActor<ItemManager>();
-	Portal_ = CreateActor<Portal>();
 
 	//CreateActor<AttackDrone>();
 	//CreateActor<MissileDrone>();

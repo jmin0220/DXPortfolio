@@ -13,9 +13,6 @@ Bouncer::~Bouncer()
 
 void Bouncer::Start()
 {
-	// TODO::디버그용 임시위치
-	this->GetTransform().SetWorldPosition({719.0f, -863.0f});
-
 	Renderer_ = CreateComponent<GameEngineTextureRenderer>();
 	Renderer_->CreateFrameAnimationFolder(TEX_OBJECT_BOUNCER, FrameAnimation_DESC(TEX_OBJECT_BOUNCER, ANIMATION_FRAME_DELAY, true));
 	Renderer_->ChangeFrameAnimation(TEX_OBJECT_BOUNCER);

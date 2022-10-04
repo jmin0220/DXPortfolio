@@ -378,6 +378,9 @@
     <ClInclude Include="AtGMissileMk1.h">
       <Filter>01_Actor\01_Play\Object\Items\AtkItems</Filter>
     </ClInclude>
+    <ClInclude Include="ObjectCreater.h">
+      <Filter>01_Actor\01_Play\Manager</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PreCompile.cpp">
@@ -616,6 +619,9 @@
     </ClCompile>
     <ClCompile Include="AtGMissileMk1.cpp">
       <Filter>01_Actor\01_Play\Object\Items\AtkItems</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjectCreater.cpp">
+      <Filter>01_Actor\01_Play\Manager</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

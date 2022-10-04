@@ -7,6 +7,7 @@ MagmaWormBody::MagmaWormBody()
 	, MoveDestinationTimer_(0.0f)
 	, CurDegree_(0.0f)
 {
+	IsHitted_ = false;
 }
 
 MagmaWormBody::~MagmaWormBody()

@@ -361,6 +361,10 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="MonsterManager.h" />
+    <ClInclude Include="ObjectCreater.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="ObjectGroup.h" />
     <ClInclude Include="MonParent.h">
       <SubType>
@@ -657,6 +661,10 @@
     </ClCompile>
     <ClCompile Include="MonsterManager.cpp" />
     <ClCompile Include="MonParent.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="ObjectCreater.cpp">
       <SubType>
       </SubType>
     </ClCompile>

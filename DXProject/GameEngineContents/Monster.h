@@ -48,7 +48,7 @@ public:
 		}
 		else
 		{
-			StateManager_.ChangeState(MONSTER_FSM_CHASE);
+			ChaseFlg_ = true;
 		}
 	}
 
@@ -132,6 +132,10 @@ protected:
 	float JumpSpeed_;
 	float FallSpeed_;
 	float AtkSpeed_;
+
+	// Idle상태일때의 몬스터 크기를 저장
+	float MonsterSizeX_;
+	float MonsterSizeY_;
 
 	// 애니메이션 프레임간의 시간
 	float FrameAnimDelay_;

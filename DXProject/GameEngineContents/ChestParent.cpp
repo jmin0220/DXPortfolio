@@ -42,17 +42,18 @@ void ChestParent::Update(float _DeltaTime)
 
 CollisionReturn ChestParent::CollisionCheckPlayer(GameEngineCollision* _This, GameEngineCollision* _Other)
 {
-	if (false == IsOpen_)
+	if (true == IsOpen_)
 	{
-		float4 thisPos = this->GetTransform().GetWorldPosition();
-		float4 MainCameraPos = GetLevel()->GetMainCameraActorTransform().GetWorldPosition();
-
-		FontRenderer_->On();
-		// 월드포지션을 스크린포지션으로 전환하여 FontRenderer에 적용
-		FontRenderer_->SetScreenPostion({ thisPos.x - MainCameraPos.x + GameEngineWindow::GetScale().x / 2
-									  , -(thisPos.y - MainCameraPos.y - GameEngineWindow::GetScale().y / 2 - FontYPosWeighted) - 75.0f });
-
+		return CollisionReturn::Break;
 	}
+
+	float4 thisPos = this->GetTransform().GetWorldPosition();
+	float4 MainCameraPos = GetLevel()->GetMainCameraActorTransform().GetWorldPosition();
+
+	FontRenderer_->On();
+	// 월드포지션을 스크린포지션으로 전환하여 FontRenderer에 적용
+	FontRenderer_->SetScreenPostion({ thisPos.x - MainCameraPos.x + GameEngineWindow::GetScale().x / 2
+								  , -(thisPos.y - MainCameraPos.y - GameEngineWindow::GetScale().y / 2 - FontYPosWeighted) - 75.0f });
 
 	if (true == GameEngineInput::GetInst()->IsPress(Player_KEY_INTERACTIVE))
 	{

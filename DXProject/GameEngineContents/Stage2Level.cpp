@@ -16,6 +16,10 @@ void Stage2Level::Start()
 
 	StageActor_->SetStage2Map();
 	BossCreateOption_ = 1;
+
+	ObjectCreater_->SetColMapInfo(StageActor_->GetColStage()->GetCurTexture());
+	ObjectCreater_->CreateObject();
+	Portal_ = ObjectCreater_->GetPortal();
 }
 
 void Stage2Level::Update(float _DeltaTime)

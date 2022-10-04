@@ -550,11 +550,13 @@ void Player::PlayerJump()
 {
 	if (true == IsGround_)
 	{
-		GameEngineDebug::OutPutString("IsGround_ True");
+		std::string tmp = "IsGround_ True" + std::to_string(this->GetTransform().GetWorldPosition().y);
+		GameEngineDebug::OutPutString(tmp.c_str());
 	}
 	else
 	{
-		GameEngineDebug::OutPutString("IsGround_ False");
+		std::string tmp = "IsGround_ False" + std::to_string(this->GetTransform().GetWorldPosition().y);
+		GameEngineDebug::OutPutString(tmp.c_str());
 	}
 
 	// 땅에 닿아있는 경우에만 점프 가능
@@ -632,7 +634,7 @@ void Player::GroundFallCheck()
 		return;
 	}
 
-	// 하단 중앙
+	//// 하단 중앙
 	float4 ColorDown = ColMap_->GetPixelToFloat4(this->GetTransform().GetWorldPosition().ix() + Renderer_->GetCurTexture()->GetScale().hix()
 		, -this->GetTransform().GetWorldPosition().iy() + Renderer_->GetCurTexture()->GetScale().hiy() + JumpSpeed_ * DeltaTime_);
 	// 하단 좌측
@@ -641,6 +643,9 @@ void Player::GroundFallCheck()
 	// 하단 우측
 	float4 ColorDownRight = ColMap_->GetPixelToFloat4(this->GetTransform().GetWorldPosition().ix() + Renderer_->GetCurTexture()->GetScale().hix() - 4
 		, -this->GetTransform().GetWorldPosition().iy() + Renderer_->GetCurTexture()->GetScale().hiy() + JumpSpeed_ * DeltaTime_);
+
+	PixelColor Magenta;
+	Magenta.r = 255, Magenta.g = 0, Magenta.b = 255, Magenta.a = 255;
 
 	// 하단 3점이 모두 땅에 닿지 않아야 바닥으로
 	if (false == ColorDown.CompareInt4D({ 1.0f, 0.0f, 1.0f }) &&
@@ -651,9 +656,28 @@ void Player::GroundFallCheck()
 		IsGround_ = false;
 
 		GetTransform().SetWorldMove(GetTransform().GetDownVector() * JumpSpeed_ * DeltaTime_ * 2);
+
+		std::string tmp = "IsGround_ False , " + std::to_string(this->GetTransform().GetWorldPosition().ix() + Renderer_->GetCurTexture()->GetScale().hix()) 
+			+ "," + std::to_string(-this->GetTransform().GetWorldPosition().iy() + Renderer_->GetCurTexture()->GetScale().hiy() + JumpSpeed_ * DeltaTime_)
+
+			+ "," + std::to_string(this->GetTransform().GetWorldPosition().ix() + 4)
+			+ "," + std::to_string(-this->GetTransform().GetWorldPosition().iy() + Renderer_->GetCurTexture()->GetScale().hiy() + JumpSpeed_ * DeltaTime_)
+
+			+ "," + std::to_string(this->GetTransform().GetWorldPosition().ix() + Renderer_->GetCurTexture()->GetScale().hix() - 4)
+			+ "," + std::to_string(-this->GetTransform().GetWorldPosition().iy() + Renderer_->GetCurTexture()->GetScale().hiy() + JumpSpeed_ * DeltaTime_);
+		GameEngineDebug::OutPutString(tmp.c_str());
 	}
 	else
 	{
+		std::string tmp = "IsGround_ True , " + std::to_string(this->GetTransform().GetWorldPosition().ix() + Renderer_->GetCurTexture()->GetScale().hix())
+			+ "," + std::to_string(-this->GetTransform().GetWorldPosition().iy() + Renderer_->GetCurTexture()->GetScale().hiy() + JumpSpeed_ * DeltaTime_)
+
+			+ "," + std::to_string(this->GetTransform().GetWorldPosition().ix() + 4)
+			+ "," + std::to_string(-this->GetTransform().GetWorldPosition().iy() + Renderer_->GetCurTexture()->GetScale().hiy() + JumpSpeed_ * DeltaTime_)
+
+			+ "," + std::to_string(this->GetTransform().GetWorldPosition().ix() + Renderer_->GetCurTexture()->GetScale().hix() - 4)
+			+ "," + std::to_string(-this->GetTransform().GetWorldPosition().iy() + Renderer_->GetCurTexture()->GetScale().hiy() + JumpSpeed_ * DeltaTime_);
+		GameEngineDebug::OutPutString(tmp.c_str());
 		IsGround_ = true;
 
 		for (int i = 0; i < 3; i++)
