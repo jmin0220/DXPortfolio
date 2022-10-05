@@ -11,6 +11,7 @@
 #include "RedWhip.h"
 #include "HarvesterScythe.h"
 #include "Sawmerang.h"
+#include "MissileLauncher.h"
 #include "AtGMissileMk1.h"
 #pragma endregion
 
@@ -57,6 +58,9 @@ void ItemManager::CreateItem(GameEngineLevel* _Level, ItemList _ItemList, float4
 	case ItemList::Sawmerang:
 		tmpItem = _Level->CreateActor<Sawmerang>();
 		break;
+	case ItemList::MissileLauncher:
+		tmpItem = _Level->CreateActor<MissileLauncher>();
+		break;
 	case ItemList::AtGMissileMk1:  
 		tmpItem = _Level->CreateActor<AtGMissileMk1>();
 		break;
@@ -69,7 +73,7 @@ void ItemManager::CreateItem(GameEngineLevel* _Level, ItemList _ItemList, float4
 	}
 		
 	tmpItem->Initialize();
-	// 테스트용 포지션
+	
 	tmpItem->GetTransform().SetWorldPosition({ _Pos.x, _Pos.y, static_cast<float>(ZOrder::Item) });
 
 	ItemVector_.push_back(tmpItem);

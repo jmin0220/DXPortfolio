@@ -13,6 +13,7 @@ enum class ItemList
 	HarvesterScythe,
 	// UseItems
 	Sawmerang,
+	MissileLauncher,
 	// AtkItems
 	AtGMissileMk1,
 	End,

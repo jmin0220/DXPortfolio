@@ -95,6 +95,9 @@ void ChestLong::Initialize()
 	case ItemList::Sawmerang:
 		ShowItemRenderer_->SetTexture(ITEM_NAME_SAWMERANG);
 		break;
+	case ItemList::MissileLauncher:
+		ShowItemRenderer_->SetTexture(ITEM_NAME_MISSILE_LAUNCHER);
+		break;
 	case ItemList::AtGMissileMk1:
 		ShowItemRenderer_->SetTexture(ITEM_NAME_AtGMISSILE_MK1);
 		break;

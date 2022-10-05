@@ -384,6 +384,9 @@
     <ClInclude Include="EndBG.h">
       <Filter>01_Actor\00_StartEnd</Filter>
     </ClInclude>
+    <ClInclude Include="MissileLauncher.h">
+      <Filter>01_Actor\01_Play\Object\Items\UseItems</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PreCompile.cpp">
@@ -628,6 +631,9 @@
     </ClCompile>
     <ClCompile Include="EndBG.cpp">
       <Filter>01_Actor\00_StartEnd</Filter>
+    </ClCompile>
+    <ClCompile Include="MissileLauncher.cpp">
+      <Filter>01_Actor\01_Play\Object\Items\UseItems</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

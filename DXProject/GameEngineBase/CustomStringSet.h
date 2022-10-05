@@ -321,6 +321,9 @@
 #define ITEM_NAME_SAWMERAN_INVENTORY "sSawmerang_1.png"
 #define ITEM_NAME_AtGMISSILE_MK1 "AtGMissileMk1.png"
 #define ITEM_NAME_AtGMISSILE_MK2 "AtGMissileMk2.png"
+#define ITEM_NAME_MISSILE_LAUNCHER "sMissileBox_0.png"
+#define ITEM_NAME_MISSILE_LAUNCHER_INVENTORY "sMissileBox_1.png"
+
 
 // 아이템 애니메이션
 #define ITEM_ANIMATION_MEATNUGGET_IDLE "MeatNuggetIdle"
