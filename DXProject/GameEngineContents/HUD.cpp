@@ -64,7 +64,7 @@ void HUD::Start()
 	HUDRenderer_->SetTexture(TEX_INTERFACE_HUD);
 
 	HUDRenderer_->ScaleToTexture();
-	HUDRenderer_->GetTransform().SetWorldPosition({0, -390, -100});
+	HUDRenderer_->GetTransform().SetWorldPosition({0, -390, -99});
 
 	DifficultyHUDRenderer_->SetTexture(TEX_INTERFACE_DIFFICULTY_HUD);
 	DifficultyHUDRenderer_->ScaleToTexture();
@@ -155,25 +155,27 @@ void HUD::Start()
 	GoldFontRenderer_->CreateFontRenderer<GameEngineUIRenderer>(std::to_string(Player::GetPlayerGold()), {0, 0}, TextType::Large);
 	GoldFontRenderer_->GetTransform().SetWorldPosition({ GoldIconRenderer_->GetTransform().GetWorldPosition().x + 40.0f, GoldIconRenderer_->GetTransform().GetWorldPosition().y });
 
-	PlayerHpFontRenderer_ = GetLevel()->CreateActor<ContentsFont>();
-	PlayerHpFontRenderer_->CreateFontRenderer<GameEngineUIRenderer>(std::to_string(Player::GetPlayerHp()) + "/" + std::to_string(Player::GetPlayerMaxHp()), {0, 0}, TextType::Normal);
-	PlayerHpFontRenderer_->GetTransform().SetWorldPosition({ -GameEngineWindow::GetInst()->GetScale().x / 2 + 764
-															, GameEngineWindow::GetInst()->GetScale().y / 2 - 867, -110 });
-
 
 	// HP바
 	HpRatingRenderer_ = CreateComponent<SingleColorRenderer>();
 	HpRatingRenderer_->SetColor({ 136.0f / 255.0f, 211.0f / 255.0f, 103.0f / 255.0f, 1.0f });
-	HpRatingRenderer_->GetTransform().SetWorldPosition({ -160 , -418, -109});
+	HpRatingRenderer_->GetTransform().SetWorldPosition({ -160 , -418, -100});
 	HpRatingRenderer_->GetTransform().SetWorldScale({320, 14});
 	HpRatingRenderer_->SetPivot(PIVOTMODE::LEFT);
 
 	// EXP바
 	ExpRatingRenderer_ = CreateComponent<SingleColorRenderer>();
 	ExpRatingRenderer_->SetColor({ 168.0f / 255.0f, 223.0f / 255.0f, 218.0f / 255.0f, 1.0f });
-	ExpRatingRenderer_->GetTransform().SetWorldPosition({ -160 , -438, -109 });
+	ExpRatingRenderer_->GetTransform().SetWorldPosition({ -160 , -438, -100 });
 	ExpRatingRenderer_->GetTransform().SetWorldScale({ 320, 4 });
 	ExpRatingRenderer_->SetPivot(PIVOTMODE::LEFT);
+
+	PlayerHpFontRenderer_ = GetLevel()->CreateActor<ContentsFont>();
+	PlayerHpFontRenderer_->CreateFontRenderer<GameEngineUIRenderer>(std::to_string(Player::GetPlayerHp()) + "/" + std::to_string(Player::GetPlayerMaxHp()), { 0, 0 }, TextType::Normal);
+	PlayerHpFontRenderer_->GetTransform().SetWorldPosition({ -GameEngineWindow::GetInst()->GetScale().x / 2 + 764
+															, GameEngineWindow::GetInst()->GetScale().y / 2 - 867, -100 });
+
+	GetLevel()->GetUICameraActorTransform().SetWorldPosition({ 0.0f, 0.0f, -1000.0f, 1.0f });
 }
 
 void HUD::Update(float _DeltaTime)
@@ -245,6 +247,9 @@ void HUD::Update(float _DeltaTime)
 	// Hp와 Exp를 상태에 따라서 Bar의 수준을 조정
 	HpRatingRenderer_->GetTransform().SetWorldScale({ static_cast<float>(Player::GetPlayerHp()) / static_cast<float>(Player::GetPlayerMaxHp()) * 320.0f, 14});
 	ExpRatingRenderer_->GetTransform().SetWorldScale({ static_cast<float>(Player::GetPlayerExp()) / static_cast<float>(Player::GetPlayerMaxExp()) * 320.0f, 4});
+
+
+	GetLevel()->GetUICameraActorTransform().SetWorldPosition({ 0.0f, 0.0f, -1000.0f, 1.0f });
 }
 
 // 하단의 아이템 획득 리스트
@@ -277,7 +282,7 @@ void HUD::AddUseItemUpdate()
 	UseItemRenderer_ = CreateComponent<GameEngineUIRenderer>();
 	UseItemRenderer_->SetTexture(Player::UseItem_->GetInventoryRenderer()->GetCurTexture());
 	UseItemRenderer_->GetTransform().SetWorldPosition({ 123.0f
-										 , -(GameEngineWindow::GetInst()->GetScale().y / 2) + 85, -101 });
+										 , -(GameEngineWindow::GetInst()->GetScale().y / 2) + 85, -100.0f });
 	UseItemRenderer_->ScaleToTexture();
 }
 

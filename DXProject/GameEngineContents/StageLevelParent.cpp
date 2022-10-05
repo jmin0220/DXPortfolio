@@ -37,6 +37,7 @@ void StageLevelParent::Start()
 	}
 
 	GetMainCamera()->SetProjectionMode(CAMERAPROJECTIONMODE::PersPective);
+	GetUICameraActorTransform().SetWorldPosition({ 0.0f, 0.0f, -200.0f, 1.0f });
 
 	MonsterManager_ = CreateActor<MonsterManager>();
 	CharacterCreater_ = CreateActor<CharacterCreater>();

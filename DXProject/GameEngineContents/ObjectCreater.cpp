@@ -5,6 +5,8 @@
 #include "ChestLongSet.h"
 #include "Portal.h"
 #include "Bouncer.h"
+#include "AttackDroneItem.h"
+#include "MissileDroneItem.h"
 
 GameEngineTexture* ObjectCreater::ColMap_ = nullptr;
 
@@ -32,6 +34,10 @@ void ObjectCreater::CreateObject()
 	Black.r = 0; Black.g = 0; Black.b = 0; Black.a = 255;
 	PixelColor Sky;
 	Sky.r = 0; Sky.g = 10; Sky.b = 200; Sky.a = 255;
+	PixelColor AtkDrone;
+	AtkDrone.r = 0; AtkDrone.g = 0; AtkDrone.b = 1; AtkDrone.a = 255;
+	PixelColor missileDrone;
+	missileDrone.r = 0; missileDrone.g = 0; missileDrone.b = 2; missileDrone.a = 255;
 
 	for (int x = 0; x <= ScaleX; x++)
 	{
@@ -42,7 +48,9 @@ void ObjectCreater::CreateObject()
 			//       B     => ChestLongSet
 			// Color Black => Teleportal
 			// Color Sky   => Bouncer
-
+			// 0, 0, 1     => AttackDrone
+			// 0, 0, 2     => MissileDrone
+ 
 			PixelColor tmpColor = ColMap_->GetPixelToPixelColor(x, y);
 			// 7963 2783
 			if (x == 7963 && y == 2783)
@@ -87,6 +95,20 @@ void ObjectCreater::CreateObject()
 			{
 				Bouncer* TmpBouncer = GetLevel()->CreateActor<Bouncer>();
 				TmpBouncer->GetTransform().SetWorldPosition({ static_cast<float>(x), static_cast<float>(-y), static_cast<float>(ZOrder::Chest) });
+
+				continue;
+			}
+			if (tmpColor.Color == AtkDrone.Color)
+			{
+				AttackDroneItem* TmpDrone = GetLevel()->CreateActor<AttackDroneItem>();
+				TmpDrone->GetTransform().SetWorldPosition({ static_cast<float>(x), static_cast<float>(-y), static_cast<float>(ZOrder::Chest) });
+
+				continue;
+			}
+			if (tmpColor.Color == missileDrone.Color)
+			{
+				MissileDroneItem* TmpDrone = GetLevel()->CreateActor<MissileDroneItem>();
+				TmpDrone->GetTransform().SetWorldPosition({ static_cast<float>(x), static_cast<float>(-y), static_cast<float>(ZOrder::Chest) });
 
 				continue;
 			}

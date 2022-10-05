@@ -38,6 +38,14 @@ public:
 		IsBulletDmg_ = _Flg;
 	}
 
+	inline void ChangeUICamera()
+	{
+		for (GameEngineTextureRenderer* tmp : FontRendererVector_)
+		{
+			tmp->ChangeCamera(CAMERAORDER::UICAMERA);
+		}
+	}
+
 protected:
 	void Start() override;
 	void Update(float _DeltaTime) override;
