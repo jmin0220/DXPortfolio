@@ -175,7 +175,6 @@ void HUD::Start()
 	PlayerHpFontRenderer_->GetTransform().SetWorldPosition({ -GameEngineWindow::GetInst()->GetScale().x / 2 + 764
 															, GameEngineWindow::GetInst()->GetScale().y / 2 - 867, -100 });
 
-	GetLevel()->GetUICameraActorTransform().SetWorldPosition({ 0.0f, 0.0f, -1000.0f, 1.0f });
 }
 
 void HUD::Update(float _DeltaTime)
@@ -247,9 +246,6 @@ void HUD::Update(float _DeltaTime)
 	// Hp와 Exp를 상태에 따라서 Bar의 수준을 조정
 	HpRatingRenderer_->GetTransform().SetWorldScale({ static_cast<float>(Player::GetPlayerHp()) / static_cast<float>(Player::GetPlayerMaxHp()) * 320.0f, 14});
 	ExpRatingRenderer_->GetTransform().SetWorldScale({ static_cast<float>(Player::GetPlayerExp()) / static_cast<float>(Player::GetPlayerMaxExp()) * 320.0f, 4});
-
-
-	GetLevel()->GetUICameraActorTransform().SetWorldPosition({ 0.0f, 0.0f, -1000.0f, 1.0f });
 }
 
 // 하단의 아이템 획득 리스트

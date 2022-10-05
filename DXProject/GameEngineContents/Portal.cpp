@@ -61,8 +61,16 @@ CollisionReturn Portal::CollisionCheck(GameEngineCollision* _This, GameEngineCol
 			// 동작하지 않음
 			break;
 		case PortalState::KillBoss:
+
 			// 다음레벨로 이동
-			GEngine::ChangeLevel(LEVEL_STAGE2);
+			if ("STAGE1" == GetLevel()->GetNameCopy())
+			{
+				GEngine::ChangeLevel(LEVEL_STAGE2);
+			}
+			if ("STAGE2" == GetLevel()->GetNameCopy())
+			{
+				GEngine::ChangeLevel(LEVEL_END);
+			}
 			break;
 		default:
 			break;
