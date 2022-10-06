@@ -256,6 +256,7 @@ void HUD::AddItemUpdate()
 
 	for (Item* item : Player::ItemVector_)
 	{
+		// TODO::아이템이 많아지면 진해지는 버그
 		GameEngineUIRenderer* tmp = CreateComponent<GameEngineUIRenderer>();
 		tmp->SetTexture(item->GetRenderer()->GetCurTexture());
 		tmp->GetTransform().SetWorldPosition({ -(GameEngineWindow::GetInst()->GetScale().x / 2) + 50 + XMargin

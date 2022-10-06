@@ -39,6 +39,8 @@ void AttackDroneItem::Initialize()
 
 void AttackDroneItem::AddDrone()
 {
+	GameEngineSound::SoundPlayOneShot("wDrone1Spawn.wav");
+
 	AttackDrone* tmp = 	GetLevel()->CreateActor<AttackDrone>();
 	tmp->GetTransform().SetWorldPosition(PlayerPos_);
 

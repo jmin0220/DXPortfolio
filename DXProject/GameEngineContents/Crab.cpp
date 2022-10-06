@@ -80,6 +80,7 @@ void Crab::StateInit()
 
 	// 초기 스테이트전환
 	StateManager_.ChangeState(MONSTER_FSM_SPAWN);
+	GameEngineSound::SoundPlayOneShot("wCrabSpawn.wav");
 }
 
 void Crab::IdleStart(const StateInfo& _Info)
@@ -100,11 +101,18 @@ void Crab::ChaseStart(const StateInfo& _Info)
 void Crab::AttackStart(const StateInfo& _Info)
 {
 	CommonAttackStart(CRAB_ANIM_SHOOT);
+	GameEngineSound::SoundPlayOneShot("wChildShoot1.wav");
 }
 
 void Crab::DeathStart(const StateInfo& _Info)
 {
 	CommonDeathStart(CRAB_ANIM_DEATH);
+
+	if (false == DeathSoundFlg_)
+	{
+		DeathSoundFlg_ = true;
+		GameEngineSound::SoundPlayOneShot("wCrabDeath.wav");
+	}
 }
 
 void Crab::IdleUpdate(float _DeltaTime, const StateInfo& _Info)

@@ -52,6 +52,8 @@ protected:
 	CharacterCreater* CharacterCreater_;
 	Portal* Portal_;
 
+	GameEngineSoundPlayer BGMSoundPlayer_;
+
 	// 레벨 진행수준
 	LevelProcess LevelProcess_;
 

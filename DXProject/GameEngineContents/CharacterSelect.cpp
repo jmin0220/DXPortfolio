@@ -40,4 +40,5 @@ void CharacterSelect::End()
 
 void CharacterSelect::LevelEndEvent()
 {
+	SoundPlayer_.SoundPlayer_.Stop();
 }

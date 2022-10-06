@@ -23,6 +23,8 @@ void StartLevel::Start()
 	{
 		GameEngineInput::GetInst()->CreateKey(CHANGE_LEVEL_CHRACTER_SELECT, VK_RETURN);
 	}
+
+	SoundPlayer_.SoundPlayer_ = GameEngineSound::SoundPlayControl("musicTitle.ogg", 1000);
 }
 
 void StartLevel::Update(float _DeltaTime)

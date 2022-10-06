@@ -15,6 +15,7 @@ Monster::Monster()
 	, IsMonsterDeath_(false)
 	, IsFallCheck_(true)
 	, IsHitted_(true)
+	, DeathSoundFlg_(false)
 {
 }
 

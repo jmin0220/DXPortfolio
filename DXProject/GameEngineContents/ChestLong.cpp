@@ -140,6 +140,7 @@ CollisionReturn ChestLong::CollisionFunc(GameEngineCollision* _This, GameEngineC
 
 void ChestLong::ChangeOpenAnimChestLong()
 {
+	GameEngineSound::SoundPlayOneShot("wChest2.wav");
 	// 이미 열려져있는 경우에는 무시
 	if (true == IsOpen_)
 	{

@@ -5,7 +5,7 @@
 
 Colossus::Colossus() 
 {
-	Speed_ = 600.0f;
+	Speed_ = 6000.0f;
 	AtkSpeed_ = 1.0f;
 	MonsterHp_ = 1400;
 	Damage_ = 30;
@@ -131,6 +131,7 @@ void Colossus::ChaseStart(const StateInfo& _Info)
 void Colossus::AttackStart(const StateInfo& _Info)
 {
 	CommonAttackStart(COLOSSUS_ANIM_SHOOT1);
+	GameEngineSound::SoundPlayOneShot("wGolemAttack1.wav");
 }
 
 void Colossus::Attack2Start(const StateInfo& _Info)
@@ -140,7 +141,14 @@ void Colossus::Attack2Start(const StateInfo& _Info)
 
 void Colossus::DeathStart(const StateInfo& _Info)
 {
-	CommonDeathStart(COLOSSUS_ANIM_DEATH);
+	Renderer_->ChangeFrameAnimation(COLOSSUS_ANIM_DEATH);
+	Renderer_->ScaleToTexture();
+
+	if (false == DeathSoundFlg_)
+	{
+		DeathSoundFlg_ = true;
+		GameEngineSound::SoundPlayOneShot("wGolemDeath.wav");
+	}
 }
 
 void Colossus::IdleUpdate(float _DeltaTime, const StateInfo& _Info)

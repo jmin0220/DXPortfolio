@@ -138,6 +138,7 @@
 // 디렉토리
 #define DIR_RESOURCE "Resources"
 #define DIR_TEXTURE "Texture"
+#define DIR_SOUND "Sound"
 #define DIR_CHARACTERS "Characters"
 #define DIR_MONSTER "Monster"
 #define DIR_STAGE "Stage"

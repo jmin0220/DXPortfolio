@@ -34,8 +34,11 @@ void Stage2Level::End()
 void Stage2Level::LevelStartEvent()
 {
 	StageLevelParent::LevelStartEvent();
+
+	BGMSoundPlayer_ = GameEngineSound::SoundPlayControl("musicStage4.ogg", 1000);
 }
 
 void Stage2Level::LevelEndEvent()
 {
+	BGMSoundPlayer_.Stop();
 }

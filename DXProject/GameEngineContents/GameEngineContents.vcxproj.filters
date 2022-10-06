@@ -387,6 +387,9 @@
     <ClInclude Include="MissileLauncher.h">
       <Filter>01_Actor\01_Play\Object\Items\UseItems</Filter>
     </ClInclude>
+    <ClInclude Include="StartSoundPlayer.h">
+      <Filter>01_Actor\00_StartEnd</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PreCompile.cpp">
@@ -634,6 +637,9 @@
     </ClCompile>
     <ClCompile Include="MissileLauncher.cpp">
       <Filter>01_Actor\01_Play\Object\Items\UseItems</Filter>
+    </ClCompile>
+    <ClCompile Include="StartSoundPlayer.cpp">
+      <Filter>01_Actor\00_StartEnd</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

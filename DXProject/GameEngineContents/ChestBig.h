@@ -22,6 +22,7 @@ protected:
 	{
 		IsOpen_ = true;
 		Renderer_->ChangeFrameAnimation(TEX_OBJECT_CHEST_BIG_OPEN);
+		GameEngineSound::SoundPlayOneShot("wChest1.wav");
 	}
 
 private:

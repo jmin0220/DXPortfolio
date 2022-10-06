@@ -40,6 +40,8 @@ void MissileDroneItem::Initialize()
 
 void MissileDroneItem::AddDrone()
 {
+	GameEngineSound::SoundPlayOneShot("wDrone1Spawn.wav");
+
 	MissileDrone* tmp = GetLevel()->CreateActor<MissileDrone>();
 	tmp->GetTransform().SetWorldPosition(PlayerPos_);
 

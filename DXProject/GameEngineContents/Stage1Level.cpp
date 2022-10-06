@@ -50,6 +50,8 @@ void Stage1Level::End()
 
 void Stage1Level::LevelStartEvent()
 {
+	BGMSoundPlayer_ = GameEngineSound::SoundPlayControl("musicStage1.ogg", 1000);
+
 	// 플레이어 액터 생성
 	switch (Option_.CharacterSelect_)
 	{
@@ -90,4 +92,5 @@ void Stage1Level::LevelStartEvent()
 
 void Stage1Level::LevelEndEvent()
 {
+	BGMSoundPlayer_.Stop();
 }

@@ -165,6 +165,12 @@ CollisionReturn Missile::CollisionCheck(GameEngineCollision* _This, GameEngineCo
 CollisionReturn Missile::ExplosionCollisionCheck(GameEngineCollision* _This, GameEngineCollision* _Other)
 {
 	Monster* TmpMonster = dynamic_cast<Monster*>(_Other->GetActor());
+
+	if (true == TmpMonster->GetMonsterDeath())
+	{
+		return CollisionReturn::ContinueCheck;
+	}
+
 	TmpMonster->HitFunction(Damage_);
 	TmpMonster->ChangeStateToHitted();
 

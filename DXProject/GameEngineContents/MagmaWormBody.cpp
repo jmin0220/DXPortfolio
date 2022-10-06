@@ -107,6 +107,13 @@ void MagmaWormBody::SetHead()
 
 void MagmaWormBody::SetDeath()
 {
+
+	if (false == DeathSoundFlg_)
+	{
+		DeathSoundFlg_ = true;
+		GameEngineSound::SoundPlayOneShot("wWormDeath.wav");
+	}
+
 	// 머리일때는 머리애니메이션으로
 	if (true == IsHead_)
 	{

@@ -82,6 +82,7 @@ void Lemurian::StateInit()
 													, std::bind(&Lemurian::DeathEnd, this, std::placeholders::_1));
 	StateManager_.CreateStateMember(MONSTER_FSM_HITTED, [=](float _DeltaTime, const StateInfo& _Info_) 
 	{
+
 		// Update
 		float4 MonsterPos = this->GetTransform().GetWorldPosition();
 
@@ -117,10 +118,14 @@ void Lemurian::StateInit()
 			GetTransform().SetWorldMove(GetTransform().GetRightVector() * Speed_ / 2 * DeltaTime_);
 		}
 	}
-	, [=](const StateInfo& _Info_) { /*Start*/ Renderer_->ChangeFrameAnimation(LEMURIAN_ANIM_HITTED); });
+	, [=](const StateInfo& _Info_) 
+	{ /*Start*/ Renderer_->ChangeFrameAnimation(LEMURIAN_ANIM_HITTED); 
+		GameEngineSound::SoundPlayOneShot("wLizardHit.wav");
+	});
 
 	// 초기 스테이트전환
 	StateManager_.ChangeState(MONSTER_FSM_SPAWN);
+	GameEngineSound::SoundPlayOneShot("wLizardSpawn.wav");
 }
 
 #pragma region FSM
@@ -140,10 +145,17 @@ void Lemurian::ChaseStart(const StateInfo& _Info)
 void Lemurian::AttackStart(const StateInfo& _Info)
 {
 	CommonAttackStart(LEMURIAN_ANIM_SHOOT);
+	GameEngineSound::SoundPlayOneShot("wLizardShoot1.wav");
 }
 void Lemurian::DeathStart(const StateInfo& _Info)
 {
 	CommonDeathStart(LEMURIAN_ANIM_DEATH);
+
+	if (false == DeathSoundFlg_)
+	{
+		DeathSoundFlg_ = true;
+		GameEngineSound::SoundPlayOneShot("wLizardHit.wav");		
+	}
 }
 
 void Lemurian::IdleUpdate(float _DeltaTime, const StateInfo& _Info)

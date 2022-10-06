@@ -223,6 +223,24 @@ void RiskOfRain::Start()
 		}
 	}
 
+
+
+	// 사운드 로딩
+	{
+		GameEngineDirectory Dir;
+
+		Dir.MoveParentToExitsChildDirectory(DIR_RESOURCE);
+		Dir.Move(DIR_RESOURCE);
+		Dir.Move(DIR_SOUND);
+
+		std::vector<GameEngineFile> Sounds = Dir.GetAllFile();
+
+		for (size_t i = 0; i < Sounds.size(); i++)
+		{
+			GameEngineSound::LoadRessource(Sounds[i].GetFullPath());
+		}
+	}
+
 	// 레벨 생성
 	CreateLevel<StartLevel>(LEVEL_TITLE);
 	CreateLevel<EndLevel>(LEVEL_END);

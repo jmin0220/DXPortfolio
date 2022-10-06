@@ -1,5 +1,6 @@
 #pragma once
 #include <GameEngineCore/GameEngineLevel.h>
+#include "StartSoundPlayer.h"
 
 // Ό³Έν :
 class StartLevel : public GameEngineLevel
@@ -21,6 +22,6 @@ protected:
 	void End() override;
 
 private:
-
+	StartSoundPlayer SoundPlayer_;
 };
 

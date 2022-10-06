@@ -101,7 +101,9 @@ void MagmaWorm::StateInit()
 													 , std::bind(&MagmaWorm::DeathStart, this, std::placeholders::_1)
 													 , std::bind(&MagmaWorm::DeathEnd, this, std::placeholders::_1));
 	// 초기 스테이트전환
-	StateManager_.ChangeState(MONSTER_FSM_SPAWN); 
+	StateManager_.ChangeState(MONSTER_FSM_SPAWN);
+	GameEngineSoundPlayer tmpPlayer = GameEngineSound::SoundPlayControl("wWormRoar.wav");
+	tmpPlayer.Volume(1.7f);
 }
 
 
@@ -169,6 +171,9 @@ void MagmaWorm::AttackUpdate(float _DeltaTime, const StateInfo& _Info)
 																   , MagmaWormBody_[i]->GetTransform().GetWorldPosition().y
 																   , static_cast<float>(ZOrder::MagmaWorm) });
 			}
+
+			GameEngineSoundPlayer tmpPlayer = GameEngineSound::SoundPlayControl("wWormRoar.wav");
+			tmpPlayer.Volume(1.7f);
 		}
 
 		// 플래그 반전

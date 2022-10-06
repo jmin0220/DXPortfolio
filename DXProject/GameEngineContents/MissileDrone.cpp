@@ -63,7 +63,10 @@ void MissileDrone::ActionStart(const StateInfo& _Info)
 
 void MissileDrone::IdleUpdate(float _DeltaTime, const StateInfo& _Info)
 {
-	if (GetAccTime() < 0.7f)
+	static float TImer = 0.0f;
+	TImer += _DeltaTime;
+
+	if (TImer < 5.0f)
 	{
 		return;
 	}
@@ -72,7 +75,7 @@ void MissileDrone::IdleUpdate(float _DeltaTime, const StateInfo& _Info)
 	if (true == FindChaseMonster())
 	{
 		StateManager_.ChangeState(DRONE_FSM_ACTION);
-		ReSetAccTime();
+		TImer = 0.0f;
 	}
 }
 

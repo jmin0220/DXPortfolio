@@ -100,6 +100,7 @@ void RockGolem::ChaseStart(const StateInfo& _Info)
 void RockGolem::AttackStart(const StateInfo& _Info)
 {
 	CommonAttackStart(ROCKGOLEM_ANIM_SHOOT);
+	GameEngineSound::SoundPlayOneShot("wGolemAttack1.wav");
 }
 
 void RockGolem::DeathStart(const StateInfo& _Info)
@@ -110,6 +111,12 @@ void RockGolem::DeathStart(const StateInfo& _Info)
 
 	MonsterSizeY_ = 0.0f;
 	Renderer_->SetPivot(PIVOTMODE::BOT);
+
+	if (false == DeathSoundFlg_)
+	{
+		DeathSoundFlg_ = true;
+		GameEngineSound::SoundPlayOneShot("wGolemDeath.wav");
+	}
 }
 
 void RockGolem::IdleUpdate(float _DeltaTime, const StateInfo& _Info)

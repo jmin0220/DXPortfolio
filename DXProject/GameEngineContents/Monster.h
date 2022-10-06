@@ -110,6 +110,8 @@ protected:
 
 	bool IsFallCheck_;
 
+	bool DeathSoundFlg_;
+
 	// FSM ¸Å´ÏÀú
 	GameEngineStateManager StateManager_;
 

@@ -69,7 +69,11 @@ void Child::StateInit()
 													 , std::bind(&Child::DeathStart, this, std::placeholders::_1)
 													 , std::bind(&Child::DeathEnd, this, std::placeholders::_1));
 	StateManager_.CreateStateMember(MONSTER_FSM_HITTED, [=](float _DeltaTime, const StateInfo& _Info_) {CommonHitted(); }
-													  , [=](const StateInfo& _Info_) { /*Start*/ Renderer_->ChangeFrameAnimation(CHILD_ANIM_HITTED); });
+													  , [=](const StateInfo& _Info_) 
+		{ /*Start*/ 
+			GameEngineSound::SoundPlayOneShot("wChildHit.wav");
+			Renderer_->ChangeFrameAnimation(CHILD_ANIM_HITTED); 
+		});
 
 	// 초기 스테이트전환
 	StateManager_.ChangeState(MONSTER_FSM_SPAWN);
@@ -93,11 +97,18 @@ void Child::ChaseStart(const StateInfo& _Info)
 void Child::AttackStart(const StateInfo& _Info)
 {
 	CommonAttackStart(CHILD_ANIM_SHOOT);
+	GameEngineSound::SoundPlayOneShot("wChildShoot1.wav");
 }
 
 void Child::DeathStart(const StateInfo& _Info)
 {
 	CommonDeathStart(CHILD_ANIM_DEATH);
+
+	if (false == DeathSoundFlg_)
+	{
+		DeathSoundFlg_ = true;
+		GameEngineSound::SoundPlayOneShot("wChildDeath.wav");
+	}
 }
 
 void Child::IdleUpdate(float _DeltaTime, const StateInfo& _Info)

@@ -1,6 +1,7 @@
 #pragma once
 #include "PreCompile.h"
 #include <GameEngineCore/GameEngineLevel.h>
+#include "StartSoundPlayer.h"
 
 // Ό³Έν :
 class CharacterSelecter;
@@ -26,5 +27,6 @@ protected:
 
 private:
 	CharacterSelecter* CharacterSelecter_;
+	StartSoundPlayer SoundPlayer_;
 };
 

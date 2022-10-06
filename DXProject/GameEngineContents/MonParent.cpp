@@ -101,6 +101,7 @@ void MonParent::ChaseStart(const StateInfo& _Info)
 void MonParent::AttackStart(const StateInfo& _Info)
 {
 	CommonAttackStart(PARENT_ANIM_SHOOT);
+	GameEngineSound::SoundPlayOneShot("wChildGShoot1.wav");
 }
 
 void MonParent::DeathStart(const StateInfo& _Info)

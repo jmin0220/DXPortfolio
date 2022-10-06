@@ -593,6 +593,7 @@ void Player::PlayerLevelUp()
 	// ·¹º§¾÷
 	if (Exp_ >= MaxExp_)
 	{
+		GameEngineSound::SoundPlayOneShot("wLevelUp.wav");
 		Lv_++;
 
 		Exp_ = 0;
@@ -891,6 +892,12 @@ void Player::CreateBullet(int _CurFrame, int _LastFrame, BulletType _BulletType,
 		{
 			bullet->SetCritFlgTrue();
 			TrueDmg *= 1.5f;
+
+			GameEngineSound::SoundPlayOneShot("wCrit.wav");
+		}
+		else
+		{
+			GameEngineSound::SoundPlayOneShot("wBullet1.wav");
 		}
 
 		bullet->GetTransform().SetWorldPosition(this->GetTransform().GetWorldPosition());
