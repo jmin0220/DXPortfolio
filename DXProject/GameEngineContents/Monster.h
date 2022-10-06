@@ -25,6 +25,11 @@ public:
 		PlayerPos_ = _Pos;
 	}
 
+	inline float GetMonsterSizeY()
+	{
+		return MonsterSizeY_;
+	}
+
 	virtual inline void HitFunction(int _Damage)
 	{
 		MonsterHp_ -= _Damage;
@@ -125,6 +130,7 @@ protected:
 
 	GameEngineTextureRenderer* Renderer_;
 	GameEngineCollision* Collision_;
+	GameEngineCollision* DebugCollision_;
 	float DeltaTime_;
 
 	// 속도 관련

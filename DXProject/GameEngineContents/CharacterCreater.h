@@ -35,6 +35,11 @@ public:
 		return CreateMonsterPos_;
 	}
 
+	inline void SetMonsterSizeY(float _SizeY)
+	{
+		MonsterSizeY_ = _SizeY;
+	}
+
 	void MakePlayerPosition();
 	void MakeMonsterPosition();
 
@@ -51,5 +56,7 @@ private:
 	float4 CreatePlayerPos_;
 
 	float4 CreateMonsterPos_;
+
+	float MonsterSizeY_;
 };
 

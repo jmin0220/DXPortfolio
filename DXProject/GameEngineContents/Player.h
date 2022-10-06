@@ -56,8 +56,6 @@ public:
 		}
 	}
 
-	
-
 	static inline int GetPlayerLv()
 	{
 		return Lv_;

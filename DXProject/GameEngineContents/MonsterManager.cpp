@@ -5,6 +5,7 @@
 #include "Exp.h"
 #include "Gold.h"
 #include "BossHUD.h"
+#include "Option.h"
 
 #pragma region Monster
 
@@ -54,19 +55,58 @@ void MonsterManager::Update(float _DeltaTime)
 	SingleMonsterRespawnTimer_ += _DeltaTime;
 	GroupMonsterRespawnTimer_ += _DeltaTime;
 
+	int DifficultyTextCounter = Option::DifficultyTextCounter_;
+
+	if (DifficultyTextCounter >= 5)
+	{
+		DifficultyTextCounter = 5;
+	}
+	if (DifficultyTextCounter < 0)
+	{
+		DifficultyTextCounter = 0;
+	}
+
+	int MonsterSelectCounter = GameEngineRandom::MainRandom.RandomInt(0, DifficultyTextCounter);
+
 	// 몬스터 생성타이머
 	if (SingleMonsterRespawnTimer_ >= 5.0f)
 	{
+		// 시간별로 등장하는 몬스터의 종류가 달라짐
+		Monster* NewMonster_;
+
+		switch (MonsterSelectCounter)
+		{
+		case 0:
+			NewMonster_ = GetLevel()->CreateActor<Lemurian>();
+			break;
+		case 1:
+			NewMonster_ = GetLevel()->CreateActor<Child>();
+			break;
+		case 2:
+			NewMonster_ = GetLevel()->CreateActor<Wisp>();
+			break;
+		case 3:
+			NewMonster_ = GetLevel()->CreateActor<Crab>();
+			break;
+		case 4:
+			NewMonster_ = GetLevel()->CreateActor<RockGolem>();
+			break;
+		case 5:
+			NewMonster_ = GetLevel()->CreateActor<MonParent>();
+			break;
+		default:
+			NewMonster_ = GetLevel()->CreateActor<Lemurian>();
+			break;
+		}
+
+		CharacterCreater_->SetMonsterSizeY(NewMonster_->GetMonsterSizeY());
+
 		// 몬스터는 플레이어 주위에 생성 가능한 위치에 무작위로 생성됨
 		// 캐릭터Creater에서 플레이어 위치를 받아서, 다음에 생성할 몬스터의 위치를 조정
 		CharacterCreater_->MakeMonsterPosition();
-
 		// 적이 생성될 포지션 입력
 		RespawnPos_ = CharacterCreater_->OutputMonsterCreatePos();
 
-		// TODO::시간별로 등장하는 몬스터를 추가해야함
-		Monster* NewMonster_ = GetLevel()->CreateActor<Wisp>();
-		//Monster* NewMonster_ = GetLevel()->CreateActor<Lemurian>();
 		NewMonster_->GetTransform().SetWorldPosition(RespawnPos_);
 		NewMonster_->SetColMapInfo(ColMap_);
 

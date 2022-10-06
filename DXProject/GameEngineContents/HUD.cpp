@@ -5,6 +5,7 @@
 #include "Item.h"
 #include "ContentsFont.h"
 #include "SingleColorRenderer.h"
+#include "Option.h"
 
 HUD::HUD() 
 	: HUDRenderer_(nullptr)
@@ -206,7 +207,7 @@ void HUD::Update(float _DeltaTime)
 	// 10초에 1번씩
 	int tmp = static_cast<int>(Player::GetPlayTimeTimer());
 	float PlayTimer = tmp / 100;
-	float SliceY = 1.0f - Player::GetPlayTimeTimer() / 1000;
+	float SliceY = 1.0f - Player::GetPlayTimeTimer() / 500;
 
 	if (SliceY < 0.0f)
 	{
@@ -285,6 +286,8 @@ void HUD::AddUseItemUpdate()
 void HUD::DifficultyTextUpdate()
 {
 	static int CurCounter = 0;
+
+	Option::DifficultyTextCounter_ = DifficultyTextCounter_;
 
 	// 카운터가 변함이 없으면 종료
 	if (CurCounter == DifficultyTextCounter_)

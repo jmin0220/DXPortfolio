@@ -76,6 +76,12 @@ CollisionReturn SawmerangEffect::CollisionCheck(GameEngineCollision* _This, Game
 	CheckedMonster_.push_back(_Other);
 
 	Monster* TmpMonster = dynamic_cast<Monster*>(_Other->GetActor());
+
+	if (true == TmpMonster->GetMonsterDeath())
+	{
+		return CollisionReturn::Break;
+	}
+
 	TmpMonster->HitFunction(PlayerStatus::GetiDamage() * 5);
 	TmpMonster->ChangeStateToHitted();
 

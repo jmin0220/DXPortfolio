@@ -27,12 +27,13 @@ void Monster::Start()
 	// 애니메이션 초기화
 	AnimationInit();
 
-	if (Renderer_ != nullptr)
+	if ((Renderer_ != nullptr) 
+		&& (MonsterSizeX_ == 0.0f || MonsterSizeY_ == 0.0f))
 	{
 		MonsterSizeX_ = Renderer_->GetCurTexture()->GetScale().x;
 		MonsterSizeY_ = Renderer_->GetCurTexture()->GetScale().y;
 	}
-	else
+	else if(Renderer_ == nullptr)
 	{
 		MonsterSizeX_ = 0.0f;
 		MonsterSizeY_ = 0.0f;
@@ -41,6 +42,10 @@ void Monster::Start()
 
 	// 콜리전 초기화
 	CollisionInit();
+
+	DebugCollision_ = CreateComponent<GameEngineCollision>();
+	DebugCollision_->GetTransform().SetWorldScale({ 3.0f, 3.0f, 1.0f });
+	DebugCollision_->ChangeOrder(ObjectGroup::Monster);
 
 	// 스테이트 초기화
 	StateInit();
@@ -91,9 +96,6 @@ void Monster::CheckNegativeX()
 	{
 		Renderer_->GetTransform().PixLocalPositiveX();
 	}
-
-	// TODO::애니메이션의 프레임에 따라서 피봇값을 조절할 필요 있음.
-	Renderer_->SetPivot(PIVOTMODE::CENTER);
 }
 
 void Monster::JumpUpdate()
@@ -167,15 +169,19 @@ void Monster::GroundFallCheck()
 		MsgBoxAssert("충돌맵이 존재하지 않습니다.");
 	}
 
+	// MonsterSizeY_ = 0.0f;
+
 	// 하단 중앙
 	float4 ColorDown = ColMap_->GetPixelToFloat4(this->GetTransform().GetWorldPosition().ix()
-		, -this->GetTransform().GetWorldPosition().iy() + MonsterSizeY_* 0.5f + JumpSpeed_ * DeltaTime_);
+		, -this->GetTransform().GetWorldPosition().iy() + MonsterSizeY_* 0.5f - JumpSpeed_ * DeltaTime_);
 	// 하단 좌측
 	float4 ColorDownLeft = ColMap_->GetPixelToFloat4(this->GetTransform().GetWorldPosition().ix() + MonsterSizeX_ * 0.5f - 2
-		, -this->GetTransform().GetWorldPosition().iy() + MonsterSizeY_ * 0.5f + JumpSpeed_ * DeltaTime_);
+		, -this->GetTransform().GetWorldPosition().iy() + MonsterSizeY_ * 0.5f - JumpSpeed_ * DeltaTime_);
 	// 하단 우측
 	float4 ColorDownRight = ColMap_->GetPixelToFloat4(this->GetTransform().GetWorldPosition().ix() + MonsterSizeX_ * 0.5f + 2
-		, -this->GetTransform().GetWorldPosition().iy() + MonsterSizeY_ * 0.5f + JumpSpeed_ * DeltaTime_);
+		, -this->GetTransform().GetWorldPosition().iy() + MonsterSizeY_ * 0.5f - JumpSpeed_ * DeltaTime_);
+
+
 
 	// 하단 3점이 모두 땅에 닿지 않아야 바닥으로
 	if (false == ColorDown.CompareInt4D({ 1.0f, 0.0f, 1.0f }) &&
@@ -222,6 +228,7 @@ void Monster::GroundFallCheck()
 		//	}
 		//}
 	}
+
 }
 
 // TODO::캐릭터들의 피봇이 결정되면 충돌판정의 위치도 함께 수정될 것.
@@ -353,6 +360,8 @@ void Monster::CommonDeathStart(std::string _AnimName)
 	// 애니메이션 전환
 	Renderer_->ChangeFrameAnimation(_AnimName);
 	Renderer_->ScaleToTexture();
+	MonsterSizeY_ = 0.0f;
+	Renderer_->SetPivot(PIVOTMODE::BOT);
 }
 
 #pragma endregion
@@ -426,7 +435,7 @@ void Monster::CommonMoveUpdate()
 			return;
 		}
 
-		GetTransform().SetWorldMove(GetTransform().GetLeftVector() * tmpSpeed * DeltaTime_);
+		GetTransform().SetWorldMove(GetTransform().GetRightVector() * tmpSpeed * DeltaTime_);
 
 		break;
 	}
@@ -442,9 +451,11 @@ void Monster::CommonChaseUpdate(float _ChaseLength /* = 0.0f*/)
 	float4 PlayerLength = { PlayerPos_.x, PlayerPos_.y, 0.0f };
 	float4 Length = MonsterLength - PlayerLength;
 
+	float tmpLength = Renderer_->GetCurTexture()->GetScale().hix() + _ChaseLength;
 	// 거리가 몬스터와 가까워졌을경우 이동 중지
-	if ((Length.Length() <= abs(Renderer_->GetCurTexture()->GetScale().hix() + _ChaseLength) && 
-		(MoveDir_.CompareInt2D(float4::RIGHT) && this->GetTransform().GetWorldPosition().x < PlayerPos_.x) || (MoveDir_.CompareInt2D(float4::LEFT) && this->GetTransform().GetWorldPosition().x > PlayerPos_.x)))
+	if ((Length.Length() <= abs(tmpLength)) &&
+		((MoveDir_.CompareInt2D(float4::RIGHT) && this->GetTransform().GetWorldPosition().x < PlayerPos_.x) 
+		|| (MoveDir_.CompareInt2D(float4::LEFT) && this->GetTransform().GetWorldPosition().x > PlayerPos_.x)))
 	{
 
 		//공격으로 전환

@@ -7,6 +7,7 @@ float4 CharacterCreater::CurPlayerPos_ = float4::ZERO;
 
 CharacterCreater::CharacterCreater() 
 	: CreatePlayerPos_(float4::ZERO)
+	, MonsterSizeY_(30.0f) // 플레이어일경우
 {
 }
 
@@ -137,7 +138,7 @@ float4 CharacterCreater::MakePosition(int _CreateMod)
 	}
 
 	// 플레이어에게 반영하기 위하여 y값 조정
-	CreatePos.y = -CreatePos.y + 30;
+	CreatePos.y = -CreatePos.y + MonsterSizeY_ * 0.5f;
 
 	// 디버그용 위치
 	//CreatePos = { 33, -597 };

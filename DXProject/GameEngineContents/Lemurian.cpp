@@ -43,6 +43,11 @@ void Lemurian::AnimationInit()
 
 	// 초기 애니메이션 전환
 	Renderer_->ChangeFrameAnimation(LEMURIAN_ANIM_SPAWN);
+
+
+	MonsterSizeX_ = 30.0f;
+	MonsterSizeY_ = 30.0f;
+
 	Renderer_->SetScaleModeImage();
 }
 

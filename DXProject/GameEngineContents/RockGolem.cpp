@@ -104,7 +104,12 @@ void RockGolem::AttackStart(const StateInfo& _Info)
 
 void RockGolem::DeathStart(const StateInfo& _Info)
 {
-	CommonDeathStart(ROCKGOLEM_ANIM_DEATH);
+	// 애니메이션 전환
+	Renderer_->ChangeFrameAnimation(ROCKGOLEM_ANIM_DEATH);
+	Renderer_->ScaleToTexture();
+
+	MonsterSizeY_ = 0.0f;
+	Renderer_->SetPivot(PIVOTMODE::BOT);
 }
 
 void RockGolem::IdleUpdate(float _DeltaTime, const StateInfo& _Info)
