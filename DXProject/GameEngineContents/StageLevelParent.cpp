@@ -120,6 +120,11 @@ void StageLevelParent::Update(float _DeltaTime)
 	{
 		MonsterManager_->CreateBossFlgOn(1);
 	}
+
+	if (true == DebuggerGUI_->GetDronDestoryFlg())
+	{
+		Option::DestroyDrone_ = true;
+	}
 }
 
 void StageLevelParent::LevelStartEvent()

@@ -92,7 +92,7 @@ void AttackDrone::CreateBullet(int _CurFrame, int _LastFrame)
 	float4 tmpDir = TargetPos_ - Renderer_->GetTransform().GetWorldPosition();
 
 	bullet->GetTransform().SetWorldPosition(Renderer_->GetTransform().GetWorldPosition());
-	bullet->SetDamage(PlayerStatus::Damage_);
+	bullet->SetDamage(PlayerStatus::Damage_ * 0.5f);
 	bullet->SetDirection(tmpDir.NormalizeReturn());
 	bullet->SetBulletYPositionLevel(YPosLevel_);
 

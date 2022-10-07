@@ -6,7 +6,7 @@
 Missile::Missile() 
 	: Speed_(300.0f)
 	, DegreeX_(0.0f)
-	, Damage_(45)
+	, Damage_(25)
 	, IsExplosion_(false)
 	, CurDegree_(0.0f)
 	, SuicideTimer_(0.0f)

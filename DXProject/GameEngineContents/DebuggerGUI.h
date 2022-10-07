@@ -36,6 +36,11 @@ public:
 		return CreateBossTrigger_;
 	}
 
+	bool GetDronDestoryFlg()
+	{
+		return DroneDestory_;
+	}
+
 protected:
 
 private:
@@ -45,6 +50,7 @@ private:
 	float4 PlayerPos_;
 	bool PlayerGroundFlg_;
 	std::string PlayerFSMState_;
+	bool DroneDestory_;
 
 	bool CreateBossTrigger_;
 };

@@ -1,5 +1,6 @@
 #include "PreCompile.h"
 #include "Drone.h"
+#include "Option.h"
 
 float4 Drone::PlayerPos_ = float4::ZERO;
 float4 Drone::PlayerDir_ = float4::ZERO;
@@ -28,6 +29,11 @@ void Drone::Update(float _DeltaTime)
 
 	// 스테이트 업데이트
 	StateManager_.Update(_DeltaTime);
+
+	if (true == Option::DestroyDrone_)
+	{
+		this->Death();
+	}
 }
 
 void Drone::LevelEndEvent()

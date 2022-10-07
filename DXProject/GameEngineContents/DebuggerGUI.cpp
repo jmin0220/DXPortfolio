@@ -51,4 +51,10 @@ void DebuggerGUI::OnGUI(GameEngineLevel* _Level, float _DeltaTime)
 	{
 		CreateBossTrigger_ = true;
 	}
+
+
+	if (true == ImGui::Button("DestoryDrone"))
+	{
+		DroneDestory_ = true;
+	}
 }
