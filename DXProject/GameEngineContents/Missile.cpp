@@ -2,6 +2,7 @@
 #include "Missile.h"
 #include "MissileSmokeRenderer.h"
 #include "Monster.h"
+#include "ContentsFont.h"
 
 Missile::Missile() 
 	: Speed_(300.0f)
@@ -173,6 +174,16 @@ CollisionReturn Missile::ExplosionCollisionCheck(GameEngineCollision* _This, Gam
 
 	TmpMonster->HitFunction(Damage_);
 	TmpMonster->ChangeStateToHitted();
+
+
+	// 데미지 폰트 출력
+	ContentsFont* DamageFont_ = GetLevel()->CreateActor<ContentsFont>();
+
+	DamageFont_->CreateFontRenderer<GameEngineTextureRenderer>(std::to_string(Damage_), { 0, 30.0f + 25.0f });
+	DamageFont_->GetTransform().SetWorldPosition({ this->GetTransform().GetWorldPosition().x, this->GetTransform().GetWorldPosition().y });
+	DamageFont_->SetIsBulletDmg(true);
+
+	DamageFont_->SetDeathTimer(1.0f);
 
 	return CollisionReturn::ContinueCheck;
 }

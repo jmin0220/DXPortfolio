@@ -26,7 +26,7 @@ void AttackDrone::AnimInit()
 		{
 			if (_Info.CurFrame == 1)
 			{
-				CreateBullet(_Info.CurFrame, 6);
+				CreateBullet(_Info.CurFrame, 1);
 			}
 		});
 
@@ -94,13 +94,5 @@ void AttackDrone::CreateBullet(int _CurFrame, int _LastFrame)
 	bullet->GetTransform().SetWorldPosition(Renderer_->GetTransform().GetWorldPosition());
 	bullet->SetDamage(PlayerStatus::Damage_ * 0.5f);
 	bullet->SetDirection(tmpDir.NormalizeReturn());
-	bullet->SetBulletYPositionLevel(YPosLevel_);
-
-	YPosLevel_++;
-
-	// 이번 애니메이션에서 총알을 모두 쏨
-	if (_CurFrame == _LastFrame)
-	{
-		YPosLevel_ = 0;
-	}
+	bullet->SetBulletYPositionLevel(0);
 }
