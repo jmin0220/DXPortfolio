@@ -69,7 +69,7 @@ void MonsterManager::Update(float _DeltaTime)
 	int MonsterSelectCounter = GameEngineRandom::MainRandom.RandomInt(0, DifficultyTextCounter);
 
 	// 몬스터 생성타이머
-	if (SingleMonsterRespawnTimer_ >= 5.0f)
+	if (SingleMonsterRespawnTimer_ >= 3.0f)
 	{
 		// 시간별로 등장하는 몬스터의 종류가 달라짐
 		Monster* NewMonster_;

@@ -75,6 +75,12 @@ CollisionReturn BarbedWire::CollisionCheck(GameEngineCollision* _This, GameEngin
 	CheckedMonster_.push_back(_Other);
 
 	Monster* TmpMonster = dynamic_cast<Monster*>(_Other->GetActor());
+
+	if (true == TmpMonster->GetMonsterDeath())
+	{
+		return CollisionReturn::ContinueCheck;
+	}
+
 	TmpMonster->HitFunction(10);
 	TmpMonster->ChangeStateToHitted();
 
